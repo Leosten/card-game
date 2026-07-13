@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://belvm77225t2m"]
+
+[ext_resource type="Script" uid="uid://bgtt3r7thv6t8" path="res://card.gd" id="1_dd2wi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hael8"]
+size = Vector2(271, 388)
+
+[node name="Card" type="Area2D" unique_id=479738658]
+script = ExtResource("1_dd2wi")
+
+[node name="Border" type="Polygon2D" parent="." unique_id=1585050312]
+color = Color(0.121569, 0.121569, 0.121569, 1)
+polygon = PackedVector2Array(-135.5, -194, 135.5, -194, 135.5, 194, -135.5, 194)
+
+[node name="Face" type="Polygon2D" parent="." unique_id=681137909]
+polygon = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595820256]
+shape = SubResource("RectangleShape2D_hael8")
