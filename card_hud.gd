@@ -7,7 +7,7 @@ const CARD_SCENE := preload("res://Card.tscn")
 @export var bottom_margin := 32.0
 @export var side_margin := 25.0
 @export var fan_height := 90.0
-@export var max_fan_angle := 15.0
+@export var max_fan_angle := 18.0
 
 var cards: Array[Card] = []
 var hovered_card: Card
