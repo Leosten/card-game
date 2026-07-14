@@ -1,13 +1,11 @@
 extends Node2D
 
-const CARD_SCENE := preload("res://Card.tscn")
+const CARD_SCENE := preload("res://BattleView/Card.tscn")
 
-@export var default_nb_of_cards := 6
+@export var default_nb_of_cards := 4
 @export var card_overlap := 18.0
 @export var bottom_margin := 32.0
 @export var side_margin := 25.0
-@export var fan_height := 90.0
-@export var max_fan_angle := 18.0
 
 var cards: Array[Card] = []
 var hovered_card: Card
@@ -22,8 +20,8 @@ func _spawn_starting_hand() -> void:
 	if default_nb_of_cards <= 0:
 		return
 
-	var card_bounds := _get_card_bounds()
-	var viewport_size := get_viewport_rect().size
+	var card_bounds: Rect2 = _get_card_bounds()
+	var viewport_size: Vector2 = get_viewport_rect().size
 	var card_width: float = card_bounds.size.x
 	var gap_count: int = max(default_nb_of_cards - 1, 0)
 	var preferred_step: float = max(card_width - card_overlap, 1.0)
@@ -37,8 +35,7 @@ func _spawn_starting_hand() -> void:
 	var total_width: float = card_width + gap_count * step
 	var group_left: float = max((viewport_size.x - total_width) * 0.5, side_margin)
 	var bottom_edge: float = viewport_size.y - bottom_margin
-	var top_y: float = bottom_edge - card_bounds.position.y - card_bounds.size.y
-	var center_index: float = gap_count * 0.5
+	var card_y: float = bottom_edge - card_bounds.position.y - card_bounds.size.y
 
 	for existing_card in cards:
 		existing_card.queue_free()
@@ -47,19 +44,36 @@ func _spawn_starting_hand() -> void:
 
 	for index in range(default_nb_of_cards):
 		var card := CARD_SCENE.instantiate() as Card
-		var distance_from_center: float = 0.0
-		if gap_count > 0:
-			distance_from_center = (index - center_index) / center_index
-
-		var arc_weight: float = 1.0 - distance_from_center * distance_from_center
 		card.position = Vector2(
 			group_left - card_bounds.position.x + index * step,
-			top_y - arc_weight * fan_height
+			card_y
 		)
-		card.rotation = deg_to_rad(distance_from_center * max_fan_angle)
 		card.z_index = index
 		add_child(card)
+		
+		#init card with infos
+		card.initCard(str(index))
+		
 		cards.append(card)
+
+	_update_size_area(group_left, card_y + card_bounds.position.y, total_width, card_bounds.size.y)
+
+func _update_size_area(left: float, top: float, width: float, height: float) -> void:
+	var size_area := get_node_or_null("TempSizeArea") as Node2D
+	if size_area == null:
+		return
+
+	var polygon_node := size_area.get_node_or_null("Polygon2D") as Polygon2D
+	if polygon_node == null:
+		return
+
+	polygon_node.polygon = PackedVector2Array([
+		Vector2(left, top),
+		Vector2(left + width, top),
+		Vector2(left + width, top + height),
+		Vector2(left, top + height),
+	])
+	polygon_node.color = Color(1.0, 1.0, 0.0, 0.15)
 
 func _update_hovered_card() -> void:
 	var mouse_position := get_global_mouse_position()

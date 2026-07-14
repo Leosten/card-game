@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://bcumk10bawk5x"]
-
-[ext_resource type="Script" uid="uid://cf6f7ygbk250k" path="res://card_hud.gd" id="1_6r6uq"]
-
-[node name="CardHud" type="Node2D" unique_id=1336641316]
-script = ExtResource("1_6r6uq")

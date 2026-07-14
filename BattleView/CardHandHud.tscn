@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bcumk10bawk5x"]
+
+[ext_resource type="Script" uid="uid://cf6f7ygbk250k" path="res://BattleView/card_hud.gd" id="1_6r6uq"]
+
+[node name="CardHandHud" type="Node2D" unique_id=1336641316]
+script = ExtResource("1_6r6uq")
+
+[node name="TempSizeArea" type="Area2D" parent="." unique_id=1369035437]
+
+[node name="Polygon2D" type="Polygon2D" parent="TempSizeArea" unique_id=1261148317]

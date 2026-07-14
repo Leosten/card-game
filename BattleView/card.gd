@@ -14,7 +14,10 @@ func _ready() -> void:
 	base_position = position
 	target_position = position
 	base_z_index = z_index
-
+	
+func initCard(cardName) -> void:
+	$CardName.text = cardName;
+	
 func _process(delta: float) -> void:
 	position = position.lerp(target_position, speed * delta)
 
