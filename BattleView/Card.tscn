@@ -8,10 +8,105 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hael8"]
 size = Vector2(271, 388)
 
-[node name="Card" type="Area2D" unique_id=479738658]
-script = ExtResource("1_lgmux")
+[sub_resource type="Animation" id="Animation_4o7yy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardVisual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(554, 1428)]
+}
 
-[node name="CardName" type="Label" parent="." unique_id=1408446644]
+[sub_resource type="Animation" id="Animation_y1hx4"]
+resource_name = "card_appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(554, 1428)]
+}
+
+[sub_resource type="Animation" id="Animation_sq6oe"]
+resource_name = "card_hover_animation"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardVisual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -75)]
+}
+
+[sub_resource type="Animation" id="Animation_ta7bg"]
+resource_name = "card_stack_left"
+length = 2.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardVisual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.0333333, 2.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-67, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ta7bg"]
+_data = {
+&"RESET": SubResource("Animation_4o7yy"),
+&"card_appear": SubResource("Animation_y1hx4"),
+&"card_hover_animation": SubResource("Animation_sq6oe"),
+&"card_stack_left": SubResource("Animation_ta7bg")
+}
+
+[node name="Card" type="Area2D" unique_id=479738658]
+position = Vector2(554, 1428)
+script = ExtResource("1_lgmux")
+metadata/_edit_group_ = true
+
+[node name="CardVisual" type="Node2D" parent="." unique_id=852483643]
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="CardVisual" unique_id=417686816]
+visible = false
+z_index = 4096
+offset_left = -133.0
+offset_top = -190.0
+offset_right = 136.0
+offset_bottom = 194.0
+
+[node name="CardName" type="Label" parent="CardVisual" unique_id=1408446644]
 z_index = 1
 offset_left = -103.0
 offset_top = -177.0
@@ -21,22 +116,27 @@ text = "TEST"
 label_settings = SubResource("LabelSettings_4o7yy")
 horizontal_alignment = 1
 
-[node name="CardDescription" type="Label" parent="." unique_id=746129555]
+[node name="CardDescription" type="Label" parent="CardVisual" unique_id=746129555]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="CardPicture" type="TextureRect" parent="." unique_id=478075214]
+[node name="CardPicture" type="TextureRect" parent="CardVisual" unique_id=478075214]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Border" type="Polygon2D" parent="." unique_id=1585050312]
+[node name="Border" type="Polygon2D" parent="CardVisual" unique_id=1585050312]
 color = Color(0.121569, 0.121569, 0.121569, 1)
 polygon = PackedVector2Array(-135.5, -194, 135.5, -194, 135.5, 194, -135.5, 194)
 
-[node name="Face" type="Polygon2D" parent="." unique_id=681137909]
+[node name="Face" type="Polygon2D" parent="CardVisual" unique_id=681137909]
 polygon = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
+uv = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595820256]
 shape = SubResource("RectangleShape2D_hael8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=847517914]
+libraries/ = SubResource("AnimationLibrary_ta7bg")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

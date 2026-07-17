@@ -2,9 +2,20 @@
 
 [ext_resource type="Script" uid="uid://cf6f7ygbk250k" path="res://BattleView/card_hud.gd" id="1_6r6uq"]
 
+[sub_resource type="Animation" id="Animation_y1y84"]
+resource_name = "card_stack_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngqop"]
+_data = {
+&"card_stack_animation": SubResource("Animation_y1y84")
+}
+
 [node name="CardHandHud" type="Node2D" unique_id=1336641316]
 script = ExtResource("1_6r6uq")
 
 [node name="TempSizeArea" type="Area2D" parent="." unique_id=1369035437]
 
 [node name="Polygon2D" type="Polygon2D" parent="TempSizeArea" unique_id=1261148317]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=380208711]
+libraries/ = SubResource("AnimationLibrary_ngqop")
