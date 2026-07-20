@@ -25,10 +25,6 @@ func init_cards() -> void:
 func init_player_deck():
 	player_deck = card_manager.get_starting_deck(1)
 
-func list_cards() -> void:
-	for card in cards:
-		print("card name is %s" % card.name)
-
 func init_player() -> void:
 	init_player_deck()
 	player_stats.health = 100

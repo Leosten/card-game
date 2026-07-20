@@ -25,7 +25,11 @@ func get_all_cards() -> Array[CardData]:
 func get_starting_deck(character_id):
 	var character_deck = StartingDecks._get_character_starting_deck(1)
 	var deck : Array[CardData] = []
-	print(character_deck)
+	
 	for cards_id in character_deck:
 		deck.append(cards[cards_id].duplicate())
 	return deck
+	
+func list_cards() -> void:
+	for card in cards:
+		print("card name is %s" % card.name)
