@@ -8,12 +8,14 @@ const CARD_SCENE := preload("res://BattleView/Card.tscn")
 @export var card_size = 250
 @export var max_nb_of_cards = 8
 
-var cards_in_hands: Array[Card] = []
+var player_hand: Array[Card] = []
 var card_hand_position: Array[Area2D] = [] 
 
 var cards_stacked : bool = false
+var player_deck : Array[CardData] = []
 
 func _ready() -> void:
+	init_player_deck()
 	init_card_position()
 	_spawn_starting_hand()
 
@@ -37,24 +39,28 @@ func _spawn_starting_hand() -> void:
 	if default_nb_of_cards <= 0:
 		return
 
-	for existing_card in cards_in_hands:
+	for existing_card in player_hand:
 		existing_card.queue_free()
-	cards_in_hands.clear()
+	player_hand.clear()
 
-	for index in range(default_nb_of_cards):
+	for index in default_nb_of_cards:
 		var card := CARD_SCENE.instantiate() as Card
 		card.position = card_hand_position[index].position
 		card.z_index = index + 1
 		add_child(card)
-		card.initCard(str(index), index)
-		cards_in_hands.append(card)
+		card.init_card(str(index), player_deck[index])
+		player_hand.append(card)
 
 func check_cards_fit() -> void:
-	if cards_stacked == true || cards_in_hands.is_empty() :
+	if cards_stacked == true || player_hand.is_empty() :
 		return
 	var viewport_size := get_viewport_rect().size
 		
-	if cards_in_hands[0] != null && cards_in_hands[0].position.x <= viewport_size.x: 
-		for card in cards_in_hands:
+	if player_hand[0] != null && player_hand[0].position.x <= viewport_size.x: 
+		for card in player_hand:
 			card.animation_left()
 			cards_stacked = true
+
+func init_player_deck():
+	player_deck = GameManager.get_player_deck()
+	player_deck.shuffle()

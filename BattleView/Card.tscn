@@ -2,7 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bgtt3r7thv6t8" path="res://BattleView/card.gd" id="1_lgmux"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ekkti"]
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_4o7yy"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q7hkx"]
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hael8"]
@@ -106,6 +112,15 @@ offset_top = -190.0
 offset_right = 136.0
 offset_bottom = 194.0
 
+[node name="CardPosLabel" type="Label" parent="CardVisual" unique_id=1607984811]
+z_index = 1
+offset_left = -118.0
+offset_top = -177.0
+offset_right = -93.0
+offset_bottom = -151.0
+text = "1"
+label_settings = SubResource("LabelSettings_ekkti")
+
 [node name="CardName" type="Label" parent="CardVisual" unique_id=1408446644]
 z_index = 1
 offset_left = -103.0
@@ -117,8 +132,13 @@ label_settings = SubResource("LabelSettings_4o7yy")
 horizontal_alignment = 1
 
 [node name="CardDescription" type="Label" parent="CardVisual" unique_id=746129555]
-offset_right = 40.0
-offset_bottom = 23.0
+z_index = 1
+offset_left = -115.0
+offset_top = 9.0
+offset_right = 119.0
+offset_bottom = 157.0
+text = "test description"
+label_settings = SubResource("LabelSettings_q7hkx")
 
 [node name="CardPicture" type="TextureRect" parent="CardVisual" unique_id=478075214]
 offset_right = 40.0
@@ -133,6 +153,7 @@ polygon = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
 uv = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595820256]
+visible = false
 shape = SubResource("RectangleShape2D_hael8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=847517914]

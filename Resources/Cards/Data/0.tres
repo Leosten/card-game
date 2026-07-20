@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ciu0b2dkp4clu"]
+
+[ext_resource type="Script" uid="uid://cqcdxav3ke5ma" path="res://Resources/Cards/card_data.gd" id="1_1emkd"]
+
+[resource]
+script = ExtResource("1_1emkd")
+character_deck = 1
+name = "attack"
+default_damage = 10
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

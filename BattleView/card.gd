@@ -6,9 +6,10 @@ extends Area2D
 func _ready() -> void:
 	pass
 
-func initCard(cardName, cardHandPos) -> void:
-	cardHandPosition = cardHandPos
-	$CardVisual/CardName.text = cardName
+func init_card(cardHandPos, card_data) -> void:
+	$CardVisual/CardPosLabel.text = cardHandPos
+	$CardVisual/CardName.text = card_data.name
+	$CardVisual/CardDescription.text = card_data.description
 
 func _process(delta: float) -> void:
 	pass

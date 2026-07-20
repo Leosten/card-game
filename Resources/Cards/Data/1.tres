@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c1817pwbkfa7b"]
+
+[ext_resource type="Script" uid="uid://cqcdxav3ke5ma" path="res://Resources/Cards/card_data.gd" id="1_6trhs"]
+
+[resource]
+script = ExtResource("1_6trhs")
+id = 1
+character_deck = 1
+name = "defend"
+default_damage = 5
+action = "shield"
+description = "Protect yourself from %s damage"
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"
