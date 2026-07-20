@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dpom8m7aspoog"]
+
+[ext_resource type="Script" uid="uid://cb4j2me6oo5s" path="res://Resources/Characters/player_character.gd" id="1_r7st7"]
+[ext_resource type="Texture2D" uid="uid://csaj6evpvefy3" path="res://Art/Characters/Raider_3/Idle.png" id="2_yf6bx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1osdt"]
+atlas = ExtResource("2_yf6bx")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73b60"]
+atlas = ExtResource("2_yf6bx")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3pns"]
+atlas = ExtResource("2_yf6bx")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4r05"]
+atlas = ExtResource("2_yf6bx")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsigh"]
+atlas = ExtResource("2_yf6bx")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci0r2"]
+atlas = ExtResource("2_yf6bx")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekkti"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1osdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73b60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3pns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4r05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsigh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci0r2")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7hkx"]
+size = Vector2(41, 76)
+
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=340876869]
+script = ExtResource("1_r7st7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1122831603]
+sprite_frames = SubResource("SpriteFrames_ekkti")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=407755184]
+position = Vector2(-2.5, 28)
+shape = SubResource("RectangleShape2D_q7hkx")

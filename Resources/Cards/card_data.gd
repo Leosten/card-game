@@ -2,6 +2,8 @@ class_name CardData
 
 extends Resource
 
+
+
 @export var id = 0
 @export var character_deck = 0
 @export var name := ""
@@ -9,4 +11,8 @@ extends Resource
 @export var action := ""
 @export var description := ""
 @export var cost := 0
+@export var drawable := true
+@export var discarded := false
+@export var exhausted := false
+@export var target:= ""
 @export var artwork: Texture2D

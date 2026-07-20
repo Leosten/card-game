@@ -13,7 +13,6 @@ func _ready() -> void:
 	player_stats = PlayerStats.new()
 	init_cards()
 	init_player()
-	#list_cards()
 	print("init done")
 
 func init_cards() -> void:

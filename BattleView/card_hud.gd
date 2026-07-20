@@ -48,7 +48,9 @@ func _spawn_starting_hand() -> void:
 		card.position = card_hand_position[index].position
 		card.z_index = index + 1
 		add_child(card)
+		player_deck[index].drawable = false
 		card.init_card(str(index), player_deck[index])
+		
 		player_hand.append(card)
 
 func check_cards_fit() -> void:

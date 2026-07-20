@@ -8,7 +8,7 @@ const StartingDecks = preload("res://Resources/Characters/starting_decks.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _init() -> void:
-	load_all_cards()	
+	load_all_cards()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

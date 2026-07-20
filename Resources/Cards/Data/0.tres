@@ -7,4 +7,5 @@ script = ExtResource("1_1emkd")
 character_deck = 1
 name = "attack"
 default_damage = 10
+description = "Attack for %s damage"
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

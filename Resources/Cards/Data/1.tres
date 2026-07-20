@@ -9,5 +9,4 @@ character_deck = 1
 name = "defend"
 default_damage = 5
 action = "shield"
-description = "Protect yourself from %s damage"
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"
