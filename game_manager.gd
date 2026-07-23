@@ -2,17 +2,25 @@ extends Node
 
 const CardManager = preload("res://Resources/Cards/card_manager.gd")
 const PlayerStats = preload("res://Resources/Characters/player_stats.gd")
+const CharacterManager = preload("res://Resources/Characters/character_manager.gd")
+
 var card_manager : CardManager
+var character_manager : CharacterManager
 @export var player_stats : PlayerStats
 @export var cards : Array[CardData] = []
 @export var player_deck: Array[CardData] = []
 
+@export var char_id = 0;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# select char id at start menu
+	char_id = 1
 	card_manager = CardManager.new()
-	player_stats = PlayerStats.new()
+	character_manager = CharacterManager.new()
+	card_manager.load_all_cards()
 	init_cards()
-	init_player()
+	init_player(char_id)
 	print("init done")
 
 func init_cards() -> void:
@@ -21,17 +29,19 @@ func init_cards() -> void:
 		cards.append(card.duplicate())
 	print("cards loaded");
 
-func init_player_deck():
-	player_deck = card_manager.get_starting_deck(1)
-
-func init_player() -> void:
-	init_player_deck()
-	player_stats.health = 100
+func init_player(char_id) -> void:
+	player_deck = card_manager.get_starting_deck(char_id)
+	player_stats = character_manager._get_starting_stats(char_id)
+	
 	print("player health is %s" % player_stats.health)
 
 func get_player_deck() :
 	return player_deck
-
+func get_character_scene() :
+	return character_manager.get_character_scene(char_id)
+func get_player_char_id():
+	return player_stats.char_id
+	
 func init_battle() -> void:
 	pass
 

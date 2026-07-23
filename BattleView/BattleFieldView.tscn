@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ybsmg21ph22t"]
+
+[ext_resource type="Script" uid="uid://ctw84g2nmmh2u" path="res://BattleView/battle_field_view.gd" id="1_eo4rx"]
+[ext_resource type="Texture2D" uid="uid://dcly76vouh1o1" path="res://Art/Backgrounds/forest/trees&bushes.png" id="1_q7o3m"]
+[ext_resource type="Texture2D" uid="uid://coj3ofmvnuwes" path="res://Art/Backgrounds/forest/grass&road.png" id="2_eo4rx"]
+
+[node name="BattlefieldView" type="Node2D" unique_id=419790207]
+script = ExtResource("1_eo4rx")
+
+[node name="Background" type="Node2D" parent="." unique_id=575436353]
+
+[node name="Background" type="TextureRect" parent="Background" unique_id=952474786]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_q7o3m")
+
+[node name="Foreground" type="TextureRect" parent="Background" unique_id=244011261]
+offset_left = -2.0
+offset_top = -104.0
+offset_right = 1918.0
+offset_bottom = 976.0
+texture = ExtResource("2_eo4rx")

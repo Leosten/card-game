@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b58jj26md5fh4" path="res://battle.gd" id="1_7sfm4"]
 [ext_resource type="PackedScene" uid="uid://bcumk10bawk5x" path="res://BattleView/CardHandHud.tscn" id="1_oxp8w"]
-[ext_resource type="PackedScene" uid="uid://ybsmg21ph22t" path="res://BattleView/FieldView.tscn" id="2_7sfm4"]
+[ext_resource type="PackedScene" uid="uid://ybsmg21ph22t" path="res://BattleView/BattleFieldView.tscn" id="2_7sfm4"]
 
 [node name="Battle" type="Node2D" unique_id=344223136]
 script = ExtResource("1_7sfm4")
 
 [node name="CardHandHud" parent="." unique_id=1336641316 instance=ExtResource("1_oxp8w")]
 
-[node name="FieldView" parent="." unique_id=419790207 instance=ExtResource("2_7sfm4")]
+[node name="BattleFieldView" parent="." unique_id=419790207 instance=ExtResource("2_7sfm4")]

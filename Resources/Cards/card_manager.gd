@@ -1,7 +1,8 @@
 class_name CardManager
-extends Resource
+extends Node
+
 const CardData = preload("res://Resources/Cards/card_data.gd")
-const StartingDecks = preload("res://Resources/Characters/starting_decks.gd")
+const PlayerManager = preload("res://Resources/Characters/character_manager.gd")
 
 @export var nb_of_cards : int = 3
 @export var cards : Array[CardData] = []
@@ -23,7 +24,7 @@ func get_all_cards() -> Array[CardData]:
 	return cards
 
 func get_starting_deck(character_id):
-	var character_deck = StartingDecks._get_character_starting_deck(1)
+	var character_deck = PlayerManager._get_character_starting_deck(1)
 	var deck : Array[CardData] = []
 	
 	for cards_id in character_deck:
