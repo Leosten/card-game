@@ -10,7 +10,6 @@ const CARD_SCENE := preload("res://BattleView/Card.tscn")
 
 var player_hand: Array[Card] = []
 var card_hand_position: Array[Area2D] = [] 
-
 var cards_stacked : bool = false
 var player_deck : Array[CardData] = []
 

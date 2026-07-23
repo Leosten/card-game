@@ -1,7 +1,7 @@
 class_name CardManager
 extends Node
 
-const CardData = preload("res://Resources/Cards/card_data.gd")
+const CardData = preload("res://Resources/Cards/Data/card_data.gd")
 const PlayerManager = preload("res://Resources/Characters/character_manager.gd")
 
 @export var nb_of_cards : int = 3

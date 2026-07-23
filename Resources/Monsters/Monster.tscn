@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ctehutl7her3g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekkti"]
+size = Vector2(556, 532)
+
+[node name="Monster" type="AnimatableBody2D" unique_id=903031461]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=535737693]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1799351193]
+position = Vector2(268, 256)
+shape = SubResource("RectangleShape2D_ekkti")

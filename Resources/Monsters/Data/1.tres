@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MonsterData" format=3 uid="uid://i56l5utb7m20"]
+
+[ext_resource type="Script" uid="uid://fyu4c4thwqs7" path="res://Resources/Monsters/Data/MonsterData.gd" id="1_20mx5"]
+
+[resource]
+script = ExtResource("1_20mx5")
+metadata/_custom_type_script = "uid://fyu4c4thwqs7"

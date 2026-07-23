@@ -6,10 +6,12 @@ const CharacterManager = preload("res://Resources/Characters/character_manager.g
 
 var card_manager : CardManager
 var character_manager : CharacterManager
+
 @export var player_stats : PlayerStats
 @export var cards : Array[CardData] = []
 @export var player_deck: Array[CardData] = []
-
+@export var current_level = 1;
+@export var current_stage = 1;
 @export var char_id = 0;
 
 # Called when the node enters the scene tree for the first time.
@@ -37,8 +39,10 @@ func init_player(char_id) -> void:
 
 func get_player_deck() :
 	return player_deck
+
 func get_character_scene() :
 	return character_manager.get_character_scene(char_id)
+
 func get_player_char_id():
 	return player_stats.char_id
 	
