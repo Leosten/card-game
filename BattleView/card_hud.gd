@@ -1,5 +1,7 @@
 extends Node2D
 
+signal card_clicked(card_data: CardData)
+
 @export var default_nb_of_cards := 4
 @export var bottom_margin := 0
 @export var left_margin = 300
@@ -45,10 +47,12 @@ func _spawn_starting_hand() -> void:
 
 	for index in default_nb_of_cards:
 		var card = GameManager.card_manager.get_card_scene()
-		print(card)
 		card.position = card_hand_position[index].position
 		card.z_index = index + 1
+		player_deck[index].card_hand_position = index
 		card.init_card(str(index), player_deck[index])
+		
+		card.clicked.connect(_on_card_clicked)
 		add_child(card)
 		player_deck[index].drawable = false
 		
@@ -58,7 +62,7 @@ func check_cards_fit() -> void:
 	if cards_stacked == true || player_hand.is_empty() :
 		return
 	var viewport_size := get_viewport_rect().size
-		
+
 	if player_hand[0] != null && player_hand[0].position.x <= viewport_size.x: 
 		for card in player_hand:
 			card.animation_left()
@@ -67,3 +71,7 @@ func check_cards_fit() -> void:
 func init_player_deck():
 	player_deck = GameManager.get_player_deck()
 	player_deck.shuffle()
+
+func _on_card_clicked(card_data: CardData) -> void:
+	print("Clicked: ", card_data.name)
+	card_clicked.emit(card_data)

@@ -6,10 +6,11 @@ const CharacterManager = preload("res://Resources/Characters/character_manager.g
 
 var card_manager : CardManager
 var character_manager : CharacterManager
-
+var battle_state : Dictionary
 @export var player_stats : PlayerStats
 @export var cards : Array[CardData] = []
 @export var player_deck: Array[CardData] = []
+@export var level_monsters: Array[MonsterData] = []
 @export var current_level = 1;
 @export var current_stage = 1;
 @export var char_id = 0;
@@ -23,6 +24,8 @@ func _ready() -> void:
 	card_manager.load_all_cards()
 	init_cards()
 	init_player(char_id)
+	
+	update_battle_state(player_stats, player_deck, level_monsters)
 	print("init done")
 
 func init_cards() -> void:
@@ -46,9 +49,22 @@ func get_character_scene() :
 func get_player_char_id():
 	return player_stats.char_id
 	
-func init_battle() -> void:
-	pass
-
+func get_battle_state() -> Dictionary:
+	return battle_state
+	
+func update_battle_state(
+	player_s: PlayerStats,
+	player_d: Array[CardData],
+	level_m: Array[MonsterData],
+	):
+		battle_state = {
+		'player_stats' : player_s,
+		'player_deck' : player_d,
+		'level_monsters' : level_m
+		}
+		
+		return battle_state
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -1,6 +1,8 @@
 class_name Card
 extends Area2D
 
+signal clicked(card_data: CardData)
+
 @export var cardHandPosition : int
 @export var card_data : CardData
 
@@ -54,3 +56,9 @@ func hovering_off():
 
 func anim_complete():
 	anim = false
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton \
+		and event.button_index == MOUSE_BUTTON_LEFT \
+		and event.pressed:
+		clicked.emit(card_data)

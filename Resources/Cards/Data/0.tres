@@ -1,11 +1,24 @@
-[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ciu0b2dkp4clu"]
+[gd_resource type="Resource" format=3 uid="uid://ciu0b2dkp4clu"]
 
-[ext_resource type="Script" uid="uid://cqcdxav3ke5ma" path="res://Resources/Cards/Data/card_data.gd" id="1_1emkd"]
+[ext_resource type="Script" uid="uid://2f44f0e1l0fi" path="res://Resources/Cards/Data/attack_functionality.gd" id="1_1emkd"]
 
 [resource]
 script = ExtResource("1_1emkd")
 character_deck = 1
 name = "attack"
-default_damage = 10
-description = "Attack for %s damage"
+damage = 10
+actions = {
+"DAMAGE": 1,
+"HEAL": 0,
+"SHIELD": 0,
+"SHIELD_DAMAGE": 0,
+"STATUS": 0
+}
+description = "Attack enemy for %s damage"
+cost = 1
+allowed_targets = {
+"ALLY": 0,
+"ALL_ENEMIES": 0,
+"ENEMY": 1
+}
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

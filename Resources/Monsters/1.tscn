@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b3plognak2vgt"]
 
 [ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://Resources/Monsters/Monster.tscn" id="1_wc7me"]
+[ext_resource type="Script" uid="uid://4y8wt651yxng" path="res://Resources/Monsters/1.gd" id="2_6sq51"]
 [ext_resource type="Texture2D" uid="uid://cg11wputj6or5" path="res://Art/Monsters/1/idle/0_Monster_Idle_000.png" id="2_e8nxr"]
 [ext_resource type="Texture2D" uid="uid://cufbibp13q7hj" path="res://Art/Monsters/1/idle/0_Monster_Idle_001.png" id="3_6sq51"]
 [ext_resource type="Texture2D" uid="uid://cv3qtok5285o8" path="res://Art/Monsters/1/idle/0_Monster_Idle_002.png" id="4_y2tim"]
@@ -83,6 +84,7 @@ animations = [{
 }]
 
 [node name="1" unique_id=903031461 instance=ExtResource("1_wc7me")]
+script = ExtResource("2_6sq51")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=535737693]
 sprite_frames = SubResource("SpriteFrames_3ew85")

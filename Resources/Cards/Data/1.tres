@@ -8,5 +8,10 @@ id = 1
 character_deck = 1
 name = "defend"
 default_damage = 5
-action = "shield"
+actions = [{
+"DAMAGE": 0,
+"HEAL": 0,
+"SHIELD": 1,
+"STATUS": 0
+}]
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

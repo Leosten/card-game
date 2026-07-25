@@ -12,6 +12,7 @@ script = ExtResource("1_eo4rx")
 [node name="Background" type="TextureRect" parent="Background" unique_id=952474786]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("1_q7o3m")
 
 [node name="Foreground" type="TextureRect" parent="Background" unique_id=244011261]
@@ -19,4 +20,5 @@ offset_left = -2.0
 offset_top = -104.0
 offset_right = 1918.0
 offset_bottom = 976.0
+mouse_filter = 2
 texture = ExtResource("2_eo4rx")
