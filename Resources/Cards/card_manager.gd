@@ -3,6 +3,7 @@ extends Node
 
 const CardData = preload("res://Resources/Cards/Data/card_data.gd")
 const PlayerManager = preload("res://Resources/Characters/character_manager.gd")
+const Card = preload("res://BattleView/Card.tscn")
 
 @export var nb_of_cards : int = 3
 @export var cards : Array[CardData] = []
@@ -34,3 +35,6 @@ func get_starting_deck(character_id):
 func list_cards() -> void:
 	for card in cards:
 		print("card name is %s" % card.name)
+
+func get_card_scene():
+	return Card.instantiate()

@@ -6,7 +6,7 @@ var current_level: int
 var current_turn: int = 0
 var stage_monsters : Array[MonsterData]
 const StageManager = preload("res://Resources/stage_manager.gd")
-var level_monsters : Array
+var level_monsters : Array[AnimatableBody2D]
 
 var stage_manager : StageManager
 var viewport_size 
@@ -74,8 +74,8 @@ func get_level_monsters():
 			print("current monster loading %s" % monster_data.id)
 			if monster_data.id == monster_id:
 				var monster_scene = stage_manager.get_monster_scene_from_id(monster_id)
-				monster_scene.init_data(monster_data)
-				level_monsters.append(monster_scene)
+				monster_scene.init_data(monster_data.duplicate())
+				level_monsters.append(monster_scene.duplicate())
 				print("monster %s is loaded" % monster_data.id)
 		monster_index += 1
 
@@ -84,6 +84,8 @@ func spawn_level_monsters():
 	var index = 0
 	for monster_scene in level_monsters:
 		monster_scene.position = enemy_positions[index].position
+		monster_scene.set_battle_position(index)
+
 		add_child(monster_scene)
 		index += 1
 		print("Monster %s spawned" % str(index))

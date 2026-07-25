@@ -10,6 +10,10 @@ font_size = 25
 font_color = Color(0, 0, 0, 1)
 outline_size = 5
 
+[sub_resource type="LabelSettings" id="LabelSettings_oqa6g"]
+font_color = Color(0, 0, 0, 1)
+shadow_size = 11
+
 [node name="Monster" type="AnimatableBody2D" unique_id=903031461]
 script = ExtResource("1_oqa6g")
 
@@ -26,3 +30,11 @@ offset_right = 457.0
 offset_bottom = -160.0
 text = "TEST"
 label_settings = SubResource("LabelSettings_ekkti")
+
+[node name="MonsterPosition" type="Label" parent="." unique_id=2049779721]
+offset_left = -24.0
+offset_top = -293.0
+offset_right = 101.0
+offset_bottom = -137.0
+text = "1"
+label_settings = SubResource("LabelSettings_oqa6g")

@@ -12,7 +12,7 @@ font_color = Color(0, 0, 0, 1)
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hael8"]
-size = Vector2(271, 388)
+size = Vector2(271, 324)
 
 [sub_resource type="Animation" id="Animation_4o7yy"]
 length = 0.001
@@ -157,7 +157,7 @@ polygon = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
 uv = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595820256]
-visible = false
+position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_hael8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=847517914]

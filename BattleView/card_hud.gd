@@ -1,7 +1,5 @@
 extends Node2D
 
-const CARD_SCENE := preload("res://BattleView/Card.tscn")
-
 @export var default_nb_of_cards := 4
 @export var bottom_margin := 0
 @export var left_margin = 300
@@ -34,6 +32,8 @@ func init_card_position() -> void:
 		)
 		card_area.position = card_position
 		card_hand_position.append(card_area)
+		print("card positions init")
+		print(card_hand_position)
 		
 func _spawn_starting_hand() -> void:
 	if default_nb_of_cards <= 0:
@@ -44,7 +44,8 @@ func _spawn_starting_hand() -> void:
 	player_hand.clear()
 
 	for index in default_nb_of_cards:
-		var card := CARD_SCENE.instantiate() as Card
+		var card = GameManager.card_manager.get_card_scene()
+		print(card)
 		card.position = card_hand_position[index].position
 		card.z_index = index + 1
 		card.init_card(str(index), player_deck[index])
