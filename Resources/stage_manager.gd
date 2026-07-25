@@ -27,16 +27,31 @@ func get_stage_possible_type(stage) :
 		5:
 			return [level_type.BOSS]
 
-func get_level_possible_monsters(level) :
-	match level:
+func get_stage_possible_monsters(stage) :
+	match stage:
 		1:
 			return [1]
 
-func load_stage_monsters(monsters_id:Array):
+func get_stage_monsters(stage_id):
+	var monsters_id = get_stage_possible_monsters(stage_id)
 	for monster_id in monsters_id:
 		var monster = load("res://Resources/Monsters/Data/"+ str(monster_id)+ ".tres")
+		if monster == null:
+			printerr("Cannot load monster data ressource %s" % str(monster_id))
+			return
 		stage_monsters.append(monster.duplicate())	
+	return stage_monsters
 
-func get_level_monsters(level):
-	# shuffle stage monsters for level
-	pass
+func get_monster_scene_from_id(monster_id):
+	var monster : PackedScene = load("res://Resources/Monsters/%s.tscn" % str(monster_id))
+	if monster == null:
+		printerr("Cannot load monster scene %s" % str(monster_id))
+		return
+	return monster.instantiate()
+	
+func get_level_monsters(level) :
+	match level:
+		1:
+			#return [[1],[1,1],[1,1,1]]
+			return [[1,1,1,1,1,1]]
+	return []

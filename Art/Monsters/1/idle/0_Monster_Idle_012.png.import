@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc48fe0huhsac"
-path="res://.godot/imported/0_Monster_Idle_008.png-1aea985312b84c1b1eadddf6f8d59fe7.ctex"
+uid="uid://bw4y5slqel8nm"
+path="res://.godot/imported/0_Monster_Idle_012.png-9a79bf2c45cb9d79cd3adc2352311f0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Monsters/monster 1 - Idle/0_Monster_Idle_008.png"
-dest_files=["res://.godot/imported/0_Monster_Idle_008.png-1aea985312b84c1b1eadddf6f8d59fe7.ctex"]
+source_file="res://Art/Monsters/1/idle/0_Monster_Idle_012.png"
+dest_files=["res://.godot/imported/0_Monster_Idle_012.png-9a79bf2c45cb9d79cd3adc2352311f0a.ctex"]
 
 [params]
 

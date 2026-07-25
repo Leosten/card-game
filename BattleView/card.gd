@@ -2,6 +2,8 @@ class_name Card
 extends Area2D
 
 @export var cardHandPosition : int
+@export var card_data : CardData
+
 var hover_size : int = 250
 var hovered : bool = false
 var anim = false
@@ -13,6 +15,7 @@ func init_card(cardHandPos, card_data) -> void:
 	$CardVisual/CardPosLabel.text = cardHandPos
 	$CardVisual/CardName.text = card_data.name
 	$CardVisual/CardDescription.text = card_data.description
+	card_data = card_data
 
 func _process(delta: float) -> void:
 	pass

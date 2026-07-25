@@ -2,8 +2,6 @@ class_name CardData
 
 extends Resource
 
-
-
 @export var id = 0
 @export var character_deck = 0
 @export var name := ""

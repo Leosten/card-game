@@ -3,7 +3,8 @@ extends Node2D
 const CARD_SCENE := preload("res://BattleView/Card.tscn")
 
 @export var default_nb_of_cards := 4
-@export var bottom_margin := -63.0
+@export var bottom_margin := 0
+@export var left_margin = 300
 @export var margin_between_cards = 25
 @export var card_size = 250
 @export var max_nb_of_cards = 8
@@ -28,7 +29,7 @@ func init_card_position() -> void:
 	for card_pos_index in range(max_nb_of_cards):
 		var card_area = Area2D.new()
 		var card_position := Vector2(
-			(viewport_size.x - (card_pos_index * card_size) + margin_between_cards) - (viewport_size.x / default_nb_of_cards) ,
+			(viewport_size.x - left_margin - (card_pos_index * card_size) + margin_between_cards) - (viewport_size.x / default_nb_of_cards) ,
 			viewport_size.y - bottom_margin
 		)
 		card_area.position = card_position
@@ -46,9 +47,9 @@ func _spawn_starting_hand() -> void:
 		var card := CARD_SCENE.instantiate() as Card
 		card.position = card_hand_position[index].position
 		card.z_index = index + 1
+		card.init_card(str(index), player_deck[index])
 		add_child(card)
 		player_deck[index].drawable = false
-		card.init_card(str(index), player_deck[index])
 		
 		player_hand.append(card)
 

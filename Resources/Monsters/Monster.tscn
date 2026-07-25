@@ -1,12 +1,28 @@
 [gd_scene format=3 uid="uid://ctehutl7her3g"]
 
+[ext_resource type="Script" uid="uid://b3kupijqw5fv" path="res://Resources/Monsters/monster.gd" id="1_oqa6g"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekkti"]
 size = Vector2(556, 532)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ekkti"]
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+
 [node name="Monster" type="AnimatableBody2D" unique_id=903031461]
+script = ExtResource("1_oqa6g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=535737693]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1799351193]
-position = Vector2(268, 256)
+position = Vector2(-8, 13)
 shape = SubResource("RectangleShape2D_ekkti")
+
+[node name="MonsterName" type="Label" parent="." unique_id=1164102193]
+offset_left = -45.0
+offset_top = -259.0
+offset_right = 457.0
+offset_bottom = -160.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_ekkti")

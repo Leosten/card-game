@@ -133,10 +133,10 @@ horizontal_alignment = 1
 
 [node name="CardDescription" type="Label" parent="CardVisual" unique_id=746129555]
 z_index = 1
-offset_left = -115.0
-offset_top = 9.0
-offset_right = 119.0
-offset_bottom = 157.0
+offset_left = -93.0
+offset_top = -34.0
+offset_right = 149.0
+offset_bottom = 163.0
 text = "test description"
 label_settings = SubResource("LabelSettings_q7hkx")
 
@@ -145,10 +145,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Border" type="Polygon2D" parent="CardVisual" unique_id=1585050312]
+position = Vector2(0, -32)
+scale = Vector2(1, 0.83505154)
 color = Color(0.121569, 0.121569, 0.121569, 1)
 polygon = PackedVector2Array(-135.5, -194, 135.5, -194, 135.5, 194, -135.5, 194)
 
 [node name="Face" type="Polygon2D" parent="CardVisual" unique_id=681137909]
+position = Vector2(0, -32)
+scale = Vector2(1, 0.827957)
 polygon = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
 uv = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
 
