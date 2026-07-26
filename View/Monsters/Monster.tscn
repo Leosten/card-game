@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctehutl7her3g"]
 
-[ext_resource type="Script" uid="uid://b3kupijqw5fv" path="res://BattleView/Monsters/monster.gd" id="1_aqg53"]
+[ext_resource type="Script" uid="uid://b3kupijqw5fv" path="res://View/Monsters/monster.gd" id="1_3k3gj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekkti"]
 resource_local_to_scene = true
@@ -17,7 +17,7 @@ shadow_size = 13
 shadow_color = Color(1, 1, 1, 0)
 
 [node name="Monster" type="AnimatableBody2D" unique_id=903031461]
-script = ExtResource("1_aqg53")
+script = ExtResource("1_3k3gj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=535737693]
 

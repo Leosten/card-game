@@ -9,8 +9,8 @@ enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL}
 # positioning variables
 var max_nb_of_enemies = 6
 var max_nb_of_enemies_per_row = 3
-var battle_line_margin = 700
-var enemy_first_row = 700
+var battle_line_margin = 900
+var enemy_first_row = 750
 var enemy_first_column = 200
 var enemy_column_margin = 350
 var row_margin = 320
@@ -47,7 +47,7 @@ func get_stage_monsters(stage_id):
 	return stage_monsters
 
 func get_monster_scene_from_id(monster_id):
-	var monster : PackedScene = load("res://BattleView/Monsters/"+ str(monster_id)+ "/monster_"+ str(monster_id)+ ".tscn")
+	var monster : PackedScene = load("res://View/Monsters/"+ str(monster_id)+ "/monster_"+ str(monster_id)+ ".tscn")
 	if monster == null:
 		printerr("Cannot load monster scene %s" % str(monster_id))
 		return

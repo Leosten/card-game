@@ -1,14 +1,21 @@
 [gd_scene format=3 uid="uid://belvm77225t2m"]
 
-[ext_resource type="Script" uid="uid://bgtt3r7thv6t8" path="res://BattleView/Cards/card.gd" id="1_lgmux"]
+[ext_resource type="Script" uid="uid://bgtt3r7thv6t8" path="res://View/Cards/card.gd" id="1_iudbb"]
+[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/CardBackground.tscn" id="2_cn18q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekkti"]
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4o7yy"]
+font_size = 32
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_q7hkx"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vgpp7"]
+font_size = 45
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hael8"]
@@ -98,11 +105,9 @@ _data = {
 
 [node name="Card" type="Area2D" unique_id=479738658]
 position = Vector2(554, 1428)
-script = ExtResource("1_lgmux")
-metadata/_edit_group_ = true
+script = ExtResource("1_iudbb")
 
 [node name="CardVisual" type="Node2D" parent="." unique_id=852483643]
-metadata/_edit_group_ = true
 
 [node name="Button" type="Button" parent="CardVisual" unique_id=417686816]
 visible = false
@@ -123,9 +128,9 @@ label_settings = SubResource("LabelSettings_ekkti")
 
 [node name="CardName" type="Label" parent="CardVisual" unique_id=1408446644]
 z_index = 1
-offset_left = -103.0
-offset_top = -177.0
-offset_right = 105.0
+offset_left = -133.0
+offset_top = -182.0
+offset_right = 57.0
 offset_bottom = -122.0
 text = "TEST"
 label_settings = SubResource("LabelSettings_4o7yy")
@@ -133,10 +138,10 @@ horizontal_alignment = 1
 
 [node name="CardDescription" type="Label" parent="CardVisual" unique_id=746129555]
 z_index = 1
-offset_left = -93.0
-offset_top = -34.0
-offset_right = 149.0
-offset_bottom = 163.0
+offset_left = -118.0
+offset_top = -27.0
+offset_right = 101.0
+offset_bottom = 205.0
 text = "test description"
 label_settings = SubResource("LabelSettings_q7hkx")
 
@@ -144,19 +149,29 @@ label_settings = SubResource("LabelSettings_q7hkx")
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Border" type="Polygon2D" parent="CardVisual" unique_id=1585050312]
-position = Vector2(0, -32)
-scale = Vector2(1, 0.83505154)
-color = Color(0.121569, 0.121569, 0.121569, 1)
-polygon = PackedVector2Array(-135.5, -194, 135.5, -194, 135.5, 194, -135.5, 194)
+[node name="CardBackground" parent="CardVisual" unique_id=1429276712 instance=ExtResource("2_cn18q")]
 
-[node name="Face" type="Polygon2D" parent="CardVisual" unique_id=681137909]
-position = Vector2(0, -32)
-scale = Vector2(1, 0.827957)
-polygon = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
-uv = PackedVector2Array(-127.5, -186, 127.5, -186, 127.5, 186, -127.5, 186)
+[node name="CostWindow" type="Polygon2D" parent="CardVisual" unique_id=1872966988]
+position = Vector2(198.00003, -153.66998)
+scale = Vector2(0.8295458, 0.8987502)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-112, -56, -152, -56, -176, -32, -176, 0, -152, 24, -112, 24, -88, 0, -88, -32)
+uv = PackedVector2Array(-112, -56, -152, -56, -184, -32, -184, 0, -152, 24, -112, 24, -80, 0, -80, -40)
+
+[node name="CostBorder" type="Polygon2D" parent="CardVisual/CostWindow" unique_id=539850964]
+polygon = PackedVector2Array(-115.4925, -49.014973, -148.50748, -49.014973, -168.31647, -29.205988, -168.31647, -2.794011, -148.50748, 17.014973, -115.4925, 17.014973, -95.68352, -2.794011, -95.68352, -29.205988)
+uv = PackedVector2Array(-112, -56, -152, -56, -184, -32, -184, 0, -152, 24, -112, 24, -80, 0, -80, -40)
+
+[node name="CostLabel" type="Label" parent="CardVisual" unique_id=1881338291]
+offset_left = 78.0
+offset_top = -196.0
+offset_right = 118.0
+offset_bottom = -133.0
+text = "2"
+label_settings = SubResource("LabelSettings_vgpp7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595820256]
+visible = false
 position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_hael8")
 

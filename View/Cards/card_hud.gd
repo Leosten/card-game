@@ -4,8 +4,8 @@ signal card_clicked(card_data: CardData)
 
 @export var default_nb_of_cards := 4
 @export var bottom_margin := 0
-@export var left_margin = 300
-@export var margin_between_cards = 25
+@export var left_margin = 250
+@export var margin_between_cards = 20
 @export var card_size = 250
 @export var max_nb_of_cards = 8
 
@@ -18,6 +18,7 @@ func _ready() -> void:
 	init_player_deck()
 	init_card_position()
 	_spawn_starting_hand()
+	calculate_piles()
 
 func _process(_delta: float) -> void:
 	#check_cards_fit()
@@ -51,7 +52,6 @@ func _spawn_starting_hand() -> void:
 		card.z_index = index + 1
 		player_deck[index].card_hand_position = index
 		card.init_card(str(index), player_deck[index])
-		
 		card.clicked.connect(_on_card_clicked)
 		add_child(card)
 		player_deck[index].drawable = false
@@ -72,6 +72,17 @@ func init_player_deck():
 	player_deck = GameManager.get_player_deck()
 	player_deck.shuffle()
 
+func calculate_piles():
+	var discard_count = 0
+	var draw_count = 0
+	for card in GameManager.get_player_deck():
+		if card.drawable == true:
+			draw_count += 1
+		if card.discarded == true:
+			discard_count += 1
+	$DrawPile/DrawCount.text = str(draw_count)
+	$DiscardPile/DiscardCount.text = str(discard_count)
+	
 func _on_card_clicked(card_data: CardData) -> void:
 	print("Clicked: ", card_data.name)
 	card_clicked.emit(card_data)

@@ -8,5 +8,5 @@ id = 2
 character_deck = 1
 name = "heal"
 description = "Heals for %s points"
-cost = 1
+cost = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

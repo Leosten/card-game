@@ -3,7 +3,7 @@ extends Node
 
 const CardData = preload("res://Resources/Cards/card_data.gd")
 const PlayerManager = preload("res://Manager/character_manager.gd")
-const Card = preload("res://BattleView/Cards/Card.tscn")
+const Card = preload("res://View/Cards/Card.tscn")
 
 @export var nb_of_cards : int = 3
 @export var cards : Array[CardData] = []

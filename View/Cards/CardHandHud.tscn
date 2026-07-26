@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bcumk10bawk5x"]
+
+[ext_resource type="Script" uid="uid://cf6f7ygbk250k" path="res://View/Cards/card_hud.gd" id="1_euu8e"]
+[ext_resource type="PackedScene" uid="uid://0yurjre3p4vj" path="res://View/Cards/DiscardPile.tscn" id="2_eq6v6"]
+[ext_resource type="PackedScene" uid="uid://bsnpqv00mcbl" path="res://View/Cards/DrawPile.tscn" id="3_s5q8o"]
+
+[node name="CardHandHud" type="Node2D" unique_id=1336641316]
+z_index = 1200
+script = ExtResource("1_euu8e")
+
+[node name="DiscardPile" parent="." unique_id=1594937451 instance=ExtResource("2_eq6v6")]
+position = Vector2(171, 946)
+scale = Vector2(0.6, 0.6)
+
+[node name="DrawPile" parent="." unique_id=76442856 instance=ExtResource("3_s5q8o")]
+position = Vector2(1797, 956)
+scale = Vector2(0.6, 0.6)

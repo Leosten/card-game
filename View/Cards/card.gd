@@ -6,7 +6,7 @@ signal clicked(card_data: CardData)
 @export var cardHandPosition : int
 @export var card_data : CardData
 
-var hover_size : int = 250
+var hover_size : int = 170
 var hovered : bool = false
 var anim = false
 var selected : bool = false
@@ -18,6 +18,7 @@ func init_card(cardHandPos, card_d) -> void:
 	$CardVisual/CardPosLabel.text = cardHandPos
 	$CardVisual/CardName.text = card_d.name
 	$CardVisual/CardDescription.text = card_d.description
+	$CardVisual/CostLabel.text = str(card_d.cost)
 	card_data = card_d
 
 func _process(delta: float) -> void:

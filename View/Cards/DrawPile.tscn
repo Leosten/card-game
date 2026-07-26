@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bsnpqv00mcbl"]
+
+[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/CardBackground.tscn" id="1_1imhw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ekkti"]
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q7hkx"]
+font_size = 85
+font_color = Color(0, 0, 0, 1)
+
+[node name="DrawPile" type="Node2D" unique_id=76442856]
+
+[node name="border" type="Polygon2D" parent="." unique_id=1565459423]
+position = Vector2(-19, -1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(136, -152, 136, 80, -16.356167, 194.54463, -176.1015, 73.346825, -176.10158, -151.8912)
+uv = PackedVector2Array(120.665306, -112.581955, 120.665306, 69.4162, -15.833303, 198.33156, -144.74863, 69.4162, -144.74867, -112.581955)
+
+[node name="back2" type="Polygon2D" parent="." unique_id=713164445]
+position = Vector2(-8, -4)
+polygon = PackedVector2Array(135.99902, -128.0899, 135.99902, 74.81784, -16, 184, -159.90805, 74.81784, -159.90808, -71.97293, -159.90813, -128.0899)
+uv = PackedVector2Array(120.665306, -112.581955, 120.665306, 69.4162, -15.833303, 198.33156, -144.74863, 69.4162, -144.74867, -112.581955)
+
+[node name="border2" type="Polygon2D" parent="." unique_id=1727951729]
+position = Vector2(13, 47)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(136.00003, -152, 135.99997, 80, -16.356167, 194.54463, -176.1015, 73.346825, -176.10158, -151.8912)
+uv = PackedVector2Array(120.665306, -112.581955, 120.665306, 69.4162, -15.833303, 198.33156, -144.74863, 69.4162, -144.74867, -112.581955)
+
+[node name="back" type="Polygon2D" parent="." unique_id=477332427]
+position = Vector2(26, 44)
+polygon = PackedVector2Array(135.99902, -128.0899, 135.99902, 74.81784, -16, 184, -159.90805, 74.81784, -159.90813, -128.0899)
+uv = PackedVector2Array(120.665306, -112.581955, 120.665306, 69.4162, -15.833303, 198.33156, -144.74863, 69.4162, -144.74867, -112.581955)
+
+[node name="CardBackground" parent="." unique_id=1429276712 instance=ExtResource("1_1imhw")]
+position = Vector2(15, 16)
+
+[node name="DrawLabel" type="Label" parent="." unique_id=828044819]
+offset_left = -55.0
+offset_top = -152.0
+offset_right = 84.0
+offset_bottom = -97.0
+text = "DRAW"
+label_settings = SubResource("LabelSettings_ekkti")
+
+[node name="DrawCount" type="Label" parent="." unique_id=2054102521]
+offset_left = -26.0
+offset_top = -41.0
+offset_right = 71.0
+offset_bottom = 75.0
+text = "18"
+label_settings = SubResource("LabelSettings_q7hkx")

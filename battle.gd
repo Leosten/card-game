@@ -16,13 +16,14 @@ var viewport_size
 var enemy_positions : Array[Area2D] = []
 
 @onready var card_hand_hud = $CardHandHud
+@onready var mana_window = $ManaWindow
 
 var card_clicked: CardData = null
 
 func _on_card_clicked(card_data: CardData) -> void:
 	card_clicked = card_data
 	print("Battle received: ", card_data.name)
-	
+
 func _ready() -> void:
 	card_hand_hud.card_clicked.connect(_on_card_clicked)
 	#todo: globals
@@ -34,7 +35,9 @@ func _ready() -> void:
 	current_level = GameManager.current_level
 	current_stage = GameManager.current_stage
 	Events.monster_dead.connect(on_monster_dead)
+	
 	spawn_player_character()
+	update_player_mana()
 	load_stage_monsters()
 	get_level_monsters()
 	spawn_level_monsters()
@@ -93,3 +96,7 @@ func on_monster_dead(monster : MonsterData):
 func update_battle_state(battle_st):
 	GameManager.update_battle_state(battle_st)
 	battle_state = battle_st
+
+func update_player_mana():
+	$ManaWindow/ManaLabel.text = str(battle_state["player_stats"].mana)
+	
