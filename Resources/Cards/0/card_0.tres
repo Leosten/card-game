@@ -1,9 +1,9 @@
 [gd_resource type="Resource" format=3 uid="uid://ciu0b2dkp4clu"]
 
-[ext_resource type="Script" uid="uid://2f44f0e1l0fi" path="res://Resources/Cards/0/card_0.gd" id="1_1emkd"]
+[ext_resource type="Script" uid="uid://2f44f0e1l0fi" path="res://Resources/Cards/0/card_0.gd" id="1_eejlo"]
 
 [resource]
-script = ExtResource("1_1emkd")
+script = ExtResource("1_eejlo")
 character_deck = 1
 name = "attack"
 damage = 10
@@ -15,7 +15,7 @@ actions = {
 "STATUS": 0
 }
 description = "Attack enemy for %s damage"
-cost = 1
+cost = 2
 allowed_targets = {
 "ALLY": 0,
 "ALL_ENEMIES": 0,

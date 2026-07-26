@@ -26,12 +26,9 @@ func set_battle_position(battle_position):
 	$MonsterPosition.text = str(battle_position)
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("event")
 	if event is InputEventMouseButton \
 		and event.button_index == MOUSE_BUTTON_LEFT \
 		and event.pressed:
-		print("event clicked")
-
 		clicked.emit(monster_data)
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -50,5 +47,9 @@ func update_health_bar():
 
 func update_monster_state(monster_d):
 	monster_data = monster_d
-	print("monster %s updated" % str(monster_data.battle_position))
+	#print("monster %s updated" % str(monster_data.battle_position))
 	update_health_bar()
+	
+func die():
+	# play death animation
+	pass

@@ -8,6 +8,7 @@ extends Resource
 @export var stage_progression: int = 0
 @export var char_id = 0
 @export var buffs = StatusUtils.buffs
+@export var status_effects = StatusUtils.status_effects
 
 
 func _init(
@@ -15,8 +16,7 @@ func _init(
 	health = 0,
 	mana = 0,
 	level_progression = 0, 
-	stage_progression = 0,
-	buffs = []
+	stage_progression = 0
 	):
 		health = health
 		mana = mana

@@ -76,6 +76,18 @@ func get_level_monsters(level):
 	print("loaded level monsters")
 	return level_monsters
 
+func get_monster_scenes_for_level(level_monsters, enemy_positions) -> Array[Monster]:
+	var monster_scenes : Array[Monster] = []
+	var index = 0
+	for monster_data in level_monsters:
+		var monster_scene = get_monster_scene_from_id(monster_data.id)
+		monster_scene.init_data(monster_data.duplicate())
+		monster_scene.position = enemy_positions[index].position
+		monster_scene.z_index = 100
+		monster_scenes.append(monster_scene)
+		index += 1
+	return monster_scenes
+	
 func init_monster_positions(viewport_size) -> Array[Area2D]:
 	var column_pos = 0
 	var row_nb = 0

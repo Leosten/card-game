@@ -24,8 +24,8 @@ func _ready() -> void:
 	card_manager.load_all_cards()
 	init_cards()
 	init_player(char_id)
-	
-	update_battle_state(player_stats, player_deck, level_monsters)
+	battle_state["player_stats"] = player_stats
+	battle_state["player_deck"] = player_deck
 	print("init done")
 
 func init_cards() -> void:
@@ -37,11 +37,10 @@ func init_cards() -> void:
 func init_player(char_id) -> void:
 	player_deck = card_manager.get_starting_deck(char_id)
 	player_stats = character_manager._get_starting_stats(char_id)
-	
 	print("player health is %s" % player_stats.health)
 
 func get_player_deck() :
-	return player_deck
+	return battle_state['player_deck']
 
 func get_character_scene() :
 	return character_manager.get_character_scene(char_id)
@@ -51,20 +50,11 @@ func get_player_char_id():
 	
 func get_battle_state() -> Dictionary:
 	return battle_state
-	
-func update_battle_state(
-	player_s: PlayerStats,
-	player_d: Array[CardData],
-	level_m: Array[MonsterData],
-	):
-		battle_state = {
-		'player_stats' : player_s,
-		'player_deck' : player_d,
-		'level_monsters' : level_m
-		}
-		
-		return battle_state
-		
+
+func update_battle_state(battle_state : Dictionary):
+	battle_state = battle_state
+	return battle_state
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

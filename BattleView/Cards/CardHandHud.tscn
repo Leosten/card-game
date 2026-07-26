@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bcumk10bawk5x"]
 
-[ext_resource type="Script" uid="uid://cf6f7ygbk250k" path="res://BattleView/Cards/card_hud.gd" id="1_6r6uq"]
+[ext_resource type="Script" uid="uid://cf6f7ygbk250k" path="res://BattleView/Cards/card_hud.gd" id="1_euu8e"]
 
 [sub_resource type="Animation" id="Animation_y1y84"]
 resource_name = "card_stack_animation"
@@ -11,7 +11,7 @@ _data = {
 }
 
 [node name="CardHandHud" type="Node2D" unique_id=1336641316]
-script = ExtResource("1_6r6uq")
+script = ExtResource("1_euu8e")
 
 [node name="TempSizeArea" type="Area2D" parent="." unique_id=1369035437]
 
