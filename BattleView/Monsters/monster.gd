@@ -1,4 +1,4 @@
-class_name Monster
+@abstract class_name Monster
 extends AnimatableBody2D
 
 @onready var _animated_sprite : AnimatedSprite2D = $AnimatedSprite2D

@@ -15,7 +15,7 @@ func use_card_on_enemy(
 		print("ERROR : target not allowed")
 		return battle_state
 	print("card used on monster %s" % str(enemy_position))
-	return card.cardFunctionality(battle_state, enemy_position)
+	return card.use(battle_state, enemy_position)
 
 func use_card_on_all_enemies():
 	pass

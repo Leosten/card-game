@@ -1,17 +1,10 @@
-[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c1817pwbkfa7b"]
+[gd_resource type="Resource" format=3 uid="uid://c1817pwbkfa7b"]
 
-[ext_resource type="Script" uid="uid://cqcdxav3ke5ma" path="res://Resources/Cards/card_data.gd" id="1_6trhs"]
+[ext_resource type="Script" uid="uid://bu5a5sq582j1s" path="res://Resources/Cards/1/card_1.gd" id="1_87b5x"]
 
 [resource]
-script = ExtResource("1_6trhs")
+script = ExtResource("1_87b5x")
 id = 1
 character_deck = 1
 name = "defend"
-default_damage = 5
-actions = [{
-"DAMAGE": 0,
-"HEAL": 0,
-"SHIELD": 1,
-"STATUS": 0
-}]
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -1,13 +1,12 @@
-[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://drn651bi215nr"]
+[gd_resource type="Resource" format=3 uid="uid://drn651bi215nr"]
 
-[ext_resource type="Script" uid="uid://cqcdxav3ke5ma" path="res://Resources/Cards/card_data.gd" id="1_f04ms"]
+[ext_resource type="Script" uid="uid://bou4lgqsnf0mq" path="res://Resources/Cards/2/card_2.gd" id="1_j4nhi"]
 
 [resource]
-script = ExtResource("1_f04ms")
+script = ExtResource("1_j4nhi")
 id = 2
 character_deck = 1
 name = "heal"
-default_damage = 5
 description = "Heals for %s points"
 cost = 1
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -10,7 +10,8 @@ enum MonsterType {COMMON, MINIBOSS, BOSS}
 @export var health := 0
 @export var max_health := 0
 @export var shield := 0
-@export var status_effects := []
+@export var status_effects := StatusUtils.status_effects
+@export var buffs := StatusUtils.buffs
 @export var action_cycle := []
 @export var description := ""
 
@@ -23,7 +24,8 @@ func _init(
 	health = 0,
 	max_health = 0,
 	shield = 0,
-	status_effects = [],
+	status_effects = StatusUtils.status_effects,
+	buffs = StatusUtils.buffs,
 	action_cycle = [],
 	description = ""
 	):

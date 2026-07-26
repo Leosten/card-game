@@ -97,8 +97,17 @@ sprite_frames = SubResource("SpriteFrames_sy3mi")
 position = Vector2(0, -138)
 shape = SubResource("RectangleShape2D_3gemy")
 
+[node name="MonsterName" parent="." index="2" unique_id=1164102193]
+offset_left = -26.0
+offset_top = -233.0
+offset_bottom = -162.0
+
+[node name="MonsterPosition" parent="." index="3" unique_id=2049779721]
+offset_left = -53.0
+offset_top = -226.0
+offset_right = 72.0
+offset_bottom = -136.0
+
 [node name="HealthBar" parent="." index="4" unique_id=902273698]
-offset_left = -115.0
-offset_top = 90.0
-offset_right = 125.0
-offset_bottom = 117.0
+offset_top = -3.0
+offset_bottom = 24.0

@@ -6,12 +6,16 @@ const MonsterData = preload("res://Resources/Monsters/MonsterData.gd")
 var stage_monsters : Array[MonsterData] = []
 enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL}
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+# positioning variables
+var max_nb_of_enemies = 6
+var max_nb_of_enemies_per_row = 3
+var battle_line_margin = 700
+var enemy_first_row = 700
+var enemy_first_column = 200
+var enemy_column_margin = 350
+var row_margin = 320
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _ready() -> void:
 	pass
 
 func get_stage_possible_type(stage) :
@@ -49,9 +53,48 @@ func get_monster_scene_from_id(monster_id):
 		return
 	return monster.instantiate()
 	
-func get_level_monsters(level) :
+func get_encounter_monsters(level) :
 	match level:
 		1:
 			#return [[1],[1,1],[1,1,1]]
 			return [[1,1,1,1,1,1]]
 	return []
+	
+func get_level_monsters(level):
+	var possible_monsters = get_encounter_monsters(level)
+	possible_monsters.shuffle()
+	
+	var monster_index = 0
+	var level_monsters = []
+	for monster_id in possible_monsters[0]:
+			for monster_data : MonsterData in stage_monsters:
+				if monster_data.id == monster_id:
+					var monster_d = monster_data.duplicate()
+					monster_d.battle_position = monster_index
+					level_monsters.append(monster_d)
+			monster_index += 1
+	print("loaded level monsters")
+	return level_monsters
+
+func init_monster_positions(viewport_size) -> Array[Area2D]:
+	var column_pos = 0
+	var row_nb = 0
+	var enemy_row_position = enemy_first_row
+	var enemy_column_position = enemy_first_column
+	var enemy_positions : Array[Area2D] = []
+	
+	for monster_pos_index in max_nb_of_enemies:
+		var monster_area = Area2D.new()
+		if (column_pos == max_nb_of_enemies_per_row) :
+			column_pos = 0
+			row_nb += 1
+			enemy_column_position += enemy_column_margin / 2
+		var monster_position := Vector2(
+			viewport_size.x - (enemy_column_position + (column_pos * enemy_column_margin)),
+			viewport_size.y - (enemy_row_position - (row_margin * row_nb))
+		)
+		column_pos += 1
+		monster_area.position = monster_position
+		enemy_positions.append(monster_area)
+	return enemy_positions
+	print("Monster positions initiated")
