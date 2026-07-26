@@ -1,7 +1,7 @@
 class_name StageManager
 extends Node
 
-const MonsterData = preload("res://Resources/Monsters/Data/MonsterData.gd")
+const MonsterData = preload("res://Resources/Monsters/MonsterData.gd")
 
 var stage_monsters : Array[MonsterData] = []
 enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL}
@@ -35,7 +35,7 @@ func get_stage_possible_monsters(stage) :
 func get_stage_monsters(stage_id):
 	var monsters_id = get_stage_possible_monsters(stage_id)
 	for monster_id in monsters_id:
-		var monster = load("res://Resources/Monsters/Data/"+ str(monster_id)+ ".tres")
+		var monster = load("res://Resources/Monsters/"+ str(monster_id)+ "/monster_"+ str(monster_id)+ ".tres")
 		if monster == null:
 			printerr("Cannot load monster data ressource %s" % str(monster_id))
 			return
@@ -43,7 +43,7 @@ func get_stage_monsters(stage_id):
 	return stage_monsters
 
 func get_monster_scene_from_id(monster_id):
-	var monster : PackedScene = load("res://Resources/Monsters/%s.tscn" % str(monster_id))
+	var monster : PackedScene = load("res://BattleView/Monsters/"+ str(monster_id)+ "/monster_"+ str(monster_id)+ ".tscn")
 	if monster == null:
 		printerr("Cannot load monster scene %s" % str(monster_id))
 		return

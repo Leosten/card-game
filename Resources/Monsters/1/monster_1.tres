@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="MonsterData" format=3 uid="uid://i56l5utb7m20"]
 
-[ext_resource type="Script" uid="uid://fyu4c4thwqs7" path="res://Resources/Monsters/Data/MonsterData.gd" id="1_20mx5"]
+[ext_resource type="Script" uid="uid://fyu4c4thwqs7" path="res://Resources/Monsters/MonsterData.gd" id="1_20mx5"]
 
 [resource]
 script = ExtResource("1_20mx5")
 id = 1
 name = "Floating Eye"
+health = 30
+max_health = 30
 metadata/_custom_type_script = "uid://fyu4c4thwqs7"

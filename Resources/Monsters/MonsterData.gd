@@ -8,6 +8,7 @@ enum MonsterType {COMMON, MINIBOSS, BOSS}
 @export var name := ""
 @export var type : MonsterType = MonsterType.COMMON 
 @export var health := 0
+@export var max_health := 0
 @export var shield := 0
 @export var status_effects := []
 @export var action_cycle := []
@@ -20,6 +21,7 @@ func _init(
 	name = "", 
 	type = "", 
 	health = 0,
+	max_health = 0,
 	shield = 0,
 	status_effects = [],
 	action_cycle = [],

@@ -35,7 +35,7 @@ func init_card_position() -> void:
 		card_area.position = card_position
 		card_hand_position.append(card_area)
 		print("card positions init")
-		print(card_hand_position)
+		#print(card_hand_position)
 		
 func _spawn_starting_hand() -> void:
 	if default_nb_of_cards <= 0:

@@ -1,13 +1,11 @@
 class_name ActionManager
 extends Node
 
-signal update_player_deck
-signal update_player_stats
-signal update_enemy
+signal update_battle_state
 
 func _ready() -> void:
 	pass
-	
+
 func use_card_on_enemy(
 	card : CardData,
 	battle_state: Dictionary,
@@ -16,11 +14,12 @@ func use_card_on_enemy(
 	if (card.allowed_targets.get("ENEMY") == 0):
 		print("ERROR : target not allowed")
 		return battle_state
+	print("card used on monster %s" % str(enemy_position))
 	return card.cardFunctionality(battle_state, enemy_position)
-	
+
 func use_card_on_all_enemies():
 	pass
-	
+
 func use_card_on_character(
 	card_data : CardData, 
 	player_stats : PlayerStats

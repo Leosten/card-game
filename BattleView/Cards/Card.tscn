@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://belvm77225t2m"]
 
-[ext_resource type="Script" uid="uid://bgtt3r7thv6t8" path="res://BattleView/card.gd" id="1_lgmux"]
+[ext_resource type="Script" uid="uid://bgtt3r7thv6t8" path="res://BattleView/Cards/card.gd" id="1_lgmux"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekkti"]
 font_color = Color(0, 0, 0, 1)

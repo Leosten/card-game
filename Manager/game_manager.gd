@@ -1,8 +1,8 @@
 extends Node
 
-const CardManager = preload("res://Resources/Cards/card_manager.gd")
+const CardManager = preload("res://Manager/card_manager.gd")
 const PlayerStats = preload("res://Resources/Characters/player_stats.gd")
-const CharacterManager = preload("res://Resources/Characters/character_manager.gd")
+const CharacterManager = preload("res://Manager/character_manager.gd")
 
 var card_manager : CardManager
 var character_manager : CharacterManager

@@ -1,9 +1,9 @@
 class_name CardManager
 extends Node
 
-const CardData = preload("res://Resources/Cards/Data/card_data.gd")
-const PlayerManager = preload("res://Resources/Characters/character_manager.gd")
-const Card = preload("res://BattleView/Card.tscn")
+const CardData = preload("res://Resources/Cards/card_data.gd")
+const PlayerManager = preload("res://Manager/character_manager.gd")
+const Card = preload("res://BattleView/Cards/Card.tscn")
 
 @export var nb_of_cards : int = 3
 @export var cards : Array[CardData] = []
@@ -18,7 +18,9 @@ func _process(delta: float) -> void:
 
 func load_all_cards() -> void:
 	for card_index in nb_of_cards:
-		var card = load("res://Resources/Cards/Data/"+ str(card_index)+ ".tres")
+		var card = load("res://Resources/Cards/"+ str(card_index)+ "/card_"+ str(card_index)+ ".tres")
+		if card == null:
+			print("ERROR : could not load card %s" % str(card_index))
 		cards.append(card.duplicate())	
 
 func get_all_cards() -> Array[CardData]:
