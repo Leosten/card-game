@@ -10,8 +10,8 @@ enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL}
 var max_nb_of_enemies = 6
 var max_nb_of_enemies_per_row = 3
 var battle_line_margin = 900
-var enemy_first_row = 750
-var enemy_first_column = 200
+var enemy_first_row = 420
+var enemy_first_column = 300
 var enemy_column_margin = 350
 var row_margin = 320
 
@@ -57,7 +57,8 @@ func get_encounter_monsters(level) :
 	match level:
 		1:
 			#return [[1],[1,1],[1,1,1]]
-			return [[1,1,1,1,1,1]]
+			#return [[1,1,1]]
+			return [[1,1,1]]
 	return []
 	
 func get_level_monsters(level):
@@ -103,7 +104,7 @@ func init_monster_positions(viewport_size) -> Array[Area2D]:
 			enemy_column_position += enemy_column_margin / 2
 		var monster_position := Vector2(
 			viewport_size.x - (enemy_column_position + (column_pos * enemy_column_margin)),
-			viewport_size.y - (enemy_row_position - (row_margin * row_nb))
+			viewport_size.y - (enemy_row_position + (row_margin * row_nb))
 		)
 		column_pos += 1
 		monster_area.position = monster_position

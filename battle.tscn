@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://ybsmg21ph22t" path="res://View/BattleFieldView.tscn" id="2_7sfm4"]
 [ext_resource type="PackedScene" uid="uid://cny75kkfdyh1g" path="res://View/Cards/ManaWindow.tscn" id="3_i431l"]
 
+[sub_resource type="Theme" id="Theme_ekkti"]
+Button/font_sizes/font_size = 33
+
 [node name="Battle" type="Node2D" unique_id=344223136]
 script = ExtResource("1_7sfm4")
 
@@ -14,3 +17,13 @@ script = ExtResource("1_7sfm4")
 
 [node name="ManaWindow" parent="." unique_id=1224726459 instance=ExtResource("3_i431l")]
 position = Vector2(197, 711)
+
+[node name="EndTurnButton" type="Button" parent="." unique_id=55106371]
+offset_left = 1667.0
+offset_top = 725.0
+offset_right = 1894.0
+offset_bottom = 811.0
+theme = SubResource("Theme_ekkti")
+text = "End Turn"
+
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

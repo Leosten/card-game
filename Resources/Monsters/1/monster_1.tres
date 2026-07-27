@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_20mx5")
 id = 1
-name = "Floating Eye"
+name = "Lizard"
 health = 30
 max_health = 30
 metadata/_custom_type_script = "uid://fyu4c4thwqs7"

@@ -6,7 +6,7 @@ var current_level: int
 var current_turn: int = 0
 var stage_monsters : Array[MonsterData]
 var monsters_displayed : Array[Monster]
-
+var death_timer: SceneTreeTimer
 const StageManager = preload("res://Manager/stage_manager.gd")
 const ActionManager = preload("res://Manager/action_manager.gd")
 var stage_manager : StageManager
@@ -41,7 +41,7 @@ func _ready() -> void:
 	load_stage_monsters()
 	get_level_monsters()
 	spawn_level_monsters()
-
+	
 func _process(delta: float) -> void:
 	pass
 
@@ -76,8 +76,8 @@ func on_monster_clicked(monster_data : MonsterData):
 			action_manager.use_card_on_all_enemies()
 
 		battle_state = action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data.battle_position)
-		update_displayed_monsters()
 		update_battle_state(battle_state)
+		update_displayed_monsters()
 
 func on_monster_hovered(monster_data : MonsterData):
 	pass
@@ -93,6 +93,9 @@ func on_monster_dead(monster : MonsterData):
 	monsters_displayed = MonsterUtils.removeMonsterDeadDisplay(monsters_displayed, monster)
 	update_battle_state(battle_state)
 
+func on_death_timer():
+	print("death timer done")
+	
 func update_battle_state(battle_st):
 	GameManager.update_battle_state(battle_st)
 	battle_state = battle_st
@@ -100,3 +103,10 @@ func update_battle_state(battle_st):
 func update_player_mana():
 	$ManaWindow/ManaLabel.text = str(battle_state["player_stats"].mana)
 	
+
+func enemyTurn():
+	card_hand_hud.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+	
+
+func _on_end_turn_button_pressed() -> void:
+	pass # Replace with function body.

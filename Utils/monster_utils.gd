@@ -24,8 +24,6 @@ static func removeMonsterDeadDisplay(monsters_displayed, dead_monster : MonsterD
 	var index = 0
 	for monster_scene in monsters_displayed:
 		if monster_scene.monster_data.battle_position == dead_monster.battle_position:
-			monster_scene.die()
-			monster_scene.queue_free()
 			monsters_displayed.remove_at(index)
 			break
 		index +=1

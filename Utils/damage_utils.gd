@@ -44,7 +44,6 @@ static func calculate_final_damage(damage_value, player_stats: PlayerStats, enem
 
 static func check_for_death(monster: MonsterData):
 	if (monster.health <= 0):
-		Events.monster_dead.emit(monster)
-	monster.health = 0
+		monster.health = 0
 	print("check for death")
 	return monster
