@@ -7,6 +7,7 @@ var current_turn: int = 0
 var enemy_turn : bool = false
 var stage_monsters : Array[MonsterData]
 var monsters_displayed : Array[Monster]
+var player_character : CharacterBody2D
 var death_timer: SceneTreeTimer
 const StageManager = preload("res://Manager/stage_manager.gd")
 const ActionManager = preload("res://Manager/action_manager.gd")
@@ -42,31 +43,34 @@ func _ready() -> void:
 	load_stage_monsters()
 	get_level_monsters()
 	spawn_level_monsters()
-	
+
 func _process(delta: float) -> void:
 	pass
 
 func spawn_player_character():
-	var player_character = GameManager.get_character_scene()
+	player_character = GameManager.get_character_scene()
 	var char_position := Vector2(
-			viewport_size.x - 1650,
+			viewport_size.x - 1550,
 			viewport_size.y - 650
 		)
 	player_character.position = char_position
+	player_character.init(battle_state)
 	add_child(player_character)
 
+func update_player_character():
+	player_character.update(battle_state["player_stats"])
+	
 func get_level_monsters():
 	battle_state["level_monsters"] = stage_manager.get_level_monsters(current_level)
 
 func spawn_level_monsters():
 	enemy_positions = stage_manager.init_monster_positions(viewport_size)
-	print(battle_state["level_monsters"])
 	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state["level_monsters"], enemy_positions)
 	for monster_scene in monster_scenes :
 		monster_scene.clicked.connect(on_monster_clicked)
 		monster_scene.hovered.connect(on_monster_hovered)	
+		monster_scene.update_health_bar()
 		add_child(monster_scene)
-		print("test")
 		monsters_displayed.append(monster_scene)
 	print("Monsters spawned")
 
@@ -86,19 +90,13 @@ func on_monster_hovered(monster_data : MonsterData):
 	pass
 
 func update_displayed_monsters():
-	for monster_scene in monsters_displayed:
-		for monster_data in battle_state["level_monsters"]:
-			if monster_scene.monster_data.battle_position == monster_data.battle_position:
-				monster_scene.update_monster_state(monster_data)
+	monsters_displayed = MonsterUtils.update_level_monsters(monsters_displayed, battle_state)
 
 func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
-	monsters_displayed = MonsterUtils.removeMonsterDeadDisplay(monsters_displayed, monster)
+	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
 	update_battle_state(battle_state)
 
-func on_death_timer():
-	print("death timer done")
-	
 func update_battle_state(battle_st):
 	GameManager.update_battle_state(battle_st)
 	battle_state = battle_st
@@ -109,6 +107,7 @@ func update_player_mana():
 func launch_enemy_turn():
 	for enemy in battle_state["level_monsters"]:
 		battle_state = action_manager.enemy_cycle(battle_state, enemy)
+	update_player_character()
 	pass
 
 func _on_end_turn_button_pressed() -> void:

@@ -48,7 +48,7 @@ static func ally_has_damage_modifier(damage_value, player_stats : PlayerStats):
 	if player_stats.buffs.STRENGTH > 0:
 		damage_value = StatusUtils.get_strength_modifier(damage_value, player_stats.buffs.STRENGTH)
 	return damage_value
-	
+
 static func ally_has_defense_modifier(damage_value, player_stats : PlayerStats):
 	if player_stats.buffs.STRENGTH > 0:
 		damage_value = damage_value + player_stats.buffs.get(StatusUtils.buffs.STRENGTH)
@@ -58,12 +58,12 @@ static func calculate_ally_final_damage(damage_value, player_stats: PlayerStats,
 	var final_damage = DamageUtils.ally_has_damage_modifier(damage_value, player_stats)
 	final_damage = enemy_has_defense_modifier(final_damage, enemy)
 	return final_damage
-	
+
 static func check_for_player_death(player_stats):
 	if (player_stats.health <= 0):
 		player_stats.health = 0
-	print("Player dead")
-	Events.player_death.emit()
+		print("Player dead")
+		Events.player_death.emit()
 	return player_stats
 
 # ENEMY
@@ -73,12 +73,12 @@ static func enemy_has_attack_modifier(damage_value, monster : MonsterData):
 	return damage_value
 	
 static func enemy_has_defense_modifier(damage_value, monster : MonsterData):
-	if monster.buffs.get(StatusUtils.status_effects.VULNERABLE > 0):
-		damage_value = damage_value - (25 / 100)
+	if monster.status_effects.VULNERABLE > 0:
+		damage_value = StatusUtils.get_vulnerable_modifier(damage_value, monster.buffs.get(StatusUtils.status_effects.VULNERABLE))
 	return damage_value
 
 static func has_monster_protective_buff(monster: MonsterData):
-	if monster.buffs.get(StatusUtils.buffs.PERFECT_PROTECT):
+	if monster.buffs.PERFECT_PROTECT > 0:
 		return monster
 
 static func calculate_enemy_final_damage(damage_value, player_stats: PlayerStats, enemy: MonsterData):

@@ -17,18 +17,18 @@ enum MonsterType {COMMON, MINIBOSS, BOSS}
 @export var description := ""
 
 func _init(
-	id = 0,
-	battle_position = 0,
-	name = "", 
-	type = "", 
-	health = 0,
-	max_health = 0,
-	shield = 0,
-	status_effects = StatusUtils.status_effects,
-	buffs = StatusUtils.buffs,
-	action_cycle = [],
-	cycle_step = 0,
-	description = ""
+	#id = 0,
+	#battle_position = 0,
+	#name = "", 
+	#type = "", 
+	#health = 0,
+	#max_health = 0,
+	#shield = 0,
+	#status_effects = StatusUtils.status_effects,
+	#buffs = StatusUtils.buffs,
+	#action_cycle = [],
+	#cycle_step = 0,
+	#description = ""
 	):
 	pass
 
@@ -36,6 +36,12 @@ func reset_cycle_step():
 	if cycle_step == action_cycle.size():
 		cycle_step = 0
 
-func useAction(battle_state):
-	action_cycle[cycle_step].call(battle_state)
-	pass
+func useAction(battle_state : Dictionary) -> Dictionary:
+	var action_name: StringName = action_cycle[cycle_step]
+
+	if not has_method(action_name):
+		printerr("Monster action not found: %s" % str(action_name))
+		return battle_state
+
+	battle_state = Callable(self, action_name).call(battle_state)
+	return battle_state

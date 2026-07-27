@@ -17,8 +17,11 @@ func use_card_on_enemy(
 	print("card used on monster %s" % str(enemy_position))
 	return card.use(battle_state, enemy_position)
 
-func enemy_cycle(battle_state, enemy):
-	enemy.actions
+func enemy_cycle(battle_state, enemy: MonsterData) -> Dictionary:
+	battle_state = enemy.useAction(battle_state)
+	enemy.cycle_step +=1
+	enemy.reset_cycle_step()
+	return battle_state
 
 func use_card_on_all_enemies():
 	pass

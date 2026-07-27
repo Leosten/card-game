@@ -24,8 +24,6 @@ func _ready() -> void:
 	card_manager.load_all_cards()
 	init_cards()
 	init_player(char_id)
-	battle_state["player_stats"] = player_stats
-	battle_state["player_deck"] = player_deck
 	print("init done")
 
 func init_cards() -> void:
@@ -35,9 +33,8 @@ func init_cards() -> void:
 	print("cards loaded");
 
 func init_player(char_id) -> void:
-	player_deck = card_manager.get_starting_deck(char_id)
-	player_stats = character_manager._get_starting_stats(char_id)
-	print("player health is %s" % player_stats.health)
+	battle_state["player_deck"] = card_manager.get_starting_deck(char_id)
+	battle_state["player_stats"] = character_manager._get_starting_stats(char_id)
 
 func get_player_deck() :
 	return battle_state['player_deck']

@@ -67,3 +67,10 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=407755184]
 position = Vector2(-2.5, 28)
 shape = SubResource("RectangleShape2D_q7hkx")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=843287432]
+offset_left = -32.5
+offset_top = 68.5
+offset_right = 34.75
+offset_bottom = 78.75
+show_percentage = false
