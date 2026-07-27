@@ -7,5 +7,6 @@ script = ExtResource("1_87b5x")
 id = 1
 character_deck = 1
 name = "defend"
+description = "add %s shield"
 cost = 2
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

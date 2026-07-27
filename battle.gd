@@ -4,6 +4,7 @@ var battle_state : Dictionary
 var current_stage: int
 var current_level: int
 var current_turn: int = 0
+var enemy_turn : bool = false
 var stage_monsters : Array[MonsterData]
 var monsters_displayed : Array[Monster]
 var death_timer: SceneTreeTimer
@@ -59,11 +60,13 @@ func get_level_monsters():
 
 func spawn_level_monsters():
 	enemy_positions = stage_manager.init_monster_positions(viewport_size)
+	print(battle_state["level_monsters"])
 	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state["level_monsters"], enemy_positions)
 	for monster_scene in monster_scenes :
 		monster_scene.clicked.connect(on_monster_clicked)
 		monster_scene.hovered.connect(on_monster_hovered)	
 		add_child(monster_scene)
+		print("test")
 		monsters_displayed.append(monster_scene)
 	print("Monsters spawned")
 
@@ -102,11 +105,14 @@ func update_battle_state(battle_st):
 
 func update_player_mana():
 	$ManaWindow/ManaLabel.text = str(battle_state["player_stats"].mana)
-	
 
-func enemyTurn():
-	card_hand_hud.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
-	
+func launch_enemy_turn():
+	for enemy in battle_state["level_monsters"]:
+		battle_state = action_manager.enemy_cycle(battle_state, enemy)
+	pass
 
 func _on_end_turn_button_pressed() -> void:
+	#card_hand_hud.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+	enemy_turn = true
+	launch_enemy_turn()
 	pass # Replace with function body.

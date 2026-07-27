@@ -13,9 +13,9 @@ enum MonsterType {COMMON, MINIBOSS, BOSS}
 @export var status_effects := StatusUtils.status_effects
 @export var buffs := StatusUtils.buffs
 @export var action_cycle := []
+@export var cycle_step = 0
 @export var description := ""
 
-# Called when the node enters the scene tree for the first time.
 func _init(
 	id = 0,
 	battle_position = 0,
@@ -27,6 +27,15 @@ func _init(
 	status_effects = StatusUtils.status_effects,
 	buffs = StatusUtils.buffs,
 	action_cycle = [],
+	cycle_step = 0,
 	description = ""
 	):
+	pass
+
+func reset_cycle_step():
+	if cycle_step == action_cycle.size():
+		cycle_step = 0
+
+func useAction(battle_state):
+	action_cycle[cycle_step].call(battle_state)
 	pass

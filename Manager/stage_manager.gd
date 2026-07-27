@@ -80,8 +80,10 @@ func get_level_monsters(level):
 func get_monster_scenes_for_level(level_monsters, enemy_positions) -> Array[Monster]:
 	var monster_scenes : Array[Monster] = []
 	var index = 0
+	#print(level_monsters)
 	for monster_data in level_monsters:
 		var monster_scene = get_monster_scene_from_id(monster_data.id)
+		print("get_monster_scenes_for_level")
 		monster_scene.init_data(monster_data.duplicate())
 		monster_scene.position = enemy_positions[index].position
 		monster_scene.z_index = 100

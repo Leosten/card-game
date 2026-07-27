@@ -17,6 +17,9 @@ func use_card_on_enemy(
 	print("card used on monster %s" % str(enemy_position))
 	return card.use(battle_state, enemy_position)
 
+func enemy_cycle(battle_state, enemy):
+	enemy.actions
+
 func use_card_on_all_enemies():
 	pass
 
