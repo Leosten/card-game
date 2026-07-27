@@ -22,10 +22,6 @@ var enemy_positions : Array[Area2D] = []
 
 var card_clicked: CardData = null
 
-func _on_card_clicked(card_data: CardData) -> void:
-	card_clicked = card_data
-	print("Battle received: ", card_data.name)
-
 func _ready() -> void:
 	card_hand_hud.card_clicked.connect(_on_card_clicked)
 	#todo: globals
@@ -43,7 +39,7 @@ func _ready() -> void:
 	load_stage_monsters()
 	get_level_monsters()
 	spawn_level_monsters()
-
+	card_hand_hud.update_displayed_hand(battle_state)
 func _process(delta: float) -> void:
 	pass
 
@@ -76,15 +72,29 @@ func spawn_level_monsters():
 
 func load_stage_monsters():
 	stage_monsters = stage_manager.get_stage_monsters(current_level)
+	
+func _on_card_clicked(card_data: CardData) -> void:
+	if (enemy_turn == true):
+		return
+	if card_data.cost > CharacterUtils.get_current_mana(battle_state):
+		print("not enough mana")
+		return
+	card_clicked = card_data
 
 func on_monster_clicked(monster_data : MonsterData):
 	if (card_clicked != null):
 		if (card_clicked.allowed_targets.has(CardUtils.targets.ALL_ENEMIES == 1)):
 			action_manager.use_card_on_all_enemies()
-
 		battle_state = action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data.battle_position)
-		update_battle_state(battle_state)
-		update_displayed_monsters()
+		card_hand_hud.discard_card(card_clicked)
+		card_clicked = null
+
+		refresh_screen()
+
+func refresh_screen():
+	update_displayed_monsters()
+	update_player_mana()
+	card_hand_hud.update_displayed_hand(battle_state)
 
 func on_monster_hovered(monster_data : MonsterData):
 	pass
@@ -95,14 +105,16 @@ func update_displayed_monsters():
 func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
 	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
-	update_battle_state(battle_state)
-
-func update_battle_state(battle_st):
-	GameManager.update_battle_state(battle_st)
-	battle_state = battle_st
 
 func update_player_mana():
-	$ManaWindow/ManaLabel.text = str(battle_state["player_stats"].mana)
+	print(battle_state["player_stats"].current_mana)
+	var color
+	if (CharacterUtils.get_current_mana(battle_state) > 0):
+		color = Color(0.149, 0.959, 0.792, 1.0)
+	else:
+		color = Color(0.0, 0.0, 0.0, 1.0)
+	$ManaWindow/ManaLabel.label_settings.font_color = color
+	$ManaWindow/ManaLabel.text = str(battle_state["player_stats"].current_mana)
 
 func launch_enemy_turn():
 	for enemy in battle_state["level_monsters"]:
@@ -114,4 +126,8 @@ func _on_end_turn_button_pressed() -> void:
 	#card_hand_hud.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 	enemy_turn = true
 	launch_enemy_turn()
-	pass # Replace with function body.
+	card_hand_hud.discard_all()
+	battle_state = CharacterUtils.replenish_mana(battle_state)
+	card_hand_hud.new_turn()
+	update_player_mana()
+	enemy_turn = false

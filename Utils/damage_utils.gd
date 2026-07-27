@@ -71,7 +71,7 @@ static func enemy_has_attack_modifier(damage_value, monster : MonsterData):
 	if monster.buffs.STRENGTH > 0:
 		damage_value = StatusUtils.get_strength_modifier(damage_value, monster.buffs.get(StatusUtils.buffs.STRENGTH))
 	return damage_value
-	
+
 static func enemy_has_defense_modifier(damage_value, monster : MonsterData):
 	if monster.status_effects.VULNERABLE > 0:
 		damage_value = StatusUtils.get_vulnerable_modifier(damage_value, monster.buffs.get(StatusUtils.status_effects.VULNERABLE))

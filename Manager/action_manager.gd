@@ -6,6 +6,10 @@ signal update_battle_state
 func _ready() -> void:
 	pass
 
+func cost_card_mana(battle_state: Dictionary, card_cost) -> Dictionary:
+	battle_state["player_stats"].current_mana -= card_cost
+	return battle_state
+	
 func use_card_on_enemy(
 	card : CardData,
 	battle_state: Dictionary,
@@ -15,6 +19,9 @@ func use_card_on_enemy(
 		print("ERROR : target not allowed")
 		return battle_state
 	print("card used on monster %s" % str(enemy_position))
+	
+	battle_state = cost_card_mana(battle_state, card.cost)
+	
 	return card.use(battle_state, enemy_position)
 
 func enemy_cycle(battle_state, enemy: MonsterData) -> Dictionary:
@@ -31,15 +38,3 @@ func use_card_on_character(
 	player_stats : PlayerStats
 	):
 		pass
-
-func effect_enemy_by_action(action, enemy: MonsterData, value):
-	pass
-
-func damage(enemy, value):
-	if (enemy.shield > 0):
-		pass
-
-func shield_damage():
-	pass
-func heal():
-	pass

@@ -36,7 +36,7 @@ func init_player(char_id) -> void:
 	battle_state["player_deck"] = card_manager.get_starting_deck(char_id)
 	battle_state["player_stats"] = character_manager._get_starting_stats(char_id)
 
-func get_player_deck() :
+func get_player_deck() -> Array[CardData]:
 	return battle_state['player_deck']
 
 func get_character_scene() :

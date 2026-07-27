@@ -2,64 +2,55 @@ class_name Card
 extends Area2D
 
 signal clicked(card_data: CardData)
-
-@export var cardHandPosition : int
+signal hovered(card_data: CardData)
+signal hovered_out(card_data: CardData)
+@export var hand_position : int
 @export var card_data : CardData
 
-var hover_size : int = 170
-var hovered : bool = false
-var anim = false
+var hover_size : int = 120
+var hovering : bool = false
 var selected : bool = false
+var base_position: Vector2
+var active_tween: Tween
 
 func _ready() -> void:
 	pass
 
-func init_card(cardHandPos, card_d) -> void:
-	$CardVisual/CardPosLabel.text = cardHandPos
+func init_card(hand_position, card_d : CardData, hud_position : Vector2) -> void:
+	position = hud_position
+	base_position = position
+	z_index = hand_position + 1
+	update(card_d)
+	#card_data = card_d
+
+func update(card_d : CardData):
+	hand_position = card_d.hand_position
+	$CardVisual/CardPosLabel.text = str(hand_position)
 	$CardVisual/CardName.text = card_d.name
-	$CardVisual/CardDescription.text = card_d.description
+	$CardVisual/CardDescription.text = card_d.description % card_d.damage
 	$CardVisual/CostLabel.text = str(card_d.cost)
 	card_data = card_d
+
+func update_cost_label(current_mana):
+	var color = Color(0.0, 0.0, 0.0, 1.0)
+	if current_mana > card_data.cost :
+		color = Color(0.149, 0.959, 0.792, 1.0)
+	$CardVisual/CostLabel.label_settings.font_color = color
 
 func _process(delta: float) -> void:
 	pass
 
 func _on_mouse_entered() -> void:
-	if (hovered == true):
-		return
-	anim = true
-	hovering()
-	var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property(self, "position", Vector2(self.position.x, self.position.y - hover_size), 0.2).set_ease(Tween.EASE_IN)
-	tween.tween_callback(Callable(self, "anim_complete"))
-	tween.tween_callback(Callable(self, "hovering"))
+	hovered.emit(self)
 
 func _on_mouse_exited() -> void:
-	if (anim == true || hovered == false || selected == true) :
-		return
-	anim = true
-
-	var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(
-		self, "position", 
-		Vector2(self.position.x, self.position.y + hover_size), 0.5)
-	tween.tween_callback(Callable(self, "anim_complete"))
-	tween.tween_callback(Callable(self, "hovering_off"))
+	hovered_out.emit(self)
 
 func animation_left() -> void:
 	$AnimationPlayer.play("card_stack_left")
-
-func hovering():
-	hovered = true
-
-func hovering_off():
-	hovered = false
-
-func anim_complete():
-	anim = false
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton \
 		and event.button_index == MOUSE_BUTTON_LEFT \
 		and event.pressed:
-		clicked.emit(card_data)
+		clicked.emit(hand_position)

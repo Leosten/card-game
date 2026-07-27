@@ -4,7 +4,7 @@ extends Resource
 
 @export var id = 0
 @export var character_deck = 0
-@export var card_hand_position = 0
+@export var hand_position = 0
 @export var name := ""
 @export var damage := 0
 @export var damage_modifier := 0
