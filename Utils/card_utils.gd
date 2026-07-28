@@ -33,11 +33,24 @@ static func reposition_animation(card: Card, new_position : Vector2) -> void:
 		new_position,
 		0.2
 	).set_ease(Tween.EASE_IN)
-	
+
 static func find_card_by_position(
 	player_hand : Array[CardData],
 	card_position):
 	for card in player_hand:
 		if card.hand_position == card_position:
 			return card
-			
+
+static func init_card_position(viewport_size, max_nb_of_cards, player_draw_value, card_size, margin_between_cards, left_margin, bottom_margin) -> Array[Area2D]:
+	var card_hand_positions : Array[Area2D]= []
+	for card_pos_index in range(max_nb_of_cards):
+		var card_area = Area2D.new()
+		var card_position := Vector2(
+			(viewport_size.x - left_margin - (card_pos_index * card_size) + margin_between_cards) - (viewport_size.x / player_draw_value),
+			viewport_size.y - bottom_margin
+		)
+		card_area.position = card_position
+		card_hand_positions.append(card_area)
+	return card_hand_positions
+	print("card positions init")
+	

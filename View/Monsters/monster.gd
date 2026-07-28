@@ -3,11 +3,13 @@ extends AnimatableBody2D
 
 @onready var _animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @export var monster_data : MonsterData = null
-
+var battle_position
 signal clicked(monster_data: MonsterData)
 signal hovered(monster_data: MonsterData)
-
 var attacking : bool = false
+
+#@abstract func play_action_animation(action_type : MonsterUtils.action_types)
+
 func _ready() -> void:
 	print('mnster rdy')
 	input_event.connect(_on_input_event)
@@ -19,12 +21,12 @@ func init_data(m_data: MonsterData):
 	$MonsterPosition.text = str(monster_data.battle_position)
 
 func _process(_delta):
-	if (monster_data.health > 0):
-		if _animated_sprite.animation.contains("idle"):
-			_animated_sprite.play("idle")
-	else:
+	if monster_data.health <= 0:
+		update_health_bar()
 		_animated_sprite.play("death")
 		_animated_sprite.animation_finished.connect(on_death_finish)
+	elif not attacking:
+		_animated_sprite.play("idle")
 
 func set_battle_position(battle_position):
 	monster_data.battle_position = battle_position
@@ -52,9 +54,7 @@ func update_health_bar():
 
 func update_monster_state(monster_d):
 	monster_data = monster_d
-	#print("monster %s updated" % str(monster_data.battle_position))
 	update_health_bar()
-	#update_status_effects()
 
 func die():
 	if _animated_sprite.animation.contains("death"):
@@ -63,3 +63,26 @@ func die():
 func on_death_finish():
 	Events.monster_dead.emit(monster_data)
 	self.queue_free()
+
+func spawn(battle_positions):
+	var target_position = battle_positions[battle_position]
+	var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "position", target_position.position, 0.5)
+	
+func play_action_animation(action_type : MonsterUtils.action_types):
+	print("action type %s" % action_type)
+	match action_type:
+		MonsterUtils.action_types.DAMAGE:
+			attack_animation()
+	emit_signal("animation_finished")
+
+func attack_animation():
+	attacking = true
+	print(_animated_sprite.animation)
+	if _animated_sprite.animation.find("attack"):
+			print("attack anim")
+			_animated_sprite.stop()
+			_animated_sprite.play("attack")
+			await _animated_sprite.animation_finished
+			attacking = false
+	

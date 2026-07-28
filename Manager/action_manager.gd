@@ -16,14 +16,13 @@ func cost_card_mana(battle_state: BattleState, card_cost) -> BattleState:
 	mana_used.emit(card_cost)
 	return battle_state
 
-func use_card_on_enemy(card : CardData, battle_state: BattleState, enemy_position):
+func use_card_on_enemy(card : CardData, battle_state: BattleState, monster_data: MonsterData):
 	if !card.allowed_targets.has(CardUtils.targets.ENEMY):
 		print("ERROR : target not allowed")
 		return battle_state
-	print("card used on monster %s" % str(enemy_position))
+	print("card used on monster %s" % str(monster_data.battle_position))
 	
-	var enemy : MonsterData = MonsterUtils.find_monster_by_position(battle_state, enemy_position)
-	battle_state = apply_card_action(battle_state, card, enemy)
+	battle_state = apply_card_action(battle_state, card, monster_data)
 
 	return battle_state
 
@@ -56,10 +55,11 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 			if action == CardUtils.action_type.STATUS_EFFECTS:
 				print("card status type")
 				enemy.status_effects = StatusUtils.apply_status_effects(enemy.status_effects, card.status_effects)
-
-	battle_state = MonsterUtils.update_monster(battle_state, enemy)
+			battle_state = check_for_death(enemy, battle_state)
+			
 	battle_state = cost_card_mana(battle_state, card.cost)
 	card_used.emit(card)
+	mana_used.emit()
 	update_battle_view.emit()
 	return battle_state
 
@@ -80,6 +80,15 @@ func enemy_cycle(battle_state : BattleState, enemy: MonsterData) -> BattleState:
 	enemy.reset_cycle_step()
 	return battle_state
 
+static func check_for_death(monster: MonsterData, battle_state : BattleState) -> BattleState:
+	if (monster.health <= 0):
+		monster.health = 0
+		print("enemy %s dead" % monster.battle_position)
+		battle_state.level_monsters.erase(monster)
+	else:
+		battle_state = MonsterUtils.update_monster(battle_state, monster)
+	return battle_state
+	
 func cycle_buffs():
 	pass
 

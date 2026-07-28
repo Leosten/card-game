@@ -17,7 +17,6 @@ static func damage_enemy(damage_value, monster: MonsterData):
 	print(damage_value)
 	monster.health -= damage_value
 	print("monster health %s" % monster.health)
-	monster = check_for_death(monster)
 	return monster
 
 static func damage_player(damage_value, player_stats : PlayerStats) -> PlayerStats:
@@ -67,9 +66,3 @@ static func has_protective_buff(buffs : Array[Buff]) -> bool:
 	if protect != null :
 		return true
 	return false
-
-static func check_for_death(monster: MonsterData) -> MonsterData:
-	if (monster.health <= 0):
-		monster.health = 0
-		print("enemy %s dead" % monster.battle_position)
-	return monster

@@ -35,7 +35,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_dfrsi")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -88,8 +88,7 @@ script = ExtResource("1_b5hmt")
 position = Vector2(49, -121)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qosxv")
-animation = &"idle"
-frame_progress = 0.11281158
+animation = &"attack"
 
 [node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
 position = Vector2(-5.5, -102)

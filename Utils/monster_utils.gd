@@ -2,21 +2,17 @@ class_name MonsterUtils
 
 enum action_types {DAMAGE, DAMAGE_STATUS, STATUS, SHIELD, HEAL_SELF, HEAL_OTHERS, BUFF, BUFF_OTHERS}
 
-static func update_monster(
-	battle_state : BattleState,
-	monster_updated_data : MonsterData):
-
-	for monster in battle_state.level_monsters:
-		if monster.battle_position == monster.battle_position:
-			monster = monster_updated_data
+static func update_monster(battle_state : BattleState, monster_updated_data : MonsterData):
+	for i in battle_state.level_monsters.size():
+		if battle_state.level_monsters[i].battle_position == monster_updated_data.battle_position:
+			battle_state.level_monsters[i] = monster_updated_data
 			break
-	print("monster %s updated and battle positions reset")
 	return battle_state
 
 static func find_monster_by_position(
-	battle_state : BattleState,
+	monsters_displayed : Array[Monster],
 	monster_position):
-	for monster in battle_state.level_monsters:
+	for monster in monsters_displayed:
 		if monster.battle_position == monster_position:
 			return monster
 	printerr("monster with position %s not found" % str(monster_position))

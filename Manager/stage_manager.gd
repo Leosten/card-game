@@ -85,7 +85,10 @@ func get_monster_scenes_for_level(level_monsters, enemy_positions) -> Array[Mons
 		var monster_scene = get_monster_scene_from_id(monster_data.id)
 		print("get_monster_scenes_for_level")
 		monster_scene.init_data(monster_data.duplicate())
+		monster_scene.battle_position = index
 		monster_scene.position = enemy_positions[index].position
+		# position monster outside of screen for animation
+		monster_scene.position.x = 6000
 		monster_scene.z_index = 100
 		monster_scenes.append(monster_scene)
 		index += 1
