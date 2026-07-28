@@ -29,6 +29,7 @@ func _ready() -> void:
 	stage_manager = StageManager.new()
 	action_manager = ActionManager.new()
 	action_manager.card_used.connect(on_card_used)
+	action_manager.mana_used.connect(on_mana_used)
 	action_manager.update_battle_view.connect(refresh_screen)
 	current_turn = 1
 	battle_state = GameManager.get_battle_state()
@@ -41,7 +42,7 @@ func _ready() -> void:
 	load_stage_monsters()
 	get_level_monsters()
 	spawn_level_monsters()
-	card_hand_hud.update_displayed_hand(battle_state)
+	card_hand_hud.update_displayed_hand_cost(battle_state)
 
 func _process(delta: float) -> void:
 	pass
@@ -95,11 +96,13 @@ func on_monster_clicked(monster_data : MonsterData):
 		
 func on_card_used(card_data : CardData):
 	card_hand_hud.discard_card(card_clicked)
-	
+
+func on_mana_used(cost):
+	card_hand_hud.update_displayed_hand_cost(battle_state)
+	update_player_mana()
+
 func refresh_screen():
 	update_displayed_monsters()
-	update_player_mana()
-	card_hand_hud.update_displayed_hand(battle_state)
 
 func on_monster_hovered(monster_data : MonsterData):
 	pass

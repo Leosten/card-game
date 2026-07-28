@@ -5,12 +5,12 @@ enum action_types {DAMAGE, DAMAGE_STATUS, STATUS, SHIELD, HEAL_SELF, HEAL_OTHERS
 static func update_monster(
 	battle_state : BattleState,
 	monster_updated_data : MonsterData):
-	print("new health")
-	print(monster_updated_data)
+
 	for monster in battle_state.level_monsters:
 		if monster.battle_position == monster.battle_position:
 			monster = monster_updated_data
 			break
+	print("monster %s updated and battle positions reset")
 	return battle_state
 
 static func find_monster_by_position(

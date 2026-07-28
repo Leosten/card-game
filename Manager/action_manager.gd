@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func cost_card_mana(battle_state: BattleState, card_cost) -> BattleState:
 	battle_state.player_stats.current_mana -= card_cost
+	mana_used.emit(card_cost)
 	return battle_state
 
 func use_card_on_enemy(card : CardData, battle_state: BattleState, enemy_position):
@@ -23,7 +24,7 @@ func use_card_on_enemy(card : CardData, battle_state: BattleState, enemy_positio
 	
 	var enemy : MonsterData = MonsterUtils.find_monster_by_position(battle_state, enemy_position)
 	battle_state = apply_card_action(battle_state, card, enemy)
-	battle_state = cost_card_mana(battle_state, card.cost)
+
 	return battle_state
 
 func use_card_on_ally(card : CardData, battle_state: BattleState):
@@ -33,8 +34,6 @@ func use_card_on_ally(card : CardData, battle_state: BattleState):
 			return battle_state
 	battle_state = apply_card_action(battle_state, card)
 	print("card used on ally")
-
-	battle_state = cost_card_mana(battle_state, card.cost)
 	
 	update_battle_view.emit()
 	return battle_state
@@ -59,7 +58,9 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 				enemy.status_effects = StatusUtils.apply_status_effects(enemy.status_effects, card.status_effects)
 
 	battle_state = MonsterUtils.update_monster(battle_state, enemy)
+	battle_state = cost_card_mana(battle_state, card.cost)
 	card_used.emit(card)
+	update_battle_view.emit()
 	return battle_state
 
 func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy : MonsterData):
