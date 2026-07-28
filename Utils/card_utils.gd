@@ -1,8 +1,8 @@
 @abstract class_name CardUtils
 extends Node
 
-enum targets {ALLY = 0, ENEMY = 0, ALL_ENEMIES = 0}
-enum action_type {DAMAGE = 0, SHIELD_DAMAGE = 0, HEAL = 0, SHIELD = 0, STATUS = 0}
+enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF}
+enum action_type {HEAL, DAMAGE, SHIELD, STATUS_EFFECTS, BUFFS}
 
 static func hover_animation(card: Card) -> void:
 	if card.active_tween:
@@ -40,3 +40,4 @@ static func find_card_by_position(
 	for card in player_hand:
 		if card.hand_position == card_position:
 			return card
+			

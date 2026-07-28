@@ -27,7 +27,11 @@ func update(card_d : CardData):
 	hand_position = card_d.hand_position
 	$CardVisual/CardPosLabel.text = str(hand_position)
 	$CardVisual/CardName.text = card_d.name
-	$CardVisual/CardDescription.text = card_d.description % card_d.damage
+	$CardVisual/CardDescription.text = card_d.description.format({
+		"dmg":str(card_d.damage),
+		"heal":str(card_d.heal),
+		"shield":str(card_d.shield)
+	})
 	$CardVisual/CostLabel.text = str(card_d.cost)
 	card_data = card_d
 

@@ -6,7 +6,7 @@ const CharacterManager = preload("res://Manager/character_manager.gd")
 
 var card_manager : CardManager
 var character_manager : CharacterManager
-var battle_state : Dictionary
+var battle_state : BattleState
 @export var player_stats : PlayerStats
 @export var cards : Array[CardData] = []
 @export var player_deck: Array[CardData] = []
@@ -18,6 +18,7 @@ var battle_state : Dictionary
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# select char id at start menu
+	battle_state = BattleState.new()
 	char_id = 1
 	card_manager = CardManager.new()
 	character_manager = CharacterManager.new()
@@ -33,11 +34,13 @@ func init_cards() -> void:
 	print("cards loaded");
 
 func init_player(char_id) -> void:
-	battle_state["player_deck"] = card_manager.get_starting_deck(char_id)
-	battle_state["player_stats"] = character_manager._get_starting_stats(char_id)
+	var p_stats = PlayerStats.new()
+	p_stats =  character_manager._get_starting_stats(char_id)
+	battle_state.player_deck = card_manager.get_starting_deck(char_id)
+	battle_state.player_stats = p_stats
 
 func get_player_deck() -> Array[CardData]:
-	return battle_state['player_deck']
+	return battle_state.player_deck
 
 func get_character_scene() :
 	return character_manager.get_character_scene(char_id)
@@ -45,10 +48,10 @@ func get_character_scene() :
 func get_player_char_id():
 	return player_stats.char_id
 	
-func get_battle_state() -> Dictionary:
+func get_battle_state() -> BattleState:
 	return battle_state
 
-func update_battle_state(battle_state : Dictionary):
+func update_battle_state(battle_state : BattleState) -> BattleState:
 	battle_state = battle_state
 	return battle_state
 

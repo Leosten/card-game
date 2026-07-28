@@ -1,4 +1,4 @@
-@abstract class_name CardData
+class_name CardData
 
 extends Resource
 
@@ -9,14 +9,13 @@ extends Resource
 @export var damage := 0
 @export var damage_modifier := 0
 @export var heal := 0
-@export var actions := CardUtils.action_type
-@export var status := StatusUtils.status_effects
+@export var shield := 0
+@export var actions : Array[CardUtils.action_type] = []
+@export var status_effects : Array[StatusEffect]
+@export var buffs : Array[Buff]
 @export var description := ""
 @export var cost := 0
-@export var drawable := true
-@export var discarded := false
-@export var exhausted := false
-@export var allowed_targets := CardUtils.targets
+@export var allowed_targets : Array[CardUtils.targets] = []
 @export var artwork: Texture2D
 
 func use(battle_state, enemy):
@@ -24,4 +23,6 @@ func use(battle_state, enemy):
 func useSelf(battle_state):
 	pass
 func useAll(battle_state):
+	pass
+func special_effects():
 	pass

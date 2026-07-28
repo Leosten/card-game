@@ -1,6 +1,6 @@
 extends Node2D
 
-var battle_state : Dictionary
+var battle_state : BattleState
 var current_stage: int
 var current_level: int
 var current_turn: int = 0
@@ -28,6 +28,8 @@ func _ready() -> void:
 	viewport_size = get_viewport_rect().size
 	stage_manager = StageManager.new()
 	action_manager = ActionManager.new()
+	action_manager.card_used.connect(on_card_used)
+	action_manager.update_battle_view.connect(refresh_screen)
 	current_turn = 1
 	battle_state = GameManager.get_battle_state()
 	current_level = GameManager.current_level
@@ -40,6 +42,7 @@ func _ready() -> void:
 	get_level_monsters()
 	spawn_level_monsters()
 	card_hand_hud.update_displayed_hand(battle_state)
+
 func _process(delta: float) -> void:
 	pass
 
@@ -54,14 +57,14 @@ func spawn_player_character():
 	add_child(player_character)
 
 func update_player_character():
-	player_character.update(battle_state["player_stats"])
+	player_character.update(battle_state.player_stats)
 	
 func get_level_monsters():
-	battle_state["level_monsters"] = stage_manager.get_level_monsters(current_level)
+	battle_state.level_monsters = stage_manager.get_level_monsters(current_level)
 
 func spawn_level_monsters():
 	enemy_positions = stage_manager.init_monster_positions(viewport_size)
-	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state["level_monsters"], enemy_positions)
+	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state.level_monsters, enemy_positions)
 	for monster_scene in monster_scenes :
 		monster_scene.clicked.connect(on_monster_clicked)
 		monster_scene.hovered.connect(on_monster_hovered)	
@@ -74,7 +77,11 @@ func load_stage_monsters():
 	stage_monsters = stage_manager.get_stage_monsters(current_level)
 	
 func _on_card_clicked(card_data: CardData) -> void:
-	if (enemy_turn == true):
+	if card_clicked != null && card_data.hand_position == card_clicked.hand_position:
+		battle_state = action_manager.use_card_on_ally(card_clicked, battle_state)
+		print(" click on self card")
+		card_clicked = null
+	if enemy_turn == true:
 		return
 	if card_data.cost > CharacterUtils.get_current_mana(battle_state):
 		print("not enough mana")
@@ -83,14 +90,12 @@ func _on_card_clicked(card_data: CardData) -> void:
 
 func on_monster_clicked(monster_data : MonsterData):
 	if (card_clicked != null):
-		if (card_clicked.allowed_targets.has(CardUtils.targets.ALL_ENEMIES == 1)):
-			action_manager.use_card_on_all_enemies()
 		battle_state = action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data.battle_position)
-		card_hand_hud.discard_card(card_clicked)
 		card_clicked = null
-
-		refresh_screen()
-
+		
+func on_card_used(card_data : CardData):
+	card_hand_hud.discard_card(card_clicked)
+	
 func refresh_screen():
 	update_displayed_monsters()
 	update_player_mana()
@@ -107,17 +112,17 @@ func on_monster_dead(monster : MonsterData):
 	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
 
 func update_player_mana():
-	print(battle_state["player_stats"].current_mana)
+	print(battle_state.player_stats.current_mana)
 	var color
 	if (CharacterUtils.get_current_mana(battle_state) > 0):
 		color = Color(0.149, 0.959, 0.792, 1.0)
 	else:
 		color = Color(0.0, 0.0, 0.0, 1.0)
 	$ManaWindow/ManaLabel.label_settings.font_color = color
-	$ManaWindow/ManaLabel.text = str(battle_state["player_stats"].current_mana)
+	$ManaWindow/ManaLabel.text = str(battle_state.player_stats.current_mana)
 
 func launch_enemy_turn():
-	for enemy in battle_state["level_monsters"]:
+	for enemy in battle_state.level_monsters:
 		battle_state = action_manager.enemy_cycle(battle_state, enemy)
 	update_player_character()
 	pass

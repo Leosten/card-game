@@ -54,6 +54,7 @@ func update_monster_state(monster_d):
 	monster_data = monster_d
 	#print("monster %s updated" % str(monster_data.battle_position))
 	update_health_bar()
+	#update_status_effects()
 
 func die():
 	if _animated_sprite.animation.contains("death"):

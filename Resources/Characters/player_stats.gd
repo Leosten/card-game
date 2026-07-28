@@ -11,8 +11,8 @@ extends Resource
 @export var level_progression: int = 0
 @export var stage_progression: int = 0
 @export var char_id = 0
-@export var buffs = StatusUtils.buffs
-@export var status_effects = StatusUtils.status_effects
+@export var buffs : Array[Buff] = []
+@export var status_effects : Array[StatusEffect] = []
 
 func _init():
 	pass

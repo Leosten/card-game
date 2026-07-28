@@ -1,4 +1,6 @@
 extends CardData
 
-func use(battle_state, enemy):
-	pass
+# defend
+func _init():
+	actions = [CardUtils.action_type.SHIELD]
+	allowed_targets = [CardUtils.targets.SELF]

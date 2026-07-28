@@ -117,7 +117,7 @@ func reposition_cards():
 		CardUtils.reposition_animation(card, new_position)
 		card.base_position = new_position
 
-func update_displayed_hand(battle_state : Dictionary):
+func update_displayed_hand(battle_state : BattleState):
 	for card : Card in displayed_hand:
 		card.update_cost_label(CharacterUtils.get_current_mana(battle_state))
 		

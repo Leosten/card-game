@@ -1,7 +1,7 @@
 class_name StageManager
 extends Node
 
-const MonsterData = preload("res://Resources/Monsters/MonsterData.gd")
+const MonsterData = preload("res://Resources/Monsters/monster_data.gd")
 
 var stage_monsters : Array[MonsterData] = []
 enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL}
@@ -61,12 +61,12 @@ func get_encounter_monsters(level) :
 			return [[1,1,1]]
 	return []
 	
-func get_level_monsters(level):
+func get_level_monsters(level) -> Array[MonsterData]:
 	var possible_monsters = get_encounter_monsters(level)
 	possible_monsters.shuffle()
 	
 	var monster_index = 0
-	var level_monsters = []
+	var level_monsters : Array[MonsterData] = []
 	for monster_id in possible_monsters[0]:
 			for monster_data : MonsterData in stage_monsters:
 				if monster_data.id == monster_id:
@@ -80,7 +80,7 @@ func get_level_monsters(level):
 func get_monster_scenes_for_level(level_monsters, enemy_positions) -> Array[Monster]:
 	var monster_scenes : Array[Monster] = []
 	var index = 0
-	#print(level_monsters)
+
 	for monster_data in level_monsters:
 		var monster_scene = get_monster_scene_from_id(monster_data.id)
 		print("get_monster_scenes_for_level")

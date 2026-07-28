@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @onready var _animated_sprite = $AnimatedSprite2D
 
-func init(battle_state: Dictionary):
-	update(battle_state["player_stats"])
+func init(battle_state: BattleState):
+	update(battle_state.player_stats)
 
 func _process(_delta):
 	if _animated_sprite.animation.contains("idle"):
