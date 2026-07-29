@@ -111,7 +111,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7hkx"]
 size = Vector2(41, 76)
 
-[node name="Character1" type="CharacterBody2D" unique_id=340876869]
+[node name="Character1" type="AnimatableBody2D" unique_id=807185565]
 scale = Vector2(4, 4)
 script = ExtResource("1_vchkt")
 
@@ -124,5 +124,5 @@ position = Vector2(-2.5, 28)
 shape = SubResource("RectangleShape2D_q7hkx")
 
 [node name="CharacterStatsWindow" parent="." unique_id=1699102038 instance=ExtResource("5_txy3v")]
-position = Vector2(-35.75, 68.75)
-scale = Vector2(0.4, 0.4)
+position = Vector2(-24.25, 69.75)
+scale = Vector2(0.5, 0.5)

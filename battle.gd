@@ -7,7 +7,7 @@ var current_turn: int = 0
 var enemy_turn : bool = false
 var stage_monsters : Array[MonsterData]
 var monsters_displayed : Array[Monster]
-var player_character : CharacterBody2D
+var player_character : AnimatableBody2D
 var death_timer: SceneTreeTimer
 
 var stage_manager : StageManager
@@ -68,7 +68,6 @@ func spawn_level_monsters():
 		monster_scene.clicked.connect(on_monster_clicked)
 		monster_scene.hovered.connect(on_monster_hovered)
 		monster_scene.dead.connect(on_monster_dead)
-		monster_scene.update_health_bar()
 		add_child(monster_scene)
 		monsters_displayed.append(monster_scene)
 		monster_scene.spawn(enemy_positions)

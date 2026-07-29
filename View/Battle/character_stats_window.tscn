@@ -4,22 +4,70 @@
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="2_gxebv"]
 [ext_resource type="Theme" uid="uid://cjepiujjxaikd" path="res://View/Battle/shield_bar.theme" id="3_n0or3"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_k1dyt"]
+font_size = 10
+font_color = Color(0.24313726, 0.60784316, 1, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ifhmy"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_bjp1d"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_fv8vx"]
+font_size = 10
+
 [node name="CharacterStatsWindow" type="Node2D" unique_id=1699102038]
 script = ExtResource("1_xnyjr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=212147831]
-offset_right = 192.0
+offset_right = 104.0
 offset_bottom = 74.0
 
 [node name="HealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=632292429]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("2_gxebv")
 show_percentage = false
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HealthBar" unique_id=1848022517]
+[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HealthBar" unique_id=704427127]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 0
-offset_right = 192.0
-offset_bottom = 23.0
+offset_left = 46.0
+offset_top = 1.0
+offset_right = 103.0
+offset_bottom = 14.0
+theme = ExtResource("3_n0or3")
+min_value = 20.0
+value = 20.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ShieldValue" type="Label" parent="VBoxContainer/HealthBar" unique_id=969845377]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 1.0
+offset_right = 135.0
+offset_bottom = 21.0
+text = "23"
+label_settings = SubResource("LabelSettings_k1dyt")
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HealthBar" unique_id=1848022517]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -20.0
+offset_right = 52.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HealthBar/CenterContainer" unique_id=984800883]
 layout_mode = 2
@@ -28,24 +76,20 @@ alignment = 1
 [node name="Health" type="Label" parent="VBoxContainer/HealthBar/CenterContainer/HBoxContainer" unique_id=704031492]
 layout_mode = 2
 text = "10"
+label_settings = SubResource("LabelSettings_ifhmy")
 
 [node name="Separator" type="Label" parent="VBoxContainer/HealthBar/CenterContainer/HBoxContainer" unique_id=1917310321]
 layout_mode = 2
 text = "/"
+label_settings = SubResource("LabelSettings_bjp1d")
 
 [node name="MaxHealth" type="Label" parent="VBoxContainer/HealthBar/CenterContainer/HBoxContainer" unique_id=723403970]
 layout_mode = 2
 text = "100"
+label_settings = SubResource("LabelSettings_fv8vx")
 
-[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HealthBar" unique_id=704427127]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 3.0
-offset_right = 188.0
-offset_bottom = 22.0
-theme = ExtResource("3_n0or3")
-fill_mode = 1
-show_percentage = false
-
-[node name="list_icons" type="HBoxContainer" parent="VBoxContainer" unique_id=133163696]
-layout_mode = 2
+[node name="BuffsGrid" type="GridContainer" parent="." unique_id=301094566]
+offset_top = 17.0
+offset_right = 160.0
+offset_bottom = 75.0
+columns = 2

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://y4kcjwxj6qrs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k1dyt"]
+font_size = 10
+
+[node name="Icon" type="Control" unique_id=108899209]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quantity" type="Label" parent="." unique_id=956552803]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+offset_left = 35.0
+offset_top = 6.0
+offset_right = 71.28
+offset_bottom = 62.0
+text = "2"
+label_settings = SubResource("LabelSettings_k1dyt")
+
+[node name="Button" type="Button" parent="." unique_id=966256222]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 26.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2094156513]
+position = Vector2(13, 14)
+scale = Vector2(1.03125, 1)
+animation = &""

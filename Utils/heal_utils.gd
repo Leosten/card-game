@@ -14,6 +14,7 @@ static func calculate_final_shield(shield_value, target : Targetable):
 	return shield_value
 
 static func apply_shield(shield_value, target : Targetable):
+	print("apply shield %s" % str(shield_value))
 	target.shield += shield_value
 	return target
 

@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://dti4cgg3uua2l"]
+
+[ext_resource type="PackedScene" uid="uid://y4kcjwxj6qrs" path="res://View/UI/icons/icon_template.tscn" id="1_ms76w"]
+[ext_resource type="Texture2D" uid="uid://du3b5gclvnyvp" path="res://Art/UI/icons/stun_icon.png" id="2_ntlhq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd1pc"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gae40"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsl83"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cpkc"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(0, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnl63"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0s0v"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(320, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrsyl"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(0, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_difqf"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(160, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4yg7"]
+atlas = ExtResource("2_ntlhq")
+region = Rect2(320, 320, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2c1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd1pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gae40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsl83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cpkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnl63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0s0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrsyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_difqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4yg7")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StunIcon" unique_id=108899209 instance=ExtResource("1_ms76w")]
+
+[node name="AnimatedSprite2D" parent="." index="2" unique_id=2094156513]
+scale = Vector2(0.15, 0.146)
+sprite_frames = SubResource("SpriteFrames_i2c1k")
+animation = &"default"
+autoplay = "default"

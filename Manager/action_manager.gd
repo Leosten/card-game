@@ -35,7 +35,8 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 		if action == CardUtils.action_type.SHIELD:
 			var shield_value = HealUtils.calculate_final_shield(card.shield, battle_state.player_stats)
 			battle_state.player_stats = HealUtils.apply_shield(shield_value, battle_state.player_stats)
-			battle_state.player_stats.shielded.emit(shield_value)
+			battle_state.player_stats.shielded.emit()
+			battle_state.player_stats.stats_changed.emit()
 		if action == CardUtils.action_type.BUFFS:
 			battle_state.player_stats = StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
 		if (enemy != null) :
@@ -44,8 +45,10 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 				enemy = DamageUtils.apply_damage(final_damage, enemy)
 			if action == CardUtils.action_type.STATUS_EFFECTS:
 				enemy = StatusUtils.apply_status_effects(enemy, card.status_effects)
+			enemy.stats_changed.emit()
 			check_for_death(enemy, battle_state)
-
+			
+	battle_state.player_stats.stats_changed.emit()
 	cost_card_mana(battle_state, card.cost)
 	card_used.emit(card)
 

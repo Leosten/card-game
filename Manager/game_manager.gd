@@ -1,10 +1,12 @@
 extends Node
 
 const CardManager = preload("res://Manager/card_manager.gd")
+const UiManager = preload("res://Manager/ui_manager.gd")
 const PlayerStats = preload("res://Resources/Characters/player_stats.gd")
 const CharacterManager = preload("res://Manager/character_manager.gd")
 
 var card_manager : CardManager
+var ui_manager : UiManager
 var character_manager : CharacterManager
 var battle_state : BattleState
 var char_scene : PackedScene = null
@@ -20,10 +22,13 @@ var char_scene : PackedScene = null
 func _ready() -> void:
 	# select char id at start menu
 	battle_state = BattleState.new()
+	ui_manager = UiManager.new()
+	ui_manager.load_all_icons()
 	char_id = 1
 	card_manager = CardManager.new()
 	character_manager = CharacterManager.new()
 	card_manager.load_all_cards()
+	
 	init_cards()
 	init_player(char_id)
 	print("init done")

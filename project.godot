@@ -34,6 +34,11 @@ folder_colors={
 "res://View/": "red"
 }
 
+[gui]
+
+theme/custom="uid://dnmuk5j7d4rge"
+theme/custom_font="uid://cs5tr71i8gdn5"
+
 [input]
 
 mouse_left_click={

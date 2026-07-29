@@ -21,7 +21,7 @@ func load_all_cards() -> void:
 		var card = load("res://Resources/Cards/"+ str(card_index)+ "/card_"+ str(card_index)+ ".tres")
 		if card == null:
 			print("ERROR : could not load card %s" % str(card_index))
-		cards.append(card.duplicate())	
+		cards.append(card.duplicate())
 
 func get_all_cards() -> Array[CardData]:
 	return cards

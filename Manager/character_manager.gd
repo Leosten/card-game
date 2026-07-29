@@ -1,6 +1,5 @@
 extends Node
 
-const PlayerStats = preload("res://Resources/Characters/player_stats.gd")
 var player_stats : PlayerStats 
 
 func _init():

@@ -9,6 +9,8 @@ static func apply_damage(damage_value, target : Targetable) -> Targetable:
 		if (damage_value == target.shield):
 			target.shield = 0
 			target.shield_broken.emit()
+			target.stats_changed.emit()
+
 			return
 		if (damage_value >= target.shield):
 			var current_shield = target.shield
@@ -17,10 +19,12 @@ static func apply_damage(damage_value, target : Targetable) -> Targetable:
 			target.health -= final_damage
 			target.shield_broken.emit()
 			target.damage_taken.emit(final_damage)
+			target.stats_changed.emit()
 			return target
 		else:
 			target.shield -= damage_value
 			target.damage_shielded.emit(damage_value)
+			target.stats_changed.emit()
 			return target
 	target.health -= damage_value
 	target.damage_taken.emit(damage_value)

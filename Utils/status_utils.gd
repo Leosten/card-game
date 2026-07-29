@@ -24,7 +24,9 @@ static func apply_status_effects(target: Targetable, status_effects : Array[Stat
 				existing_effect.duration += effect.duration
 			target.statused.emit(effect)
 			return target
+		print("added effect")
 		target.status_effects.append(effect)
+		print(target.status_effects)
 		target.statused.emit(effect)
 	return target
 
@@ -67,3 +69,8 @@ static func get_status_effect_or_null(status_effects : Array[StatusEffect], stat
 		if status.type == status_effect_to_find:
 			return status
 	return null
+
+func get_status_icons():
+	var icons = []
+	#for buff in StatusUtils.buffs:
+		#var icon = Button.new()

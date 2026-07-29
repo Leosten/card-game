@@ -115,6 +115,7 @@ func init_player_deck():
 func update_piles_count():
 	$DrawPile/DrawCount.text = str(draw_pile.size())
 	$DiscardPile/DiscardCount.text = str(discard_pile.size())
+	pass
 
 func reposition_cards():
 	for card in displayed_hand:
