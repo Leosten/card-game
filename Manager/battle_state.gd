@@ -6,3 +6,6 @@ var level_monsters : Array[MonsterData] = []
 
 func _init():
 	pass
+
+func replenish_player_mana():
+	player_stats = CharacterUtils.replenish_mana(player_stats)

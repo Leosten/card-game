@@ -9,6 +9,8 @@ func _ready():
 	viewport_size = get_parent().get_viewport_rect().size
 
 func clear_card_animation(displayed_hand: Array[Card]):
+	if displayed_hand.is_empty():
+		return
 	var last_tween: Tween
 	for card in displayed_hand:
 		if card.active_tween:
@@ -31,7 +33,6 @@ func cards_appear_animation(displayed_hand: Array[Card], card_hand_positions : A
 		if card.active_tween:
 			card.active_tween.kill()
 		card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
-		print(card.active_tween)
 		card.active_tween.tween_property(card, "position", target_position, 0.5).set_ease(Tween.EASE_OUT)
 		card.base_position = target_position
 		last_tween = card.active_tween
@@ -42,7 +43,6 @@ func use_card_animation(card : Card):
 	if card.active_tween:
 		card.active_tween.kill()
 	card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
-	print(card.active_tween)
 	card.active_tween.tween_property(card, "position", target_position, 0.2).set_ease(Tween.EASE_IN)
 	var zoom = Vector2(1.2, 1.2)
 	card.active_tween.tween_property(card, "scale", zoom, 0.2).set_ease(Tween.EASE_IN)

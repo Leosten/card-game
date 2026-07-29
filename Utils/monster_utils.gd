@@ -7,6 +7,7 @@ static func update_monster(battle_state : BattleState, monster_updated_data : Mo
 		if battle_state.level_monsters[i].battle_position == monster_updated_data.battle_position:
 			battle_state.level_monsters[i] = monster_updated_data
 			break
+	
 	return battle_state
 
 static func find_monster_by_position(

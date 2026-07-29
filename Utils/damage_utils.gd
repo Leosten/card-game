@@ -1,65 +1,53 @@
 @abstract class_name DamageUtils
 
-static func damage_enemy(damage_value, monster: MonsterData):
-	if has_protective_buff(monster.buffs):
-		return monster
+static func apply_damage(damage_value, target : Targetable) -> Targetable:
+	if has_protective_buff(target.buffs):
+		target.damage_protected.emit()
+		return target
 
-	if monster.shield > 0:
-		if (damage_value >= monster.shield):
-			var current_shield = monster.shield
-			monster.shield = 0 
-			monster.health -= damage_value - current_shield
-			return monster
+	if target.shield > 0:
+		if (damage_value == target.shield):
+			target.shield = 0
+			target.shield_broken.emit()
+			return
+		if (damage_value >= target.shield):
+			var current_shield = target.shield
+			target.shield = 0
+			var final_damage = damage_value - current_shield
+			target.health -= final_damage
+			target.shield_broken.emit()
+			target.damage_taken.emit(final_damage)
+			return target
 		else:
-			monster.shield -= damage_value
-			return monster
-	print("final dmg")
-	print(damage_value)
-	monster.health -= damage_value
+			target.shield -= damage_value
+			target.damage_shielded.emit(damage_value)
+			return target
+	target.health -= damage_value
+	check_for_death(target)
+	print("enemy damaged")
+	target.stats_changed.emit()
+	return target
 
-	return monster
-
-static func damage_player(damage_value, player_stats : PlayerStats) -> PlayerStats:
-	if has_protective_buff(player_stats.buffs):
-		return player_stats
-		
-	if player_stats.shield > 0:
-		if (damage_value >= player_stats.shield):
-			var current_shield = player_stats.shield
-			player_stats.shield = 0 
-			player_stats.health -= damage_value - current_shield
-		else:
-			player_stats.shield -= damage_value
-			return player_stats
-			
-	player_stats.health -= damage_value
-	check_for_player_death(player_stats)
-	return player_stats
-
-static func has_attack_modifier(damage_value, buffs, status_effects):
-	damage_value = StatusUtils.apply_strength(damage_value, buffs)
+static func has_attack_modifier(damage_value, attacker : Targetable):
+	damage_value = StatusUtils.apply_attack_modifiers(damage_value, attacker.buffs)
+	#to add : weak (dmg given -25%)
 	return damage_value
 
-static func has_defense_modifier(damage_value, buffs, status_effects):
-	damage_value = StatusUtils.apply_vulnerable(damage_value, status_effects)
+static func has_defense_modifier(damage_value, target : Targetable):
+	damage_value = StatusUtils.apply_defense_modifiers(damage_value, target.status_effects)
+	#to add: armor (dmg taken -25%)
 	return damage_value
 
-static func calculate_ally_final_damage(damage_value, player_stats: PlayerStats, enemy: MonsterData):
-	var final_damage = has_attack_modifier(damage_value, player_stats.buffs, player_stats.status_effects)
-	final_damage = has_defense_modifier(final_damage, enemy.buffs, enemy.status_effects)
+static func calculate_final_damage(damage_value, attacker : Targetable, target: Targetable):
+	var final_damage = has_attack_modifier(damage_value, attacker)
+	final_damage = has_defense_modifier(final_damage, target)
 	return final_damage
 
-static func calculate_enemy_final_damage(damage_value, player_stats: PlayerStats, enemy: MonsterData):
-	var final_damage = has_attack_modifier(damage_value, enemy.buffs, enemy.status_effects)
-	final_damage = has_defense_modifier(final_damage, player_stats.buffs, player_stats.status_effects)
-	return final_damage
-	
-static func check_for_player_death(player_stats : PlayerStats) -> PlayerStats:
-	if (player_stats.health <= 0):
-		player_stats.health = 0
-		print("Player dead")
-		Events.player_death.emit()
-	return player_stats
+static func check_for_death(target : Targetable) -> Targetable:
+	if (target.health <= 0):
+		target.health = 0
+		target.death.emit()
+	return target
 
 static func has_protective_buff(buffs : Array[Buff]) -> bool:
 	var protect = StatusUtils.get_buff_or_null(buffs, StatusUtils.buffs.PERFECT_PROTECT)

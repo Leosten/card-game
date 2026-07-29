@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://crfygybtt0h4d" path="res://Art/Monsters/1/Attack4.png" id="6_b5hmt"]
 [ext_resource type="Texture2D" uid="uid://csrb7oenemg0m" path="res://Art/Monsters/1/Attack5.png" id="7_dfrsi"]
 [ext_resource type="Texture2D" uid="uid://cjcv1exwvbeux" path="res://Art/Monsters/1/Death1.png" id="8_hbben"]
+[ext_resource type="Texture2D" uid="uid://busfl1lumwawo" path="res://Art/Monsters/1/Hurt1.png" id="8_ixagl"]
+[ext_resource type="Texture2D" uid="uid://jiu7e23ey7p6" path="res://Art/Monsters/1/Hurt2.png" id="9_b5hmt"]
 [ext_resource type="Texture2D" uid="uid://dh1wb8ppsmxtx" path="res://Art/Monsters/1/Death2.png" id="9_bc2k1"]
 [ext_resource type="Texture2D" uid="uid://iaj32lh5tjq" path="res://Art/Monsters/1/Death3.png" id="10_sk0ue"]
 [ext_resource type="Texture2D" uid="uid://bkbnbbmlwgbw5" path="res://Art/Monsters/1/Death4.png" id="11_im1g6"]
@@ -37,6 +39,17 @@ animations = [{
 }],
 "loop": 0,
 "name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ixagl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_b5hmt")
+}],
+"loop": 1,
+"name": &"damage_taken",
 "speed": 5.0
 }, {
 "frames": [{
@@ -77,7 +90,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8xco"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfrsi"]
 resource_local_to_scene = true
 size = Vector2(203, 219)
 
@@ -88,11 +101,12 @@ script = ExtResource("1_b5hmt")
 position = Vector2(49, -121)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qosxv")
-animation = &"attack"
+animation = &"damage_taken"
+frame_progress = 0.97409517
 
 [node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
 position = Vector2(-5.5, -102)
-shape = SubResource("RectangleShape2D_g8xco")
+shape = SubResource("RectangleShape2D_dfrsi")
 
 [node name="MonsterName" parent="." index="2" unique_id=1164102193]
 offset_left = 0.0

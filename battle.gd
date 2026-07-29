@@ -34,14 +34,13 @@ func _ready() -> void:
 	add_child(battle_animation_manager)
 	action_manager = ActionManager.new()
 	action_manager.card_used.connect(on_card_used)
-	action_manager.mana_used.connect(on_mana_used)
-	action_manager.update_battle_view.connect(refresh_screen)
-	current_turn = 1
+	
 	battle_state = GameManager.get_battle_state()
+	battle_state.player_stats.current_mana_changed.connect(on_mana_changed)
+	current_turn = 1
 	current_level = GameManager.current_level
 	current_stage = GameManager.current_stage
-	Events.monster_dead.connect(on_monster_dead)
-	
+
 	spawn_player_character()
 	update_player_mana()
 	load_stage_monsters()
@@ -62,9 +61,6 @@ func spawn_player_character():
 	player_character.init(battle_state)
 	add_child(player_character)
 
-func update_player_character():
-	player_character.update(battle_state.player_stats)
-	
 func get_level_monsters():
 	battle_state.level_monsters = stage_manager.get_level_monsters(current_level)
 
@@ -73,7 +69,8 @@ func spawn_level_monsters():
 	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state.level_monsters, enemy_positions)
 	for monster_scene : Monster in monster_scenes :
 		monster_scene.clicked.connect(on_monster_clicked)
-		monster_scene.hovered.connect(on_monster_hovered)	
+		monster_scene.hovered.connect(on_monster_hovered)
+		monster_scene.dead.connect(on_monster_dead)
 		monster_scene.update_health_bar()
 		add_child(monster_scene)
 		monsters_displayed.append(monster_scene)
@@ -85,8 +82,8 @@ func load_stage_monsters():
 	stage_monsters = stage_manager.get_stage_monsters(current_level)
 	
 func _on_card_clicked(card_data: CardData) -> void:
-	if card_clicked != null && card_data.hand_position == card_clicked.hand_position:
-		battle_state = action_manager.use_card_on_ally(card_clicked, battle_state)
+	if card_clicked != null and card_data.hand_position == card_clicked.hand_position:
+		action_manager.use_card_on_ally(card_clicked, battle_state)
 		print(" click on self card")
 		card_clicked = null
 	if enemy_turn == true:
@@ -98,33 +95,28 @@ func _on_card_clicked(card_data: CardData) -> void:
 
 func on_monster_clicked(monster_data : MonsterData):
 	if (card_clicked != null):
-		battle_state = action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
+		action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
 		card_clicked = null
 
 func on_card_used(card_data : CardData):
 	card_hand_hud.discard_card(card_clicked)
 
-func on_mana_used(cost):
+func on_mana_changed(cost):
 	update_player_mana()
 	card_hand_hud.update_displayed_hand_cost(battle_state)
-
-func refresh_screen():
-	update_displayed_monsters()
-	update_player_character()
 
 func on_monster_hovered(monster_data : MonsterData):
 	pass
 
-func update_displayed_monsters():
-	monsters_displayed = MonsterUtils.update_level_monsters(monsters_displayed, battle_state)
-
 func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
-	monsters_displayed = await MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
-
+	Events.monster_dead.emit(monster)
+	battle_state.level_monsters.erase(monster)
+	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
+	
 func update_player_mana():
 	var color
-	if (CharacterUtils.get_current_mana(battle_state) > 0):
+	if (battle_state.player_stats.current_mana > 0):
 		color = Color(0.149, 0.959, 0.792, 1.0)
 	else:
 		color = Color(0.0, 0.0, 0.0, 1.0)
@@ -133,19 +125,17 @@ func update_player_mana():
 
 func launch_enemy_turn():
 	for enemy in battle_state.level_monsters:
-		battle_animation_manager.monster_action_animation(enemy, monsters_displayed)
-		battle_state = action_manager.enemy_cycle(battle_state, enemy)
-		update_player_character()
+		action_manager.enemy_cycle(battle_state, enemy)
 		await get_tree().create_timer(0.5).timeout
-	emit_signal("enemy_turn_finished")
-	pass
+	#emit_signal("enemy_turn_finished")
 
 func _on_end_turn_button_pressed() -> void:
 	card_hand_hud.end_turn()
-	await get_tree().create_timer(0.5).timeout
+	await battle_animation_manager.short_pause()
 	enemy_turn = true
 	await launch_enemy_turn()
-	battle_state = CharacterUtils.replenish_mana(battle_state)
+	battle_state.replenish_player_mana()
 	update_player_mana()
 	card_hand_hud.new_turn()
 	enemy_turn = false
+	print(battle_state.level_monsters)
