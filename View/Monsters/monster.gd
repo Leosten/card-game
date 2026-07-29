@@ -7,7 +7,7 @@ var battle_position
 signal clicked(monster_data: MonsterData)
 signal hovered(monster_data: MonsterData)
 var attacking : bool = false
-
+var dying : bool = false
 #@abstract func play_action_animation(action_type : MonsterUtils.action_types)
 
 func _ready() -> void:
@@ -23,8 +23,10 @@ func init_data(m_data: MonsterData):
 func _process(_delta):
 	if monster_data.health <= 0:
 		update_health_bar()
-		_animated_sprite.play("death")
-		_animated_sprite.animation_finished.connect(on_death_finish)
+		if not dying:
+			die()
+		#_animated_sprite.play("death")
+		#_animated_sprite.animation_finished.connect(on_death_finish)
 	elif not attacking:
 		_animated_sprite.play("idle")
 
@@ -57,11 +59,15 @@ func update_monster_state(monster_d):
 	update_health_bar()
 
 func die():
-	if _animated_sprite.animation.contains("death"):
-		_animated_sprite.play("death")
-
-func on_death_finish():
+	dying = true
+	_animated_sprite.stop()
+	_animated_sprite.play("death")
+	await _animated_sprite.animation_finished
 	Events.monster_dead.emit(monster_data)
+	self.queue_free()
+	#Events.monster_dead.emit(monster_data)
+	
+func on_death_finish():
 	self.queue_free()
 
 func spawn(battle_positions):
@@ -78,11 +84,8 @@ func play_action_animation(action_type : MonsterUtils.action_types):
 
 func attack_animation():
 	attacking = true
-	print(_animated_sprite.animation)
-	if _animated_sprite.animation.find("attack"):
-			print("attack anim")
-			_animated_sprite.stop()
-			_animated_sprite.play("attack")
-			await _animated_sprite.animation_finished
-			attacking = false
+	_animated_sprite.stop()
+	_animated_sprite.play("attack")
+	await _animated_sprite.animation_finished
+	attacking = false
 	

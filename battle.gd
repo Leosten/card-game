@@ -100,7 +100,7 @@ func on_monster_clicked(monster_data : MonsterData):
 	if (card_clicked != null):
 		battle_state = action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
 		card_clicked = null
-		
+
 func on_card_used(card_data : CardData):
 	card_hand_hud.discard_card(card_clicked)
 
@@ -120,7 +120,7 @@ func update_displayed_monsters():
 
 func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
-	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
+	monsters_displayed = await MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
 
 func update_player_mana():
 	var color

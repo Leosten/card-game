@@ -16,7 +16,7 @@ static func damage_enemy(damage_value, monster: MonsterData):
 	print("final dmg")
 	print(damage_value)
 	monster.health -= damage_value
-	print("monster health %s" % monster.health)
+
 	return monster
 
 static func damage_player(damage_value, player_stats : PlayerStats) -> PlayerStats:

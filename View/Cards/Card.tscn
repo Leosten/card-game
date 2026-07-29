@@ -48,37 +48,6 @@ tracks/1/keys = {
 "values": [Vector2(554, 1428)]
 }
 
-[sub_resource type="Animation" id="Animation_y1hx4"]
-resource_name = "card_appear"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(554, 1428)]
-}
-
-[sub_resource type="Animation" id="Animation_sq6oe"]
-resource_name = "card_hover_animation"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardVisual:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -120)]
-}
-
 [sub_resource type="Animation" id="Animation_ta7bg"]
 resource_name = "card_stack_left"
 length = 2.0333333
@@ -95,12 +64,27 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(-67, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_7517t"]
+resource_name = "use"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(554, 1428)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ta7bg"]
 _data = {
 &"RESET": SubResource("Animation_4o7yy"),
-&"card_appear": SubResource("Animation_y1hx4"),
-&"card_hover_animation": SubResource("Animation_sq6oe"),
-&"card_stack_left": SubResource("Animation_ta7bg")
+&"card_stack_left": SubResource("Animation_ta7bg"),
+&"use": SubResource("Animation_7517t")
 }
 
 [node name="Card" type="Area2D" unique_id=479738658]

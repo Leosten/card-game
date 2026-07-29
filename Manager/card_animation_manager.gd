@@ -1,7 +1,12 @@
 class_name CardAnimationManager
 extends Node
 
-var left_out_bounds = Vector2(-1000, 1250)
+var left_out_of_bounds = Vector2(-1000, 1250)
+var right_out_of_bounds = Vector2(5000, 2000)
+var viewport_size
+
+func _ready():
+	viewport_size = get_parent().get_viewport_rect().size
 
 func clear_card_animation(displayed_hand: Array[Card]):
 	var last_tween: Tween
@@ -11,23 +16,36 @@ func clear_card_animation(displayed_hand: Array[Card]):
 		card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
 		card.active_tween.tween_property(
 			card, "position",
-			left_out_bounds,
+			left_out_of_bounds,
 			0.2
 		).set_ease(Tween.EASE_IN)
 		last_tween = card.active_tween
 	await last_tween.finished
 
 func cards_appear_animation(displayed_hand: Array[Card], card_hand_positions : Array[Area2D]):
-	var target_position = Vector2(-1000, 1250)
+	if displayed_hand.is_empty():
+		return
 	var last_tween: Tween
 	for card in displayed_hand:
+		var target_position = card_hand_positions[card.hand_position].position
 		if card.active_tween:
 			card.active_tween.kill()
 		card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
-		card.active_tween.tween_property(
-			card, "position",
-			target_position,
-			0.4
-		).set_ease(Tween.EASE_IN)
+		print(card.active_tween)
+		card.active_tween.tween_property(card, "position", target_position, 0.5).set_ease(Tween.EASE_OUT)
+		card.base_position = target_position
 		last_tween = card.active_tween
 	await last_tween.finished
+
+func use_card_animation(card : Card):
+	var target_position = Vector2(viewport_size.x / 2, viewport_size.y / 2)
+	if card.active_tween:
+		card.active_tween.kill()
+	card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
+	print(card.active_tween)
+	card.active_tween.tween_property(card, "position", target_position, 0.2).set_ease(Tween.EASE_IN)
+	var zoom = Vector2(1.2, 1.2)
+	card.active_tween.tween_property(card, "scale", zoom, 0.2).set_ease(Tween.EASE_IN)
+	card.active_tween.tween_property(card, "position", left_out_of_bounds, 0.2).set_ease(Tween.EASE_OUT)
+
+	await card.active_tween.finished

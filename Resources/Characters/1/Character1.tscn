@@ -2,6 +2,32 @@
 
 [ext_resource type="Script" uid="uid://cb4j2me6oo5s" path="res://Resources/Characters/1/Character1.gd" id="1_vchkt"]
 [ext_resource type="Texture2D" uid="uid://csaj6evpvefy3" path="res://Art/Characters/Raider_3/Idle.png" id="2_mg2aw"]
+[ext_resource type="Texture2D" uid="uid://clnlbi8gjrpm" path="res://Art/Characters/Raider_3/Attack_3.png" id="2_rbtls"]
+[ext_resource type="Texture2D" uid="uid://bp7qtpukemrke" path="res://Art/Characters/Raider_3/Hurt.png" id="3_txy3v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f66ae"]
+atlas = ExtResource("2_rbtls")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j5sa"]
+atlas = ExtResource("2_rbtls")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghc4d"]
+atlas = ExtResource("2_rbtls")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73yqu"]
+atlas = ExtResource("2_rbtls")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63il2"]
+atlas = ExtResource("3_txy3v")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfjfh"]
+atlas = ExtResource("3_txy3v")
+region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1osdt"]
 atlas = ExtResource("2_mg2aw")
@@ -29,6 +55,34 @@ region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ekkti"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f66ae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j5sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghc4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73yqu")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63il2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfjfh")
+}],
+"loop": 0,
+"name": &"damaged",
+"speed": 3.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1osdt")
@@ -62,7 +116,8 @@ script = ExtResource("1_vchkt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1122831603]
 sprite_frames = SubResource("SpriteFrames_ekkti")
-animation = &"idle"
+animation = &"attack"
+frame_progress = 0.74468255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=407755184]
 position = Vector2(-2.5, 28)

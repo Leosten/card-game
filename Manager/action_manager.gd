@@ -6,6 +6,7 @@ signal update_battle_view
 signal card_used(card_data : CardData)
 signal mana_used(cost : int)
 signal enemy_hit(monster : MonsterData)
+signal enemy_blocked(monster : MonsterData)
 signal enemy_attacking(monster : MonsterData)
 
 func _ready() -> void:
@@ -42,16 +43,18 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 		if action == CardUtils.action_type.HEAL:
 			var heal_value = HealUtils.calculate_ally_final_heal(card.heal, battle_state.player_stats)
 			battle_state.player_stats = HealUtils.apply_ally_heal(heal_value, battle_state.player_stats)
+			Events.player_healed.emit()
 		if action == CardUtils.action_type.SHIELD:
 			var shield_value = HealUtils.calculate_ally_final_shield(card.shield, battle_state.player_stats)
 			battle_state.player_stats = HealUtils.apply_ally_shield(shield_value, battle_state.player_stats)
+			Events.player_shielded.emit()
 		if action == CardUtils.action_type.BUFFS:
 			battle_state.player_stats.buffs = StatusUtils.apply_buffs(battle_state.player_stats.buffs, card.buffs)
 		if (enemy != null) :
 			if action == CardUtils.action_type.DAMAGE:
 				print("card attack type")
 				var final_damage = DamageUtils.calculate_ally_final_damage(card.damage, battle_state.player_stats, enemy)
-				enemy = DamageUtils.damage_enemy(final_damage, enemy)
+				enemy = check_damage_enemy(final_damage, enemy)
 			if action == CardUtils.action_type.STATUS_EFFECTS:
 				print("card status type")
 				enemy.status_effects = StatusUtils.apply_status_effects(enemy.status_effects, card.status_effects)
@@ -88,9 +91,28 @@ static func check_for_death(monster: MonsterData, battle_state : BattleState) ->
 	else:
 		battle_state = MonsterUtils.update_monster(battle_state, monster)
 	return battle_state
+
+func check_damage_enemy(damage_value, monster: MonsterData):
+	if DamageUtils.has_protective_buff(monster.buffs):
+		enemy_blocked.emit(monster)
+		return monster
+
+	if monster.shield > 0:
+		if (damage_value >= monster.shield):
+			var current_shield = monster.shield
+			monster.shield = 0 
+			monster.health -= damage_value - current_shield
+			return monster
+		else:
+			monster.shield -= damage_value
+			return monster
+	print("final dmg")
+	print(damage_value)
+	monster.health -= damage_value
+	Events.enemy_hit.emit(monster)
+	#Events.damage_taken.emit(damage_value, monster.position)
 	
-func cycle_buffs():
-	pass
+	return monster
 
 func use_card_on_all_enemies():
 	pass

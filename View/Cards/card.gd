@@ -37,7 +37,7 @@ func update(card_d : CardData):
 
 func update_cost_label(current_mana):
 	var color = Color(0.0, 0.0, 0.0, 1.0)
-	if current_mana > card_data.cost :
+	if current_mana >= card_data.cost :
 		color = Color(0.149, 0.959, 0.792, 1.0)
 	$CardVisual/CostLabel.label_settings.font_color = color
 

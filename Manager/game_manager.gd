@@ -7,6 +7,7 @@ const CharacterManager = preload("res://Manager/character_manager.gd")
 var card_manager : CardManager
 var character_manager : CharacterManager
 var battle_state : BattleState
+var char_scene : PackedScene = null
 @export var player_stats : PlayerStats
 @export var cards : Array[CardData] = []
 @export var player_deck: Array[CardData] = []
@@ -43,6 +44,8 @@ func get_player_deck() -> Array[CardData]:
 	return battle_state.player_deck
 
 func get_character_scene() :
+	if (char_scene != null) :
+		return char_scene
 	return character_manager.get_character_scene(char_id)
 
 func get_player_char_id():
