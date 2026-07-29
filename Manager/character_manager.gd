@@ -22,7 +22,7 @@ static func _get_character_starting_deck(character_id):
 	match character_id:
 		1:
 			print("Character number 1 starting deck")
-			return [0,0,0,0,1,1,1,1,2,2,3,3,4,4]
+			return [0,0,0,0,1,1,1,1,2,2,3,4]
 
 func _get_starting_stats(char_id):
 	match char_id:
@@ -33,5 +33,5 @@ func _get_starting_stats(char_id):
 			player_stats.max_health = 90
 			player_stats.current_mana = 5
 			player_stats.max_mana = 5
-			player_stats.draw_value = 6
+			player_stats.draw_value = 5
 			return player_stats

@@ -23,6 +23,7 @@ static func apply_damage(damage_value, target : Targetable) -> Targetable:
 			target.damage_shielded.emit(damage_value)
 			return target
 	target.health -= damage_value
+	target.damage_taken.emit(damage_value)
 	check_for_death(target)
 	print("enemy damaged")
 	target.stats_changed.emit()

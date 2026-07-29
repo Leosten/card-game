@@ -7,7 +7,7 @@ signal card_clicked(card_data: CardData)
 @export var margin_between_cards = 18
 @export var card_size = 250
 @export var max_nb_of_cards = 10
-#const CardAnimationManager = preload("res://Manager/card_animation_manager.gd")
+
 var card_animation_manager : CardAnimationManager
 var displayed_hand: Array[Card] = []
 var card_hand_positions: Array[Area2D] = [] 
@@ -38,7 +38,6 @@ func _process(_delta: float) -> void:
 func init_card_position() -> void:
 	#var viewport_size := get_viewport_rect().size
 	card_hand_positions = CardUtils.init_card_position(card_animation_manager.viewport_size, max_nb_of_cards, player_draw_value, card_size, margin_between_cards, left_margin, bottom_margin)
-	print("card positions init")
 
 func draw_cards(draw_value) -> void:
 	if draw_value <= 0:
@@ -48,14 +47,12 @@ func draw_cards(draw_value) -> void:
 	if (draw_value >= draw_pile_remaining):
 		draw_value = draw_pile_remaining
 
-	#first add to player_hand
 	for index in draw_value:
 		var card_data = draw_pile.pop_front()
 		card_data.hand_position = index
 		player_hand.append(card_data)
-	
 	update_piles_count()
-	
+
 func check_draw_pile_size_reset():
 	if draw_pile.is_empty() :
 		# trigger animation
@@ -76,9 +73,7 @@ func display_hand() :
 		card.clicked.connect(_on_card_clicked)
 		add_child(card)
 		displayed_hand.append(card)
-		
 	await card_animation_manager.cards_appear_animation(displayed_hand, card_hand_positions)
-	print("display hand func")
 
 func discard_card(card_data: CardData):
 	card_used = true
@@ -110,8 +105,7 @@ func discard_all():
 	for card_scene : Card in displayed_hand:
 		card_scene.queue_free()
 	displayed_hand.clear()
-	print("discard all")
-	
+
 func init_player_deck():
 	player_deck = GameManager.get_player_deck()
 	$DeckCard/DeckCount.text = str(player_deck.size())
@@ -136,7 +130,7 @@ func update_displayed_hand_cost(battle_state : BattleState):
 func end_turn():
 	enemy_turn = true
 	discard_all()
-	
+
 func new_turn():
 	enemy_turn = false
 	check_draw_pile_size_reset()
@@ -147,7 +141,7 @@ func new_turn():
 func _on_card_clicked(card_hand_position: int) -> void:
 	var card_data = CardUtils.find_card_by_position(player_hand, card_hand_position)
 	card_clicked.emit(card_data)
-	
+
 func _on_card_hovered(card: Card) -> void:
 	if card_used == true :
 		return

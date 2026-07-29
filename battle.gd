@@ -9,9 +9,6 @@ var stage_monsters : Array[MonsterData]
 var monsters_displayed : Array[Monster]
 var player_character : CharacterBody2D
 var death_timer: SceneTreeTimer
-#const StageManager = preload("res://Manager/stage_manager.gd")
-#const ActionManager = preload("res://Manager/action_manager.gd")
-#const BattleAnimationManager = preload("res://Manager/battle_animation_manager.gd")
 
 var stage_manager : StageManager
 var action_manager : ActionManager
@@ -101,7 +98,8 @@ func on_monster_clicked(monster_data : MonsterData):
 func on_card_used(card_data : CardData):
 	card_hand_hud.discard_card(card_clicked)
 
-func on_mana_changed(cost):
+func on_mana_changed():
+	print("mana changed")
 	update_player_mana()
 	card_hand_hud.update_displayed_hand_cost(battle_state)
 
@@ -112,8 +110,14 @@ func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
 	Events.monster_dead.emit(monster)
 	battle_state.level_monsters.erase(monster)
+	check_monsters_dead()
 	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
-	
+
+func check_monsters_dead():
+	if battle_state.level_monsters.is_empty() == true:
+		print("WIN all enemies dead")
+		#show results
+
 func update_player_mana():
 	var color
 	if (battle_state.player_stats.current_mana > 0):
@@ -127,7 +131,6 @@ func launch_enemy_turn():
 	for enemy in battle_state.level_monsters:
 		action_manager.enemy_cycle(battle_state, enemy)
 		await get_tree().create_timer(0.5).timeout
-	#emit_signal("enemy_turn_finished")
 
 func _on_end_turn_button_pressed() -> void:
 	card_hand_hud.end_turn()
@@ -138,4 +141,3 @@ func _on_end_turn_button_pressed() -> void:
 	update_player_mana()
 	card_hand_hud.new_turn()
 	enemy_turn = false
-	print(battle_state.level_monsters)

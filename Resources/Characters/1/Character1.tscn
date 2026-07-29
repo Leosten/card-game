@@ -68,7 +68,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_73yqu")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack",
 "speed": 3.0
 }, {
@@ -80,7 +80,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_lfjfh")
 }],
 "loop": 0,
-"name": &"damaged",
+"name": &"damage_taken",
 "speed": 3.0
 }, {
 "frames": [{
@@ -116,16 +116,15 @@ script = ExtResource("1_vchkt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1122831603]
 sprite_frames = SubResource("SpriteFrames_ekkti")
-animation = &"attack"
-frame_progress = 0.74468255
+animation = &"damage_taken"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=407755184]
 position = Vector2(-2.5, 28)
 shape = SubResource("RectangleShape2D_q7hkx")
 
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=843287432]
-offset_left = -32.5
-offset_top = 68.5
-offset_right = 34.75
-offset_bottom = 78.75
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=746671620]
+offset_left = -29.25
+offset_top = 71.25
+offset_right = 37.75
+offset_bottom = 81.25
 show_percentage = false

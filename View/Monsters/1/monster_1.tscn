@@ -48,7 +48,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_b5hmt")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"damage_taken",
 "speed": 5.0
 }, {
@@ -90,7 +90,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfrsi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixagl"]
 resource_local_to_scene = true
 size = Vector2(203, 219)
 
@@ -101,12 +101,11 @@ script = ExtResource("1_b5hmt")
 position = Vector2(49, -121)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qosxv")
-animation = &"damage_taken"
-frame_progress = 0.97409517
+animation = &"attack"
 
 [node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
 position = Vector2(-5.5, -102)
-shape = SubResource("RectangleShape2D_dfrsi")
+shape = SubResource("RectangleShape2D_ixagl")
 
 [node name="MonsterName" parent="." index="2" unique_id=1164102193]
 offset_left = 0.0

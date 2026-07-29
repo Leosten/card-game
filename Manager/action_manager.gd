@@ -2,7 +2,6 @@ class_name ActionManager
 extends Node
 
 signal update_battle_state(battle_state : BattleState)
-
 signal card_used(card_data : CardData)
 
 func _ready() -> void:
@@ -10,13 +9,12 @@ func _ready() -> void:
 
 func cost_card_mana(battle_state: BattleState, card_cost):
 	battle_state.player_stats.current_mana -= card_cost
-	battle_state.player_stats.current_mana_changed.emit(card_cost)
+	battle_state.player_stats.current_mana_changed.emit()
 
 func use_card_on_enemy(card : CardData, battle_state: BattleState, monster_data: MonsterData):
 	if !card.allowed_targets.has(CardUtils.targets.ENEMY):
 		print("ERROR : target not allowed")
 	print("card used on monster %s" % str(monster_data.battle_position))
-	
 	apply_card_action(battle_state, card, monster_data)
 
 func use_card_on_ally(card : CardData, battle_state: BattleState):
@@ -42,11 +40,9 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 			battle_state.player_stats = StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
 		if (enemy != null) :
 			if action == CardUtils.action_type.DAMAGE:
-				print("card attack type")
 				var final_damage = DamageUtils.calculate_final_damage(card.damage, battle_state.player_stats, enemy)
 				enemy = DamageUtils.apply_damage(final_damage, enemy)
 			if action == CardUtils.action_type.STATUS_EFFECTS:
-				print("card status type")
 				enemy = StatusUtils.apply_status_effects(enemy, card.status_effects)
 			check_for_death(enemy, battle_state)
 
@@ -74,5 +70,6 @@ func check_for_death(monster: MonsterData, battle_state : BattleState):
 		monster.health = 0
 		battle_state.level_monsters.erase(monster)
 		print("enemy %s dead" % monster.battle_position)
+
 func use_card_on_all_enemies():
 	pass

@@ -2,7 +2,7 @@ class_name PlayerStats
 
 extends Targetable
 
-signal current_mana_changed(cost)
+signal current_mana_changed
 
 @export var current_mana : int = 5
 @export var max_mana : int = 5
