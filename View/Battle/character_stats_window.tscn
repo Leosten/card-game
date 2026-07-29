@@ -1,26 +1,51 @@
 [gd_scene format=3 uid="uid://bnp4uikc62nj1"]
 
+[ext_resource type="Script" uid="uid://by3d85qec4on4" path="res://View/Battle/character_stats_window.gd" id="1_xnyjr"]
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="2_gxebv"]
+[ext_resource type="Theme" uid="uid://cjepiujjxaikd" path="res://View/Battle/shield_bar.theme" id="3_n0or3"]
+
 [node name="CharacterStatsWindow" type="Node2D" unique_id=1699102038]
+script = ExtResource("1_xnyjr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=212147831]
-offset_right = 596.0
-offset_bottom = 299.0
+offset_right = 192.0
+offset_bottom = 74.0
 
 [node name="HealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=632292429]
 layout_mode = 2
+theme = ExtResource("2_gxebv")
+show_percentage = false
 
-[node name="Health" type="Label" parent="VBoxContainer/HealthBar" unique_id=704031492]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HealthBar" unique_id=1848022517]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 84.0
-offset_right = 210.0
-offset_bottom = 107.0
+offset_right = 192.0
+offset_bottom = 23.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HealthBar/CenterContainer" unique_id=984800883]
+layout_mode = 2
+alignment = 1
+
+[node name="Health" type="Label" parent="VBoxContainer/HealthBar/CenterContainer/HBoxContainer" unique_id=704031492]
+layout_mode = 2
+text = "10"
+
+[node name="Separator" type="Label" parent="VBoxContainer/HealthBar/CenterContainer/HBoxContainer" unique_id=1917310321]
+layout_mode = 2
+text = "/"
+
+[node name="MaxHealth" type="Label" parent="VBoxContainer/HealthBar/CenterContainer/HBoxContainer" unique_id=723403970]
+layout_mode = 2
+text = "100"
 
 [node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HealthBar" unique_id=704427127]
 layout_mode = 0
-offset_left = 281.0
-offset_right = 597.0
-offset_bottom = 27.0
+offset_left = 86.0
+offset_top = 3.0
+offset_right = 188.0
+offset_bottom = 22.0
+theme = ExtResource("3_n0or3")
+fill_mode = 1
+show_percentage = false
 
 [node name="list_icons" type="HBoxContainer" parent="VBoxContainer" unique_id=133163696]
 layout_mode = 2

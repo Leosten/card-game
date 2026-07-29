@@ -1,9 +1,20 @@
 extends TargetCharacter
 
 @export var player_stats : PlayerStats
+@onready var card_hand_hud = $CardHandHud
 
+@onready var stats_window = $CharacterStatsWindow
+
+func _ready():
+	pass
+	#stats_window.stats = player_stats
+	#stats_window = get_node('CharacterStatsWindow')
+	
 func init(battle_state: BattleState):
 	player_stats = battle_state.player_stats
+	stats_window = get_node('CharacterStatsWindow')
+	stats_window.stats = player_stats
+	
 	connect_player_signals()
 	update()
 
@@ -18,8 +29,9 @@ func _process(_delta):
 		_animated_sprite.play("idle")
 
 func update():
-	$HealthBar.max_value = player_stats.max_health
-	$HealthBar.value = player_stats.health
+	stats_window.update()
+	#$HealthBar.max_value = player_stats.max_health
+	#$HealthBar.value = player_stats.health
 
 func on_stats_changed():
 	update()

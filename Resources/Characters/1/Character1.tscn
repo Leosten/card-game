@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://csaj6evpvefy3" path="res://Art/Characters/Raider_3/Idle.png" id="2_mg2aw"]
 [ext_resource type="Texture2D" uid="uid://clnlbi8gjrpm" path="res://Art/Characters/Raider_3/Attack_3.png" id="2_rbtls"]
 [ext_resource type="Texture2D" uid="uid://bp7qtpukemrke" path="res://Art/Characters/Raider_3/Hurt.png" id="3_txy3v"]
+[ext_resource type="PackedScene" uid="uid://bnp4uikc62nj1" path="res://View/Battle/character_stats_window.tscn" id="5_txy3v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f66ae"]
 atlas = ExtResource("2_rbtls")
@@ -122,9 +123,6 @@ animation = &"damage_taken"
 position = Vector2(-2.5, 28)
 shape = SubResource("RectangleShape2D_q7hkx")
 
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=746671620]
-offset_left = -29.25
-offset_top = 71.25
-offset_right = 37.75
-offset_bottom = 81.25
-show_percentage = false
+[node name="CharacterStatsWindow" parent="." unique_id=1699102038 instance=ExtResource("5_txy3v")]
+position = Vector2(-35.75, 68.75)
+scale = Vector2(0.4, 0.4)
