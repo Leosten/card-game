@@ -17,9 +17,11 @@ var char_scene : PackedScene = null
 @export var current_level = 1;
 @export var current_stage = 1;
 @export var char_id = 0;
+var viewport_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	viewport_size = get_viewport().size
 	# select char id at start menu
 	battle_state = BattleState.new()
 	ui_manager = UiManager.new()
@@ -66,3 +68,6 @@ func update_battle_state(battle_state : BattleState) -> BattleState:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func get_viewport_size():
+	return viewport_size

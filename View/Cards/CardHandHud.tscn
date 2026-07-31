@@ -9,8 +9,8 @@
 font_size = 65
 font_color = Color(0, 0, 0, 1)
 
-[node name="CardHandHud" type="Node2D" unique_id=1336641316]
-z_index = 1200
+[node name="CardHandHud" type="CanvasLayer" unique_id=876026157]
+follow_viewport_enabled = true
 script = ExtResource("1_euu8e")
 
 [node name="DeckCard" parent="." unique_id=1429276712 instance=ExtResource("4_kmdh1")]
@@ -32,3 +32,38 @@ scale = Vector2(0.5, 0.5)
 [node name="DrawPile" parent="." unique_id=76442856 instance=ExtResource("3_s5q8o")]
 position = Vector2(1815, 964)
 scale = Vector2(0.5, 0.5)
+
+[node name="CardHand" type="PanelContainer" parent="." unique_id=315156655]
+anchors_preset = -1
+anchor_top = 0.74200004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 134.0
+offset_top = -6.3600464
+offset_right = -134.0
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="HandAnchor" type="Control" parent="CardHand" unique_id=1821967103]
+layout_mode = 2
+
+[node name="DrawWindow" type="PanelContainer" parent="." unique_id=1253960168]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = -1
+anchor_right = 0.9990001
+anchor_bottom = 1.0
+offset_left = 1791.0
+offset_top = 794.0
+offset_right = 0.9199219
+offset_bottom = -1.0
+
+[node name="DiscardWindow" type="PanelContainer" parent="." unique_id=1598571407]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 795.0
+offset_right = -1791.0
+grow_horizontal = 2
+grow_vertical = 2

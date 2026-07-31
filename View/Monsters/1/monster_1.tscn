@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://blclncvbxgluy" path="res://Art/Monsters/1/Idle2.png" id="15_mssmh"]
 [ext_resource type="Texture2D" uid="uid://co8uidd2y6fl3" path="res://Art/Monsters/1/Idle3.png" id="16_35jh7"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixagl"]
+resource_local_to_scene = true
+size = Vector2(203, 219)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qosxv"]
 animations = [{
 "frames": [{
@@ -90,35 +94,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixagl"]
-resource_local_to_scene = true
-size = Vector2(203, 219)
-
 [node name="Monster1" unique_id=903031461 instance=ExtResource("1_tj63c")]
 script = ExtResource("1_b5hmt")
 
-[node name="AnimatedSprite2D" parent="." index="0" unique_id=535737693]
-position = Vector2(49, -121)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_qosxv")
-animation = &"attack"
-
-[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
-position = Vector2(-5.5, -102)
-shape = SubResource("RectangleShape2D_ixagl")
-
-[node name="MonsterName" parent="." index="2" unique_id=1164102193]
+[node name="MonsterName" parent="." index="0" unique_id=1164102193]
 offset_left = 0.0
 offset_top = -252.0
 offset_right = 531.0
 offset_bottom = -181.0
 
-[node name="MonsterPosition" parent="." index="3" unique_id=2049779721]
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
+position = Vector2(39, -14)
+shape = SubResource("RectangleShape2D_ixagl")
+
+[node name="MonsterPosition" parent="." index="2" unique_id=2049779721]
 offset_left = 18.0
 offset_right = 143.0
 
-[node name="HealthBar" parent="." index="4" unique_id=902273698]
-offset_left = 5.0
-offset_top = 20.0
-offset_right = 245.0
-offset_bottom = 47.0
+[node name="AnimatedSprite2D" parent="." index="4" unique_id=535737693]
+position = Vector2(49, -121)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_qosxv")
+animation = &"attack"

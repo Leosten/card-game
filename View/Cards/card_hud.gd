@@ -1,10 +1,10 @@
-extends Node2D
+extends CanvasLayer
 
 signal card_clicked(card_data: CardData)
 
-@export var bottom_margin := 0
-@export var left_margin = 150
-@export var margin_between_cards = 18
+@export var bottom_margin :=20
+@export var left_margin = 100
+@export var margin_between_cards = 50
 @export var card_size = 250
 @export var max_nb_of_cards = 10
 
@@ -21,9 +21,16 @@ var discard_pile : Array[CardData] = []
 var player_hand : Array[CardData] = []
 var card_used = false
 var enemy_turn = false
+var card_hand_size
+
+@onready var cardhandhud = $CardHand.size
+@onready var card_hand_anchor = $CardHand/HandAnchor
 
 func _ready() -> void:
 	card_animation_manager = CardAnimationManager.new()
+	card_hand_size = card_hand_anchor.get_rect()
+
+	card_animation_manager.hud_size = card_hand_size
 	add_child(card_animation_manager)
 	player_draw_value = GameManager.battle_state.player_stats.draw_value
 	init_player_deck()
@@ -32,12 +39,12 @@ func _ready() -> void:
 	display_hand()
 	update_piles_count()
 
+	
 func _process(_delta: float) -> void:
 	pass
 
 func init_card_position() -> void:
-	#var viewport_size := get_viewport_rect().size
-	card_hand_positions = CardUtils.init_card_position(card_animation_manager.viewport_size, max_nb_of_cards, player_draw_value, card_size, margin_between_cards, left_margin, bottom_margin)
+	card_hand_positions = CardUtils.init_card_position(card_hand_size.size, max_nb_of_cards, player_draw_value, card_size, margin_between_cards, left_margin, bottom_margin)
 
 func draw_cards(draw_value) -> void:
 	if draw_value <= 0:
@@ -65,14 +72,16 @@ func display_hand() :
 		existing_card.queue_free()
 	displayed_hand.clear()
 	
+	var index = 0
 	for card_data in player_hand:
 		var card : Card = GameManager.card_manager.get_card_scene()
 		card.init_card(card_data.hand_position, card_data, card_animation_manager.right_out_of_bounds)
 		card.hovered.connect(_on_card_hovered)
 		card.hovered_out.connect(_on_card_hovered_out)
 		card.clicked.connect(_on_card_clicked)
-		add_child(card)
+		card_hand_anchor.add_child(card)
 		displayed_hand.append(card)
+		index += 1
 	await card_animation_manager.cards_appear_animation(displayed_hand, card_hand_positions)
 
 func discard_card(card_data: CardData):
@@ -92,7 +101,6 @@ func discard_card(card_data: CardData):
 		displayed_card.hand_position = index_2
 		index_2 +=1
 	discard_pile.append(card_data)
-	
 	reposition_cards()
 	update_piles_count()
 
@@ -139,8 +147,7 @@ func new_turn():
 	display_hand()
 	update_piles_count()
 
-func _on_card_clicked(card_hand_position: int) -> void:
-	var card_data = CardUtils.find_card_by_position(player_hand, card_hand_position)
+func _on_card_clicked(card_data: CardData) -> void:
 	card_clicked.emit(card_data)
 
 func _on_card_hovered(card: Card) -> void:
@@ -161,6 +168,7 @@ func _on_card_hovered(card: Card) -> void:
 	card.hovering = true
 
 func _on_card_hovered_out(card: Card) -> void:
+	print("hovered out!")
 	if card_used == true :
 		return
 	if hovered_card != card:

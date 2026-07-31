@@ -43,7 +43,7 @@ func _ready() -> void:
 	load_stage_monsters()
 	get_level_monsters()
 	spawn_level_monsters()
-	card_hand_hud.update_displayed_hand_cost(battle_state)
+	#card_hand_hud.update_displayed_hand_cost(battle_state)
 
 func _process(delta: float) -> void:
 	pass

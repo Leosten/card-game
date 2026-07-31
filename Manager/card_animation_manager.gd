@@ -4,9 +4,10 @@ extends Node
 var left_out_of_bounds = Vector2(-1000, 1250)
 var right_out_of_bounds = Vector2(5000, 2000)
 var viewport_size
+var hud_size
 
 func _ready():
-	viewport_size = get_parent().get_viewport_rect().size
+	viewport_size = GameManager.get_viewport_size()
 
 func clear_card_animation(displayed_hand: Array[Card]):
 	if displayed_hand.is_empty():
@@ -39,7 +40,9 @@ func cards_appear_animation(displayed_hand: Array[Card], card_hand_positions : A
 	await last_tween.finished
 
 func use_card_animation(card : Card):
-	var target_position = Vector2(viewport_size.x / 2, viewport_size.y / 2)
+	var target_position = Vector2(hud_size.size.x / 2, 0 - hud_size.size.y / 2)
+	#target_position = Vector2(0,0)
+	print("target position ", hud_size.size.x ,hud_size.size.y)
 	if card.active_tween:
 		card.active_tween.kill()
 	card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)

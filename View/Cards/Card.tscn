@@ -1,167 +1,110 @@
-[gd_scene format=3 uid="uid://belvm77225t2m"]
+[gd_scene format=3 uid="uid://0bmiapyp8yo8"]
 
-[ext_resource type="Script" uid="uid://bgtt3r7thv6t8" path="res://View/Cards/card.gd" id="1_iudbb"]
-[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/CardBackground.tscn" id="2_cn18q"]
+[ext_resource type="Script" uid="uid://bgtt3r7thv6t8" path="res://View/Cards/card.gd" id="1_a45vp"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ekkti"]
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_a45vp"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4o7yy"]
-font_size = 32
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ejdp"]
+gradient = SubResource("Gradient_a45vp")
+fill_from = Vector2(0.034188036, 0.9145299)
+fill_to = Vector2(0.74643874, 0.14529915)
 
-[sub_resource type="LabelSettings" id="LabelSettings_q7hkx"]
-font_size = 24
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_a45vp"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_vgpp7"]
-font_size = 45
-font_color = Color(0, 0, 0, 1)
+[node name="Card" type="Control" unique_id=417033120]
+custom_minimum_size = Vector2(250, 350)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -350.0
+offset_right = 125.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_a45vp")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hael8"]
-size = Vector2(271, 324)
+[node name="Background" type="TextureRect" parent="." unique_id=169693097]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_0ejdp")
+expand_mode = 1
+stretch_mode = 6
 
-[sub_resource type="Animation" id="Animation_4o7yy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardVisual:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(554, 1428)]
-}
+[node name="CardLayout" type="VBoxContainer" parent="." unique_id=461240914]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 338.0
+size_flags_vertical = 3
+mouse_filter = 2
 
-[sub_resource type="Animation" id="Animation_ta7bg"]
-resource_name = "card_stack_left"
-length = 2.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardVisual:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.0333333, 2.0333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-67, 0)]
-}
+[node name="TopBar" type="HBoxContainer" parent="CardLayout" unique_id=419445701]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
 
-[sub_resource type="Animation" id="Animation_7517t"]
-resource_name = "use"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(554, 1428)]
-}
+[node name="Name" type="Label" parent="CardLayout/TopBar" unique_id=2060058163]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TESTS"
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ta7bg"]
-_data = {
-&"RESET": SubResource("Animation_4o7yy"),
-&"card_stack_left": SubResource("Animation_ta7bg"),
-&"use": SubResource("Animation_7517t")
-}
+[node name="CostContainer" type="PanelContainer" parent="CardLayout/TopBar" unique_id=831063332]
+layout_mode = 2
+mouse_filter = 2
 
-[node name="Card" type="Area2D" unique_id=479738658]
-position = Vector2(554, 1428)
-script = ExtResource("1_iudbb")
-
-[node name="CardVisual" type="Node2D" parent="." unique_id=852483643]
-
-[node name="Button" type="Button" parent="CardVisual" unique_id=417686816]
-visible = false
-z_index = 4096
-offset_left = -133.0
-offset_top = -190.0
-offset_right = 136.0
-offset_bottom = 194.0
-
-[node name="CardPosLabel" type="Label" parent="CardVisual" unique_id=1607984811]
-z_index = 1
-offset_left = -118.0
-offset_top = -177.0
-offset_right = -93.0
-offset_bottom = -151.0
-text = "1"
-label_settings = SubResource("LabelSettings_ekkti")
-
-[node name="CardName" type="Label" parent="CardVisual" unique_id=1408446644]
-z_index = 1
-offset_left = -133.0
-offset_top = -182.0
-offset_right = 57.0
-offset_bottom = -122.0
-text = "TEST"
-label_settings = SubResource("LabelSettings_4o7yy")
-horizontal_alignment = 1
-
-[node name="CardDescription" type="Label" parent="CardVisual" unique_id=746129555]
-z_index = 1
-offset_left = -118.0
-offset_top = -27.0
-offset_right = 101.0
-offset_bottom = 205.0
-text = "test description"
-label_settings = SubResource("LabelSettings_q7hkx")
-
-[node name="CardPicture" type="TextureRect" parent="CardVisual" unique_id=478075214]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CardBackground" parent="CardVisual" unique_id=1429276712 instance=ExtResource("2_cn18q")]
-
-[node name="CostWindow" type="Polygon2D" parent="CardVisual" unique_id=1872966988]
-position = Vector2(198.00003, -153.66998)
-scale = Vector2(0.8295458, 0.8987502)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-112, -56, -152, -56, -176, -32, -176, 0, -152, 24, -112, 24, -88, 0, -88, -32)
-uv = PackedVector2Array(-112, -56, -152, -56, -184, -32, -184, 0, -152, 24, -112, 24, -80, 0, -80, -40)
-
-[node name="CostBorder" type="Polygon2D" parent="CardVisual/CostWindow" unique_id=539850964]
-polygon = PackedVector2Array(-115.4925, -49.014973, -148.50748, -49.014973, -168.31647, -29.205988, -168.31647, -2.794011, -148.50748, 17.014973, -115.4925, 17.014973, -95.68352, -2.794011, -95.68352, -29.205988)
-uv = PackedVector2Array(-112, -56, -152, -56, -184, -32, -184, 0, -152, 24, -112, 24, -80, 0, -80, -40)
-
-[node name="CostLabel" type="Label" parent="CardVisual" unique_id=1881338291]
-offset_left = 78.0
-offset_top = -196.0
-offset_right = 118.0
-offset_bottom = -133.0
+[node name="ManaCost" type="Label" parent="CardLayout/TopBar/CostContainer" unique_id=1148836056]
+layout_mode = 2
 text = "2"
-label_settings = SubResource("LabelSettings_vgpp7")
+label_settings = SubResource("LabelSettings_a45vp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595820256]
-visible = false
-position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_hael8")
+[node name="ArtContainer" type="AspectRatioContainer" parent="CardLayout" unique_id=689794345]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+ratio = 1.33
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=847517914]
-libraries/ = SubResource("AnimationLibrary_ta7bg")
+[node name="Portrait" type="TextureRect" parent="CardLayout/ArtContainer" unique_id=527211612]
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
+[node name="DescriptionContainer" type="PanelContainer" parent="CardLayout" unique_id=1807966552]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Description" type="RichTextLabel" parent="CardLayout/DescriptionContainer" unique_id=161713825]
+layout_mode = 2
+mouse_filter = 2
+text = "Description test"
+
+[node name="BottomBar" type="HBoxContainer" parent="CardLayout" unique_id=497438044]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardType" type="Label" parent="CardLayout/BottomBar" unique_id=1315844158]
+layout_mode = 2
+text = "Type"
+
+[node name="CardButton" type="Button" parent="." unique_id=814282037]
+visibility_layer = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="CardButton" to="." method="_on_card_button_pressed"]
