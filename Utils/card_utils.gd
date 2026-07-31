@@ -41,14 +41,14 @@ static func find_card_by_position(
 		if card.hand_position == card_position:
 			return card
 
-static func init_card_position(viewport_size, max_nb_of_cards, player_draw_value, card_size, margin_between_cards, left_margin, bottom_margin) -> Array[Area2D]:
+static func init_card_position(card_hud_size, max_nb_of_cards, player_draw_value, card_size, margin_between_cards, left_margin, bottom_margin) -> Array[Area2D]:
 	var card_hand_positions : Array[Area2D]= []
-	#print("card hand position " , viewport_size.x , " " , viewport_size.y)
+	#print("card hand position " , card_hud_size.x , " " , card_hud_size.y)
 	for card_pos_index in range(max_nb_of_cards):
 		var card_area = Area2D.new()
 		var card_position := Vector2(
-			(viewport_size.x + left_margin + (card_pos_index * card_size) + margin_between_cards) ,
-			viewport_size.y - bottom_margin
+			(card_hud_size.x + left_margin + (card_pos_index * card_size) + (card_pos_index * margin_between_cards)) ,
+			card_hud_size.y - bottom_margin
 		)
 		card_area.position = card_position
 		print("card ",card_pos_index ," position " , card_position.x , " " , card_position.y)

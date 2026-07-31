@@ -4,7 +4,7 @@ signal card_clicked(card_data: CardData)
 
 @export var bottom_margin :=20
 @export var left_margin = 100
-@export var margin_between_cards = 50
+@export var margin_between_cards = 10
 @export var card_size = 250
 @export var max_nb_of_cards = 10
 

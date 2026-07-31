@@ -25,22 +25,22 @@ offset_bottom = 10.0
 text = "18"
 label_settings = SubResource("LabelSettings_k1dyt")
 
-[node name="DiscardPile" parent="." unique_id=1594937451 instance=ExtResource("2_eq6v6")]
-position = Vector2(133, 964)
-scale = Vector2(0.5, 0.5)
-
 [node name="DrawPile" parent="." unique_id=76442856 instance=ExtResource("3_s5q8o")]
 position = Vector2(1815, 964)
 scale = Vector2(0.5, 0.5)
+
+[node name="DiscardPile" parent="." unique_id=1594937451 instance=ExtResource("2_eq6v6")]
+position = Vector2(133, 964)
+scale = Vector2(0.3, 0.3)
 
 [node name="CardHand" type="PanelContainer" parent="." unique_id=315156655]
 anchors_preset = -1
 anchor_top = 0.74200004
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 134.0
+offset_left = 183.0
 offset_top = -6.3600464
-offset_right = -134.0
+offset_right = -192.0
 grow_vertical = 0
 size_flags_horizontal = 3
 
@@ -52,10 +52,21 @@ custom_minimum_size = Vector2(100, 0)
 anchors_preset = -1
 anchor_right = 0.9990001
 anchor_bottom = 1.0
-offset_left = 1791.0
+offset_left = 1733.0
 offset_top = 794.0
-offset_right = 0.9199219
+offset_right = -7.080078
 offset_bottom = -1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="DrawWindow" unique_id=1178455422]
+layout_mode = 2
+
+[node name="DrawPicture" type="TextureRect" parent="DrawWindow/CenterContainer" unique_id=1305357573]
+layout_mode = 2
+
+[node name="DrawCount" type="Label" parent="DrawWindow/CenterContainer/DrawPicture" unique_id=1939728020]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 19.0
 
 [node name="DiscardWindow" type="PanelContainer" parent="." unique_id=1598571407]
 custom_minimum_size = Vector2(100, 0)
@@ -64,6 +75,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
 offset_top = 795.0
-offset_right = -1791.0
+offset_right = -1741.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="DiscardWindow" unique_id=257288469]
+layout_mode = 2
+
+[node name="DiscardPicture" type="TextureRect" parent="DiscardWindow/CenterContainer" unique_id=380173707]
+layout_mode = 2
+
+[node name="DiscardCount" type="Label" parent="DiscardWindow/CenterContainer/DiscardPicture" unique_id=2064639469]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 19.0
