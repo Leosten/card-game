@@ -19,6 +19,7 @@ var enemy_positions : Array[Area2D] = []
 
 @onready var card_hand_hud = $CardHandHud
 @onready var mana_window = $ManaWindow
+@onready var level_display = $BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
 
 var card_clicked: CardData = null
 
@@ -37,14 +38,19 @@ func _ready() -> void:
 	current_turn = 1
 	current_level = GameManager.current_level
 	current_stage = GameManager.current_stage
-
+	
 	spawn_player_character()
-	update_player_mana()
 	load_stage_monsters()
-	get_level_monsters()
-	spawn_level_monsters()
+	
+	start_battle()
 	#card_hand_hud.update_displayed_hand_cost(battle_state)
 
+func start_battle():
+	level_display.text = "Level " + str(current_stage) + " - " + str(current_level)
+	update_player_mana()
+	get_level_monsters()
+	spawn_level_monsters()
+	
 func _process(delta: float) -> void:
 	pass
 
@@ -71,7 +77,7 @@ func spawn_level_monsters():
 		add_child(monster_scene)
 		monsters_displayed.append(monster_scene)
 		monster_scene.spawn(enemy_positions)
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.3).timeout
 	print("Monsters spawned")
 
 func load_stage_monsters():
@@ -115,7 +121,7 @@ func on_monster_dead(monster : MonsterData):
 func check_monsters_dead():
 	if battle_state.level_monsters.is_empty() == true:
 		print("WIN all enemies dead")
-		#show results
+		victory()
 
 func update_player_mana():
 	var color
@@ -138,5 +144,10 @@ func _on_end_turn_button_pressed() -> void:
 	await launch_enemy_turn()
 	battle_state.replenish_player_mana()
 	update_player_mana()
+	action_manager.cycle_statuses(battle_state.player_stats)
 	card_hand_hud.new_turn()
 	enemy_turn = false
+
+func victory():
+	
+	pass

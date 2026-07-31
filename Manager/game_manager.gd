@@ -26,7 +26,7 @@ func _ready() -> void:
 	battle_state = BattleState.new()
 	ui_manager = UiManager.new()
 	ui_manager.load_all_icons()
-	char_id = 1
+	char_id = 0
 	card_manager = CardManager.new()
 	character_manager = CharacterManager.new()
 	card_manager.load_all_cards()

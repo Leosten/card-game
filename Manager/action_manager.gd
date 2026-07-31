@@ -59,12 +59,15 @@ func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy
 		battle_state.player_stats = DamageUtils.apply_damage(final_damage, battle_state.player_stats)
 	if (action.type == MonsterUtils.action_types.DAMAGE_STATUS):
 		var final_damage = DamageUtils.calculate_final_damage(action.damage, enemy, battle_state.player_stats)
-	
+	if (action.type == MonsterUtils.action_types.SHIELD):
+		var shield_value = HealUtils.calculate_final_shield(action.shield, enemy)
+		enemy = HealUtils.apply_shield(shield_value, enemy)
+	enemy.stats_changed.emit()
 func enemy_cycle(battle_state : BattleState, enemy: MonsterData):
 	var action = enemy.getAction()
-	
-	apply_enemy_action(battle_state, action, enemy)
-	
+	if (StatusUtils.action_possible(enemy) == true):
+		apply_enemy_action(battle_state, action, enemy)
+	cycle_statuses(enemy)
 	enemy.cycle_step +=1
 	enemy.reset_cycle_step()
 
@@ -76,3 +79,12 @@ func check_for_death(monster: MonsterData, battle_state : BattleState):
 
 func use_card_on_all_enemies():
 	pass
+
+func cycle_statuses(target : Targetable):
+	if not target.buffs.is_empty():
+		for buff : Status in target.buffs:
+			StatusUtils.check_for_status_cycle(target.buffs, buff)
+	if not target.status_effects.is_empty():
+		for status : Status in target.status_effects:
+			StatusUtils.check_for_status_cycle(target.status_effects, status)
+	target.stats_changed.emit()

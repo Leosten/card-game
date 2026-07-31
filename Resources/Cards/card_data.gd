@@ -18,6 +18,9 @@ extends Resource
 @export var allowed_targets : Array[CardUtils.targets] = []
 @export var artwork: Texture2D
 
+@export var drawable = true
+@export var magic_type : CardUtils.magic_type
+
 func use(battle_state, enemy):
 	pass
 func useSelf(battle_state):

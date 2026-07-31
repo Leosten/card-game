@@ -19,7 +19,7 @@ static func apply_shield(shield_value, target : Targetable):
 	return target
 
 static func apply_vitality(heal_value, buffs) :
-	var vitality = StatusUtils.get_buff_or_null(buffs, StatusUtils.buffs.VITALITY)
+	var vitality = StatusUtils.get_status_or_null(buffs, StatusUtils.buffs.VITALITY)
 	if vitality != null :
 		heal_value = heal_value + vitality.quantity
 	return heal_value

@@ -26,4 +26,29 @@ offset_bottom = 811.0
 theme = SubResource("Theme_ekkti")
 text = "End Turn"
 
+[node name="BattleStats" type="Control" parent="." unique_id=693394014]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 64.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleStats" unique_id=1387927241]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BattleStats/HBoxContainer" unique_id=777844803]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="CenterContainer" parent="BattleStats/HBoxContainer/PanelContainer" unique_id=1300496090]
+layout_mode = 2
+
+[node name="CurrentLevelLabel" type="Label" parent="BattleStats/HBoxContainer/PanelContainer/MarginContainer" unique_id=101475463]
+layout_mode = 2
+text = "Level 1-1"
+
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

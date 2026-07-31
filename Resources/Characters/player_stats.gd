@@ -10,3 +10,6 @@ signal current_mana_changed
 @export var level_progression: int = 0
 @export var stage_progression: int = 0
 @export var char_id = 0
+
+@export var gold = 0
+@export var items = []

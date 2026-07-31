@@ -1,21 +1,22 @@
 [gd_resource type="Resource" format=3 uid="uid://c1817pwbkfa7b"]
 
-[ext_resource type="Script" uid="uid://bu5a5sq582j1s" path="res://Resources/Cards/1/card_1.gd" id="1_87b5x"]
+[ext_resource type="Script" uid="uid://bu5a5sq582j1s" path="res://Resources/Cards/deck_0/card_1.gd" id="1_fyowi"]
 
 [resource]
-script = ExtResource("1_87b5x")
+script = ExtResource("1_fyowi")
 id = 1
 character_deck = 1
 hand_position = null
 name = "Defend"
-damage = 5
+damage = 8
 damage_modifier = null
 heal = null
-shield = 5
+shield = 8
 actions = null
 status_effects = null
 buffs = null
 description = "add {shield} shield"
 cost = 2
 allowed_targets = null
+drawable = false
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

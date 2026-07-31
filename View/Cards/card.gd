@@ -33,9 +33,9 @@ func update(card_d : CardData):
 	hand_position = card_d.hand_position
 	card_name_label.text = card_d.name
 	description_label.text = card_d.description.format({
-		"dmg":str(card_d.damage),
+		"damage":str(card_d.damage),
 		"heal":str(card_d.heal),
-		"shield":str(card_d.shield)
+		"shield":str(card_d.shield),
 	})
 	cost_label.text = str(card_d.cost)
 	card_data = card_d

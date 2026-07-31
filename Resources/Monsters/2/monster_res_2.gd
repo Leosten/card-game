@@ -3,6 +3,6 @@ extends MonsterData
 func _init():
 	super()
 	action_cycle = [
-		MonsterAction.new("attack", MonsterUtils.action_types.SHIELD, 5)
+		MonsterAction.new("defend", MonsterUtils.action_types.SHIELD, 2, 2)
 	]
 	print('cycle set')

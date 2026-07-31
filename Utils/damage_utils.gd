@@ -54,8 +54,8 @@ static func check_for_death(target : Targetable) -> Targetable:
 		target.death.emit()
 	return target
 
-static func has_protective_buff(buffs : Array[Buff]) -> bool:
-	var protect = StatusUtils.get_buff_or_null(buffs, StatusUtils.buffs.PERFECT_PROTECT)
+static func has_protective_buff(buffs : Array[Status]) -> bool:
+	var protect = StatusUtils.get_status_or_null(buffs, StatusUtils.buffs.PERFECT_PROTECT)
 	if protect != null :
 		return true
 	return false

@@ -18,7 +18,7 @@ var row_margin = 320
 func _ready() -> void:
 	pass
 
-func get_stage_possible_type(stage) :
+func get_stage_encounter_types(stage) :
 	match stage:
 		1:
 			return [level_type.COMMON]
@@ -34,7 +34,7 @@ func get_stage_possible_type(stage) :
 func get_stage_possible_monsters(stage) :
 	match stage:
 		1:
-			return [1]
+			return [1, 2]
 
 func get_stage_monsters(stage_id):
 	var monsters_id = get_stage_possible_monsters(stage_id)
@@ -44,6 +44,7 @@ func get_stage_monsters(stage_id):
 			printerr("Cannot load monster data ressource %s" % str(monster_id))
 			return
 		stage_monsters.append(monster.duplicate())	
+		print("stage monsters loaded")
 	return stage_monsters
 
 func get_monster_scene_from_id(monster_id):
@@ -58,7 +59,7 @@ func get_encounter_monsters(level) :
 		1:
 			#return [[1],[1,1],[1,1,1]]
 			#return [[1,1,1]]
-			return [[1,1,1]]
+			return [[1,2]]
 	return []
 	
 func get_level_monsters(level) -> Array[MonsterData]:
@@ -74,7 +75,7 @@ func get_level_monsters(level) -> Array[MonsterData]:
 					monster_d.battle_position = monster_index
 					level_monsters.append(monster_d)
 			monster_index += 1
-	print("loaded level monsters")
+	print("get level monsters")
 	return level_monsters
 
 func get_monster_scenes_for_level(level_monsters, enemy_positions) -> Array[Monster]:

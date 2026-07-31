@@ -1,0 +1,15 @@
+[gd_resource type="Resource" format=3 uid="uid://ciu0b2dkp4clu"]
+
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_ic0pq"]
+[ext_resource type="Script" uid="uid://2f44f0e1l0fi" path="res://Resources/Cards/deck_0/card_0.gd" id="2_4ipxt"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_acw1t"]
+
+[resource]
+script = ExtResource("2_4ipxt")
+character_deck = 1
+name = "attack"
+damage = 6
+description = "Attack enemy for {damage} damage"
+cost = 2
+drawable = false
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

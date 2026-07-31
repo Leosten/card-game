@@ -3,6 +3,7 @@ extends Node
 
 enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF}
 enum action_type {HEAL, DAMAGE, SHIELD, STATUS_EFFECTS, BUFFS}
+enum magic_type {FIRE, WIND, ICE}
 
 static func hover_animation(card: Card) -> void:
 	if card.active_tween:

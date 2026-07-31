@@ -12,6 +12,8 @@ enum MonsterType {COMMON, MINIBOSS, BOSS}
 @export var cycle_step = 0
 @export var description := ""
 
+@export var gold = 0
+
 func reset_cycle_step():
 	if cycle_step == action_cycle.size():
 		cycle_step = 0

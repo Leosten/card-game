@@ -7,9 +7,9 @@ func _init():
 
 static func get_character_scene(char_id):
 	match char_id:
-		1:
-			print("Character number 1 scene loading")
-			var char : PackedScene = preload("res://Resources/Characters/1/Character1.tscn")
+		0:
+			print("Character number 0 scene loading")
+			var char : PackedScene = preload("res://Resources/Characters/0/Character0.tscn")
 			
 			if char == null:
 				printerr("Cannot load character scene %s" % str(char_id))
@@ -19,14 +19,14 @@ static func get_character_scene(char_id):
 
 static func _get_character_starting_deck(character_id):
 	match character_id:
-		1:
-			print("Character number 1 starting deck")
+		0:
+			print("Character number 0 starting deck")
 			return [0,0,0,0,1,1,1,1,2,2,3,4]
 
 func _get_starting_stats(char_id):
 	match char_id:
-		1:
-			print("Character number 1 starting stats")
+		0:
+			print("Character number 0 starting stats")
 			player_stats.char_id = char_id
 			player_stats.health = 90
 			player_stats.max_health = 90

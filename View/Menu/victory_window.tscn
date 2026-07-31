@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dhmemuamggp6x"]
+
+[sub_resource type="Theme" id="Theme_k1dyt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ye44s"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_k1dyt"]
+font_size = 30
+
+[node name="VictoryWindow" type="Control" unique_id=638174359]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 173.0
+offset_top = 117.0
+offset_right = -157.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1481245373]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=744029937]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=1837362978]
+layout_mode = 2
+
+[node name="VictoryLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1570818759]
+layout_mode = 2
+theme = SubResource("Theme_k1dyt")
+text = "Victory"
+label_settings = SubResource("LabelSettings_ye44s")
+horizontal_alignment = 1
+
+[node name="VictorySubText" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1180561394]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+text = "Choose your reward"
+label_settings = SubResource("LabelSettings_k1dyt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1052781361]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer" unique_id=436349916]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1644960363]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/CenterContainer" unique_id=1612690193]
+layout_mode = 2
+text = "TEST
+"
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1153249178]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/CenterContainer2" unique_id=887906097]
+layout_mode = 2
+text = "TEST
+"
+
+[node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1538236091]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/CenterContainer3" unique_id=694465335]
+layout_mode = 2
+text = "TEST
+"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1034086743]
+custom_maximum_size = Vector2(-1, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer2" unique_id=1783763472]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=504774777]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer" unique_id=117731986]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "IGNORE"
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=108148566]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=2052389032]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer3" unique_id=1543220888]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "NEXT"

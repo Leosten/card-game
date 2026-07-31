@@ -1,57 +1,57 @@
 [gd_scene format=3 uid="uid://dpom8m7aspoog"]
 
-[ext_resource type="Script" uid="uid://cb4j2me6oo5s" path="res://Resources/Characters/1/Character1.gd" id="1_vchkt"]
-[ext_resource type="Texture2D" uid="uid://csaj6evpvefy3" path="res://Art/Characters/Raider_3/Idle.png" id="2_mg2aw"]
-[ext_resource type="Texture2D" uid="uid://clnlbi8gjrpm" path="res://Art/Characters/Raider_3/Attack_3.png" id="2_rbtls"]
-[ext_resource type="Texture2D" uid="uid://bp7qtpukemrke" path="res://Art/Characters/Raider_3/Hurt.png" id="3_txy3v"]
-[ext_resource type="PackedScene" uid="uid://bnp4uikc62nj1" path="res://View/Battle/character_stats_window.tscn" id="5_txy3v"]
+[ext_resource type="Script" uid="uid://cb4j2me6oo5s" path="res://Resources/Characters/0/Character0.gd" id="1_ieyx8"]
+[ext_resource type="Texture2D" uid="uid://clnlbi8gjrpm" path="res://Art/Characters/Raider_3/Attack_3.png" id="2_p5rir"]
+[ext_resource type="Texture2D" uid="uid://bp7qtpukemrke" path="res://Art/Characters/Raider_3/Hurt.png" id="3_7wtya"]
+[ext_resource type="Texture2D" uid="uid://csaj6evpvefy3" path="res://Art/Characters/Raider_3/Idle.png" id="4_p42ys"]
+[ext_resource type="PackedScene" uid="uid://bnp4uikc62nj1" path="res://View/Battle/character_stats_window.tscn" id="5_bqokf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f66ae"]
-atlas = ExtResource("2_rbtls")
+atlas = ExtResource("2_p5rir")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5j5sa"]
-atlas = ExtResource("2_rbtls")
+atlas = ExtResource("2_p5rir")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ghc4d"]
-atlas = ExtResource("2_rbtls")
+atlas = ExtResource("2_p5rir")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_73yqu"]
-atlas = ExtResource("2_rbtls")
+atlas = ExtResource("2_p5rir")
 region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_63il2"]
-atlas = ExtResource("3_txy3v")
+atlas = ExtResource("3_7wtya")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lfjfh"]
-atlas = ExtResource("3_txy3v")
+atlas = ExtResource("3_7wtya")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1osdt"]
-atlas = ExtResource("2_mg2aw")
+atlas = ExtResource("4_p42ys")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_73b60"]
-atlas = ExtResource("2_mg2aw")
+atlas = ExtResource("4_p42ys")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3pns"]
-atlas = ExtResource("2_mg2aw")
+atlas = ExtResource("4_p42ys")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4r05"]
-atlas = ExtResource("2_mg2aw")
+atlas = ExtResource("4_p42ys")
 region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nsigh"]
-atlas = ExtResource("2_mg2aw")
+atlas = ExtResource("4_p42ys")
 region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ci0r2"]
-atlas = ExtResource("2_mg2aw")
+atlas = ExtResource("4_p42ys")
 region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ekkti"]
@@ -113,7 +113,7 @@ size = Vector2(41, 76)
 
 [node name="Character1" type="AnimatableBody2D" unique_id=807185565]
 scale = Vector2(4, 4)
-script = ExtResource("1_vchkt")
+script = ExtResource("1_ieyx8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1122831603]
 sprite_frames = SubResource("SpriteFrames_ekkti")
@@ -123,6 +123,6 @@ animation = &"damage_taken"
 position = Vector2(-2.5, 28)
 shape = SubResource("RectangleShape2D_q7hkx")
 
-[node name="CharacterStatsWindow" parent="." unique_id=1699102038 instance=ExtResource("5_txy3v")]
+[node name="CharacterStatsWindow" parent="." unique_id=1699102038 instance=ExtResource("5_bqokf")]
 position = Vector2(-24.25, 69.75)
 scale = Vector2(0.5, 0.5)
