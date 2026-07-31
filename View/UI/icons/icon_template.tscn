@@ -1,34 +1,87 @@
 [gd_scene format=3 uid="uid://y4kcjwxj6qrs"]
 
+[ext_resource type="Script" uid="uid://m8gef6f15aq8" path="res://View/UI/icons/icon_template.gd" id="1_8a5yc"]
+
+[sub_resource type="Animation" id="Animation_8a5yc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_sakyl"]
+resource_name = "play"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oldfi"]
+_data = {
+&"RESET": SubResource("Animation_8a5yc"),
+&"play": SubResource("Animation_sakyl")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_k1dyt"]
 font_size = 10
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
-[node name="Icon" type="Control" unique_id=108899209]
-layout_mode = 3
+[node name="Icon" type="Button" unique_id=329314255]
+custom_minimum_size = Vector2(35, 35)
+custom_maximum_size = Vector2(35, 35)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8a5yc")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=333349565]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 930.0
+offset_bottom = 510.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect" unique_id=120276985]
+libraries/ = SubResource("AnimationLibrary_oldfi")
+autoplay = &"play"
 
 [node name="Quantity" type="Label" parent="." unique_id=956552803]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.016
-offset_left = 35.0
-offset_top = 6.0
-offset_right = 71.28
-offset_bottom = 62.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -13.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "2"
 label_settings = SubResource("LabelSettings_k1dyt")
-
-[node name="Button" type="Button" parent="." unique_id=966256222]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 0
-offset_right = 30.0
-offset_bottom = 26.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2094156513]
-position = Vector2(13, 14)
-scale = Vector2(1.03125, 1)
-animation = &""

@@ -9,7 +9,7 @@ func update():
 	if stats.shield > 0:
 		$VBoxContainer/HealthBar/ShieldBar.show()
 		$VBoxContainer/HealthBar/ShieldBar.value = stats.shield
-		$VBoxContainer/HealthBar/ShieldBar.max_value = stats.shield
+		$VBoxContainer/HealthBar/ShieldBar.custom_minimum_size.x = stats.shield
 		$VBoxContainer/HealthBar/ShieldValue.show()
 		$VBoxContainer/HealthBar/ShieldValue.text = str(stats.shield)
 	else:
@@ -29,12 +29,20 @@ func update():
 				#$BuffsGrid.add_child(icon)0
 	print("in update")
 	print(stats.status_effects)
+	
+	for icon in $VBoxContainer/BuffsGrid.get_children():
+		print("clear statuses")
+		icon.queue_free()
+	if stats.buffs.is_empty() == false:
+		print("check buffs")
+		for status : Buff in stats.buffs:
+			var icon = GameManager.ui_manager.get_icon(status.type).instantiate()
+			icon.update(status)
+			$VBoxContainer/BuffsGrid.add_child(icon)
 	if stats.status_effects.is_empty() == false:
-		print("check statuses")
+		print("check status_effects")
 		for status : StatusEffect in stats.status_effects:
-			if status not in local_status:
-				print(status.type)
-				var icon = GameManager.ui_manager.get_icon(status.type).instantiate()
-				$BuffsGrid.add_child(icon)
-				local_status.append(status)
+			var icon = GameManager.ui_manager.get_icon(status.type).instantiate()
+			icon.update(status)
+			$VBoxContainer/BuffsGrid.add_child(icon)
 			

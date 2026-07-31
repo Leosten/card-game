@@ -10,8 +10,7 @@ static func apply_damage(damage_value, target : Targetable) -> Targetable:
 			target.shield = 0
 			target.shield_broken.emit()
 			target.stats_changed.emit()
-
-			return
+			return target
 		if (damage_value >= target.shield):
 			var current_shield = target.shield
 			target.shield = 0
@@ -44,6 +43,7 @@ static func has_defense_modifier(damage_value, target : Targetable):
 	return damage_value
 
 static func calculate_final_damage(damage_value, attacker : Targetable, target: Targetable):
+	print(attacker.buffs)
 	var final_damage = has_attack_modifier(damage_value, attacker)
 	final_damage = has_defense_modifier(final_damage, target)
 	return final_damage
