@@ -29,17 +29,15 @@ var card_hand_size
 func _ready() -> void:
 	card_animation_manager = CardAnimationManager.new()
 	card_hand_size = card_hand_anchor.get_rect()
-
 	card_animation_manager.hud_size = card_hand_size
 	add_child(card_animation_manager)
+	init_card_position()
+	start_battle()
+	
+func start_battle():
 	player_draw_value = GameManager.battle_state.player_stats.draw_value
 	init_player_deck()
-	init_card_position()
-	draw_cards(player_draw_value)
-	display_hand()
-	update_piles_count()
 
-	
 func _process(_delta: float) -> void:
 	pass
 

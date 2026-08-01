@@ -19,11 +19,12 @@ var enemy_positions : Array[Area2D] = []
 
 @onready var card_hand_hud = $Hud/BottomHudRoot/CardHandHud
 @onready var mana_window = $ManaWindow
-@onready var level_display = $Hud/BottomHudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
-
+@onready var level_display = $Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
+@onready var center_window = $Hud/CenterWindowRoot
 var card_clicked: CardData = null
 
 func _ready() -> void:
+	Events.next_battle.connect(start_battle)
 	card_hand_hud.card_clicked.connect(_on_card_clicked)
 	#todo: globals
 	viewport_size = get_viewport_rect().size
@@ -35,7 +36,6 @@ func _ready() -> void:
 	
 	battle_state = GameManager.get_battle_state()
 	battle_state.player_stats.current_mana_changed.connect(on_mana_changed)
-	current_turn = 1
 	current_level = GameManager.current_level
 	current_stage = GameManager.current_stage
 	
@@ -46,11 +46,16 @@ func _ready() -> void:
 	#card_hand_hud.update_displayed_hand_cost(battle_state)
 
 func start_battle():
-	#level_display.text = "Level " + str(current_stage) + " - " + str(current_level)
+	print("new battle current stage " , GameManager.current_stage, " - ", GameManager.current_level)
+	current_turn = 1
+	battle_state.replenish_player_mana()
+	level_display.text = "Level " + str(current_stage) + " - " + str(current_level)
 	update_player_mana()
 	get_level_monsters()
 	spawn_level_monsters()
-	
+	card_hand_hud.start_battle()
+	card_hand_hud.new_turn()
+
 func _process(delta: float) -> void:
 	pass
 
@@ -122,6 +127,7 @@ func on_monster_dead(monster : MonsterData):
 func check_monsters_dead():
 	if battle_state.level_monsters.is_empty() == true:
 		print("WIN all enemies dead")
+		card_hand_hud.discard_all()
 		victory()
 
 func update_player_mana():
@@ -150,5 +156,6 @@ func _on_end_turn_button_pressed() -> void:
 	enemy_turn = false
 
 func victory():
-	
-	pass
+	var victory_screen = load("res://View/Menu/victory_window.tscn")
+	center_window.add_child(victory_screen.instantiate())
+	print("victory screen display")

@@ -5,7 +5,7 @@ var local_buffs: Array[Buff]
 var local_status: Array[StatusEffect]
 
 func update():
-	print("SHIELD VALUE FINAL: %s" % stats.shield)
+	#print("SHIELD VALUE FINAL: %s" % stats.shield)
 	if stats.shield > 0:
 		$VBoxContainer/HealthBar/ShieldBar.show()
 		$VBoxContainer/HealthBar/ShieldBar.value = stats.shield
@@ -20,16 +20,9 @@ func update():
 	$VBoxContainer/HealthBar/CenterContainer/HBoxContainer/Health.text = str(stats.health)
 	$VBoxContainer/HealthBar/CenterContainer/HBoxContainer/MaxHealth.text = str(stats.max_health)
 	
-	#if stats.buffs.is_empty() == false:
-		#print("check buffs")
-		#local_buffs = stats.buffs
-		#for buff : Buff in stats.buffs:
-			#if buff not in local_buffs:
-				#var icon = GameManager.ui_manager.get_icon(buff.type).new()
-				#$BuffsGrid.add_child(icon)0
 	print("in update")
 	print(stats.status_effects)
-	
+
 	for icon in $VBoxContainer/BuffsGrid.get_children():
 		print("clear statuses")
 		icon.queue_free()

@@ -7,3 +7,6 @@ signal enemy_hit()
 signal player_healed()
 signal player_buffed()
 signal player_shielded()
+
+signal next_battle
+signal game_completed

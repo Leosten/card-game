@@ -5,6 +5,11 @@ const UiManager = preload("res://Manager/ui_manager.gd")
 const PlayerStats = preload("res://Resources/Characters/player_stats.gd")
 const CharacterManager = preload("res://Manager/character_manager.gd")
 
+signal game_completed
+
+var max_current_level = 5
+var max_current_stage = 1
+
 var card_manager : CardManager
 var ui_manager : UiManager
 var character_manager : CharacterManager
@@ -68,6 +73,19 @@ func update_battle_state(battle_state : BattleState) -> BattleState:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func victory_progress():
+	if current_stage == max_current_stage and current_level == max_current_level:
+		Events.game_completed.emit()
+		print("game completed")
+		return
+	if current_level == max_current_level:
+		current_level = 1
+		max_current_stage +=1
+		print("stage completed")
+		return
+	print("level progress")
+	current_level += 1
 	
 func get_viewport_size():
 	return viewport_size

@@ -25,7 +25,7 @@ static func apply_status_effects(target: Targetable, status_effects : Array[Stat
 			target.statused.emit(effect)
 			return target
 		print("added effect")
-		target.status_effects.append(effect)
+		target.status_effects.append(effect.duplicate(true))
 		print(target.status_effects)
 		target.statused.emit(effect)
 	return target

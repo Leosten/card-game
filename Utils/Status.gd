@@ -7,7 +7,7 @@ extends Resource
 @export var duration_cumulative = false
 @export var quantity_cumulative = false
 
-func _init(p_quantity : int, quantity_cumulative: bool, p_duration: int, duration_cumulative: bool) -> void:
+func _init(p_quantity : int = 0, quantity_cumulative: bool = false, p_duration: int = 0, duration_cumulative: bool = false) -> void:
 	quantity = p_quantity
 	duration = p_duration
 	duration_cumulative = duration_cumulative

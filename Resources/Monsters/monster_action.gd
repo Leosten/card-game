@@ -7,7 +7,7 @@ extends Resource
 @export var damage : int = 0
 @export var shield : int = 0
 
-func _init(p_name : String, p_type : MonsterUtils.action_types, p_damage: int, p_shield = 0):
+func _init(p_name : String = "", p_type : MonsterUtils.action_types = MonsterUtils.action_types.DAMAGE, p_damage: int = 0, p_shield = 0):
 	name = p_name
 	type = p_type
 	damage = p_damage

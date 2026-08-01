@@ -52,7 +52,7 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 	cost_card_mana(battle_state, card.cost)
 	card_used.emit(card)
 
-func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy : MonsterData):
+func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy : Targetable):
 	enemy.acting.emit(action.type)
 	if (action.type == MonsterUtils.action_types.DAMAGE):
 		var final_damage = DamageUtils.calculate_final_damage(action.damage, battle_state.player_stats, enemy)

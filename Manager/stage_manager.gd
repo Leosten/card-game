@@ -44,7 +44,7 @@ func get_stage_monsters(stage_id):
 		if monster == null:
 			printerr("Cannot load monster data ressource %s" % str(monster_id))
 			return
-		stage_monsters.append(monster.duplicate())	
+		stage_monsters.append(monster.duplicate(true))
 		print("stage monsters loaded")
 	return stage_monsters
 
@@ -72,7 +72,7 @@ func get_level_monsters(level) -> Array[MonsterData]:
 	for monster_id in possible_monsters[0]:
 			for monster_data : MonsterData in stage_monsters:
 				if monster_data.id == monster_id:
-					var monster_d = monster_data.duplicate()
+					var monster_d = monster_data.duplicate(true)
 					monster_d.battle_position = monster_index
 					level_monsters.append(monster_d)
 			monster_index += 1
