@@ -17,9 +17,9 @@ var battle_animation_manager : BattleAnimationManager
 var viewport_size
 var enemy_positions : Array[Area2D] = []
 
-@onready var card_hand_hud = $Hud/HudRoot/CardHandHud
+@onready var card_hand_hud = $Hud/BottomHudRoot/CardHandHud
 @onready var mana_window = $ManaWindow
-@onready var level_display = $Hud/HudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
+@onready var level_display = $Hud/BottomHudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
 
 var card_clicked: CardData = null
 
@@ -46,7 +46,7 @@ func _ready() -> void:
 	#card_hand_hud.update_displayed_hand_cost(battle_state)
 
 func start_battle():
-	level_display.text = "Level " + str(current_stage) + " - " + str(current_level)
+	#level_display.text = "Level " + str(current_stage) + " - " + str(current_level)
 	update_player_mana()
 	get_level_monsters()
 	spawn_level_monsters()
@@ -97,6 +97,7 @@ func _on_card_clicked(card_data: CardData) -> void:
 
 func on_monster_clicked(monster_data : MonsterData):
 	if (card_clicked != null):
+		print("card used on enemy")
 		action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
 		card_clicked = null
 

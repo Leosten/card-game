@@ -4,7 +4,7 @@ extends Node
 const MonsterData = preload("res://Resources/Monsters/monster_data.gd")
 
 var stage_monsters : Array[MonsterData] = []
-enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL}
+enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL, SHOP}
 
 # positioning variables
 var max_nb_of_enemies = 6
@@ -36,6 +36,7 @@ func get_stage_possible_monsters(stage) :
 		1:
 			return [1, 2]
 
+# get all possible monsters for the stage
 func get_stage_monsters(stage_id):
 	var monsters_id = get_stage_possible_monsters(stage_id)
 	for monster_id in monsters_id:
@@ -53,15 +54,15 @@ func get_monster_scene_from_id(monster_id):
 		printerr("Cannot load monster scene %s" % str(monster_id))
 		return
 	return monster.instantiate()
-	
+
 func get_encounter_monsters(level) :
 	match level:
 		1:
-			#return [[1],[1,1],[1,1,1]]
-			#return [[1,1,1]]
 			return [[1,2]]
+		2:
+			return [[1,2,2],[1,1]]
 	return []
-	
+
 func get_level_monsters(level) -> Array[MonsterData]:
 	var possible_monsters = get_encounter_monsters(level)
 	possible_monsters.shuffle()

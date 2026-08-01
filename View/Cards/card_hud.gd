@@ -168,7 +168,6 @@ func _on_card_hovered(card: Card) -> void:
 	card.hovering = true
 
 func _on_card_hovered_out(card: Card) -> void:
-	print("hovered out!")
 	if card_used == true :
 		return
 	if hovered_card != card:

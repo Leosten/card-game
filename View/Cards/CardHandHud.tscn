@@ -14,20 +14,13 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 820.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_euu8e")
 
-[node name="HudRoot" type="Control" parent="." unique_id=1323602937]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="DeckCard" parent="." unique_id=1429276712 instance=ExtResource("4_kmdh1")]
-position = Vector2(1885, 888)
+position = Vector2(1876, 51.00006)
 scale = Vector2(0.2, 0.2)
 
 [node name="DeckCount" type="Label" parent="DeckCard" unique_id=540661843]
@@ -39,11 +32,11 @@ text = "18"
 label_settings = SubResource("LabelSettings_k1dyt")
 
 [node name="DrawPile" parent="." unique_id=76442856 instance=ExtResource("3_s5q8o")]
-position = Vector2(1835.0001, 954)
+position = Vector2(1844, 121)
 scale = Vector2(0.3, 0.3)
 
 [node name="DiscardPile" parent="." unique_id=1594937451 instance=ExtResource("2_eq6v6")]
-position = Vector2(92, 933)
+position = Vector2(78, 120)
 scale = Vector2(0.3, 0.3)
 
 [node name="CardHudContainer" type="HBoxContainer" parent="." unique_id=434377974]

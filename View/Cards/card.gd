@@ -50,7 +50,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_mouse_entered() -> void:
-	print("Hovered !")
 	hovered.emit(self)
 
 func _on_mouse_exited() -> void:
