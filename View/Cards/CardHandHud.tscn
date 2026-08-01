@@ -9,9 +9,22 @@
 font_size = 65
 font_color = Color(0, 0, 0, 1)
 
-[node name="CardHandHud" type="CanvasLayer" unique_id=876026157]
-follow_viewport_enabled = true
+[node name="CardHandHud" type="Control" unique_id=1630616989]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_euu8e")
+
+[node name="HudRoot" type="Control" parent="." unique_id=1323602937]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DeckCard" parent="." unique_id=1429276712 instance=ExtResource("4_kmdh1")]
 position = Vector2(1885, 888)
@@ -33,61 +46,49 @@ scale = Vector2(0.3, 0.3)
 position = Vector2(92, 933)
 scale = Vector2(0.3, 0.3)
 
-[node name="CardHand" type="PanelContainer" parent="." unique_id=315156655]
-anchors_preset = -1
-anchor_top = 0.74200004
+[node name="CardHudContainer" type="HBoxContainer" parent="." unique_id=434377974]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 183.0
-offset_top = -6.3600464
-offset_right = -192.0
+offset_top = -260.0
+grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 3
 
-[node name="HandAnchor" type="Control" parent="CardHand" unique_id=1821967103]
+[node name="DiscardWindow" type="PanelContainer" parent="CardHudContainer" unique_id=1598571407]
+custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 
-[node name="DrawWindow" type="PanelContainer" parent="." unique_id=1253960168]
-visible = false
-custom_minimum_size = Vector2(100, 0)
-anchors_preset = -1
-anchor_right = 0.9990001
-anchor_bottom = 1.0
-offset_left = 1733.0
-offset_top = 794.0
-offset_right = -7.080078
-offset_bottom = -1.0
-
-[node name="CenterContainer" type="CenterContainer" parent="DrawWindow" unique_id=1178455422]
+[node name="CenterContainer" type="CenterContainer" parent="CardHudContainer/DiscardWindow" unique_id=257288469]
 layout_mode = 2
 
-[node name="DrawPicture" type="TextureRect" parent="DrawWindow/CenterContainer" unique_id=1305357573]
+[node name="DiscardPicture" type="TextureRect" parent="CardHudContainer/DiscardWindow/CenterContainer" unique_id=380173707]
 layout_mode = 2
 
-[node name="DrawCount" type="Label" parent="DrawWindow/CenterContainer/DrawPicture" unique_id=1939728020]
+[node name="DiscardCount" type="Label" parent="CardHudContainer/DiscardWindow/CenterContainer/DiscardPicture" unique_id=2064639469]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 19.0
 
-[node name="DiscardWindow" type="PanelContainer" parent="." unique_id=1598571407]
-visible = false
-custom_minimum_size = Vector2(100, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 795.0
-offset_right = -1741.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CardHand" type="PanelContainer" parent="CardHudContainer" unique_id=315156655]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="DiscardWindow" unique_id=257288469]
+[node name="HandAnchor" type="Control" parent="CardHudContainer/CardHand" unique_id=1821967103]
 layout_mode = 2
 
-[node name="DiscardPicture" type="TextureRect" parent="DiscardWindow/CenterContainer" unique_id=380173707]
+[node name="DrawWindow" type="PanelContainer" parent="CardHudContainer" unique_id=1253960168]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="DiscardCount" type="Label" parent="DiscardWindow/CenterContainer/DiscardPicture" unique_id=2064639469]
+[node name="CenterContainer" type="CenterContainer" parent="CardHudContainer/DrawWindow" unique_id=1178455422]
+layout_mode = 2
+
+[node name="DrawPicture" type="TextureRect" parent="CardHudContainer/DrawWindow/CenterContainer" unique_id=1305357573]
+layout_mode = 2
+
+[node name="DrawCount" type="Label" parent="CardHudContainer/DrawWindow/CenterContainer/DrawPicture" unique_id=1939728020]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 19.0

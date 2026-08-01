@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 signal card_clicked(card_data: CardData)
 
@@ -23,8 +23,8 @@ var card_used = false
 var enemy_turn = false
 var card_hand_size
 
-@onready var cardhandhud = $CardHand.size
-@onready var card_hand_anchor = $CardHand/HandAnchor
+@onready var cardhandhud = $CardHudContainer/CardHand.size
+@onready var card_hand_anchor = $CardHudContainer/CardHand/HandAnchor
 
 func _ready() -> void:
 	card_animation_manager = CardAnimationManager.new()

@@ -17,9 +17,9 @@ var battle_animation_manager : BattleAnimationManager
 var viewport_size
 var enemy_positions : Array[Area2D] = []
 
-@onready var card_hand_hud = $CardHandHud
+@onready var card_hand_hud = $Hud/HudRoot/CardHandHud
 @onready var mana_window = $ManaWindow
-@onready var level_display = $BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
+@onready var level_display = $Hud/HudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
 
 var card_clicked: CardData = null
 
