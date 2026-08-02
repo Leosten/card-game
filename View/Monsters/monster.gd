@@ -6,12 +6,14 @@ signal clicked(monster_data: MonsterData)
 signal hovered(monster_data: MonsterData)
 signal dead(monster_data: MonsterData)
 
+@onready var monster_predictive = $MonsterPredictive
 @export var monster_data : MonsterData = null
 var battle_position
 
 func _ready() -> void:
 	super()
 	input_event.connect(_on_input_event)
+	update_monster_predictive()
 
 func _process(_delta):
 	if not animating:
@@ -70,3 +72,7 @@ func play_action_animation(action_type : MonsterUtils.action_types):
 
 func on_action(action_type):
 	play_action_animation(action_type)
+	update_monster_predictive()
+
+func update_monster_predictive():
+	monster_predictive.update(monster_data.action_cycle[monster_data.get_next_step()])

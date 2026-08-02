@@ -85,6 +85,6 @@ func victory_progress():
 		return
 	print("level progress")
 	current_level += 1
-	
+
 func get_viewport_size():
 	return viewport_size
