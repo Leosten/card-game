@@ -2,5 +2,6 @@ extends Control
 
 var quantity
 
-func update(buff: Status):
-	$Quantity.text = str(buff.quantity)
+func update(status: Status, icon : Texture2D):
+	$Quantity.text = str(status.quantity)
+	$IconTexture.texture = icon

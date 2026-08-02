@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://dti4cgg3uua2l"]
 
 [ext_resource type="PackedScene" uid="uid://y4kcjwxj6qrs" path="res://View/UI/icons/icon_template.tscn" id="1_ms76w"]
-[ext_resource type="Texture2D" uid="uid://du3b5gclvnyvp" path="res://Art/UI/icons/stun_icon.png" id="2_ntlhq"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_edvdn"]
-atlas = ExtResource("2_ntlhq")
-region = Rect2(0, 0, 157.13315, 146.49991)
+[ext_resource type="Texture2D" uid="uid://b2nq4mwsp62bj" path="res://Art/UI/icons/stun.png" id="2_ntlhq"]
 
 [node name="StunIcon" unique_id=108899209 instance=ExtResource("1_ms76w")]
 
@@ -14,6 +10,4 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_edvdn")
+texture = ExtResource("2_ntlhq")

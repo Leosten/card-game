@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vpa3ioidlefr"
-path="res://.godot/imported/vulnerable_icon.png-df877f3377581ed3efc597c06da71b45.ctex"
+uid="uid://g11rdofeqspj"
+path="res://.godot/imported/vulnerable.png-e25427995715eaa28b21e1a28177f260.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/icons/vulnerable_icon.png"
-dest_files=["res://.godot/imported/vulnerable_icon.png-df877f3377581ed3efc597c06da71b45.ctex"]
+source_file="res://Art/UI/icons/vulnerable.png"
+dest_files=["res://.godot/imported/vulnerable.png-e25427995715eaa28b21e1a28177f260.ctex"]
 
 [params]
 

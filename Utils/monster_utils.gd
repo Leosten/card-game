@@ -1,6 +1,6 @@
 class_name MonsterUtils
 
-enum action_types {DAMAGE, DAMAGE_STATUS, STATUS, SHIELD, HEAL_SELF, HEAL_OTHERS, BUFF, BUFF_OTHERS}
+enum action_types {DAMAGE, DAMAGE_STATUS, STATUS, SHIELD, HEAL_SELF, HEAL_OTHERS, BUFF, BUFF_OTHERS, HEAVY_DAMAGE}
 
 static func update_monster(battle_state : BattleState, monster_updated_data : MonsterData):
 	for i in battle_state.level_monsters.size():

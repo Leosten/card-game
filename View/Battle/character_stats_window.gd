@@ -29,13 +29,11 @@ func update():
 	if stats.buffs.is_empty() == false:
 		print("check buffs")
 		for status : Buff in stats.buffs:
-			var icon = GameManager.ui_manager.get_icon(status.type).instantiate()
-			icon.update(status)
+			var icon = GameManager.ui_manager.get_icon_scene(status)
 			$VBoxContainer/BuffsGrid.add_child(icon)
 	if stats.status_effects.is_empty() == false:
 		print("check status_effects")
 		for status : StatusEffect in stats.status_effects:
-			var icon = GameManager.ui_manager.get_icon(status.type).instantiate()
-			icon.update(status)
+			var icon = GameManager.ui_manager.get_icon_scene(status)
 			$VBoxContainer/BuffsGrid.add_child(icon)
 			

@@ -41,6 +41,7 @@ animations = [{
 script = ExtResource("1_3k3gj")
 
 [node name="MonsterName" type="Label" parent="." unique_id=1164102193]
+visible = false
 offset_left = -26.0
 offset_top = -75.0
 offset_right = 92.0

@@ -55,20 +55,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8a5yc")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=333349565]
+[node name="IconTexture" type="TextureRect" parent="." unique_id=333349565]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 960.0
-offset_top = 540.0
-offset_right = 930.0
-offset_bottom = 510.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect" unique_id=120276985]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IconTexture" unique_id=120276985]
 libraries/ = SubResource("AnimationLibrary_oldfi")
 autoplay = &"play"
 

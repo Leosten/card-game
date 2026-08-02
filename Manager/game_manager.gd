@@ -30,7 +30,6 @@ func _ready() -> void:
 	# select char id at start menu
 	battle_state = BattleState.new()
 	ui_manager = UiManager.new()
-	ui_manager.load_all_icons()
 	char_id = 0
 	card_manager = CardManager.new()
 	character_manager = CharacterManager.new()
@@ -38,7 +37,7 @@ func _ready() -> void:
 	
 	init_cards()
 	init_player(char_id)
-	print("init done")
+	print("gamemanager init done")
 
 func init_cards() -> void:
 	var all_cards = card_manager.get_all_cards()
