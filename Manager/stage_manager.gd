@@ -60,6 +60,12 @@ func get_encounter_monsters(level) :
 		1:
 			return [[1,2]]
 		2:
+			return [[1,2],[1,1]]
+		3:
+			return [[1,1,2],[1,2,2]]
+		4:
+			return [[1,1,2],[1,1,1]]
+		5:
 			return [[1,2,2],[1,1]]
 	return []
 

@@ -36,17 +36,19 @@ func _ready() -> void:
 	
 	battle_state = GameManager.get_battle_state()
 	battle_state.player_stats.current_mana_changed.connect(on_mana_changed)
+
 	current_level = GameManager.current_level
 	current_stage = GameManager.current_stage
-	
 	spawn_player_character()
-	load_stage_monsters()
-	
+	current_level = GameManager.current_level
+	current_stage = GameManager.current_stage
+	new_stage()
 	start_battle()
-	#card_hand_hud.update_displayed_hand_cost(battle_state)
 
 func start_battle():
-	print("new battle current stage " , GameManager.current_stage, " - ", GameManager.current_level)
+	current_level = GameManager.current_level
+	current_stage = GameManager.current_stage
+	print("new battle current stage " , current_stage, " - ", current_level)
 	current_turn = 1
 	battle_state.replenish_player_mana()
 	level_display.text = "Level " + str(current_stage) + " - " + str(current_level)
@@ -55,6 +57,9 @@ func start_battle():
 	spawn_level_monsters()
 	card_hand_hud.start_battle()
 	card_hand_hud.new_turn()
+
+func new_stage():
+	load_stage_monsters()
 
 func _process(delta: float) -> void:
 	pass

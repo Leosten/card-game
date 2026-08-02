@@ -57,6 +57,7 @@ position = Vector2(52, 65)
 shape = SubResource("RectangleShape2D_ekkti")
 
 [node name="MonsterPosition" type="Label" parent="." unique_id=2049779721]
+visible = false
 offset_left = -49.0
 offset_top = -71.0
 offset_right = 69.0
