@@ -15,6 +15,8 @@ var ui_manager : UiManager
 var character_manager : CharacterManager
 var battle_state : BattleState
 var char_scene : PackedScene = null
+var companion_scene : PackedScene = null
+
 #@export var player_stats : PlayerStats
 @export var cards : Array[CardData] = []
 #@export var player_deck: Array[CardData] = []
@@ -58,7 +60,8 @@ func init_player(char_id) -> void:
 
 func init_companion(companion_id) -> void:
 	battle_state.companion_stats = ElementalCompanionStats.new()
-
+	print("companion stats init")
+	
 func get_player_deck() -> Array[CardData]:
 	return battle_state.player_deck
 
@@ -66,6 +69,12 @@ func get_character_scene() :
 	if (char_scene != null) :
 		return char_scene
 	return character_manager.get_character_scene(char_id)
+
+func get_companion_scene() :
+	if (companion_scene != null) :
+		return companion_scene
+	return character_manager.get_companion_scene(companion_id)
+
 
 func get_player_char_id():
 	return battle_state.player_stats.char_id

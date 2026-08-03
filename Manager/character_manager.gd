@@ -17,6 +17,17 @@ static func get_character_scene(char_id):
 				
 			return char.instantiate()
 
+static func get_companion_scene(companion_id):
+	match companion_id:
+		0:
+			print("Companion number 0 scene loading")
+			var companion : PackedScene = preload("res://Resources/Characters/Companions/companion_0.tscn")
+			
+			if companion == null:
+				printerr("Cannot load companion scene %s" % str(companion_id))
+				return
+				
+			return companion.instantiate()
 static func _get_character_starting_deck(character_id):
 	match character_id:
 		0:

@@ -8,6 +8,7 @@ var enemy_turn : bool = false
 var stage_monsters : Array[MonsterData]
 var monsters_displayed : Array[Monster]
 var player_character : AnimatableBody2D
+var companion_character : AnimatableBody2D
 var death_timer: SceneTreeTimer
 
 var stage_manager : StageManager
@@ -40,6 +41,7 @@ func _ready() -> void:
 	current_level = GameManager.current_level
 	current_stage = GameManager.current_stage
 	spawn_player_character()
+	spawn_companion_character()
 	current_level = GameManager.current_level
 	current_stage = GameManager.current_stage
 	new_stage()
@@ -68,12 +70,21 @@ func spawn_player_character():
 	player_character = GameManager.get_character_scene()
 	var char_position := Vector2(
 			viewport_size.x - 1550,
-			viewport_size.y - 650
+			viewport_size.y - 800
 		)
 	player_character.position = char_position
 	player_character.init(battle_state)
 	add_child(player_character)
 
+func spawn_companion_character():
+	companion_character = GameManager.get_companion_scene()
+	var char_position := Vector2(
+			viewport_size.x - 1300,
+			viewport_size.y - 400
+		)
+	companion_character.position = char_position
+	add_child(companion_character)
+	
 func get_level_monsters():
 	battle_state.level_monsters = stage_manager.get_level_monsters(current_level)
 
