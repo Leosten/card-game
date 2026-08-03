@@ -1,0 +1,10 @@
+class_name CompanionCharacter
+
+extends AnimatableBody2D
+
+var animating = false
+@onready var _animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
+
+func _process(_delta):
+	if not animating:
+		_animated_sprite.play("idle")

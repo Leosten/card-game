@@ -12,20 +12,20 @@ func connect_player_signals():
 	stats.damage_taken.connect(on_damage_taken)
 	stats.buffed.connect(on_buffed)
 	stats.shielded.connect(on_shielded)
-	
+
 func update_stats_window():
 	stats_window.update()
-	
+
 func on_stats_changed():
 	print("target stats changed")
 	print(stats.status_effects)
 	update_stats_window()
-	
+
 func _ready():
 	stats_window = get_node('CharacterStatsWindow')
 	stats_window.stats = stats
 	update_stats_window()
-	
+
 func attack_animation():
 	animating = true
 	_animated_sprite.stop()

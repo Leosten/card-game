@@ -15,13 +15,16 @@ var ui_manager : UiManager
 var character_manager : CharacterManager
 var battle_state : BattleState
 var char_scene : PackedScene = null
-@export var player_stats : PlayerStats
+#@export var player_stats : PlayerStats
 @export var cards : Array[CardData] = []
-@export var player_deck: Array[CardData] = []
-@export var level_monsters: Array[MonsterData] = []
+#@export var player_deck: Array[CardData] = []
+#@export var level_monsters: Array[MonsterData] = []
 @export var current_level = 1;
 @export var current_stage = 1;
+
 @export var char_id = 0;
+@export var companion_id = 0;
+
 var viewport_size
 
 # Called when the node enters the scene tree for the first time.
@@ -31,12 +34,14 @@ func _ready() -> void:
 	battle_state = BattleState.new()
 	ui_manager = UiManager.new()
 	char_id = 0
+	companion_id = 0
 	card_manager = CardManager.new()
 	character_manager = CharacterManager.new()
 	card_manager.load_all_cards()
 	
 	init_cards()
 	init_player(char_id)
+	init_companion(companion_id)
 	print("gamemanager init done")
 
 func init_cards() -> void:
@@ -51,6 +56,9 @@ func init_player(char_id) -> void:
 	battle_state.player_deck = card_manager.get_starting_deck(char_id)
 	battle_state.player_stats = p_stats
 
+func init_companion(companion_id) -> void:
+	battle_state.companion_stats = ElementalCompanionStats.new()
+
 func get_player_deck() -> Array[CardData]:
 	return battle_state.player_deck
 
@@ -60,7 +68,7 @@ func get_character_scene() :
 	return character_manager.get_character_scene(char_id)
 
 func get_player_char_id():
-	return player_stats.char_id
+	return battle_state.player_stats.char_id
 	
 func get_battle_state() -> BattleState:
 	return battle_state

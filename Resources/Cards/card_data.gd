@@ -20,6 +20,7 @@ extends Resource
 
 @export var drawable = true
 @export var magic_type : CardUtils.magic_type
+@export var tier : CardUtils.tier
 
 func use(battle_state, enemy):
 	pass
@@ -27,5 +28,11 @@ func useSelf(battle_state):
 	pass
 func useAll(battle_state):
 	pass
-func special_effects():
+func special_effect():
+	pass
+func channel_add() -> Array[CardUtils.magic_type]:
+	return []
+func channel_remove(channel_orbs: Array[CardUtils.magic_type]) -> Array[CardUtils.magic_type]:
+	return []
+func channel_use():
 	pass

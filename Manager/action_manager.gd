@@ -39,6 +39,23 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 			battle_state.player_stats.stats_changed.emit()
 		if action == CardUtils.action_type.BUFFS:
 			battle_state.player_stats = StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
+
+		# ELEMENTAL COMPANION
+		if battle_state.companion_stats is ElementalCompanionStats:
+			if action == CardUtils.action_type.CHANNEL_ADD:
+				battle_state = battle_state.companion_stats.channel_add(card)
+			
+			#CHECK WHEN ADDED allows for cards that add then remove
+			battle_state = battle_state.companion_stats.check_orb_activation(battle_state)
+			
+			if action == CardUtils.action_type.CHANNEL_USE:
+				battle_state = battle_state.companion_stats.channel_clear(card)
+			if action == CardUtils.action_type.CHANNEL_REMOVE:
+				battle_state = battle_state.companion_stats.channel_remove(card)
+			if action == CardUtils.action_type.CHANNEL_CLEAR:
+				battle_state = battle_state.companion_stats.channel_clear(card)
+
+		# ON ENEMY
 		if (enemy != null) :
 			if action == CardUtils.action_type.DAMAGE:
 				var final_damage = DamageUtils.calculate_final_damage(card.damage, battle_state.player_stats, enemy)
