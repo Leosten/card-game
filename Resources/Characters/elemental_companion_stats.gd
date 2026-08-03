@@ -16,7 +16,7 @@ signal channel_reset
 @export var big_shield_value = 30
 @export var low_shield_value = 15
 
-func channel_add(card : Card):
+func channel_add(card : CardData):
 	var orbs = card.channel()
 	for orb in orbs:
 		channel_orbs.append(orb)
@@ -26,8 +26,8 @@ func channel_add(card : Card):
 			channel_used.emit(channel_orbs)
 			reset_channel_orbs()
 
-func channel_remove(card : Card):
-	channel_orbs = card.channel_remove()
+func channel_remove(card : CardData):
+	channel_orbs = card.channel_remove(channel_orbs)
 
 func reset_channel_orbs():
 	channel_orbs.clear()

@@ -17,10 +17,7 @@ var battle_state : BattleState
 var char_scene : PackedScene = null
 var companion_scene : PackedScene = null
 
-#@export var player_stats : PlayerStats
 @export var cards : Array[CardData] = []
-#@export var player_deck: Array[CardData] = []
-#@export var level_monsters: Array[MonsterData] = []
 @export var current_level = 1;
 @export var current_stage = 1;
 
@@ -39,18 +36,10 @@ func _ready() -> void:
 	companion_id = 0
 	card_manager = CardManager.new()
 	character_manager = CharacterManager.new()
-	card_manager.load_all_cards()
 	
-	init_cards()
 	init_player(char_id)
 	init_companion(companion_id)
 	print("gamemanager init done")
-
-func init_cards() -> void:
-	var all_cards = card_manager.get_all_cards()
-	for card in all_cards:
-		cards.append(card.duplicate())
-	print("cards loaded");
 
 func init_player(char_id) -> void:
 	var p_stats = PlayerStats.new()

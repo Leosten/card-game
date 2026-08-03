@@ -1,7 +1,7 @@
 [gd_resource type="Resource" format=3 uid="uid://drn651bi215nr"]
 
 [ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_ci2ko"]
-[ext_resource type="Script" uid="uid://bou4lgqsnf0mq" path="res://Resources/Cards/deck_0/card_2.gd" id="1_j4nhi"]
+[ext_resource type="Script" uid="uid://bou4lgqsnf0mq" path="res://Resources/Cards/deck_0/heal.gd" id="1_j4nhi"]
 [ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_vmivr"]
 
 [resource]

@@ -5,46 +5,89 @@ const CardData = preload("res://Resources/Cards/card_data.gd")
 const PlayerManager = preload("res://Manager/character_manager.gd")
 const Card = preload("res://View/Cards/card.tscn")
 
-#@export var nb_of_cards : int = 5
-@export var cards : Array[CardData] = []
-@export var decks : Array = []
-var nb_of_decks = 1
-var deck_common_name = "common"
+var _cards_by_deck: Dictionary = {}
+var _cards_by_name: Dictionary = {}
+
+const BASE_CARDS_DIR = "res://Resources/Cards/"
 
 # Called when the node enters the scene tree for the first time.
 func _init() -> void:
-	load_all_cards()
+	_load_all_cards_recursive(BASE_CARDS_DIR)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func load_all_cards() -> void:
-	for deck in nb_of_decks:
-		var deck_data = load("res://Resources/Cards/deck_"+ str(deck) +"/deck_data.gd")
-		var nb_of_cards = deck_data.new().get_deck_size()
-		var deck_cards = []
-		for card_index in nb_of_cards:
-			var card = load("res://Resources/Cards/deck_"+ str(deck)+ "/card_"+ str(card_index)+ ".tres")
-			if card == null:
-				print("ERROR : could not load card %s" % str(card_index))
-			deck_cards.append(card.duplicate())
-		decks.append(deck_cards)
+func _load_all_cards_recursive(dir_path: String) -> void:
+	var dir = DirAccess.open(dir_path)
+	if not dir:
+		print("Failed to open path: ", dir_path)
+		return
+		
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	
+	while file_name != "":
+		var full_path = dir_path.path_join(file_name)
+		
+		# 1. If it's a folder (e.g. "warrior"), scan inside it recursively
+		if dir.current_is_dir() and not file_name.begins_with("."):
+			_load_all_cards_recursive(full_path)
+			
+		# 2. If it's a card resource file (.tres)
+		elif file_name.ends_with(".tres"):
+			var card_res = load(full_path) as CardData
+			if card_res:
+				# Extract folder name as the class ID (e.g., "warrior")
+				# If in root directory, default to "neutral"
+				var folder_name = dir_path.get_file()
+				if folder_name == "cards" or folder_name.is_empty():
+					folder_name = "neutral"
+				folder_name = folder_name.to_lower()
+				
+				var card_id = file_name.get_basename().to_lower()
+				
+				# Add to class pool
+				if not _cards_by_deck.has(folder_name):
+					_cards_by_deck[folder_name] = [] as Array[CardData]
+				_cards_by_deck[folder_name].append(card_res)
+				
+				# Add to global name lookup
+				_cards_by_name[card_id] = card_res
+				
+		file_name = dir.get_next()
+	dir.list_dir_end()
 
-func get_all_cards() -> Array[CardData]:
-	return cards
+func get_card_by_name(card_name: String) -> CardData:
+	return _cards_by_name.get(card_name.to_lower(), null)
 
-func get_starting_deck(character_id):
+func get_starting_deck(character_id) -> Array[CardData]:
 	var character_deck = PlayerManager._get_character_starting_deck(character_id)
 	var deck : Array[CardData] = []
-
-	for cards_id in character_deck:
-		deck.append(decks[character_id][cards_id].duplicate())
+	for card_name in character_deck:
+		deck.append(get_card_by_name(card_name).duplicate())
 	return deck
-
-func list_cards() -> void:
-	for card in cards:
-		print("card name is %s" % card.name)
 
 func get_card_scene():
 	return Card.instantiate()
+
+# Pick a random card from a specific character's folder (e.g. "warrior")
+func get_random_card_for_deck(character_class: String) -> CardData:
+	var key = character_class.to_lower()
+	if _cards_by_deck.has(key) and not _cards_by_deck[key].is_empty():
+		return _cards_by_deck[key].pick_random()
+	return null
+	
+func get_card_rewards_for_class(character_class: String, count: int = 3) -> Array[CardData]:
+	var rewards: Array[CardData] = []
+	var class_cards = _cards_by_deck.get(character_class.to_lower(), []).duplicate()
+	var neutral_cards = _cards_by_deck.get("neutral", []).duplicate()
+	
+	# Combine class cards and neutral pool
+	var pool = class_cards + neutral_cards
+	pool.shuffle()
+	
+	for i in range(min(count, pool.size())):
+		rewards.append(pool[i])
+		
+	return rewards
