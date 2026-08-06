@@ -1,0 +1,16 @@
+[gd_resource type="Resource" format=3 uid="uid://dcswjws04c6hr"]
+
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_da64s"]
+[ext_resource type="Script" uid="uid://yg5hise6txti" path="res://Resources/Cards/deck_0/lightning.gd" id="2_a4c2w"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_rmmxd"]
+
+[resource]
+script = ExtResource("2_a4c2w")
+id = 4
+name = "Lightning"
+damage = 5
+description = "Hit enemy for {damage} damage and stun for 1 turn"
+cost = 3
+magic_type = 1
+type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

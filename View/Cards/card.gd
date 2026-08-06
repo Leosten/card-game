@@ -7,11 +7,11 @@ signal hovered_out(card_data: CardData)
 @export var hand_position : int
 @export var card_data : CardData
 
-@onready var card_name_label: Label = $CardLayout/TopBar/Name
-@onready var cost_label: Label = $CardLayout/TopBar/CostContainer/ManaCost
-@onready var portrait: TextureRect = $CardLayout/ArtContainer/Portrait
-@onready var description_label: RichTextLabel = $CardLayout/DescriptionContainer/Description
-@onready var card_type_label: Label = $CardLayout/BottomBar/CardType
+@onready var card_name_label: Label = $%Name
+@onready var cost_label: Label = $%ManaCost
+@onready var portrait: TextureRect = $%Portrait
+@onready var description_label: RichTextLabel = $%Description
+@onready var card_type_label: Label = $%CardType
 
 var hover_size : int = 120
 var hovering : bool = false
@@ -28,6 +28,8 @@ func init_card(hand_position, card_d : CardData, hud_position : Vector2) -> void
 	base_position = position
 	z_index = hand_position + 1
 	card_data = card_d
+	var bg_texture = GameManager.card_manager.get_card_background(card_d.type)
+	$Background.texture = bg_texture
 
 func update(card_d : CardData):
 	hand_position = card_d.hand_position

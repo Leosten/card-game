@@ -12,4 +12,5 @@ damage = 6
 description = "Attack enemy for {damage} damage"
 cost = 2
 drawable = false
+tier = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -5,6 +5,7 @@ extends CompanionStats
 signal channeled
 signal channel_used
 signal channel_reset
+signal use_ceiling_not_reached
 
 @export var channel_orbs : Array[CardUtils.magic_type]= []
 @export var max_channel_orbs = 5
@@ -17,12 +18,12 @@ signal channel_reset
 @export var low_shield_value = 15
 
 func channel_add(card : CardData):
-	var orbs = card.channel()
+	var orbs = card.channel_add()
 	for orb in orbs:
 		channel_orbs.append(orb)
 		channeled.emit()
 
-		if channel_orbs.size >= max_channel_orbs:
+		if channel_orbs.size() >= max_channel_orbs:
 			channel_used.emit(channel_orbs)
 			reset_channel_orbs()
 
@@ -70,30 +71,26 @@ func use_orb(battle_state : BattleState) -> BattleState:
 	# level 3 action
 	if fire_count >= channel_low_activation_ceiling:
 		aoe_explosion(battle_state)
-		remove_orb_by_type(CardUtils.magic_type.FIRE, channel_low_activation_ceiling)
+		battle_state.companion_stats.channel_orbs = CompanionUtils.remove_orb_by_type(battle_state.companion_stats.channel_orbs, CardUtils.magic_type.FIRE, channel_low_activation_ceiling)
+		return battle_state
 	if ice_count >= channel_low_activation_ceiling:
 		small_shield(battle_state)
-		remove_orb_by_type(CardUtils.magic_type.ICE, channel_low_activation_ceiling)
+		battle_state.companion_stats.channel_orbs = CompanionUtils.remove_orb_by_type(battle_state.companion_stats.channel_orbs, CardUtils.magic_type.ICE, channel_low_activation_ceiling)
+		return battle_state
 	if wind_count >= channel_low_activation_ceiling:
 		aoe_vulnerable(battle_state)
-		remove_orb_by_type(CardUtils.magic_type.WIND, channel_low_activation_ceiling)
-
+		battle_state.companion_stats.channel_orbs = CompanionUtils.remove_orb_by_type(battle_state.companion_stats.channel_orbs, CardUtils.magic_type.WIND, channel_low_activation_ceiling)
+		return battle_state
+	
+	use_ceiling_not_reached.emit()
 	return battle_state
-
-func remove_orb_by_type(type, nb):
-	for orb in channel_orbs:
-		if nb == 0:
-			return
-		if orb == type:
-			channel_orbs.erase(orb)
-			nb -= 1
 
 func explosion(battle_state: BattleState):
 	var monster_size = battle_state.level_monsters.size()
 	var monster_index = randi_range(0, monster_size)
 	DamageUtils.apply_damage(fire_high_damage, battle_state.level_monsters[monster_index])
 	battle_state.level_monsters[monster_index].damage_taken.emit()
-	
+
 func aoe_explosion(battle_state: BattleState):
 	for monster in battle_state.level_monsters:
 		DamageUtils.apply_damage(fire_low_damage, monster)

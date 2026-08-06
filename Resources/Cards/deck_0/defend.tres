@@ -19,4 +19,6 @@ description = "add {shield} shield"
 cost = 2
 allowed_targets = null
 drawable = false
+tier = 3
+type = 1
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -4,6 +4,12 @@ extends Node
 const CardData = preload("res://Resources/Cards/card_data.gd")
 const PlayerManager = preload("res://Manager/character_manager.gd")
 const Card = preload("res://View/Cards/card.tscn")
+var _backgrounds = {
+	CardUtils.card_type.ATTACK: preload("res://Art/UI/cards/card_lily.png"),
+	CardUtils.card_type.MAGIC: preload("res://Art/UI/cards/card_sakura.png"),
+	CardUtils.card_type.BUFF: preload("res://Art/UI/cards/card_bamboo.png"),
+	CardUtils.card_type.ELEMENTAL: preload("res://Art/UI/cards/card_sakura.png"),
+}
 
 var _cards_by_deck: Dictionary = {}
 var _cards_by_name: Dictionary = {}
@@ -71,7 +77,14 @@ func get_starting_deck(character_id) -> Array[CardData]:
 func get_card_scene():
 	return Card.instantiate()
 
-# Pick a random card from a specific character's folder (e.g. "warrior")
+## Fetch background texture by type string/enum
+func get_card_background(card_type: CardUtils.card_type) -> Texture2D:
+	if _backgrounds.has(card_type):
+		return _backgrounds[card_type]
+	
+	push_warning("CardDatabase: Background not found for type '%s'. Using neutral fallback." % card_type)
+	return _backgrounds[CardUtils.card_type.ATTACK]
+
 func get_random_card_for_deck(character_class: String) -> CardData:
 	var key = character_class.to_lower()
 	if _cards_by_deck.has(key) and not _cards_by_deck[key].is_empty():

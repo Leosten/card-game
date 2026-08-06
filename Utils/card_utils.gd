@@ -2,9 +2,10 @@
 extends Node
 
 enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF}
-enum action_type {HEAL, DAMAGE, SHIELD, STATUS_EFFECTS, BUFFS, CHANNEL_ADD, CHANNEL_REMOVE, CHANNEL_CLEAR, CHANNEL_USE}
+enum action_type {HEAL, DAMAGE, SHIELD, STATUS_EFFECTS, BUFFS, CHANNEL_ADD, CHANNEL_REMOVE, CHANNEL_CLEAR, CHANNEL_USE, DRAW}
 enum magic_type {FIRE, WIND, ICE}
-enum tier {COMMON, PURPLE, GOLD}
+enum tier {COMMON, PURPLE, GOLD, STARTER}
+enum card_type {ATTACK, MAGIC, BUFF, ELEMENTAL}
 
 static func hover_animation(card: Card) -> void:
 	if card.active_tween:
@@ -60,3 +61,7 @@ static func init_card_position(card_hud_size, max_nb_of_cards, player_draw_value
 	print(card_hand_positions)
 	return card_hand_positions
 	
+static func orbs_not_empty(orbs : Array[CardUtils.magic_type])-> bool:
+	if orbs.size() <= 0:
+		return false
+	return true

@@ -104,7 +104,7 @@ func discard_card(card_data: CardData):
 
 func discard_all():
 	for card in player_hand:
-		card.hand_position = 0 
+		card.hand_position = 0
 		discard_pile.append(card)
 	player_hand.clear()
 	await card_animation_manager.clear_card_animation(displayed_hand)

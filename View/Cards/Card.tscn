@@ -9,7 +9,15 @@ gradient = SubResource("Gradient_a45vp")
 fill_from = Vector2(0.034188036, 0.9145299)
 fill_to = Vector2(0.74643874, 0.14529915)
 
-[sub_resource type="LabelSettings" id="LabelSettings_a45vp"]
+[sub_resource type="Theme" id="Theme_lhud3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ejfic"]
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i8r7u"]
+font_size = 35
+font_color = Color(0, 0, 0, 1)
 
 [node name="Card" type="Control" unique_id=417033120]
 custom_minimum_size = Vector2(250, 350)
@@ -38,60 +46,85 @@ texture = SubResource("GradientTexture2D_0ejdp")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="CardLayout" type="VBoxContainer" parent="." unique_id=461240914]
-layout_mode = 0
-offset_right = 250.0
-offset_bottom = 338.0
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=451328925]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 11.0
+offset_right = -14.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardLayout" type="VBoxContainer" parent="MarginContainer" unique_id=461240914]
+layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="TopBar" type="HBoxContainer" parent="CardLayout" unique_id=419445701]
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/CardLayout" unique_id=419445701]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Name" type="Label" parent="CardLayout/TopBar" unique_id=2060058163]
+[node name="Name" type="Label" parent="MarginContainer/CardLayout/TopBar" unique_id=2060058163]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(175, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_lhud3")
 text = "TESTS"
+label_settings = SubResource("LabelSettings_ejfic")
+vertical_alignment = 1
 
-[node name="CostContainer" type="PanelContainer" parent="CardLayout/TopBar" unique_id=831063332]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CardLayout/TopBar" unique_id=1884432674]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="ManaCost" type="Label" parent="CardLayout/TopBar/CostContainer" unique_id=1148836056]
+[node name="ManaCost" type="Label" parent="MarginContainer/CardLayout/TopBar/CenterContainer" unique_id=1148836056]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 text = "2"
-label_settings = SubResource("LabelSettings_a45vp")
+label_settings = SubResource("LabelSettings_i8r7u")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ArtContainer" type="AspectRatioContainer" parent="CardLayout" unique_id=689794345]
+[node name="CostContainer" type="PanelContainer" parent="MarginContainer/CardLayout/TopBar" unique_id=831063332]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ArtContainer" type="AspectRatioContainer" parent="MarginContainer/CardLayout" unique_id=689794345]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 ratio = 1.33
 
-[node name="Portrait" type="TextureRect" parent="CardLayout/ArtContainer" unique_id=527211612]
+[node name="Portrait" type="TextureRect" parent="MarginContainer/CardLayout/ArtContainer" unique_id=527211612]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DescriptionContainer" type="PanelContainer" parent="CardLayout" unique_id=1807966552]
+[node name="DescriptionContainer" type="PanelContainer" parent="MarginContainer/CardLayout" unique_id=1807966552]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Description" type="RichTextLabel" parent="CardLayout/DescriptionContainer" unique_id=161713825]
+[node name="Description" type="RichTextLabel" parent="MarginContainer/CardLayout/DescriptionContainer" unique_id=161713825]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 text = "Description test"
 
-[node name="BottomBar" type="HBoxContainer" parent="CardLayout" unique_id=497438044]
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/CardLayout" unique_id=497438044]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="CardType" type="Label" parent="CardLayout/BottomBar" unique_id=1315844158]
+[node name="CardType" type="Label" parent="MarginContainer/CardLayout/BottomBar" unique_id=1315844158]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Type"
 

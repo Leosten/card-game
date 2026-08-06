@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://ocjn3l728elr"]
+
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_dlfbw"]
+[ext_resource type="Script" uid="uid://cu3fg2hjdd8a5" path="res://Resources/Cards/deck_0/careful_hit.gd" id="2_dlfbw"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_y5fhb"]
+
+[resource]
+script = ExtResource("2_dlfbw")
+name = "Careful Hit"
+damage = 6
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"
