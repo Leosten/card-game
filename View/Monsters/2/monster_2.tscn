@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bf8j6q3lv28oq"]
 
-[ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://View/Monsters/Monster.tscn" id="1_85d5n"]
+[ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://View/Monsters/monster.tscn" id="1_85d5n"]
 [ext_resource type="Texture2D" uid="uid://deausto274eq3" path="res://Art/Monsters/2/Idle1.png" id="2_h1cct"]
 [ext_resource type="Texture2D" uid="uid://c2tgvcbbr4jji" path="res://Art/Monsters/2/Death1.png" id="2_hrv8s"]
 [ext_resource type="Texture2D" uid="uid://cha7uhybc6kkc" path="res://Art/Monsters/2/Death2.png" id="3_1loc5"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b6oh2f331h3c7" path="res://Art/Monsters/2/Death5.png" id="6_m0akf"]
 [ext_resource type="Texture2D" uid="uid://bpb4alw375lkx" path="res://Art/Monsters/2/Death6.png" id="7_3ls15"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5y0qt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrv8s"]
 resource_local_to_scene = true
 size = Vector2(118, 153)
 
@@ -64,7 +64,7 @@ animations = [{
 
 [node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
 position = Vector2(53, 66.5)
-shape = SubResource("RectangleShape2D_5y0qt")
+shape = SubResource("RectangleShape2D_hrv8s")
 
 [node name="AnimatedSprite2D" parent="." index="4" unique_id=535737693]
 sprite_frames = SubResource("SpriteFrames_m37kd")

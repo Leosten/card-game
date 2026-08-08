@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bhuasnojrhnt2"]
+[gd_scene format=3 uid="uid://b7q4lkyi3vma5"]
 
-[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/CardBackground.tscn" id="1_sui2x"]
+[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/card_background.tscn" id="1_sui2x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekkti"]
 font_color = Color(0, 0, 0, 1)

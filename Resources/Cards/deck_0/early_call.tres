@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://c2bc3f0dwghx"]
+
+[ext_resource type="Script" uid="uid://dabaflvvvi5kt" path="res://Resources/Cards/deck_0/early_call.gd" id="1_fb35m"]
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_ktxrm"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_oaamg"]
+
+[resource]
+script = ExtResource("1_fb35m")
+name = "Early Call"
+cost = 1
+magic_type = 3
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

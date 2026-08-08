@@ -10,5 +10,6 @@ name = "Fire Beam"
 damage = 6
 description = "Hit for {damage} and channel 1 fire orb"
 cost = 1
+magic_type = 0
 type = 1
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

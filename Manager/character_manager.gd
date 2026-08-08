@@ -9,7 +9,7 @@ static func get_character_scene(char_id):
 	match char_id:
 		0:
 			print("Character number 0 scene loading")
-			var char : PackedScene = preload("res://Resources/Characters/0/Character0.tscn")
+			var char : PackedScene = preload("res://Resources/Characters/0/character_0.tscn")
 			
 			if char == null:
 				printerr("Cannot load character scene %s" % str(char_id))

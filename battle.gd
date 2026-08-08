@@ -63,9 +63,6 @@ func start_battle():
 func new_stage():
 	load_stage_monsters()
 
-func _process(delta: float) -> void:
-	pass
-
 func spawn_player_character():
 	player_character = GameManager.get_character_scene()
 	var char_position := Vector2(

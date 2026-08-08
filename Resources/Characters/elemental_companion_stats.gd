@@ -78,10 +78,9 @@ func use_orb(battle_state : BattleState):
 
 func explosion(battle_state: BattleState):
 	print("explosion triggered !")
-	var monster_size = battle_state.level_monsters.size()
-	var monster_index = randi_range(0, monster_size)
-	DamageUtils.apply_damage(fire_high_damage, battle_state.level_monsters[monster_index])
-	battle_state.level_monsters[monster_index].damage_taken.emit()
+	var enemy = battle_state.level_monsters.pick_random()
+	DamageUtils.apply_damage(fire_high_damage, enemy)
+	enemy.damage_taken.emit()
 
 func aoe_explosion(battle_state: BattleState):
 	print("aoe explosion triggered !")

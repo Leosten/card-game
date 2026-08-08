@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dxffohbscw0lk"]
 
 [ext_resource type="Script" uid="uid://dfqsqq55ryp08" path="res://View/Monsters/1/monster_1.gd" id="1_b5hmt"]
-[ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://View/Monsters/Monster.tscn" id="1_tj63c"]
+[ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://View/Monsters/monster.tscn" id="1_tj63c"]
 [ext_resource type="Texture2D" uid="uid://bvqtnnh2d8wpo" path="res://Art/Monsters/1/Attack1.png" id="3_g8xco"]
 [ext_resource type="Texture2D" uid="uid://ds53eja4pp82o" path="res://Art/Monsters/1/Attack2.png" id="4_8sr86"]
 [ext_resource type="Texture2D" uid="uid://dmurle0k5cq8a" path="res://Art/Monsters/1/Attack3.png" id="5_ixagl"]

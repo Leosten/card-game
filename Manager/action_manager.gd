@@ -3,6 +3,7 @@ extends Node
 
 signal update_battle_state(battle_state : BattleState)
 signal card_used(card_data : CardData)
+signal draw_cards(nb : int)
 signal action_impossible
 
 func _ready() -> void:
@@ -46,7 +47,8 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 			battle_state.player_stats.stats_changed.emit()
 		if action == CardUtils.action_type.BUFFS:
 			StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
-
+		if action == CardUtils.action_type.DRAW:
+			draw_cards.emit(card.draw_value)
 		# ELEMENTAL COMPANION
 		if battle_state.companion_stats is ElementalCompanionStats:
 			if action == CardUtils.action_type.CHANNEL_ADD:

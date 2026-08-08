@@ -10,6 +10,7 @@ extends Resource
 @export var damage_modifier := 0
 @export var heal := 0
 @export var shield := 0
+@export var draw_value := 0
 @export var actions : Array[CardUtils.action_type] = []
 @export var status_effects : Array[StatusEffect]
 @export var buffs : Array[Buff]
@@ -18,8 +19,7 @@ extends Resource
 @export var allowed_targets : Array[CardUtils.targets] = []
 @export var artwork: Texture2D
 
-@export var drawable = true
-@export var magic_type : CardUtils.magic_type
+@export var magic_type : CardUtils.magic_type = CardUtils.magic_type.NONE
 @export var tier : CardUtils.tier
 @export var type : CardUtils.card_type
 

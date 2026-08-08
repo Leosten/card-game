@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ikjcknxwvr6e"]
 
 [ext_resource type="Script" uid="uid://b58jj26md5fh4" path="res://battle.gd" id="1_7sfm4"]
-[ext_resource type="PackedScene" uid="uid://bcumk10bawk5x" path="res://View/Cards/CardHandHud.tscn" id="1_oxp8w"]
+[ext_resource type="PackedScene" uid="uid://bcumk10bawk5x" path="res://View/Cards/card_hand_hud.tscn" id="1_oxp8w"]
 [ext_resource type="PackedScene" uid="uid://ybsmg21ph22t" path="res://View/BattleFieldView.tscn" id="2_7sfm4"]
-[ext_resource type="PackedScene" uid="uid://cny75kkfdyh1g" path="res://View/Cards/ManaWindow.tscn" id="3_i431l"]
+[ext_resource type="PackedScene" uid="uid://cny75kkfdyh1g" path="res://View/Cards/mana_window.tscn" id="3_i431l"]
 
 [sub_resource type="Theme" id="Theme_ekkti"]
 Button/font_sizes/font_size = 33

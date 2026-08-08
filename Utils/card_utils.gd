@@ -3,7 +3,7 @@ extends Node
 
 enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF}
 enum action_type {HEAL, DAMAGE, SHIELD, STATUS_EFFECTS, BUFFS, CHANNEL_ADD, CHANNEL_REMOVE, CHANNEL_CLEAR, CHANNEL_USE, DRAW}
-enum magic_type {FIRE, WIND, ICE}
+enum magic_type {FIRE, WIND, ICE, NONE}
 enum tier {COMMON, PURPLE, GOLD, STARTER}
 enum card_type {ATTACK, MAGIC, BUFF, ELEMENTAL}
 

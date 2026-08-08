@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://0yurjre3p4vj"]
 
-[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/CardBackground.tscn" id="1_gxt8v"]
+[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/card_background.tscn" id="1_gxt8v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1imhw"]
 font_size = 36

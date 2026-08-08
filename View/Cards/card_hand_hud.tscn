@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bcumk10bawk5x"]
 
 [ext_resource type="Script" uid="uid://cf6f7ygbk250k" path="res://View/Cards/card_hud.gd" id="1_euu8e"]
-[ext_resource type="PackedScene" uid="uid://0yurjre3p4vj" path="res://View/Cards/DiscardPile.tscn" id="2_eq6v6"]
-[ext_resource type="PackedScene" uid="uid://bsnpqv00mcbl" path="res://View/Cards/DrawPile.tscn" id="3_s5q8o"]
-[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/CardBackground.tscn" id="4_kmdh1"]
+[ext_resource type="PackedScene" uid="uid://0yurjre3p4vj" path="res://View/Cards/discard_pile.tscn" id="2_eq6v6"]
+[ext_resource type="PackedScene" uid="uid://bsnpqv00mcbl" path="res://View/Cards/draw_pile.tscn" id="3_s5q8o"]
+[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/card_background.tscn" id="4_kmdh1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k1dyt"]
 font_size = 65
