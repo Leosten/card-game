@@ -13,7 +13,7 @@ static func get_character_scene(char_id):
 			
 			if char == null:
 				printerr("Cannot load character scene %s" % str(char_id))
-				return
+				return null
 				
 			return char.instantiate()
 
@@ -25,9 +25,10 @@ static func get_companion_scene(companion_id):
 			
 			if companion == null:
 				printerr("Cannot load companion scene %s" % str(companion_id))
-				return
+				return null
 				
 			return companion.instantiate()
+
 static func _get_character_starting_deck(character_id):
 	match character_id:
 		0:

@@ -2,7 +2,7 @@ var loaded_icons : Dictionary
 
 var ICONS_DIR = "res://Art/UI/icons/"
 var ICON_SCENE = preload("res://View/UI/icons/icon_template.tscn")
-
+var ORB_SCENE = preload("res://View/Battle/orb.tscn")
 var _icons: Dictionary = {}
 
 func _init() -> void:
@@ -77,3 +77,8 @@ func get_icon_scene(status : Status):
 	if icon_scene.has_method("update"):
 		icon_scene.update(status, icon)
 	return icon_scene
+
+func get_orb_scene(orb: CardUtils.magic_type):
+	var scene = ORB_SCENE.instantiate()
+	scene.init(orb)
+	return scene

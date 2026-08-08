@@ -83,6 +83,8 @@ func spawn_companion_character():
 			viewport_size.y - 400
 		)
 	companion_character.position = char_position
+	companion_character.init(battle_state.companion_stats)
+	
 	add_child(companion_character)
 	
 func get_level_monsters():

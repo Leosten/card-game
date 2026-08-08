@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bo0udtvwg8s07"]
+
+[ext_resource type="Script" uid="uid://cotvcolnc3cpo" path="res://View/Battle/elemental_companion_window.gd" id="1_ipwc1"]
+
+[node name="ElementalCompanionWindow" type="Node2D" unique_id=1819134471]
+script = ExtResource("1_ipwc1")
+
+[node name="OrbBox" type="HBoxContainer" parent="." unique_id=1534757147]
+custom_minimum_size = Vector2(300, 75)
+offset_right = 40.0
+offset_bottom = 40.0

@@ -17,6 +17,9 @@ signal use_ceiling_not_reached
 @export var big_shield_value = 30
 @export var low_shield_value = 15
 
+func init():
+	pass
+
 func channel_add(card : CardData):
 	var orbs = card.channel_add()
 	for orb in orbs:

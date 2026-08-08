@@ -49,8 +49,9 @@ func init_player(char_id) -> void:
 
 func init_companion(companion_id) -> void:
 	battle_state.companion_stats = ElementalCompanionStats.new()
+	battle_state.companion_stats.init()
 	print("companion stats init")
-	
+
 func get_player_deck() -> Array[CardData]:
 	return battle_state.player_deck
 
@@ -59,25 +60,20 @@ func get_character_scene() :
 		return char_scene
 	return character_manager.get_character_scene(char_id)
 
-func get_companion_scene() :
-	if (companion_scene != null) :
-		return companion_scene
+func get_companion_scene():
+	#if (companion_scene != null) :
+		#return companion_scene
 	return character_manager.get_companion_scene(companion_id)
-
 
 func get_player_char_id():
 	return battle_state.player_stats.char_id
-	
+
 func get_battle_state() -> BattleState:
 	return battle_state
 
 func update_battle_state(battle_state : BattleState) -> BattleState:
 	battle_state = battle_state
 	return battle_state
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func victory_progress():
 	if current_stage == max_current_stage and current_level == max_current_level:

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://chhx6mw1u412a"]
+
+[ext_resource type="Script" uid="uid://ixof3y7j8e2d" path="res://View/Battle/orb.gd" id="1_h2n7u"]
+
+[node name="Orb" type="Control" unique_id=1378573641]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_h2n7u")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1433615031]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="Label" parent="PanelContainer" unique_id=1775496794]
+unique_name_in_owner = true
+layout_mode = 2
