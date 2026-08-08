@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://2g2ynrlthv0y"]
+
+[ext_resource type="Texture2D" uid="uid://j3g6kmn2f144" path="res://Art/Characters/companion_0/Idle1.png" id="1_m7l6p"]
+[ext_resource type="Texture2D" uid="uid://6s687swben72" path="res://Art/Characters/companion_0/Idle2.png" id="2_u0pu2"]
+[ext_resource type="Texture2D" uid="uid://yufuyc4ocie2" path="res://Art/Characters/companion_0/Idle3.png" id="3_tiqet"]
+[ext_resource type="PackedScene" uid="uid://bo0udtvwg8s07" path="res://View/Battle/elemental_companion_window.tscn" id="4_u0pu2"]
+[ext_resource type="Script" uid="uid://cl23mffa237lb" path="res://Resources/Characters/Companions/companion_0.gd" id="5_tiqet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyjru"]
+size = Vector2(100, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3hyy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m7l6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_u0pu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tiqet")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Companion0" type="AnimatableBody2D" unique_id=957845092]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("5_tiqet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=966037671]
+position = Vector2(-10, 1)
+shape = SubResource("RectangleShape2D_qyjru")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=584216380]
+sprite_frames = SubResource("SpriteFrames_y3hyy")
+animation = &"idle"
+
+[node name="ElementalCompanionWindow" parent="." unique_id=1819134471 instance=ExtResource("4_u0pu2")]

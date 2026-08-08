@@ -5,11 +5,7 @@
 
 [node name="VulnerableIcon" unique_id=108899209 instance=ExtResource("1_a7m66")]
 
-[node name="TextureRect" parent="." index="0" unique_id=333349565]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+[node name="IconTexture" parent="." index="0" unique_id=333349565]
 texture = ExtResource("2_edvdn")
 
 [node name="Quantity" parent="." index="1" unique_id=956552803]

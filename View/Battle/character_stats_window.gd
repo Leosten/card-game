@@ -20,19 +20,15 @@ func update():
 	$VBoxContainer/HealthBar/CenterContainer/HBoxContainer/Health.text = str(stats.health)
 	$VBoxContainer/HealthBar/CenterContainer/HBoxContainer/MaxHealth.text = str(stats.max_health)
 	
-	print("in update")
-	print(stats.status_effects)
+	print("char window stat update")
 
 	for icon in $VBoxContainer/BuffsGrid.get_children():
-		print("clear statuses")
 		icon.queue_free()
 	if stats.buffs.is_empty() == false:
-		print("check buffs")
 		for status : Buff in stats.buffs:
 			var icon = GameManager.ui_manager.get_icon_scene(status)
 			$VBoxContainer/BuffsGrid.add_child(icon)
 	if stats.status_effects.is_empty() == false:
-		print("check status_effects")
 		for status : StatusEffect in stats.status_effects:
 			var icon = GameManager.ui_manager.get_icon_scene(status)
 			$VBoxContainer/BuffsGrid.add_child(icon)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3 uid="uid://txblu50y3xh4"]
+
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_s80lr"]
+[ext_resource type="Script" uid="uid://cgixlilp7iqq5" path="res://Resources/Cards/deck_0/fire_beam.gd" id="2_s80lr"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_t3gxk"]
+
+[resource]
+script = ExtResource("2_s80lr")
+name = "Fire Beam"
+damage = 6
+description = "Hit for {damage} and channel 1 fire orb"
+cost = 1
+type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

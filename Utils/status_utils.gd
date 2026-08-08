@@ -26,7 +26,6 @@ static func apply_status_effects(target: Targetable, status_effects : Array[Stat
 			return target
 		print("added effect")
 		target.status_effects.append(effect.duplicate(true))
-		print(target.status_effects)
 		target.statused.emit(effect)
 	return target
 
@@ -48,7 +47,6 @@ static func apply_buffs(target : Targetable, buffs : Array[Buff]) -> Targetable:
 static func apply_defense_modifiers(damage_value, status_effects) :
 	for status in status_effects:
 		if status.type == StatusUtils.status_effects.VULNERABLE :
-			print("vulnerable found")
 			damage_value = get_vulnerable_modifier(damage_value, status)
 	return damage_value
 

@@ -109,7 +109,7 @@ func load_stage_monsters():
 func _on_card_clicked(card_data: CardData) -> void:
 	if card_clicked != null and card_data.hand_position == card_clicked.hand_position:
 		action_manager.use_card_on_ally(card_clicked, battle_state)
-		print(" click on self card")
+		print("click on self card")
 		card_clicked = null
 	if enemy_turn == true:
 		return

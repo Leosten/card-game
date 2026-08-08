@@ -39,3 +39,4 @@ sprite_frames = SubResource("SpriteFrames_y3hyy")
 animation = &"idle"
 
 [node name="ElementalCompanionWindow" parent="." unique_id=1819134471 instance=ExtResource("4_u0pu2")]
+position = Vector2(-42.666664, -72.666664)

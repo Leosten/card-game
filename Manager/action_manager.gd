@@ -37,26 +37,26 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 	for action in card.actions:
 		if action == CardUtils.action_type.HEAL:
 			var heal_value = HealUtils.calculate_final_heal(card.heal, battle_state.player_stats)
-			battle_state.player_stats = HealUtils.apply_heal(heal_value, battle_state.player_stats)
+			HealUtils.apply_heal(heal_value, battle_state.player_stats)
 			battle_state.player_stats.healed.emit(heal_value)
 		if action == CardUtils.action_type.SHIELD:
 			var shield_value = HealUtils.calculate_final_shield(card.shield, battle_state.player_stats)
-			battle_state.player_stats = HealUtils.apply_shield(shield_value, battle_state.player_stats)
+			HealUtils.apply_shield(shield_value, battle_state.player_stats)
 			battle_state.player_stats.shielded.emit()
 			battle_state.player_stats.stats_changed.emit()
 		if action == CardUtils.action_type.BUFFS:
-			battle_state.player_stats = StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
+			StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
 
 		# ELEMENTAL COMPANION
 		if battle_state.companion_stats is ElementalCompanionStats:
 			if action == CardUtils.action_type.CHANNEL_ADD:
 				battle_state.companion_stats.channel_add(card)
 			
-			#CHECK WHEN ADDED allows for cards that add then remove
-			battle_state = battle_state.companion_stats.check_orb_activation(battle_state)
+			##CHECK WHEN ADDED allows for cards that add then remove
+			#battle_state.companion_stats.check_orb_activation(battle_state)
 			
 			if action == CardUtils.action_type.CHANNEL_USE:
-				battle_state = battle_state.companion_stats.use_orb(card)
+				battle_state.companion_stats.use_orb(card)
 			if action == CardUtils.action_type.CHANNEL_REMOVE:
 				battle_state.companion_stats.channel_remove(card)
 			if action == CardUtils.action_type.CHANNEL_CLEAR:
@@ -66,12 +66,11 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 		if enemy != null :
 			if action == CardUtils.action_type.DAMAGE:
 				var final_damage = DamageUtils.calculate_final_damage(card.damage, battle_state.player_stats, enemy)
-				enemy = DamageUtils.apply_damage(final_damage, enemy)
+				DamageUtils.apply_damage(final_damage, enemy)
 			if action == CardUtils.action_type.STATUS_EFFECTS:
-				enemy = StatusUtils.apply_status_effects(enemy, card.status_effects)
+				StatusUtils.apply_status_effects(enemy, card.status_effects)
 			enemy.stats_changed.emit()
 			check_for_death(enemy, battle_state)
-			
 	card.special_effect(battle_state)
 	battle_state.player_stats.stats_changed.emit()
 	cost_card_mana(battle_state, card.cost)
@@ -81,12 +80,14 @@ func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy
 	enemy.acting.emit(action.type)
 	if action.type == MonsterUtils.action_types.DAMAGE:
 		var final_damage = DamageUtils.calculate_final_damage(action.damage, battle_state.player_stats, enemy)
-		battle_state.player_stats = DamageUtils.apply_damage(final_damage, battle_state.player_stats)
+		DamageUtils.apply_damage(final_damage, battle_state.player_stats)
 	if action.type == MonsterUtils.action_types.DAMAGE_STATUS:
 		var final_damage = DamageUtils.calculate_final_damage(action.damage, enemy, battle_state.player_stats)
+		DamageUtils.apply_damage(final_damage, battle_state.player_stats)
+		
 	if action.type == MonsterUtils.action_types.SHIELD:
-		var shield_value = HealUtils.calculate_final_shield(action.shield, enemy)
-		enemy = HealUtils.apply_shield(shield_value, enemy)
+		var final_heal = HealUtils.calculate_final_shield(action.shield, enemy)
+		HealUtils.apply_shield(final_heal, enemy)
 	enemy.stats_changed.emit()
 
 func enemy_cycle(battle_state : BattleState, enemy: MonsterData):

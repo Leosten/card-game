@@ -58,7 +58,6 @@ static func init_card_position(card_hud_size, max_nb_of_cards, player_draw_value
 		
 		card_hand_positions.append(card_area)
 	print("card positions init ")
-	print(card_hand_positions)
 	return card_hand_positions
 	
 static func orbs_not_empty(orbs : Array[CardUtils.magic_type])-> bool:
