@@ -38,7 +38,9 @@ func update(card_d : CardData):
 		"damage":str(card_d.damage),
 		"heal":str(card_d.heal),
 		"shield":str(card_d.shield),
+		"draw_value":str(card_d.draw_value),
 	})
+	# TODO : buffs and status values in description
 	cost_label.text = str(card_d.cost)
 	card_data = card_d
 

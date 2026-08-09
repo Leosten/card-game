@@ -8,5 +8,6 @@
 script = ExtResource("2_dlfbw")
 name = "Careful Hit"
 damage = 6
+cost = 2
 magic_type = 2
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

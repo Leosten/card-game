@@ -19,8 +19,6 @@ func update():
 	$VBoxContainer/HealthBar.max_value = stats.max_health
 	$VBoxContainer/HealthBar/CenterContainer/HBoxContainer/Health.text = str(stats.health)
 	$VBoxContainer/HealthBar/CenterContainer/HBoxContainer/MaxHealth.text = str(stats.max_health)
-	
-	print("char window stat update")
 
 	for icon in $VBoxContainer/BuffsGrid.get_children():
 		icon.queue_free()

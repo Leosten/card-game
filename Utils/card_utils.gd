@@ -54,7 +54,6 @@ static func init_card_position(card_hud_size, max_nb_of_cards, player_draw_value
 			card_hud_size.y - bottom_margin
 		)
 		card_area.position = card_position
-		print("card ",card_pos_index ," position " , card_position.x , " " , card_position.y)
 		
 		card_hand_positions.append(card_area)
 	print("card positions init ")

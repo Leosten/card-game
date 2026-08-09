@@ -5,4 +5,3 @@ func _init():
 	action_cycle = [
 		MonsterAction.new("attack", MonsterUtils.action_types.DAMAGE, 6)
 	]
-	print('cycle set')

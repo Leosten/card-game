@@ -10,6 +10,6 @@ id = 3
 character_deck = 1
 name = "Wind Chill"
 damage = 4
-description = "Apply {vulnerable} vulnerable and {damage} damage"
+description = "Apply 2 vulnerable and {damage} damage"
 cost = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

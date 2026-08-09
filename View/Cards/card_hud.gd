@@ -27,20 +27,23 @@ var card_hand_size
 @onready var card_hand_anchor = $CardHudContainer/CardHand/HandAnchor
 
 func _ready() -> void:
+	GameManager.battle_state.draw_cards.connect(on_draw_card_signal)
 	card_animation_manager = CardAnimationManager.new()
 	card_hand_size = card_hand_anchor.get_rect()
 	card_animation_manager.hud_size = card_hand_size
 	add_child(card_animation_manager)
 	init_card_position()
 	start_battle()
-	
+
 func start_battle():
 	player_draw_value = GameManager.battle_state.player_stats.draw_value
 	init_player_deck()
 	update_piles_count()
 
-func _process(_delta: float) -> void:
-	pass
+func on_draw_card_signal(nb):
+	print("hud drawing cards")
+	draw_cards(nb)
+
 
 func init_card_position() -> void:
 	card_hand_positions = CardUtils.init_card_position(card_hand_size.size, max_nb_of_cards, player_draw_value, card_size, margin_between_cards, left_margin, bottom_margin)
@@ -52,27 +55,33 @@ func draw_cards(draw_value) -> void:
 	var draw_pile_remaining = draw_pile.size()
 	if (draw_value >= draw_pile_remaining):
 		draw_value = draw_pile_remaining
-
+	var cards : Array[CardData]= []
+	var card_position = player_hand.size()
 	for index in draw_value:
 		var card_data = draw_pile.pop_front()
-		card_data.hand_position = index
-		player_hand.append(card_data)
+		card_data.hand_position = card_position
+		cards.append(card_data)
+		card_position += 1
+	player_hand.append_array(cards)
+	display_cards(cards)
 	update_piles_count()
 
+	
 func check_draw_pile_size_reset():
 	if draw_pile.is_empty() :
+		print("resetting draw pile ...")
 		# trigger animation
 		draw_pile = discard_pile.duplicate()
 		draw_pile.shuffle()
 		discard_pile.clear()
 
-func display_hand() :
-	for existing_card in displayed_hand:
-		existing_card.queue_free()
-	displayed_hand.clear()
+func display_cards(cards_to_display: Array[CardData]) :
+	#for existing_card in displayed_hand:
+		#existing_card.queue_free()
+	#displayed_hand.clear()
 	
 	var index = 0
-	for card_data in player_hand:
+	for card_data in cards_to_display:
 		var card : Card = GameManager.card_manager.get_card_scene()
 		card.init_card(card_data.hand_position, card_data, card_animation_manager.right_out_of_bounds)
 		card.hovered.connect(_on_card_hovered)
@@ -143,7 +152,6 @@ func new_turn():
 	enemy_turn = false
 	check_draw_pile_size_reset()
 	draw_cards(player_draw_value)
-	display_hand()
 	update_piles_count()
 
 func _on_card_clicked(card_data: CardData) -> void:

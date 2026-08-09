@@ -17,8 +17,6 @@ func update_stats_window():
 	stats_window.update()
 
 func on_stats_changed():
-	print("target stats changed")
-	print(stats.status_effects)
 	update_stats_window()
 
 func _ready():

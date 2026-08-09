@@ -43,7 +43,7 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 		if action == CardUtils.action_type.BUFFS:
 			StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
 		if action == CardUtils.action_type.DRAW:
-			draw_cards.emit(card.draw_value)
+			battle_state.draw_cards.emit(card.draw_value)
 		# ELEMENTAL COMPANION
 		if battle_state.companion_stats is ElementalCompanionStats:
 			if action == CardUtils.action_type.CHANNEL_ADD:
@@ -95,7 +95,7 @@ func enemy_cycle(battle_state : BattleState, enemy: MonsterData):
 func check_for_death(monster: MonsterData, battle_state : BattleState):
 	if (monster.health <= 0):
 		monster.health = 0
-		battle_state.level_monsters.erase(monster)
+		#battle_state.level_monsters.erase(monster)
 		print("enemy %s dead" % monster.battle_position)
 	return true
 	
