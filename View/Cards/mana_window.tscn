@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://cny75kkfdyh1g"]
 
+[ext_resource type="Script" uid="uid://csinnjjvitat8" path="res://View/Cards/mana_window.gd" id="1_jj58p"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_ot0k3"]
 font_size = 85
 font_color = Color(0, 0, 0, 1)
 
 [node name="ManaWindow" type="Node2D" unique_id=1224726459]
+script = ExtResource("1_jj58p")
 
 [node name="ManaLabel" type="Label" parent="." unique_id=986682232]
 z_index = 1

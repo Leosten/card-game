@@ -37,6 +37,7 @@ func _ready() -> void:
 func start_battle():
 	player_draw_value = GameManager.battle_state.player_stats.draw_value
 	init_player_deck()
+	update_piles_count()
 
 func _process(_delta: float) -> void:
 	pass

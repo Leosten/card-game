@@ -19,7 +19,7 @@ var viewport_size
 var enemy_positions : Array[Area2D] = []
 
 @onready var card_hand_hud = $Hud/BottomHudRoot/CardHandHud
-@onready var mana_window = $ManaWindow
+@onready var mana_window = $%ManaWindow
 @onready var level_display = $Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
 @onready var center_window = $Hud/CenterWindowRoot
 var card_clicked: CardData = null
@@ -42,8 +42,6 @@ func _ready() -> void:
 	current_stage = GameManager.current_stage
 	spawn_player_character()
 	spawn_companion_character()
-	current_level = GameManager.current_level
-	current_stage = GameManager.current_stage
 	new_stage()
 	start_battle()
 
@@ -102,14 +100,15 @@ func spawn_level_monsters():
 
 func load_stage_monsters():
 	stage_monsters = stage_manager.get_stage_monsters(current_level)
-	
+
 func _on_card_clicked(card_data: CardData) -> void:
-	if card_clicked != null and card_data.hand_position == card_clicked.hand_position:
+	if enemy_turn == true:
+		return
+	if card_clicked != null and card_data == card_clicked:
 		action_manager.use_card_on_ally(card_clicked, battle_state)
 		print("click on self card")
 		card_clicked = null
-	if enemy_turn == true:
-		return
+
 	if card_data.cost > CharacterUtils.get_current_mana(battle_state):
 		print("not enough mana")
 		return
@@ -125,9 +124,11 @@ func on_card_used(card_data : CardData):
 	card_hand_hud.discard_card(card_clicked)
 
 func on_mana_changed():
-	print("mana changed")
 	update_player_mana()
 	card_hand_hud.update_displayed_hand_cost(battle_state)
+
+func update_player_mana():
+	mana_window.update_mana(battle_state.player_stats.current_mana)
 
 func on_monster_hovered(monster_data : MonsterData):
 	pass
@@ -144,15 +145,6 @@ func check_monsters_dead():
 		print("WIN all enemies dead")
 		card_hand_hud.discard_all()
 		victory()
-
-func update_player_mana():
-	var color
-	if (battle_state.player_stats.current_mana > 0):
-		color = Color(0.149, 0.959, 0.792, 1.0)
-	else:
-		color = Color(0.0, 0.0, 0.0, 1.0)
-	$ManaWindow/ManaLabel.label_settings.font_color = color
-	$ManaWindow/ManaLabel.text = str(battle_state.player_stats.current_mana)
 
 func launch_enemy_turn():
 	for enemy in battle_state.level_monsters:

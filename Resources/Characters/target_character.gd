@@ -29,15 +29,17 @@ func _ready():
 func attack_animation():
 	animating = true
 	_animated_sprite.stop()
-	_animated_sprite.play("attack")
+	if (_animated_sprite.sprite_frames.has_animation("attack")):
+		_animated_sprite.play("attack")
 	await _animated_sprite.animation_finished
 	animating = false
 
 func on_damage_taken(damage):
 	animating = true
 	_animated_sprite.stop()
-	_animated_sprite.play("damage_taken")
-	await _animated_sprite.animation_finished
+	if (_animated_sprite.sprite_frames.has_animation("damage_taken")):
+		_animated_sprite.play("damage_taken")
+		await _animated_sprite.animation_finished
 	animating = false
 
 func on_buffed():

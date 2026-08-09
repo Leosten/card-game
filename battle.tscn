@@ -14,6 +14,7 @@ script = ExtResource("1_7sfm4")
 [node name="BattleFieldView" parent="." unique_id=419790207 instance=ExtResource("2_7sfm4")]
 
 [node name="ManaWindow" parent="." unique_id=1224726459 instance=ExtResource("3_i431l")]
+unique_name_in_owner = true
 position = Vector2(197, 711)
 
 [node name="EndTurnButton" type="Button" parent="." unique_id=55106371]

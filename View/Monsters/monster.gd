@@ -54,7 +54,8 @@ func _on_area_2d_mouse_entered() -> void:
 func on_monster_dead():
 	animating = true
 	_animated_sprite.stop()
-	_animated_sprite.play("death")
+	if (_animated_sprite.sprite_frames.has_animation("death")):
+		_animated_sprite.play("death")
 	await _animated_sprite.animation_finished
 	dead.emit(monster_data)
 	self.queue_free()

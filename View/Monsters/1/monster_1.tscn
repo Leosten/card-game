@@ -118,4 +118,4 @@ position = Vector2(-50, 51)
 position = Vector2(62, -64)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qosxv")
-animation = &"idle"
+animation = &"damage_taken"

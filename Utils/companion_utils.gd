@@ -3,16 +3,30 @@ extends Node
 
 enum companion_type { ELEMENTAL }
 
-static func remove_orb_by_type(channel_orbs, type, nb) -> Array[CardUtils.magic_type]:
-	for orb in channel_orbs:
-		if nb == 0:
-			return channel_orbs
-		if orb == type:
-			channel_orbs.erase(orb)
-			nb -= 1
+static func remove_orb_by_type(channel_orbs : Array[CardUtils.magic_type], type : CardUtils.magic_type, nb : int) -> Array[CardUtils.magic_type]:
+	var removed_count: int = 0
+	for index in range(channel_orbs.size() - 1, -1, -1):
+		if channel_orbs[index] == type:
+			channel_orbs.remove_at(index)
+			removed_count += 1
+
+			if removed_count >= nb:
+				break
 	return channel_orbs
-	
+
 static func remove_last_orb_channeled(channel_orbs : Array[CardUtils.magic_type]) -> Array[CardUtils.magic_type]:
 	channel_orbs.pop_back()
 	return channel_orbs
-	
+
+static func orbs_not_empty(orbs : Array[CardUtils.magic_type]) -> bool:
+	if orbs.size() <= 0:
+		return false
+	return true
+
+static func low_activation_check(companion_stats : ElementalCompanionStats) -> bool:
+	var low_ceiling = companion_stats.channel_low_activation_ceiling
+	if orbs_not_empty(companion_stats.channel_orbs) == false:
+		return false
+	if companion_stats.check_low_activation_ceiling():
+		return true
+	return false
