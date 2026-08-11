@@ -5,10 +5,10 @@ const CardData = preload("res://Resources/Cards/card_data.gd")
 const PlayerManager = preload("res://Manager/character_manager.gd")
 const Card = preload("res://View/Cards/card.tscn")
 var _backgrounds = {
-	CardUtils.card_type.ATTACK: preload("res://Art/UI/cards/card_lily.png"),
-	CardUtils.card_type.MAGIC: preload("res://Art/UI/cards/card_sakura.png"),
-	CardUtils.card_type.BUFF: preload("res://Art/UI/cards/card_bamboo.png"),
-	CardUtils.card_type.ELEMENTAL: preload("res://Art/UI/cards/card_sakura.png"),
+	CardUtils.card_type.ELEMENTAL: preload("res://Art/UI/cards/card_black_lily.png"),
+	CardUtils.card_type.MAGIC: preload("res://Art/UI/cards/card_black_sakura.png"),
+	CardUtils.card_type.BUFF: preload("res://Art/UI/cards/card_black_bamboo.png"),
+	CardUtils.card_type.ATTACK: preload("res://Art/UI/cards/card_black_kitsune.png"),
 }
 
 var _cards_by_deck: Dictionary = {}
@@ -90,17 +90,17 @@ func get_random_card_for_deck(character_class: String) -> CardData:
 	if _cards_by_deck.has(key) and not _cards_by_deck[key].is_empty():
 		return _cards_by_deck[key].pick_random()
 	return null
-	
-func get_card_rewards_for_class(character_class: String, count: int = 3) -> Array[CardData]:
+
+func get_card_rewards_by_deck(deck_nb, count: int = 3) -> Array[CardData]:
 	var rewards: Array[CardData] = []
-	var class_cards = _cards_by_deck.get(character_class.to_lower(), []).duplicate()
-	var neutral_cards = _cards_by_deck.get("neutral", []).duplicate()
+	var cards = _cards_by_deck.get(str(deck_nb), [])
+	#print("get card rewards by deck : ", cards)
 	
-	# Combine class cards and neutral pool
-	var pool = class_cards + neutral_cards
-	pool.shuffle()
-	
-	for i in range(min(count, pool.size())):
-		rewards.append(pool[i])
+	cards.filter(func(card): return card.tier == CardUtils.tier.COMMON)
+	cards.shuffle()
+
+	for i in range(min(count, cards.size())):
+		rewards.append(cards[i].duplicate())
+	#print("get card rewards by deck : ", rewards)
 		
 	return rewards

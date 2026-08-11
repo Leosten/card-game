@@ -1,10 +1,35 @@
 extends Node
 
 var battle_state : BattleState = GameManager.get_battle_state()
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var cards : Array[CardData]
+@onready var first_reward_box : CenterContainer = $%FirstReward
+@onready var second_reward_box : CenterContainer = $%SecondReward
+@onready var third_reward_box : CenterContainer = $%ThirdReward
 
+func _ready() -> void:
+	get_rewards()
+	display_card_rewards()
+	
+func get_rewards():
+	cards = GameManager.card_manager.get_card_rewards_by_deck(battle_state.player_stats.char_id)
+	
+func display_card_rewards():
+	var positions : Array[CenterContainer]= [
+		first_reward_box,
+		second_reward_box,
+		third_reward_box
+	]
+	var index = 0
+	for card_data in cards:
+		var pos = Vector2(positions[index].get_screen_position().x / 2, positions[index].get_screen_position().y / 2)
+		var card : Card = GameManager.card_manager.get_card_scene()
+		card.init_card(0, card_data, pos)
+		card.card_data.hand_position = 0
+		#card.hovered.connect(_on_card_hovered)
+		#card.hovered_out.connect(_on_card_hovered_out)
+		#card.clicked.connect(_on_card_clicked)
+		positions[index].add_child(card)
+		index += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -12,6 +37,11 @@ func _process(delta: float) -> void:
 
 
 func _on_next_button_pressed() -> void:
+	GameManager.victory_progress()
+	Events.next_battle.emit()
+	queue_free()
+
+func _on_ignore_button_pressed() -> void:
 	GameManager.victory_progress()
 	Events.next_battle.emit()
 	queue_free()

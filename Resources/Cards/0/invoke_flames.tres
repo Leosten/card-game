@@ -1,0 +1,15 @@
+[gd_resource type="Resource" format=3 uid="uid://rqdkft5kv4xq"]
+
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_ov85v"]
+[ext_resource type="Script" uid="uid://bn6w6vs0gs7qi" path="res://Resources/Cards/0/invoke_flames.gd" id="2_ov85v"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_5pd8y"]
+
+[resource]
+script = ExtResource("2_ov85v")
+name = "Invoke Flames"
+description = "Channel 3 fires"
+cost = 2
+magic_type = 0
+tier = 1
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

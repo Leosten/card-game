@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3 uid="uid://bi02l63kv7oyw"]
+
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_nrt87"]
+[ext_resource type="Script" uid="uid://bi341cw10btsc" path="res://Resources/Cards/0/ice_shield.gd" id="2_nrt87"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_q6l6f"]
+
+[resource]
+script = ExtResource("2_nrt87")
+name = "Ice Shield"
+shield = 5
+description = "Shield yourself for {shield} and channel 1 ice orbs"
+cost = 1
+magic_type = 2
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

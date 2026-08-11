@@ -1,6 +1,6 @@
 [gd_resource type="Resource" format=3 uid="uid://drn651bi215nr"]
 
-[ext_resource type="Script" uid="uid://bou4lgqsnf0mq" path="res://Resources/Cards/deck_0/heal.gd" id="1_j4nhi"]
+[ext_resource type="Script" uid="uid://bou4lgqsnf0mq" path="res://Resources/Cards/0/heal.gd" id="1_j4nhi"]
 
 [resource]
 script = ExtResource("1_j4nhi")

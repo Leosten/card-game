@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://bkaq06slx1af"]
+
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_w1jox"]
+[ext_resource type="Script" uid="uid://j7htd5h6v4hj" path="res://Resources/Cards/0/large_beam.gd" id="2_w1jox"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_m7b8b"]
+
+[resource]
+script = ExtResource("2_w1jox")
+name = "Large Beam"
+damage = 4
+description = "Fires a beam on all enemies for {damage} damage"
+cost = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

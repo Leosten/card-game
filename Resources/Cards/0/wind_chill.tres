@@ -1,6 +1,6 @@
 [gd_resource type="Resource" format=3 uid="uid://b0fdu5xtftwn7"]
 
-[ext_resource type="Script" uid="uid://dc3127qdc1h8v" path="res://Resources/Cards/deck_0/wind_chill.gd" id="1_4tg85"]
+[ext_resource type="Script" uid="uid://dc3127qdc1h8v" path="res://Resources/Cards/0/wind_chill.gd" id="1_4tg85"]
 [ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_84d8o"]
 [ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_2nco6"]
 

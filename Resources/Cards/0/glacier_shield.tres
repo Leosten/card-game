@@ -1,0 +1,15 @@
+[gd_resource type="Resource" format=3 uid="uid://dr1ywe67jnrvl"]
+
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_e0k5h"]
+[ext_resource type="Script" uid="uid://b66asch1tbj4x" path="res://Resources/Cards/0/glacier_shield.gd" id="2_e0k5h"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_vf7e2"]
+
+[resource]
+script = ExtResource("2_e0k5h")
+name = "Glacier Shield"
+shield = 10
+description = "Shield yourself for {shield} shield and channel 2 ice orbs"
+cost = 2
+magic_type = 2
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -31,44 +31,60 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 		action_impossible.emit()
 		return
 	for action in card.actions:
-		if action == CardUtils.action_type.HEAL:
-			var heal_value = HealUtils.calculate_final_heal(card.heal, battle_state.player_stats)
-			HealUtils.apply_heal(heal_value, battle_state.player_stats)
-			battle_state.player_stats.healed.emit(heal_value)
-		if action == CardUtils.action_type.SHIELD:
-			var shield_value = HealUtils.calculate_final_shield(card.shield, battle_state.player_stats)
-			HealUtils.apply_shield(shield_value, battle_state.player_stats)
-			battle_state.player_stats.shielded.emit()
-			battle_state.player_stats.stats_changed.emit()
-		if action == CardUtils.action_type.BUFFS:
-			StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
-		if action == CardUtils.action_type.DRAW:
-			battle_state.draw_cards.emit(card.draw_value)
-		# ELEMENTAL COMPANION
-		if battle_state.companion_stats is ElementalCompanionStats:
-			if action == CardUtils.action_type.CHANNEL_ADD:
-				battle_state.companion_stats.channel_add(card)
-			if action == CardUtils.action_type.CHANNEL_USE:
-				battle_state.companion_stats.use_orb(battle_state)
-			if action == CardUtils.action_type.CHANNEL_REMOVE:
-				battle_state.companion_stats.channel_remove(card)
-			if action == CardUtils.action_type.CHANNEL_CLEAR:
-				battle_state.companion_stats.reset_channel_orbs(card)
-
-		# ON ENEMY
-		if enemy != null :
-			if action == CardUtils.action_type.DAMAGE:
-				var final_damage = DamageUtils.calculate_final_damage(card.damage, battle_state.player_stats, enemy)
-				DamageUtils.apply_damage(final_damage, enemy)
-			if action == CardUtils.action_type.STATUS_EFFECTS:
-				StatusUtils.apply_status_effects(enemy, card.status_effects)
-			enemy.stats_changed.emit()
+		card_apply_buff_action(battle_state, card, action)
+		card_elemental_companion_action(battle_state, card, action)
+		
+		var enemies = []
+		if (card.allowed_targets.has(CardUtils.targets.ALL_ENEMIES)):
+			enemies = battle_state.level_monsters
+		else:
+			if enemy != null :
+				enemies = [enemy]
+		
+		for target in enemies:
+			card_apply_damage_action(battle_state, card, action, target)
+			target.stats_changed.emit()
 			# TODO: enemy dies and action continues ...
-			check_for_death(enemy, battle_state)
+		#check_for_death(enemy, battle_state)
+	check_for_everyone_death(battle_state)
 	card.special_effect(battle_state)
 	battle_state.player_stats.stats_changed.emit()
 	cost_card_mana(battle_state, card.cost)
 	card_used.emit(card)
+
+func card_apply_damage_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type, enemy: Targetable):
+	if action == CardUtils.action_type.DAMAGE:
+		var final_damage = DamageUtils.calculate_final_damage(card.damage, battle_state.player_stats, enemy)
+		DamageUtils.apply_damage(final_damage, enemy)
+	if action == CardUtils.action_type.STATUS_EFFECTS:
+		StatusUtils.apply_status_effects(enemy, card.status_effects)
+
+func card_apply_buff_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type):
+	if action == CardUtils.action_type.HEAL:
+			var heal_value = HealUtils.calculate_final_heal(card.heal, battle_state.player_stats)
+			HealUtils.apply_heal(heal_value, battle_state.player_stats)
+			battle_state.player_stats.healed.emit(heal_value)
+	if action == CardUtils.action_type.SHIELD:
+		var shield_value = HealUtils.calculate_final_shield(card.shield, battle_state.player_stats)
+		HealUtils.apply_shield(shield_value, battle_state.player_stats)
+		battle_state.player_stats.shielded.emit()
+		battle_state.player_stats.stats_changed.emit()
+	if action == CardUtils.action_type.BUFFS:
+		StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
+	if action == CardUtils.action_type.DRAW:
+		battle_state.draw_cards.emit(card.draw_value)
+
+func card_elemental_companion_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type):
+	if battle_state.companion_stats is not ElementalCompanionStats:
+		return
+	if action == CardUtils.action_type.CHANNEL_ADD:
+		battle_state.companion_stats.channel_add(card)
+	if action == CardUtils.action_type.CHANNEL_USE:
+		battle_state.companion_stats.use_orb(battle_state)
+	if action == CardUtils.action_type.CHANNEL_REMOVE:
+		battle_state.companion_stats.channel_remove(card)
+	if action == CardUtils.action_type.CHANNEL_CLEAR:
+		battle_state.companion_stats.reset_channel_orbs(card)
 
 func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy : Targetable):
 	enemy.acting.emit(action.type)
@@ -78,7 +94,6 @@ func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy
 	if action.type == MonsterUtils.action_types.DAMAGE_STATUS:
 		var final_damage = DamageUtils.calculate_final_damage(action.damage, enemy, battle_state.player_stats)
 		DamageUtils.apply_damage(final_damage, battle_state.player_stats)
-		
 	if action.type == MonsterUtils.action_types.SHIELD:
 		var final_heal = HealUtils.calculate_final_shield(action.shield, enemy)
 		HealUtils.apply_shield(final_heal, enemy)
@@ -98,9 +113,10 @@ func check_for_death(monster: MonsterData, battle_state : BattleState):
 		#battle_state.level_monsters.erase(monster)
 		print("enemy %s dead" % monster.battle_position)
 	return true
-	
-func use_card_on_all_enemies():
-	pass
+
+func check_for_everyone_death(battle_state: BattleState):
+	for monster in battle_state.level_monsters:
+		check_for_death(monster, battle_state)
 
 func cycle_statuses(target : Targetable):
 	if not target.buffs.is_empty():

@@ -38,6 +38,7 @@ func channel_remove(card : CardData):
 func reset_channel_orbs():
 	channel_orbs.clear()
 	channel_reset.emit()
+	reset_count()
 
 func add_count(orb : CardUtils.magic_type):
 	if orb == CardUtils.magic_type.FIRE:
