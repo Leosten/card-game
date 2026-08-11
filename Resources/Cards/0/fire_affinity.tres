@@ -1,0 +1,15 @@
+[gd_resource type="Resource" format=3 uid="uid://ctuftcmc363l1"]
+
+[ext_resource type="Script" uid="uid://bgr2iii04cai0" path="res://Resources/Cards/0/fire_affinity.gd" id="1_46lrx"]
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_o0adg"]
+[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_4hmbo"]
+
+[resource]
+script = ExtResource("1_46lrx")
+name = "Fire Affinity"
+description = "Channel 1 fire orb at the start of each turn"
+cost = 1
+magic_type = 0
+tier = 1
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_fb35m")
 name = "Early Call"
+description = "Use 3 orbs of the same type to trigger a companion action"
 cost = 1
-magic_type = 3
 type = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

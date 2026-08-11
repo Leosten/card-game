@@ -51,3 +51,35 @@ func use_card_animation(card : Card):
 	card.active_tween.tween_property(card, "position", left_out_of_bounds, 0.2).set_ease(Tween.EASE_OUT)
 
 	await card.active_tween.finished
+
+static func reposition_animation(card: Card, new_position : Vector2) -> void:
+	if card.active_tween:
+		card.active_tween.kill()
+	card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
+	card.active_tween.tween_property(
+		card, "position",
+		new_position,
+		0.2
+	).set_ease(Tween.EASE_IN)
+
+static func zoom_in(card : Card):
+	card.pivot_offset = card.size / 2.0
+	
+	if card.active_tween:
+		card.active_tween.kill()
+	card.active_tween = card.create_tween().set_trans(Tween.TRANS_QUAD)
+	card.active_tween.tween_property(
+		card, "scale",
+		Vector2(1.2, 1.2),
+		0.2
+	).set_ease(Tween.EASE_OUT)
+	
+static func zoom_out(card : Card):
+	if card.active_tween:
+		card.active_tween.kill()
+	card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
+	card.active_tween.tween_property(
+		card, "scale",
+		Vector2(1.0, 1.0),
+		0.2
+	).set_ease(Tween.EASE_IN)

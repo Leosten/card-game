@@ -36,3 +36,9 @@ static func low_activation_check(companion_stats : ElementalCompanionStats) -> b
 	if companion_stats.check_low_activation_ceiling():
 		return true
 	return false
+
+static func replace_orbs_by_type(orbs : Array[CardUtils.magic_type], type: CardUtils.magic_type, new_type: CardUtils.magic_type):
+	var upgraded_deck = orbs.map(func(orb):
+		if orb == type:
+			return new_type
+		return orb)

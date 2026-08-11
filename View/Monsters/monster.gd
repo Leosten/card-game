@@ -66,7 +66,6 @@ func spawn(battle_positions):
 	tween.tween_property(self, "position", target_position.position, 0.5)
 
 func play_action_animation(action_type : MonsterUtils.action_types):
-	print("action type %s" % action_type)
 	match action_type:
 		MonsterUtils.action_types.DAMAGE:
 			attack_animation()

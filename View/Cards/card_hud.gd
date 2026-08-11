@@ -33,53 +33,44 @@ func _ready() -> void:
 	card_animation_manager.hud_size = card_hand_size
 	add_child(card_animation_manager)
 	init_card_position()
-	start_battle()
+	#start_battle()
 
 func start_battle():
 	player_draw_value = GameManager.battle_state.player_stats.draw_value
 	init_player_deck()
+	#draw_cards(player_draw_value)
 	update_piles_count()
 
 func on_draw_card_signal(nb):
 	print("hud drawing cards")
 	draw_cards(nb)
 
-
 func init_card_position() -> void:
 	card_hand_positions = CardUtils.init_card_position(card_hand_size.size, max_nb_of_cards, player_draw_value, card_size, margin_between_cards, left_margin, bottom_margin)
 
 func draw_cards(draw_value) -> void:
-	if draw_value <= 0:
-		return
-	check_draw_pile_size_reset()
-	var draw_pile_remaining = draw_pile.size()
-	if (draw_value >= draw_pile_remaining):
-		draw_value = draw_pile_remaining
+	print("drawing %s cards ..." % str(draw_value))
 	var cards : Array[CardData]= []
 	var card_position = player_hand.size()
 	for index in draw_value:
-		var card_data = draw_pile.pop_front()
-		card_data.hand_position = card_position
-		cards.append(card_data)
-		card_position += 1
-	player_hand.append_array(cards)
-	display_cards(cards)
+		if draw_pile.is_empty():
+			_reshuffle_discard_into_draw()
+		if not draw_pile.is_empty():
+			var card_data = draw_pile.pop_front()
+			card_data.hand_position = card_position
+			player_hand.append(card_data)
+			card_position += 1
+			display_cards([card_data])
 	update_piles_count()
 
-	
-func check_draw_pile_size_reset():
-	if draw_pile.is_empty() :
-		print("resetting draw pile ...")
-		# trigger animation
-		draw_pile = discard_pile.duplicate()
-		draw_pile.shuffle()
-		discard_pile.clear()
+func _reshuffle_discard_into_draw():
+	print("resetting draw pile ...")
+	# trigger animation
+	draw_pile = discard_pile.duplicate()
+	draw_pile.shuffle()
+	discard_pile.clear()
 
 func display_cards(cards_to_display: Array[CardData]) :
-	#for existing_card in displayed_hand:
-		#existing_card.queue_free()
-	#displayed_hand.clear()
-	
 	var index = 0
 	for card_data in cards_to_display:
 		var card : Card = GameManager.card_manager.get_card_scene()
@@ -123,11 +114,13 @@ func discard_all():
 	displayed_hand.clear()
 
 func init_player_deck():
+	discard_pile.clear()
+	draw_pile.clear()
 	player_deck = GameManager.get_player_deck()
 	$DeckCard/DeckCount.text = str(player_deck.size())
-	player_deck.shuffle()
-	draw_pile = player_deck
-
+	draw_pile = player_deck.duplicate()
+	draw_pile.shuffle()
+	
 func update_piles_count():
 	$DrawPile/DrawCount.text = str(draw_pile.size())
 	$DiscardPile/DiscardCount.text = str(discard_pile.size())
@@ -137,7 +130,7 @@ func reposition_cards():
 	for card in displayed_hand:
 		var new_position = card_hand_positions[card.hand_position].position
 		card.z_index = card.hand_position + 1
-		CardUtils.reposition_animation(card, new_position)
+		card_animation_manager.reposition_animation(card, new_position)
 		card.base_position = new_position
 
 func update_displayed_hand_cost(battle_state : BattleState):
@@ -150,7 +143,6 @@ func end_turn():
 
 func new_turn():
 	enemy_turn = false
-	check_draw_pile_size_reset()
 	draw_cards(player_draw_value)
 	update_piles_count()
 

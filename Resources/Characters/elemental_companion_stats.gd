@@ -7,6 +7,7 @@ signal channel_used
 signal channel_high_trigger
 signal channel_removed(nb)
 signal channel_reset
+signal channel_special
 signal use_ceiling_not_reached
 
 @export var channel_orbs : Array[CardUtils.magic_type]= []
@@ -34,6 +35,10 @@ func channel_add(card : CardData):
 func channel_remove(card : CardData):
 	channel_orbs = card.channel_remove(channel_orbs)
 	channel_removed.emit()
+
+func channel_special_effect(card : CardData, battle_state : BattleState):
+	channel_orbs = card.special_effect(battle_state)
+	channel_special.emit()
 
 func reset_channel_orbs():
 	channel_orbs.clear()

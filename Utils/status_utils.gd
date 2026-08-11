@@ -1,7 +1,7 @@
 @abstract class_name StatusUtils
 extends Node
 
-enum buffs { DRAW, PERFECT_PROTECT, STRENGTH, VITALITY}
+enum buffs { DRAW, PERFECT_PROTECT, STRENGTH, VITALITY, ENCHANTMENT}
 enum status_effects {STUN, VULNERABLE}
 
 static func get_strength_modifier(damage, strength : Buff):
@@ -63,6 +63,9 @@ static func get_status_or_null(statuses : Array[Status], status_to_find : Varian
 	return null
 
 static func check_for_status_cycle(statuses :Array[Status], status: Status):
+	if status is Buff:
+		if status.type == StatusUtils.buffs.ENCHANTMENT:
+			status.turn_effect(GameManager.battle_state)
 	if status.duration_cumulative == true:
 		status.duration -= 1
 	if status.quantity_cumulative == true:

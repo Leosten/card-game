@@ -85,6 +85,8 @@ func card_elemental_companion_action(battle_state: BattleState, card: CardData, 
 		battle_state.companion_stats.channel_remove(card)
 	if action == CardUtils.action_type.CHANNEL_CLEAR:
 		battle_state.companion_stats.reset_channel_orbs(card)
+	if action == CardUtils.action_type.CHANNEL_SPECIAL:
+		battle_state.companion_stats.channel_special(card, battle_state)
 
 func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy : Targetable):
 	enemy.acting.emit(action.type)
