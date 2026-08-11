@@ -25,12 +25,15 @@ signal use_ceiling_not_reached
 
 func channel_add(card : CardData):
 	var orbs = card.channel_add()
-	for orb in orbs:
-		channel_orbs.append(orb)
-		add_count(orb)
-		channeled.emit()
+	for orb : CardUtils.magic_type in orbs:
+		add_orb(orb)
 		if check_activation_ceiling():
 			trigger_high()
+
+func add_orb(orb_type : CardUtils.magic_type):
+	channel_orbs.append(orb_type)
+	add_count(orb_type)
+	channeled.emit()
 
 func channel_remove(card : CardData):
 	channel_orbs = card.channel_remove(channel_orbs)
@@ -52,7 +55,7 @@ func add_count(orb : CardUtils.magic_type):
 		ice_count += 1
 	if orb == CardUtils.magic_type.WIND:
 		wind_count += 1
-		
+
 func reset_count():
 	fire_count = 0
 	ice_count = 0
@@ -139,13 +142,13 @@ func small_shield(battle_state: BattleState):
 func aoe_stun(battle_state: BattleState):
 	print("aoe_stun triggered !")
 	for monster in battle_state.level_monsters:
-		var status = StatusEffect.new(StatusUtils.status_effects.STUN)
-		StatusUtils.apply_status_effects(monster, status)
+		var status = CardStatus.new(StatusUtils.names.STUN, 0)
+		monster.status_manager.apply_status([status])
 		monster.statused.emit()
 
 func aoe_vulnerable(battle_state: BattleState):
 	print("aoe_vulnerable triggered !")
 	for monster in battle_state.level_monsters:
-		var status = StatusEffect.new(StatusUtils.status_effects.VULNERABLE, 3)
-		StatusUtils.apply_status_effects(monster, status)
+		var status = CardStatus.new(StatusUtils.names.VULNERABLE, 2)
+		monster.status_manager.apply_status([status])
 		monster.statused.emit()

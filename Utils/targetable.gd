@@ -6,9 +6,9 @@ signal damage_taken(value)
 signal damage_shielded(value)
 signal damage_protected(value)
 signal shield_broken(value)
-signal buffing(buff : Buff)
-signal buffed(buff : Buff)
-signal statused(status_effect : StatusEffect)
+signal buffing(buff : StatusUtils.names)
+signal buffed(buff : StatusUtils.names)
+signal statused(status_effect : StatusUtils.names)
 signal healed(value)
 signal shielded(value)
 
@@ -17,11 +17,14 @@ signal death
 
 signal stats_changed
 
-@export var buffs : Array[Status] = []
-@export var status_effects : Array[Status] = []
+#@export var buffs : Array[Status] = []
+#@export var status_effects : Array[Status] = []
 @export var health : int = 0
 @export var max_health : int = 0
 @export var shield : int = 0
 
+var status_manager : StatusManager
+
 func _init():
+	status_manager = StatusManager.new(self)
 	pass

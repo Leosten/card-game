@@ -57,7 +57,7 @@ func card_apply_damage_action(battle_state: BattleState, card: CardData, action:
 		var final_damage = DamageUtils.calculate_final_damage(card.damage, battle_state.player_stats, enemy)
 		DamageUtils.apply_damage(final_damage, enemy)
 	if action == CardUtils.action_type.STATUS_EFFECTS:
-		StatusUtils.apply_status_effects(enemy, card.status_effects)
+		enemy.status_manager.apply_status(card.status_effects)
 
 func card_apply_buff_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type):
 	if action == CardUtils.action_type.HEAL:
@@ -70,23 +70,23 @@ func card_apply_buff_action(battle_state: BattleState, card: CardData, action: C
 		battle_state.player_stats.shielded.emit()
 		battle_state.player_stats.stats_changed.emit()
 	if action == CardUtils.action_type.BUFFS:
-		StatusUtils.apply_buffs(battle_state.player_stats, card.buffs)
+		battle_state.player_stats.status_manager.apply_status_effects(card.buffs)
 	if action == CardUtils.action_type.DRAW:
 		battle_state.draw_cards.emit(card.draw_value)
 
 func card_elemental_companion_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type):
-	if battle_state.companion_stats is not ElementalCompanionStats:
+	if battle_state.player_stats.companion_stats is not ElementalCompanionStats:
 		return
 	if action == CardUtils.action_type.CHANNEL_ADD:
-		battle_state.companion_stats.channel_add(card)
+		battle_state.player_stats.companion_stats.channel_add(card)
 	if action == CardUtils.action_type.CHANNEL_USE:
-		battle_state.companion_stats.use_orb(battle_state)
+		battle_state.player_stats.companion_stats.use_orb(battle_state)
 	if action == CardUtils.action_type.CHANNEL_REMOVE:
-		battle_state.companion_stats.channel_remove(card)
+		battle_state.player_stats.companion_stats.channel_remove(card)
 	if action == CardUtils.action_type.CHANNEL_CLEAR:
-		battle_state.companion_stats.reset_channel_orbs(card)
+		battle_state.player_stats.companion_stats.reset_channel_orbs(card)
 	if action == CardUtils.action_type.CHANNEL_SPECIAL:
-		battle_state.companion_stats.channel_special(card, battle_state)
+		battle_state.player_stats.companion_stats.channel_special(card, battle_state)
 
 func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy : Targetable):
 	enemy.acting.emit(action.type)
@@ -96,16 +96,19 @@ func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy
 	if action.type == MonsterUtils.action_types.DAMAGE_STATUS:
 		var final_damage = DamageUtils.calculate_final_damage(action.damage, enemy, battle_state.player_stats)
 		DamageUtils.apply_damage(final_damage, battle_state.player_stats)
+		battle_state.player_stats.status_manager.apply_status(action.status_effects)
 	if action.type == MonsterUtils.action_types.SHIELD:
 		var final_heal = HealUtils.calculate_final_shield(action.shield, enemy)
 		HealUtils.apply_shield(final_heal, enemy)
+	if action.type == MonsterUtils.action_types.BUFF:
+		enemy.status_manager.apply_status(action.buffs)
 	enemy.stats_changed.emit()
 
 func enemy_cycle(battle_state : BattleState, enemy: MonsterData):
 	var action = enemy.getAction()
 	if (StatusUtils.action_possible(enemy) == true):
 		apply_enemy_action(battle_state, action, enemy)
-	cycle_statuses(enemy)
+	#cycle_statuses(enemy)
 	enemy.cycle_step +=1
 	enemy.reset_cycle_step()
 
@@ -120,11 +123,9 @@ func check_for_everyone_death(battle_state: BattleState):
 	for monster in battle_state.level_monsters:
 		check_for_death(monster, battle_state)
 
-func cycle_statuses(target : Targetable):
-	if not target.buffs.is_empty():
-		for buff : Status in target.buffs:
-			StatusUtils.check_for_status_cycle(target.buffs, buff)
-	if not target.status_effects.is_empty():
-		for status : Status in target.status_effects:
-			StatusUtils.check_for_status_cycle(target.status_effects, status)
-	target.stats_changed.emit()
+func end_turn_statuses_cycles(battle_state: BattleState):
+	battle_state.player_stats.status_manager.trigger_turn_end()
+	pass
+
+func start_turn_statuses_cycles(battle_state: BattleState):
+	pass

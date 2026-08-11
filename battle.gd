@@ -78,10 +78,10 @@ func spawn_companion_character():
 			viewport_size.y - 400
 		)
 	companion_character.position = char_position
-	companion_character.init(battle_state.companion_stats)
+	companion_character.init(battle_state.player_stats.companion_stats)
 	
 	add_child(companion_character)
-	
+
 func get_level_monsters():
 	battle_state.level_monsters = stage_manager.get_level_monsters(current_level)
 
@@ -158,7 +158,7 @@ func _on_end_turn_button_pressed() -> void:
 	await launch_enemy_turn()
 	battle_state.replenish_player_mana()
 	update_player_mana()
-	action_manager.cycle_statuses(battle_state.player_stats)
+	#action_manager.cycle_statuses(battle_state.player_stats)
 	card_hand_hud.new_turn()
 	enemy_turn = false
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqbkm43xl1y0a" path="res://Resources/Monsters/1/monster_res_1.gd" id="1_atn4s"]
 [ext_resource type="Script" uid="uid://dgvjmm6orbum0" path="res://Resources/Monsters/monster_action.gd" id="1_ol3tj"]
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="2_25prr"]
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="2_25prr"]
 [ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="4_s3s80"]
 
 [resource]

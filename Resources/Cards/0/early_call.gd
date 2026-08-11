@@ -5,4 +5,4 @@ func _init():
 	allowed_targets = [CardUtils.targets.SELF]
 
 func conditions_check(battle_state : BattleState) -> bool:
-	return CompanionUtils.low_activation_check(battle_state.companion_stats)
+	return CompanionUtils.low_activation_check(battle_state.player_stats.companion_stats)

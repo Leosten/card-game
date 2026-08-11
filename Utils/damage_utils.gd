@@ -1,7 +1,7 @@
 @abstract class_name DamageUtils
 
 static func apply_damage(damage_value, target : Targetable):
-	if has_protective_buff(target.buffs):
+	if has_protective_buff(target.status_manager.get_statuses()):
 		target.damage_protected.emit()
 
 	if target.shield > 0:
@@ -31,13 +31,11 @@ static func apply_damage(damage_value, target : Targetable):
 	target.stats_changed.emit()
 
 static func has_attack_modifier(damage_value, attacker : Targetable):
-	damage_value = StatusUtils.apply_attack_modifiers(damage_value, attacker.buffs)
-	#to add : weak (dmg given -25%)
+	damage_value = StatusUtils.apply_attack_modifiers(damage_value, attacker.status_manager.get_statuses())
 	return damage_value
 
 static func has_defense_modifier(damage_value, target : Targetable):
-	damage_value = StatusUtils.apply_defense_modifiers(damage_value, target.status_effects)
-	#to add: armor (dmg taken -25%)
+	damage_value = StatusUtils.apply_defense_modifiers(damage_value, target.status_manager.get_statuses())
 	return damage_value
 
 static func calculate_final_damage(damage_value, attacker : Targetable, target: Targetable):
@@ -50,8 +48,7 @@ static func check_for_death(target : Targetable):
 		target.health = 0
 		target.death.emit()
 
-static func has_protective_buff(buffs : Array[Status]) -> bool:
-	var protect = StatusUtils.get_status_or_null(buffs, StatusUtils.buffs.PERFECT_PROTECT)
-	if protect != null :
+static func has_protective_buff(statuses : Dictionary) -> bool:
+	if statuses.has(StatusUtils.names.PERFECT_PROTECT):
 		return true
 	return false

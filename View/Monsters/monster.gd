@@ -27,7 +27,6 @@ func init_data(m_data: MonsterData):
 	connect_signals()
 
 func connect_signals() :
-	monster_data.stats_changed.connect(on_stats_changed)
 	monster_data.acting.connect(on_action)
 	monster_data.damage_taken.connect(on_damage_taken)
 	monster_data.death.connect(on_monster_dead)

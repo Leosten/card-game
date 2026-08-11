@@ -8,21 +8,13 @@ var animating = false
 var stats : Targetable
 
 func connect_player_signals():
-	stats.stats_changed.connect(on_stats_changed)
 	stats.damage_taken.connect(on_damage_taken)
 	stats.buffed.connect(on_buffed)
 	stats.shielded.connect(on_shielded)
 
-func update_stats_window():
-	stats_window.update()
-
-func on_stats_changed():
-	update_stats_window()
-
 func _ready():
 	stats_window = get_node('CharacterStatsWindow')
-	stats_window.stats = stats
-	update_stats_window()
+	stats_window.init_stats_window(stats)
 
 func attack_animation():
 	animating = true

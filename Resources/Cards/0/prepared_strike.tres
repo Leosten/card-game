@@ -1,6 +1,6 @@
 [gd_resource type="Resource" format=3 uid="uid://db0j8me1cst7r"]
 
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_c67iv"]
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="1_c67iv"]
 [ext_resource type="Script" uid="uid://ckkbrmn5h5ciu" path="res://Resources/Cards/0/prepared_strike.gd" id="2_c67iv"]
 [ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_fi5s6"]
 

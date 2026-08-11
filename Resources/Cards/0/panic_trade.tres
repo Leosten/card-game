@@ -1,6 +1,6 @@
 [gd_resource type="Resource" format=3 uid="uid://cq67u8hs52lr4"]
 
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_sq1nc"]
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="1_sq1nc"]
 [ext_resource type="Script" uid="uid://br12vnyaun8i2" path="res://Resources/Cards/0/panic_trade.gd" id="2_sq1nc"]
 [ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_tp5p3"]
 

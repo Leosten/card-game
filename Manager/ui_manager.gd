@@ -36,18 +36,16 @@ func get_icon_by_name(icon_name: String) -> Texture2D:
 func get_all_icon_names() -> Array:
 	return _icons.keys()
 
-func get_buff_icon(buff_type: StatusUtils.buffs) -> Texture2D:
-	match buff_type:
-		StatusUtils.buffs.PERFECT_PROTECT:
-			return get_icon_by_name('protect')
-	return null
-
-func get_status_icon(status_type : StatusUtils.status_effects) -> Texture2D:
+func get_status_icon(status_type : StatusUtils.names) -> Texture2D:
 	match status_type:
-		StatusUtils.status_effects.STUN:
+		StatusUtils.names.STUN:
 			return get_icon_by_name('stun')
-		StatusUtils.status_effects.VULNERABLE:
+		StatusUtils.names.VULNERABLE:
 			return get_icon_by_name('vulnerable')
+		StatusUtils.names.PERFECT_PROTECT:
+			return get_icon_by_name('protect')
+		StatusUtils.names.FIRE_AFFINITY:
+			return get_icon_by_name('up_buff')
 	return null
 
 func get_monster_action_icon(action_type : MonsterUtils.action_types):
@@ -68,12 +66,9 @@ func get_monster_action_icon(action_type : MonsterUtils.action_types):
 func get_icon_scene(status : Status):
 	var icon_scene = ICON_SCENE.instantiate()
 	var icon : Texture2D = null
-	if status is StatusEffect:
+	if status is Status:
 		icon = get_status_icon(status.type)
-	if status is Buff:
-		icon = get_buff_icon(status.type)
-	if icon_scene.has_method("update"):
-		icon_scene.update(status, icon)
+		icon_scene.set_icon(icon)
 	return icon_scene
 
 func get_orb_scene(orb: CardUtils.magic_type):

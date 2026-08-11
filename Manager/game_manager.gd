@@ -48,7 +48,7 @@ func init_player(char_id) -> void:
 	battle_state.player_stats = p_stats
 
 func init_companion(companion_id) -> void:
-	battle_state.companion_stats = ElementalCompanionStats.new()
+	battle_state.player_stats.companion_stats = ElementalCompanionStats.new()
 	print("companion stats init")
 
 func get_player_deck() -> Array[CardData]:

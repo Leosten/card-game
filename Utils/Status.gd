@@ -2,13 +2,26 @@ class_name Status
 
 extends Resource
 
-@export var quantity : int = 0
-@export var duration: int = 0
-@export var duration_cumulative = false
-@export var quantity_cumulative = false
+signal effect_changed
 
-func _init(p_quantity : int = 0, quantity_cumulative: bool = false, p_duration: int = 0, duration_cumulative: bool = false) -> void:
-	quantity = p_quantity
-	duration = p_duration
-	duration_cumulative = duration_cumulative
-	quantity_cumulative = quantity_cumulative
+var icon: Texture2D
+var stacks: int = 1
+var type : StatusUtils.names
+var target_entity: Targetable
+
+func _init(target: Targetable, initial_stacks: int):
+	target_entity = target
+	stacks = initial_stacks
+
+func add_stacks(amount: int) -> void:
+	stacks += amount
+	effect_changed.emit()
+
+func on_turn_start() -> void:
+	pass
+
+func on_turn_end() -> void:
+	pass
+
+func on_card_played(_card_data) -> void:
+	pass

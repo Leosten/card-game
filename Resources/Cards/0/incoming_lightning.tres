@@ -1,6 +1,6 @@
 [gd_resource type="Resource" format=3 uid="uid://blow3cvabf054"]
 
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_ykodc"]
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="1_ykodc"]
 [ext_resource type="Script" uid="uid://dcynvrk4juh87" path="res://Resources/Cards/0/incoming_lightning.gd" id="2_ykodc"]
 [ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_3tt0q"]
 

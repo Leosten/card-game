@@ -1,7 +1,7 @@
 [gd_resource type="Resource" format=3 uid="uid://btj485v1sbpco"]
 
 [ext_resource type="Script" uid="uid://sf2tt0vfambt" path="res://Resources/Cards/0/prediction.gd" id="1_thbly"]
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="1_ub663"]
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="1_ub663"]
 [ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_5isof"]
 
 [resource]

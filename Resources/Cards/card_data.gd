@@ -12,13 +12,14 @@ extends Resource
 @export var shield := 0
 @export var draw_value := 0
 @export var actions : Array[CardUtils.action_type] = []
-@export var status_effects : Array[StatusEffect]
-@export var buffs : Array[Buff]
+
+var status_effects : Array[CardStatus]
+var buffs : Array[CardStatus]
+
 @export var description := ""
 @export var cost := 0
 @export var allowed_targets : Array[CardUtils.targets] = []
 @export var artwork: Texture2D
-
 @export var magic_type : CardUtils.magic_type = CardUtils.magic_type.NONE
 @export var tier : CardUtils.tier
 @export var type : CardUtils.card_type
