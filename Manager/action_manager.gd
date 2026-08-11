@@ -106,7 +106,7 @@ func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy
 
 func enemy_cycle(battle_state : BattleState, enemy: MonsterData):
 	var action = enemy.getAction()
-	if (StatusUtils.action_possible(enemy) == true):
+	if StatusUtils.action_possible(enemy) == true:
 		apply_enemy_action(battle_state, action, enemy)
 	#cycle_statuses(enemy)
 	enemy.cycle_step +=1
