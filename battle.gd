@@ -116,7 +116,7 @@ func _on_card_clicked(card_data: CardData) -> void:
 
 func on_monster_clicked(monster_data : MonsterData):
 	if (card_clicked != null):
-		print("card used on enemy")
+		#print("card used on enemy")
 		action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
 		card_clicked = null
 
@@ -153,13 +153,14 @@ func launch_enemy_turn():
 
 func _on_end_turn_button_pressed() -> void:
 	card_hand_hud.end_turn()
+	action_manager.end_turn_status_cycle(battle_state)
 	await battle_animation_manager.short_pause()
 	enemy_turn = true
 	await launch_enemy_turn()
 	battle_state.replenish_player_mana()
 	update_player_mana()
-	#action_manager.cycle_statuses(battle_state.player_stats)
 	card_hand_hud.new_turn()
+	action_manager.start_turn_status_cycle(battle_state)
 	enemy_turn = false
 
 func victory():

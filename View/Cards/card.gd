@@ -11,7 +11,7 @@ signal hovered_out(card_data: CardData)
 @onready var cost_label: Label = $%ManaCost
 @onready var portrait: TextureRect = $%Portrait
 @onready var description_label: RichTextLabel = $%Description
-@onready var card_type_label: Label = $%CardType
+#@onready var card_type_label: Label = $%CardType
 
 var hover_size : int = 120
 var hovering : bool = false

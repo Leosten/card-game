@@ -41,7 +41,7 @@ func cards_appear_animation(displayed_hand: Array[Card], card_hand_positions : A
 
 func use_card_animation(card : Card):
 	var target_position = Vector2(hud_size.size.x / 2, 0 - hud_size.size.y / 2)
-	print("target position ", hud_size.size.x , " ", hud_size.size.y)
+	#print("target position ", hud_size.size.x , " ", hud_size.size.y)
 	if card.active_tween:
 		card.active_tween.kill()
 	card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)

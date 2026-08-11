@@ -19,6 +19,8 @@ func apply_status(card_statuses: Array[CardStatus]) -> void:
 			if new_status:
 				new_status.effect_changed.connect(_on_status_changed.bind(new_status))
 				_statuses[status.type] = new_status
+		print("status applied")
+		print( "current statuses : ", _statuses)
 		statuses_updated.emit()
 
 func _create_status_instance(status_name: StatusUtils.names, stacks: int) -> Status:

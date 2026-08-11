@@ -123,9 +123,12 @@ func check_for_everyone_death(battle_state: BattleState):
 	for monster in battle_state.level_monsters:
 		check_for_death(monster, battle_state)
 
-func end_turn_statuses_cycles(battle_state: BattleState):
+func end_turn_status_cycle(battle_state: BattleState):
+	for monster in battle_state.level_monsters:
+		monster.status_manager.trigger_turn_end()
 	battle_state.player_stats.status_manager.trigger_turn_end()
-	pass
 
-func start_turn_statuses_cycles(battle_state: BattleState):
-	pass
+func start_turn_status_cycle(battle_state: BattleState):
+	for monster in battle_state.level_monsters:
+		monster.status_manager.trigger_turn_start()
+	battle_state.player_stats.status_manager.trigger_turn_start()
