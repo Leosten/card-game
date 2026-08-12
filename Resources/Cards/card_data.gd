@@ -3,6 +3,7 @@ class_name CardData
 extends Resource
 
 signal data_changed
+signal used(card)
 
 @export var id = 0
 @export var character_deck = 0

@@ -33,7 +33,7 @@ func _ready() -> void:
 	battle_animation_manager = BattleAnimationManager.new()
 	add_child(battle_animation_manager)
 	action_manager = ActionManager.new()
-	action_manager.card_used.connect(on_card_used)
+	#action_manager.card_used.connect(on_card_used)
 	
 	battle_state = GameManager.get_battle_state()
 	battle_state.player_stats.current_mana_changed.connect(on_mana_changed)
@@ -120,8 +120,8 @@ func on_monster_clicked(monster_data : MonsterData):
 		action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
 		card_clicked = null
 
-func on_card_used(card_data : CardData):
-	card_hand_hud.discard_card(card_clicked)
+#func on_card_used(card_data : CardData):
+	#card_hand_hud.discard_card(card_clicked)
 
 func on_mana_changed():
 	update_player_mana()
@@ -170,7 +170,7 @@ func victory():
 	print("victory screen display")
 
 func _cleanup_combat():
-	card_hand_hud.cleanup_combat()
+	await card_hand_hud.cleanup_combat()
 	# status effects
 	# exhausted cards
 	# clear hands/draw

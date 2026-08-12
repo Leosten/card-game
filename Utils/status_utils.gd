@@ -31,6 +31,6 @@ static func apply_attack_modifiers(damage_value : int, buffs : Dictionary) :
 	return damage_value
 
 static func action_possible(target : Targetable) -> bool:
-	if target.status_manager.get_statuses().has(StatusUtils.names.STUN): 
+	if target.status_manager.get_statuses().has(StatusUtils.names.STUN):
 		return false
 	return true

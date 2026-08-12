@@ -4,6 +4,8 @@ extends Control
 signal clicked(card_data: CardData)
 signal hovered(card_data: CardData)
 signal hovered_out(card_data: CardData)
+signal used(card: Card)
+
 @export var hand_position : int
 @export var card_data : CardData
 
@@ -21,7 +23,11 @@ var active_tween: Tween
 
 func _ready() -> void:
 	card_data.data_changed.connect(update)
+	card_data.used.connect(on_card_used)
 	pass
+
+func on_card_used():
+	used.emit(self)
 
 func init_position(hand_position, hud_position : Vector2):
 	position = hud_position
@@ -38,7 +44,6 @@ func update():
 	update_text()
 
 func update_text():
-	print(card_data.name)
 	$%PosLabel.text = str(card_data.hand_position)
 	card_name_label.text = card_data.name
 	description_label.text = card_data.description.format({

@@ -45,12 +45,11 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 			card_apply_damage_action(battle_state, card, action, target)
 			target.stats_changed.emit()
 			# TODO: enemy dies and action continues ...
-		#check_for_death(enemy, battle_state)
 	check_for_everyone_death(battle_state)
 	card.special_effect(battle_state)
 	battle_state.player_stats.stats_changed.emit()
 	cost_card_mana(battle_state, card.cost)
-	card_used.emit(card)
+	card.used.emit()
 
 func card_apply_damage_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type, enemy: Targetable):
 	if action == CardUtils.action_type.DAMAGE:
@@ -115,7 +114,6 @@ func enemy_cycle(battle_state : BattleState, enemy: MonsterData):
 func check_for_death(monster: MonsterData, battle_state : BattleState):
 	if (monster.health <= 0):
 		monster.health = 0
-		#battle_state.level_monsters.erase(monster)
 		print("enemy %s dead" % monster.battle_position)
 	return true
 

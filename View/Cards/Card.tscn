@@ -92,6 +92,7 @@ mouse_filter = 2
 
 [node name="PosLabel" type="Label" parent="MarginContainer/CardLayout/TopBar" unique_id=1886428394]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CardLayout/TopBar" unique_id=1240172261]

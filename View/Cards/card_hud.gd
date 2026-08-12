@@ -38,7 +38,6 @@ func _ready() -> void:
 func start_battle():
 	player_draw_value = GameManager.battle_state.player_stats.draw_value
 	init_player_deck()
-	#draw_cards(player_draw_value)
 	update_piles_count()
 
 func on_draw_card_signal(nb):
@@ -79,29 +78,34 @@ func display_cards(cards_to_display: Array[CardData]) :
 		card.hovered.connect(_on_card_hovered)
 		card.hovered_out.connect(_on_card_hovered_out)
 		card.clicked.connect(_on_card_clicked)
+		card.used.connect(_on_card_used)
 		card_hand_anchor.add_child(card)
 		displayed_hand.append(card)
 		card.update()
 		index += 1
 	await card_animation_manager.cards_appear_animation(displayed_hand, card_hand_positions)
 
-func discard_card(card_data: CardData):
+func _on_card_used(card : Card):
+	print("card used : ", card.card_data.name)
+	discard_card(card)
+
+func discard_card(card: Card):
 	card_used = true
-	await card_animation_manager.use_card_animation(displayed_hand[card_data.hand_position])
+	await card_animation_manager.use_card_animation(card)
 	card_used = false
-	player_hand.erase(card_data)
-	displayed_hand[card_data.hand_position].queue_free()
-	displayed_hand.remove_at(card_data.hand_position)
+	player_hand.erase(card.card_data)
+	card.queue_free()
+	displayed_hand.erase(card)
 	var index = 0
 	for card_d in player_hand:
 		card_d.hand_position = index
 		index +=1
-	
-	var index_2 = 0
+		
+	#var index_2 = 0
 	for displayed_card in displayed_hand:
-		displayed_card.hand_position = index_2
-		index_2 +=1
-	discard_pile.append(card_data)
+		displayed_card.update()
+	#
+	discard_pile.append(card.card_data)
 	reposition_cards()
 	update_piles_count()
 
@@ -178,5 +182,5 @@ func _on_card_hovered_out(card: Card) -> void:
 	hovered_card = null
 
 func cleanup_combat():
-	discard_all()
+	await discard_all()
 	CardAnimationManager.clean_tweens(displayed_hand)
