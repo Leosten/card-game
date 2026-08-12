@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://caar1qyr48sjl"]
+
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_3j81q"]
+[ext_resource type="Script" uid="uid://bn2j6aet8mcq5" path="res://View/Menu/deck_list_window.gd" id="1_q1hwa"]
+
+[node name="DeckListWindow" type="Control" unique_id=352217177]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_3j81q")
+script = ExtResource("1_q1hwa")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=787372317]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.09803922)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=562138032]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = 72.0
+offset_right = -120.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1588388458]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=831029937]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=68604749]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_3j81q")
+theme_type_variation = &"WindowTitle"
+text = "Current deck"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=796834488]
+layout_mode = 2
+
+[node name="LeaveButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/CenterContainer" unique_id=604117597]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+text = "X"
+
+[node name="CardNbLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1241497428]
+layout_mode = 2
+theme_type_variation = &"NormalTextLabel"
+text = "Number of cards : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NbLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=144480603]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NormalTextLabel"
+text = "15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer" unique_id=2094964079]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/ScrollContainer" unique_id=1563851289]
+layout_mode = 2
+
+[node name="CardGrid" type="GridContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/CenterContainer" unique_id=353967121]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 7
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=2024064472]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer" unique_id=1656837049]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=39231292]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/CenterContainer" unique_id=951668059]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "CLOSE"
+
+[node name="CenterContainer2" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=690847306]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1856100908]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/CenterContainer/CloseButton" to="." method="_on_close_button_pressed"]

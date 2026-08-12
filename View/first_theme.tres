@@ -23,7 +23,11 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [resource]
+NormalTextLabel/base_type = &"Label"
+NormalTextLabel/font_sizes/font_size = 20
 ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
 ProgressBar/colors/font_outline_color = Color(0, 0, 0.77254903, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_tk1j3")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_pplqn")
+WindowTitle/base_type = &"NormalTextLabel"
+WindowTitle/font_sizes/font_size = 45

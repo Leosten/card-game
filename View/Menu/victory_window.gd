@@ -25,13 +25,16 @@ func display_card_rewards():
 	for card_data in cards:
 		var pos = Vector2(positions[index].get_screen_position().x / 2, positions[index].get_screen_position().y / 2)
 		var card : Card = GameManager.card_manager.get_card_scene()
-		card.init_card(0, card_data, pos)
+		print("card data name ", card_data.name)
+		card.init_data(card_data)
+		card.init_position(0, pos)
 		card.card_data.hand_position = 0
 		card.hovered.connect(_on_card_hovered)
 		card.hovered_out.connect(_on_card_hovered_out)
 		card.clicked.connect(_on_card_clicked)
 		card.z_index = 1
 		positions[index].add_child(card)
+		card.update_text()
 		index += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

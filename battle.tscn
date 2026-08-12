@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bcumk10bawk5x" path="res://View/Cards/card_hand_hud.tscn" id="1_oxp8w"]
 [ext_resource type="PackedScene" uid="uid://ybsmg21ph22t" path="res://View/BattleFieldView.tscn" id="2_7sfm4"]
 [ext_resource type="PackedScene" uid="uid://cny75kkfdyh1g" path="res://View/Cards/mana_window.tscn" id="3_i431l"]
+[ext_resource type="Script" uid="uid://cl3jqlp3cmcx8" path="res://View/Menu/hud_menu.gd" id="4_6t8i5"]
 
 [sub_resource type="Theme" id="Theme_ekkti"]
 Button/font_sizes/font_size = 33
@@ -26,6 +27,7 @@ theme = SubResource("Theme_ekkti")
 text = "End Turn"
 
 [node name="Hud" type="CanvasLayer" parent="." unique_id=1110246118]
+script = ExtResource("4_6t8i5")
 
 [node name="BottomHudRoot" type="Control" parent="Hud" unique_id=364975326]
 layout_mode = 3
@@ -77,12 +79,21 @@ layout_mode = 2
 layout_mode = 2
 text = "Level 1-1"
 
-[node name="CenterWindowRoot" type="CenterContainer" parent="Hud" unique_id=1211254239]
+[node name="DeckListButton" type="Button" parent="Hud/TopHudRoot/BattleStats/HBoxContainer" unique_id=102322817]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "DECK"
+
+[node name="CenterWindowRoot" type="Container" parent="Hud" unique_id=619096239]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="Hud/TopHudRoot/BattleStats/HBoxContainer/DeckListButton" to="Hud" method="_on_deck_list_button_pressed"]

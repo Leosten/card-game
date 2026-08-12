@@ -74,12 +74,14 @@ func display_cards(cards_to_display: Array[CardData]) :
 	var index = 0
 	for card_data in cards_to_display:
 		var card : Card = GameManager.card_manager.get_card_scene()
-		card.init_card(card_data.hand_position, card_data, card_animation_manager.right_out_of_bounds)
+		card.init_data(card_data)
+		card.init_position(card_data.hand_position, card_animation_manager.right_out_of_bounds)
 		card.hovered.connect(_on_card_hovered)
 		card.hovered_out.connect(_on_card_hovered_out)
 		card.clicked.connect(_on_card_clicked)
 		card_hand_anchor.add_child(card)
 		displayed_hand.append(card)
+		card.update()
 		index += 1
 	await card_animation_manager.cards_appear_animation(displayed_hand, card_hand_positions)
 
@@ -174,3 +176,7 @@ func _on_card_hovered_out(card: Card) -> void:
 	CardUtils.hover_back_animation(card)
 	card.hovering = false
 	hovered_card = null
+
+func cleanup_combat():
+	discard_all()
+	CardAnimationManager.clean_tweens(displayed_hand)

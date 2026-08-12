@@ -20,29 +20,35 @@ var base_position: Vector2
 var active_tween: Tween
 
 func _ready() -> void:
-	update(card_data)
+	card_data.data_changed.connect(update)
 	pass
- 
-func init_card(hand_position, card_d : CardData, hud_position : Vector2) -> void:
+
+func init_position(hand_position, hud_position : Vector2):
 	position = hud_position
 	base_position = position
 	z_index = hand_position + 1
+
+func init_data(card_d : CardData) -> void:
 	card_data = card_d
 	var bg_texture = GameManager.card_manager.get_card_background(card_d.type)
 	$Background.texture = bg_texture
 
-func update(card_d : CardData):
-	hand_position = card_d.hand_position
-	card_name_label.text = card_d.name
-	description_label.text = card_d.description.format({
-		"damage":str(card_d.damage),
-		"heal":str(card_d.heal),
-		"shield":str(card_d.shield),
-		"draw_value":str(card_d.draw_value),
+func update():
+	hand_position = card_data.hand_position
+	update_text()
+
+func update_text():
+	print(card_data.name)
+	$%PosLabel.text = str(card_data.hand_position)
+	card_name_label.text = card_data.name
+	description_label.text = card_data.description.format({
+		"damage":str(card_data.damage),
+		"heal":str(card_data.heal),
+		"shield":str(card_data.shield),
+		"draw_value":str(card_data.draw_value),
 	})
 	# TODO : buffs and status values in description
-	cost_label.text = str(card_d.cost)
-	card_data = card_d
+	cost_label.text = str(card_data.cost)
 
 func update_cost_label(current_mana):
 	var color = Color(0.0, 0.0, 0.0, 1.0)

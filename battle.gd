@@ -170,6 +170,7 @@ func victory():
 	print("victory screen display")
 
 func _cleanup_combat():
+	card_hand_hud.cleanup_combat()
 	# status effects
 	# exhausted cards
 	# clear hands/draw

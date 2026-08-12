@@ -2,6 +2,8 @@ class_name CardData
 
 extends Resource
 
+signal data_changed
+
 @export var id = 0
 @export var character_deck = 0
 @export var hand_position = 0

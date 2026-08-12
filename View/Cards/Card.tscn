@@ -55,6 +55,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="testbg" type="TextureRect" parent="." unique_id=839277008]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,6 +89,10 @@ custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+
+[node name="PosLabel" type="Label" parent="MarginContainer/CardLayout/TopBar" unique_id=1886428394]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CardLayout/TopBar" unique_id=1240172261]
 custom_maximum_size = Vector2(-1, 44)

@@ -83,3 +83,7 @@ static func zoom_out(card : Card):
 		Vector2(1.0, 1.0),
 		0.2
 	).set_ease(Tween.EASE_IN)
+
+static func clean_tweens(cards : Array[Card]):
+	for card in cards:
+		card.active_tween.kill()

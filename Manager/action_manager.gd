@@ -70,7 +70,7 @@ func card_apply_buff_action(battle_state: BattleState, card: CardData, action: C
 		battle_state.player_stats.shielded.emit()
 		battle_state.player_stats.stats_changed.emit()
 	if action == CardUtils.action_type.BUFFS:
-		battle_state.player_stats.status_manager.apply_status_effects(card.buffs)
+		battle_state.player_stats.status_manager.apply_status(card.buffs)
 	if action == CardUtils.action_type.DRAW:
 		battle_state.draw_cards.emit(card.draw_value)
 
