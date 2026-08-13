@@ -5,6 +5,7 @@ signal clicked(card_data: CardData)
 signal hovered(card_data: CardData)
 signal hovered_out(card_data: CardData)
 signal used(card: Card)
+signal exhausted(card: Card)
 
 @export var hand_position : int
 @export var card_data : CardData
@@ -24,11 +25,14 @@ var active_tween: Tween
 func _ready() -> void:
 	card_data.data_changed.connect(update)
 	card_data.used.connect(on_card_used)
-	pass
+	card_data.exhausted.connect(on_card_exhausted)
 
 func on_card_used():
 	used.emit(self)
-
+	
+func on_card_exhausted():
+	exhausted.emit(self)
+	
 func init_position(hand_position, hud_position : Vector2):
 	position = hud_position
 	base_position = position

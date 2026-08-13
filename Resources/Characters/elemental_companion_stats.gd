@@ -115,7 +115,7 @@ func use_orb(battle_state : BattleState):
 		channel_orbs = CompanionUtils.remove_orb_by_type(channel_orbs, CardUtils.magic_type.WIND, channel_low_activation_ceiling)
 	reset_count()
 	channel_used.emit()
-	channel_removed.emit(channel_low_activation_ceiling)
+	channel_removed.emit()
 
 func explosion(battle_state: BattleState):
 	print("explosion triggered !")

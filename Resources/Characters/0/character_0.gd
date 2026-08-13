@@ -17,8 +17,5 @@ func on_mana_changed():
 	pass
 
 func on_damage_taken(damage):
-	animating = true
-	_animated_sprite.stop()
-	_animated_sprite.play("damage_taken")
-	await _animated_sprite.animation_finished
-	animating = false
+	super(damage)
+	Events.player_damage_taken.emit(damage)

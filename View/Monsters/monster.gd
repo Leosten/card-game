@@ -75,3 +75,7 @@ func on_action(action_type):
 
 func update_monster_predictive():
 	monster_predictive.update(monster_data.action_cycle[monster_data.get_next_step()])
+
+func on_damage_taken(damage):
+	super(damage)
+	Events.monster_damage_taken.emit(damage)

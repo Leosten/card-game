@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://8cj5g7duym0b"]
+
+[ext_resource type="Script" uid="uid://dalg5kmpychiq" path="res://View/UI/damage_number.gd" id="1_2jrf2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dw4jg"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DamageNumber" type="Label" unique_id=1165032727]
+text = "23"
+label_settings = SubResource("LabelSettings_dw4jg")
+script = ExtResource("1_2jrf2")

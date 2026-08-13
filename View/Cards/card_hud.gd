@@ -16,9 +16,12 @@ var player_deck : Array[CardData] = []
 var hovered_card: Card = null
 
 var player_draw_value
+
 var draw_pile : Array[CardData] = []
 var discard_pile : Array[CardData] = []
+var exhaust_pile : Array[CardData] = []
 var player_hand : Array[CardData] = []
+
 var card_used = false
 var enemy_turn = false
 var card_hand_size
@@ -79,6 +82,7 @@ func display_cards(cards_to_display: Array[CardData]) :
 		card.hovered_out.connect(_on_card_hovered_out)
 		card.clicked.connect(_on_card_clicked)
 		card.used.connect(_on_card_used)
+		card.exhausted.connect(_on_card_exhausted)
 		card_hand_anchor.add_child(card)
 		displayed_hand.append(card)
 		card.update()
@@ -89,6 +93,10 @@ func _on_card_used(card : Card):
 	print("card used : ", card.card_data.name)
 	discard_card(card)
 
+func _on_card_exhausted(card : Card):
+	print("card exhausted : ", card.card_data.name)
+	exhaust_card(card)
+	
 func discard_card(card: Card):
 	card_used = true
 	await card_animation_manager.use_card_animation(card)
@@ -106,6 +114,26 @@ func discard_card(card: Card):
 		displayed_card.update()
 	#
 	discard_pile.append(card.card_data)
+	reposition_cards()
+	update_piles_count()
+
+func exhaust_card(card: Card):
+	card_used = true
+	await card_animation_manager.exhaust_card_animation(card)
+	card_used = false
+	player_hand.erase(card.card_data)
+	card.queue_free()
+	displayed_hand.erase(card)
+	var index = 0
+	for card_d in player_hand:
+		card_d.hand_position = index
+		index +=1
+		
+	#var index_2 = 0
+	for displayed_card in displayed_hand:
+		displayed_card.update()
+	#
+	exhaust_pile.append(card.card_data)
 	reposition_cards()
 	update_piles_count()
 
@@ -136,7 +164,7 @@ func reposition_cards():
 	for card in displayed_hand:
 		var new_position = card_hand_positions[card.hand_position].position
 		card.z_index = card.hand_position + 1
-		card_animation_manager.reposition_animation(card, new_position)
+		CardAnimationManager.reposition_animation(card, new_position)
 		card.base_position = new_position
 
 func update_displayed_hand_cost(battle_state : BattleState):

@@ -1,8 +1,8 @@
 class_name VulnerableStatus
 extends Status
 
-func _init(target_entity : Targetable, stacks) -> void:
-	super(target_entity, stacks)
+func _init(target : Targetable, initial_stacks) -> void:
+	super(target, initial_stacks)
 	type = StatusUtils.names.VULNERABLE
 
 func on_turn_end() -> void:

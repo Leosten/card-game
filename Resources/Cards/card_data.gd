@@ -4,6 +4,7 @@ extends Resource
 
 signal data_changed
 signal used(card)
+signal exhausted(card)
 
 @export var id = 0
 @export var character_deck = 0
@@ -15,7 +16,7 @@ signal used(card)
 @export var shield := 0
 @export var draw_value := 0
 @export var actions : Array[CardUtils.action_type] = []
-
+@export var exhaust : bool = false
 var status_effects : Array[CardStatus]
 var buffs : Array[CardStatus]
 

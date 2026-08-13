@@ -52,6 +52,9 @@ func use_card_animation(card : Card):
 
 	await card.active_tween.finished
 
+func exhaust_card_animation(card: Card):
+	use_card_animation(card)
+
 static func reposition_animation(card: Card, new_position : Vector2) -> void:
 	if card.active_tween:
 		card.active_tween.kill()

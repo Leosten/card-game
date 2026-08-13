@@ -16,4 +16,4 @@ func monster_appears(monster: Monster):
 	pass
 
 func short_pause():
-	get_parent().get_tree().create_timer(short_pause_value).timeout
+	get_parent().get_tree().create_timer(short_pause_value).timeout.emit()

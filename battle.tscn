@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ybsmg21ph22t" path="res://View/BattleFieldView.tscn" id="2_7sfm4"]
 [ext_resource type="PackedScene" uid="uid://cny75kkfdyh1g" path="res://View/Cards/mana_window.tscn" id="3_i431l"]
 [ext_resource type="Script" uid="uid://cl3jqlp3cmcx8" path="res://View/Menu/hud_menu.gd" id="4_6t8i5"]
+[ext_resource type="Script" uid="uid://r3uwpuqn7anb" path="res://Manager/damage_number_manager.gd" id="5_dw4jg"]
 
 [sub_resource type="Theme" id="Theme_ekkti"]
 Button/font_sizes/font_size = 33
@@ -28,6 +29,16 @@ text = "End Turn"
 
 [node name="Hud" type="CanvasLayer" parent="." unique_id=1110246118]
 script = ExtResource("4_6t8i5")
+
+[node name="DamageNumbers" type="Control" parent="Hud" unique_id=1515028489]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_dw4jg")
 
 [node name="BottomHudRoot" type="Control" parent="Hud" unique_id=364975326]
 layout_mode = 3

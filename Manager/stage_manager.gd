@@ -1,8 +1,6 @@
 class_name StageManager
 extends Node
 
-const MonsterData = preload("res://Resources/Monsters/monster_data.gd")
-
 var stage_monsters : Array[MonsterData] = []
 enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL, SHOP}
 
@@ -123,4 +121,3 @@ func init_monster_positions(viewport_size) -> Array[Area2D]:
 		monster_area.position = monster_position
 		enemy_positions.append(monster_area)
 	return enemy_positions
-	print("Monster positions initiated")

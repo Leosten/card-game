@@ -164,7 +164,7 @@ func _on_end_turn_button_pressed() -> void:
 	enemy_turn = false
 
 func victory():
-	_cleanup_combat()
+	await _cleanup_combat()
 	var victory_screen = load("res://View/Menu/victory_window.tscn")
 	center_window.add_child(victory_screen.instantiate())
 	print("victory screen display")

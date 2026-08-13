@@ -17,8 +17,6 @@ signal death
 
 signal stats_changed
 
-#@export var buffs : Array[Status] = []
-#@export var status_effects : Array[Status] = []
 @export var health : int = 0
 @export var max_health : int = 0
 @export var shield : int = 0

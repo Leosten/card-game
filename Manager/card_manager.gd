@@ -1,9 +1,9 @@
 class_name CardManager
 extends Node
 
-const CardData = preload("res://Resources/Cards/card_data.gd")
 const PlayerManager = preload("res://Manager/character_manager.gd")
 const Card = preload("res://View/Cards/card.tscn")
+
 var _backgrounds = {
 	CardUtils.card_type.ELEMENTAL: preload("res://Art/UI/cards/card_black_lily.png"),
 	CardUtils.card_type.MAGIC: preload("res://Art/UI/cards/card_black_sakura.png"),
@@ -16,13 +16,8 @@ var _cards_by_name: Dictionary = {}
 
 const BASE_CARDS_DIR = "res://Resources/Cards/"
 
-# Called when the node enters the scene tree for the first time.
 func _init() -> void:
 	_load_all_cards_recursive(BASE_CARDS_DIR)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _load_all_cards_recursive(dir_path: String) -> void:
 	var dir = DirAccess.open(dir_path)
@@ -94,13 +89,11 @@ func get_random_card_for_deck(character_class: String) -> CardData:
 func get_card_rewards_by_deck(deck_nb, count: int = 3) -> Array[CardData]:
 	var rewards: Array[CardData] = []
 	var cards = _cards_by_deck.get(str(deck_nb), [])
-	#print("get card rewards by deck : ", cards)
 	
 	cards.filter(func(card): return card.tier == CardUtils.tier.COMMON)
 	cards.shuffle()
 
 	for i in range(min(count, cards.size())):
 		rewards.append(cards[i].duplicate())
-	#print("get card rewards by deck : ", rewards)
 		
 	return rewards

@@ -25,13 +25,13 @@ func attack_animation():
 	animating = false
 
 func on_damage_taken(damage):
+	Events.damage_taken.emit(damage, self.position)
 	animating = true
 	_animated_sprite.stop()
 	if (_animated_sprite.sprite_frames.has_animation("damage_taken")):
 		_animated_sprite.play("damage_taken")
 		await _animated_sprite.animation_finished
 	animating = false
-
 func on_buffed():
 	pass
 

@@ -32,7 +32,7 @@ func _create_status_instance(status_name: StatusUtils.names, stacks: int) -> Sta
 		StatusUtils.names.STRENGTH:
 			return null
 		StatusUtils.names.FIRE_AFFINITY:
-			return null
+			return FireAffinityStatus.new(owner_entity, stacks)
 		StatusUtils.names.REGEN:
 			return null
 		_:
@@ -58,12 +58,12 @@ func _on_status_changed(status: Status) -> void:
 
 func _cleanup_expired_statuses() -> void:
 	var to_remove = []
-	for name in _statuses:
-		if _statuses[name].stacks <= 0:
-			to_remove.append(name)
+	for s_name in _statuses:
+		if _statuses[s_name].stacks <= 0:
+			to_remove.append(s_name)
 			
-	for name in to_remove:
-		_statuses.erase(name)
+	for s_name in to_remove:
+		_statuses.erase(s_name)
 		
 	if not to_remove.is_empty():
 		statuses_updated.emit()

@@ -18,14 +18,13 @@ func _cache_all_icons() -> void:
 			if not dir.current_is_dir() and not file_name.ends_with(".import"):
 				var icon_name = file_name.get_basename().to_lower()
 				var texture = load(ICONS_DIR + file_name) as Texture2D
-				
 				if texture:
 					_icons[icon_name] = texture
-					
 			file_name = dir.get_next()
 		dir.list_dir_end()
 
 func get_icon_by_name(icon_name: String) -> Texture2D:
+	print("icon name : ", icon_name)
 	var key = icon_name.to_lower()
 	
 	if _icons.has(key):

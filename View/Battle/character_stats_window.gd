@@ -3,6 +3,13 @@ extends Node
 var stats : Targetable
 var local_status: Array[StatusEffect]
 
+@onready var shield_bar = %ShieldBar
+@onready var shield_value = %ShieldValue
+@onready var health = %Health
+@onready var health_bar = %HealthBar
+@onready var max_health = %MaxHealth
+@onready var buffs_grid = %MaxHealth
+
 func init_stats_window(p_stats: Targetable):
 	stats = p_stats
 	stats.stats_changed.connect(update_stats)
@@ -10,24 +17,24 @@ func init_stats_window(p_stats: Targetable):
 	update_stats()
 	
 func update_stats():
-	#print("SHIELD VALUE FINAL: %s" % stats.shield)
 	if stats.shield > 0:
-		$VBoxContainer/HealthBar/ShieldBar.show()
-		$VBoxContainer/HealthBar/ShieldBar.value = stats.shield
-		$VBoxContainer/HealthBar/ShieldBar.custom_minimum_size.x = stats.shield
-		$VBoxContainer/HealthBar/ShieldValue.show()
-		$VBoxContainer/HealthBar/ShieldValue.text = str(stats.shield)
+		shield_bar.show()
+		shield_bar.value = stats.shield
+		shield_bar.custom_minimum_size.x = stats.shield
+		shield_value.show()
+		shield_value.text = str(stats.shield)
 	else:
-		$VBoxContainer/HealthBar/ShieldBar.hide()
-		$VBoxContainer/HealthBar/ShieldValue.hide()
-	$VBoxContainer/HealthBar.value = stats.health
-	$VBoxContainer/HealthBar.max_value = stats.max_health
-	$VBoxContainer/HealthBar/CenterContainer/HBoxContainer/Health.text = str(stats.health)
-	$VBoxContainer/HealthBar/CenterContainer/HBoxContainer/MaxHealth.text = str(stats.max_health)
+		shield_bar.hide()
+		shield_value.hide()
+	health_bar.value = stats.health
+	health_bar.max_value = stats.max_health
+	health.text = str(stats.health)
+	max_health.text = str(stats.max_health)
 
 func update_status_icons():
-	for icon in $VBoxContainer/BuffsGrid.get_children():
+	for icon in buffs_grid.get_children():
 		icon.queue_free()
+		
 	var statuses : Dictionary = stats.status_manager.get_statuses()
 	if statuses.is_empty():
 		return
@@ -36,4 +43,4 @@ func update_status_icons():
 		print("status: " ,status)
 		var icon = GameManager.ui_manager.get_icon_scene(status)
 		icon.set_stacks(status.stacks)
-		$VBoxContainer/BuffsGrid.add_child(icon)
+		buffs_grid.add_child(icon)

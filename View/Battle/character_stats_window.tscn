@@ -27,6 +27,7 @@ offset_right = 104.0
 offset_bottom = 69.0
 
 [node name="HealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=632292429]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_vertical = 8
@@ -34,6 +35,7 @@ theme = ExtResource("2_gxebv")
 show_percentage = false
 
 [node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HealthBar" unique_id=704427127]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 1
 anchors_preset = 6
@@ -56,6 +58,7 @@ indeterminate = true
 editor_preview_indeterminate = false
 
 [node name="ShieldValue" type="Label" parent="VBoxContainer/HealthBar" unique_id=969845377]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 110.0
 offset_top = 1.0
@@ -83,6 +86,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Health" type="Label" parent="VBoxContainer/HealthBar/CenterContainer/HBoxContainer" unique_id=704031492]
+unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 label_settings = SubResource("LabelSettings_ifhmy")
@@ -93,11 +97,13 @@ text = "/"
 label_settings = SubResource("LabelSettings_bjp1d")
 
 [node name="MaxHealth" type="Label" parent="VBoxContainer/HealthBar/CenterContainer/HBoxContainer" unique_id=723403970]
+unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 label_settings = SubResource("LabelSettings_fv8vx")
 
 [node name="BuffsGrid" type="GridContainer" parent="VBoxContainer" unique_id=301094566]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 50)
 layout_mode = 2
 columns = 2

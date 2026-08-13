@@ -49,7 +49,13 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 	card.special_effect(battle_state)
 	battle_state.player_stats.stats_changed.emit()
 	cost_card_mana(battle_state, card.cost)
-	card.used.emit()
+	send_card_used_signal(card)
+
+func send_card_used_signal(card: CardData):
+	if card.actions.has(CardUtils.action_type.BUFFS):
+		card.exhausted.emit()
+	else:
+		card.used.emit()
 
 func card_apply_damage_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type, enemy: Targetable):
 	if action == CardUtils.action_type.DAMAGE:
