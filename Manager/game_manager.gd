@@ -11,6 +11,7 @@ var max_current_level = 5
 var max_current_stage = 1
 
 var card_manager : CardManager
+var stage_manager : StageManager
 var ui_manager : UiManager
 var character_manager : CharacterManager
 var battle_state : BattleState
@@ -35,6 +36,7 @@ func _ready() -> void:
 	char_id = 0
 	companion_id = 0
 	card_manager = CardManager.new()
+	stage_manager = StageManager.new()
 	character_manager = CharacterManager.new()
 	
 	init_player(char_id)
@@ -68,10 +70,6 @@ func get_player_char_id():
 	return battle_state.player_stats.char_id
 
 func get_battle_state() -> BattleState:
-	return battle_state
-
-func update_battle_state(battle_state : BattleState) -> BattleState:
-	battle_state = battle_state
 	return battle_state
 
 func victory_progress():

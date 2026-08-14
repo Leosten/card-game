@@ -9,11 +9,13 @@ var stage_monsters : Array[MonsterData]
 var monsters_displayed : Array[Monster]
 var player_character : AnimatableBody2D
 var companion_character : AnimatableBody2D
-var death_timer: SceneTreeTimer
 
 var stage_manager : StageManager
 var action_manager : ActionManager
 var battle_animation_manager : BattleAnimationManager
+
+var victory_screen
+var next_level_screen
 
 var viewport_size
 var enemy_positions : Array[Area2D] = []
@@ -29,7 +31,7 @@ func _ready() -> void:
 	card_hand_hud.card_clicked.connect(_on_card_clicked)
 	#todo: globals
 	viewport_size = get_viewport_rect().size
-	stage_manager = StageManager.new()
+	stage_manager = GameManager.stage_manager
 	battle_animation_manager = BattleAnimationManager.new()
 	add_child(battle_animation_manager)
 	action_manager = ActionManager.new()
@@ -90,7 +92,7 @@ func spawn_level_monsters():
 	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state.level_monsters, enemy_positions)
 	for monster_scene : Monster in monster_scenes :
 		monster_scene.clicked.connect(on_monster_clicked)
-		monster_scene.hovered.connect(on_monster_hovered)
+		#monster_scene.hovered.connect(on_monster_hovered)
 		monster_scene.dead.connect(on_monster_dead)
 		add_child(monster_scene)
 		monsters_displayed.append(monster_scene)
@@ -120,18 +122,12 @@ func on_monster_clicked(monster_data : MonsterData):
 		action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
 		card_clicked = null
 
-#func on_card_used(card_data : CardData):
-	#card_hand_hud.discard_card(card_clicked)
-
 func on_mana_changed():
 	update_player_mana()
 	card_hand_hud.update_displayed_hand_cost(battle_state)
 
 func update_player_mana():
 	mana_window.update_mana(battle_state.player_stats.current_mana)
-
-func on_monster_hovered(monster_data : MonsterData):
-	pass
 
 func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
@@ -165,7 +161,19 @@ func _on_end_turn_button_pressed() -> void:
 
 func victory():
 	await _cleanup_fight()
-	var victory_screen = load("res://View/Menu/victory_window.tscn")
+	display_victory_screen()
+
+func display_victory_screen():
+	victory_screen = load("res://View/Menu/victory_window.tscn")	
+	center_window.add_child(victory_screen.instantiate())
+	print("victory screen display")
+
+func on_victory_screen_next():
+	victory_screen.queue_free()
+	display_next_level_screen()
+
+func display_next_level_screen():
+	next_level_screen = load("res://View/Menu/next_level_window/next_level_window.tscn")
 	center_window.add_child(victory_screen.instantiate())
 	print("victory screen display")
 

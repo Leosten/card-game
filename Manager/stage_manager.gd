@@ -2,7 +2,7 @@ class_name StageManager
 extends Node
 
 var stage_monsters : Array[MonsterData] = []
-enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL, SHOP}
+enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL, SHOP, FORGE}
 
 # positioning variables
 var max_nb_of_enemies = 6
@@ -16,8 +16,8 @@ var row_margin = 320
 func _ready() -> void:
 	pass
 
-func get_stage_encounter_types(stage) :
-	match stage:
+func get_stage_encounter_types(level) :
+	match level:
 		1:
 			return [level_type.COMMON]
 		2:
@@ -29,7 +29,7 @@ func get_stage_encounter_types(stage) :
 		5:
 			return [level_type.MINIBOSS]
 		6:
-			return [level_type.SHOP]
+			return [level_type.SHOP, level_type.FORGE]
 		7:
 			return [level_type.COMMON, level_type.TREASURE]
 		8:
@@ -38,6 +38,24 @@ func get_stage_encounter_types(stage) :
 			return [level_type.COMMON, level_type.TREASURE, level_type.SPECIAL]
 		10:
 			return [level_type.BOSS]
+
+static func get_encounter_name_by_type(type : level_type):
+	match type:
+		level_type.COMMON:
+			return "Encounter"
+		level_type.MINIBOSS:
+			return "Mini Boss"
+		level_type.BOSS:
+			return "Boss"
+		level_type.TREASURE:
+			return "Treasure"
+		level_type.SPECIAL:
+			return "Special"
+		level_type.SHOP:
+			return "Shop"
+		level_type.FORGE:
+			return "Forge"
+		
 
 func get_stage_possible_monsters(stage) :
 	match stage:

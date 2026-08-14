@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dxxw3hmdyxo2a"]
+
+[ext_resource type="Script" uid="uid://crwjnj48ms5pr" path="res://View/Menu/next_level_window/encounter_choice.gd" id="1_r2dx6"]
+
+[node name="EncounterChoice" type="Control" unique_id=1596377273]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r2dx6")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2012195942]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChoiceLabel" type="Label" parent="CenterContainer" unique_id=592430045]
+unique_name_in_owner = true
+layout_mode = 2

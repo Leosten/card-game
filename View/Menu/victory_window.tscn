@@ -39,7 +39,7 @@ offset_right = 157.0
 offset_bottom = 91.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.09803922)
+color = Color(0, 0, 0, 0.3019608)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=744029937]
 layout_mode = 1

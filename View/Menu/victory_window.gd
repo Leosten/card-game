@@ -1,4 +1,6 @@
-extends Node
+extends Control
+
+signal next
 
 var battle_state : BattleState = GameManager.get_battle_state()
 var cards : Array[CardData]
@@ -9,6 +11,7 @@ var selected_card : CardData = null
 @onready var third_reward_box : CenterContainer = $%ThirdReward
 
 func _ready() -> void:
+	ScreenTransition.wipe_in(0.3)
 	get_rewards()
 	display_card_rewards()
 
@@ -48,12 +51,15 @@ func _on_next_button_pressed() -> void:
 		GameManager.battle_state.player_deck.append(selected_card)
 	GameManager.victory_progress()
 	Events.next_battle.emit()
+	await ScreenTransition.wipe_in()
 	queue_free()
-
+	next.emit()
+	
 func _on_ignore_button_pressed() -> void:
 	GameManager.victory_progress()
 	Events.next_battle.emit()
 	queue_free()
+	
 
 func _on_card_hovered(card : Card):
 	print("card hovered")
