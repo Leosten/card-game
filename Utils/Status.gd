@@ -25,3 +25,6 @@ func on_turn_end() -> void:
 
 func on_card_played(_card_data) -> void:
 	pass
+
+func clear() -> void:
+	pass

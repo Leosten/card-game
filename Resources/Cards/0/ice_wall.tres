@@ -4,4 +4,11 @@
 
 [resource]
 script = ExtResource("1_hftb6")
+name = "Ice Wall"
+shield = 15
+description = "Protect yourself for {shield} damage and channel 3 ice orbs"
+cost = 3
+magic_type = 2
+tier = 2
+type = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

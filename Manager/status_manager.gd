@@ -63,14 +63,14 @@ func _cleanup_expired_statuses() -> void:
 	for s_name in _statuses:
 		if _statuses[s_name].stacks <= 0:
 			to_remove.append(s_name)
-			
 	for s_name in to_remove:
 		_statuses.erase(s_name)
-		
 	if not to_remove.is_empty():
 		statuses_updated.emit()
 
 func clear_all() -> void:
+	for status in _statuses.values():
+		status.clear()
 	_statuses.clear()
 	statuses_updated.emit()
 

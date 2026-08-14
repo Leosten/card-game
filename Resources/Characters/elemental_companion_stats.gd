@@ -65,7 +65,6 @@ func channel_special(card : CardData, battle_state : BattleState):
 func reset_channel_orbs():
 	channel_orbs.clear()
 	channel_reset.emit()
-	#reset_count()
 
 func add_count(orb : CardUtils.magic_type):
 	if orb == CardUtils.magic_type.FIRE:
@@ -79,13 +78,6 @@ func reset_count():
 	fire_count = 0
 	ice_count = 0
 	wind_count = 0
-	for orb in channel_orbs:
-		if orb == CardUtils.magic_type.FIRE:
-			fire_count += 1
-		if orb == CardUtils.magic_type.ICE:
-			ice_count += 1
-		if orb == CardUtils.magic_type.WIND:
-			wind_count += 1
 
 func check_activation_ceiling() -> bool:
 	if channel_orbs.count(CardUtils.magic_type.FIRE) >= channel_high_activation_ceiling:

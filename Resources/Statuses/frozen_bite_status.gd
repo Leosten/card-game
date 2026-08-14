@@ -15,3 +15,6 @@ func _on_ice_channeled():
 		var ice_damage = stacks * damage
 		var final_damage = DamageUtils.calculate_final_damage(ice_damage, GameManager.battle_state.player_stats, monster)
 		DamageUtils.apply_damage(final_damage, monster)
+
+func clear():
+	GameManager.battle_state.player_stats.companion_stats.ice_channeled.disconnect(_on_ice_channeled)
