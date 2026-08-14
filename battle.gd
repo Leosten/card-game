@@ -35,13 +35,8 @@ func _ready() -> void:
 	battle_animation_manager = BattleAnimationManager.new()
 	add_child(battle_animation_manager)
 	action_manager = ActionManager.new()
-	#action_manager.card_used.connect(on_card_used)
-	
-	battle_state = GameManager.get_battle_state()
-	battle_state.player_stats.current_mana_changed.connect(on_mana_changed)
+	battle_state = GameManager.battle_state
 
-	current_level = GameManager.current_level
-	current_stage = GameManager.current_stage
 	spawn_player_character()
 	spawn_companion_character()
 	new_stage()
@@ -53,15 +48,14 @@ func start_battle():
 	print("new battle current stage " , current_stage, " - ", current_level)
 	current_turn = 1
 	battle_state.replenish_player_mana()
-	level_display.text = "Level " + str(current_stage) + " - " + str(current_level)
-	update_player_mana()
+	battle_state.replenish_player_mana()
 	get_level_monsters()
 	spawn_level_monsters()
 	card_hand_hud.start_battle()
 	card_hand_hud.new_turn()
 
 func new_stage():
-	load_stage_monsters()
+	stage_monsters = stage_manager.get_stage_monsters(GameManager.current_level)
 
 func spawn_player_character():
 	player_character = GameManager.get_character_scene()
@@ -100,9 +94,6 @@ func spawn_level_monsters():
 		await get_tree().create_timer(0.3).timeout
 	print("Monsters spawned")
 
-func load_stage_monsters():
-	stage_monsters = stage_manager.get_stage_monsters(current_level)
-
 func _on_card_clicked(card_data: CardData) -> void:
 	if enemy_turn == true:
 		return
@@ -121,13 +112,6 @@ func on_monster_clicked(monster_data : MonsterData):
 		#print("card used on enemy")
 		action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
 		card_clicked = null
-
-func on_mana_changed():
-	update_player_mana()
-	card_hand_hud.update_displayed_hand_cost(battle_state)
-
-func update_player_mana():
-	mana_window.update_mana(battle_state.player_stats.current_mana)
 
 func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
@@ -154,28 +138,13 @@ func _on_end_turn_button_pressed() -> void:
 	enemy_turn = true
 	await launch_enemy_turn()
 	battle_state.replenish_player_mana()
-	update_player_mana()
 	card_hand_hud.new_turn()
 	action_manager.start_turn_status_cycle(battle_state)
 	enemy_turn = false
 
 func victory():
 	await _cleanup_fight()
-	display_victory_screen()
-
-func display_victory_screen():
-	victory_screen = load("res://View/Menu/victory_window.tscn")	
-	center_window.add_child(victory_screen.instantiate())
-	print("victory screen display")
-
-func on_victory_screen_next():
-	victory_screen.queue_free()
-	display_next_level_screen()
-
-func display_next_level_screen():
-	next_level_screen = load("res://View/Menu/next_level_window/next_level_window.tscn")
-	center_window.add_child(victory_screen.instantiate())
-	print("victory screen display")
+	Events.request_window_open.emit("reward")
 
 func _cleanup_fight():
 	battle_state.cleanup_fight()

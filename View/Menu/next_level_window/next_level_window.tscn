@@ -21,9 +21,12 @@ grow_vertical = 2
 script = ExtResource("1_dxppe")
 
 [node name="BackDrop" type="ColorRect" parent="." unique_id=1589563938]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=429213419]
@@ -54,7 +57,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NextLevelSubText" type="Label" parent="PanelContainer/VBoxContainer" unique_id=836496789]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(140, 79)
 layout_mode = 2
 text = "Choose your path"
 label_settings = SubResource("LabelSettings_2o1au")
@@ -66,59 +69,11 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ChoicesContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer" unique_id=1545416641]
+[node name="ChoicesContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer" unique_id=2138614377]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-
-[node name="FirstChoice" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/ChoicesContainer" unique_id=883517594]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="FirstLabel" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/ChoicesContainer/FirstChoice" unique_id=1673382851]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "TEST
-"
-
-[node name="SecondChoice" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/ChoicesContainer" unique_id=428923512]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="SecondLabel" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/ChoicesContainer/SecondChoice" unique_id=1773224365]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "TEST
-"
-
-[node name="ThirdChoice" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/ChoicesContainer" unique_id=2089843715]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ThirdLabel" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/ChoicesContainer/ThirdChoice" unique_id=289777423]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "TEST
-"
-
-[node name="MarginContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=808165126]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-mouse_filter = 1
+alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=2008664093]
 custom_maximum_size = Vector2(-1, 150)

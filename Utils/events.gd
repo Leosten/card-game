@@ -12,3 +12,6 @@ signal player_shielded()
 
 signal next_battle
 signal game_completed
+
+signal request_window_open
+signal request_window_close

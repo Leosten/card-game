@@ -1,7 +1,7 @@
 extends Control
 
-var encounter_choice = preload("res://View/Menu/next_level_window/encounter_choice.tscn")
-var possible_encounters_type
+var encounter_choice_scene = preload("res://View/Menu/next_level_window/encounter_choice.tscn")
+var possible_encounters_type := []
 var selected_choice = null
 
 func _ready() -> void:
@@ -10,12 +10,13 @@ func _ready() -> void:
 	
 func display_encounter_choices():
 	for encounter in possible_encounters_type:
-		var choice = encounter_choice.instantiate()
-		choice.init(encounter)
+		print("encounter in for: " , encounter)
+		var choice = encounter_choice_scene.instantiate()
 		choice.hovered.connect(_on_choice_hovered)
 		choice.hovered_out.connect(_on_choice_hovered_out)
 		choice.clicked.connect(_on_choice_clicked)
-		%ChoicesContainer.add_child(encounter_choice)
+		%ChoicesContainer.add_child(choice)
+		choice.init(encounter)
 
 func _on_choice_hovered():
 	pass

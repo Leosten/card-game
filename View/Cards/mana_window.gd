@@ -1,6 +1,10 @@
 extends Node2D
 
-func update_mana(current_mana):
+func _ready():
+	GameManager.battle_state.player_stats.current_mana_changed.connect(on_mana_changed)
+
+func on_mana_changed():
+	var current_mana = GameManager.battle_state.player_stats.current_mana
 	var color
 	if (current_mana > 0):
 		color = Color(0.149, 0.959, 0.792, 1.0)

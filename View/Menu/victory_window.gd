@@ -2,7 +2,7 @@ extends Control
 
 signal next
 
-var battle_state : BattleState = GameManager.get_battle_state()
+var battle_state : BattleState = GameManager.battle_state
 var cards : Array[CardData]
 var selected_card : CardData = null
 
@@ -49,15 +49,17 @@ func _on_next_button_pressed() -> void:
 		#TODO animation
 		print("adding card to deck")
 		GameManager.battle_state.player_deck.append(selected_card)
-	GameManager.victory_progress()
-	Events.next_battle.emit()
-	await ScreenTransition.wipe_in()
-	queue_free()
-	next.emit()
+	Events.request_window_close.emit("reward")
+	Events.request_window_open.emit("next_level")
+	#GameManager.victory_progress()
+	#Events.next_battle.emit()
+	#await ScreenTransition.wipe_in()
+	#queue_free()
+	#next.emit()
 	
 func _on_ignore_button_pressed() -> void:
-	GameManager.victory_progress()
-	Events.next_battle.emit()
+	#GameManager.victory_progress()
+	#Events.next_battle.emit()
 	queue_free()
 	
 

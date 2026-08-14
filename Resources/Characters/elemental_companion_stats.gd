@@ -102,7 +102,7 @@ func check_low_activation_ceiling():
 func trigger_high():
 	if GameManager.battle_state.level_monsters.is_empty():
 		return
-	var battle_state = GameManager.get_battle_state()
+	var battle_state = GameManager.battle_state
 	if channel_orbs.count(CardUtils.magic_type.FIRE) >= channel_high_activation_ceiling:
 		explosion(battle_state)
 	if channel_orbs.count(CardUtils.magic_type.ICE) >= channel_high_activation_ceiling:
@@ -138,7 +138,7 @@ func aoe_explosion(battle_state: BattleState):
 	print("aoe explosion triggered !")
 	for monster in battle_state.level_monsters:
 		DamageUtils.apply_damage(fire_low_damage, monster)
-		monster.damage_taken.emit()
+		monster.damage_taken.emit(fire_low_damage)
 
 func big_shield(battle_state: BattleState):
 	print("big shield triggered !")

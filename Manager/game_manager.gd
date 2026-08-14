@@ -29,6 +29,7 @@ var viewport_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Events.next_battle.connect(on_next_battle)
 	viewport_size = get_viewport().size
 	# select char id at start menu
 	battle_state = BattleState.new()
@@ -62,17 +63,12 @@ func get_character_scene() :
 	return character_manager.get_character_scene(char_id)
 
 func get_companion_scene():
-	#if (companion_scene != null) :
-		#return companion_scene
 	return character_manager.get_companion_scene(companion_id)
 
 func get_player_char_id():
 	return battle_state.player_stats.char_id
 
-func get_battle_state() -> BattleState:
-	return battle_state
-
-func victory_progress():
+func on_next_battle():
 	if current_stage == max_current_stage and current_level == max_current_level:
 		Events.game_completed.emit()
 		print("game completed")

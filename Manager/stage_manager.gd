@@ -16,7 +16,7 @@ var row_margin = 320
 func _ready() -> void:
 	pass
 
-func get_stage_encounter_types(level) :
+func get_stage_encounter_types(level: int) -> Array[level_type]:
 	match level:
 		1:
 			return [level_type.COMMON]
@@ -38,6 +38,8 @@ func get_stage_encounter_types(level) :
 			return [level_type.COMMON, level_type.TREASURE, level_type.SPECIAL]
 		10:
 			return [level_type.BOSS]
+		_:
+			return []
 
 static func get_encounter_name_by_type(type : level_type):
 	match type:
@@ -55,7 +57,8 @@ static func get_encounter_name_by_type(type : level_type):
 			return "Shop"
 		level_type.FORGE:
 			return "Forge"
-		
+		_:
+			return ""
 
 func get_stage_possible_monsters(stage) :
 	match stage:
