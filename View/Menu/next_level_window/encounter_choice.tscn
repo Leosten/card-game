@@ -11,11 +11,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_r2dx6")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2012195942]
-z_index = 101
+[node name="Button" type="Button" parent="." unique_id=349689982]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,9 +24,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2012195942]
+z_index = 101
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="ChoiceLabel" type="Label" parent="CenterContainer" unique_id=592430045]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Encounter"
 
-[connection signal="clicked" from="." to="." method="_on_clicked"]
+[connection signal="hovered" from="." to="." method="_on_hovered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
