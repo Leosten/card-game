@@ -6,4 +6,4 @@ func _init():
 
 func channel_add() -> Array[CardUtils.magic_type]:
 	#return [CardUtils.magic_type.FIRE]
-	return [CardUtils.magic_type.FIRE,CardUtils.magic_type.FIRE,CardUtils.magic_type.FIRE]
+	return [CardUtils.magic_type.FIRE]

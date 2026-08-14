@@ -43,10 +43,11 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 		
 		for target in enemies:
 			card_apply_damage_action(battle_state, card, action, target)
+			card.use_special(battle_state, enemy)
 			target.stats_changed.emit()
 			# TODO: enemy dies and action continues ...
 	check_for_everyone_death(battle_state)
-	card.special_effect(battle_state)
+	card.use_special(battle_state)
 	battle_state.player_stats.stats_changed.emit()
 	cost_card_mana(battle_state, card.cost)
 	send_card_used_signal(card)
@@ -92,7 +93,7 @@ func card_elemental_companion_action(battle_state: BattleState, card: CardData, 
 		battle_state.player_stats.companion_stats.reset_channel_orbs(card)
 	if action == CardUtils.action_type.CHANNEL_SPECIAL:
 		battle_state.player_stats.companion_stats.channel_special(card, battle_state)
-
+		#card.use_special(battle_state, null)
 func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy : Targetable):
 	enemy.acting.emit(action.type)
 	if action.type == MonsterUtils.action_types.DAMAGE:

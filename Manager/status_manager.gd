@@ -35,6 +35,8 @@ func _create_status_instance(status_name: StatusUtils.names, stacks: int) -> Sta
 			return FireAffinityStatus.new(owner_entity, stacks)
 		StatusUtils.names.REGEN:
 			return null
+		StatusUtils.names.FROZEN_BITE:
+			return FrozenBiteStatus.new(owner_entity, stacks)
 		_:
 			push_warning("Unknown status ID: %s" % status_name)
 			return null
@@ -74,3 +76,6 @@ func clear_all() -> void:
 
 func get_statuses() -> Dictionary:
 	return _statuses
+
+func cleanup_fight():
+	clear_all()

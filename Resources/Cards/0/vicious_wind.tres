@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://cc6gsxni3cxuo"]
+
+[ext_resource type="Script" uid="uid://dqhgbatq2t8g5" path="res://Resources/Cards/0/vicious_wind.gd" id="1_07i6t"]
+
+[resource]
+script = ExtResource("1_07i6t")
+name = "Vicious Wind"
+damage = 6
+description = "Use an orb to deal {damage} damage and channel 1 wind orb"
+magic_type = 1
+tier = 1
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

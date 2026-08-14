@@ -1,0 +1,24 @@
+[gd_resource type="Resource" format=3 uid="uid://cpxofy8csmetn"]
+
+[ext_resource type="Script" uid="uid://sh47yukp35o1" path="res://Resources/Cards/0/frog_jump.gd" id="1_x4q28"]
+
+[resource]
+script = ExtResource("1_x4q28")
+id = null
+character_deck = null
+hand_position = null
+name = "Frog Jump"
+damage = 2
+damage_modifier = null
+heal = null
+shield = null
+draw_value = null
+actions = null
+exhaust = null
+description = "Deal  {damage} damage for every ice orb channeled"
+cost = 1
+allowed_targets = null
+magic_type = 2
+tier = null
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -27,6 +27,16 @@ func get_stage_encounter_types(stage) :
 		4:
 			return [level_type.COMMON, level_type.TREASURE, level_type.SPECIAL]
 		5:
+			return [level_type.MINIBOSS]
+		6:
+			return [level_type.SHOP]
+		7:
+			return [level_type.COMMON, level_type.TREASURE]
+		8:
+			return [level_type.COMMON, level_type.MINIBOSS, level_type.TREASURE]
+		9:
+			return [level_type.COMMON, level_type.TREASURE, level_type.SPECIAL]
+		10:
 			return [level_type.BOSS]
 
 func get_stage_possible_monsters(stage) :

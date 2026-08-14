@@ -209,6 +209,6 @@ func _on_card_hovered_out(card: Card) -> void:
 	card.hovering = false
 	hovered_card = null
 
-func cleanup_combat():
+func cleanup_fight():
 	await discard_all()
 	CardAnimationManager.clean_tweens(displayed_hand)

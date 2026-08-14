@@ -10,7 +10,8 @@ enum names {
 	VULNERABLE,
 	FIRE_AFFINITY,
 	ICE_AFFINITY,
-	WIND_AFFINITY
+	WIND_AFFINITY,
+	FROZEN_BITE
 }
 
 static func apply_strength_modifier(damage, stacks):

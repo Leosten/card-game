@@ -8,8 +8,9 @@ signal channel_used
 signal channel_high_trigger
 signal channel_removed(nb)
 signal channel_reset
-signal channel_special
+signal channel_special_used
 signal use_ceiling_not_reached
+signal ice_channeled
 
 @export var channel_orbs : Array[CardUtils.magic_type]= []
 @export var max_channel_orbs = 5
@@ -47,15 +48,19 @@ func add_orbs(orbs : Array[CardUtils.magic_type]):
 
 func _add_count(orb_type : CardUtils.magic_type):
 	add_count(orb_type)
+	
+	if (orb_type == CardUtils.magic_type.ICE):
+		ice_channeled.emit()
+	
 	channeled.emit()
 
 func channel_remove(card : CardData):
 	channel_orbs = card.channel_remove(channel_orbs)
 	channel_removed.emit()
 
-func channel_special_effect(card : CardData, battle_state : BattleState):
-	channel_orbs = card.special_effect(battle_state)
-	channel_special.emit()
+func channel_special(card : CardData, battle_state : BattleState):
+	#channel_orbs = card.special_effect(battle_state)
+	channel_special_used.emit()
 
 func reset_channel_orbs():
 	channel_orbs.clear()
@@ -166,3 +171,8 @@ func aoe_vulnerable(battle_state: BattleState):
 		var status = CardStatus.new(StatusUtils.names.VULNERABLE, 2)
 		monster.status_manager.apply_status([status])
 		monster.statused.emit()
+
+func cleanup_fight():
+	channel_orbs.clear()
+	reset_count()
+	channel_reset.emit()

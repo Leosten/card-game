@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://fwbqnlk8861v"]
+
+[ext_resource type="Script" uid="uid://cfhaupnv8e8o" path="res://Resources/Cards/0/ice_wall.gd" id="1_hftb6"]
+
+[resource]
+script = ExtResource("1_hftb6")
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

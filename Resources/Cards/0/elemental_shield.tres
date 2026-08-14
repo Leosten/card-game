@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3 uid="uid://cgs7wtxpc5j8x"]
+
+[ext_resource type="Script" uid="uid://oqtj3jsyq2v7" path="res://Resources/Cards/0/elemental_shield.gd" id="1_hsiit"]
+
+[resource]
+script = ExtResource("1_hsiit")
+name = "Elemental Shield"
+shield = 20
+description = "Use an orb to protect yourself for {shield} shield"
+cost = 2
+magic_type = 2
+tier = 1
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

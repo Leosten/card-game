@@ -45,6 +45,8 @@ func get_status_icon(status_type : StatusUtils.names) -> Texture2D:
 			return get_icon_by_name('protect')
 		StatusUtils.names.FIRE_AFFINITY:
 			return get_icon_by_name('up_buff')
+		StatusUtils.names.FROZEN_BITE:
+			return get_icon_by_name('up_buff')
 	return null
 
 func get_monster_action_icon(action_type : MonsterUtils.action_types):

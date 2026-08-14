@@ -1,0 +1,23 @@
+[gd_resource type="Resource" format=3 uid="uid://b5efg1brgov0e"]
+
+[ext_resource type="Script" uid="uid://bwqx7dohtdbta" path="res://Resources/Cards/0/frozen_bite.gd" id="1_xw7hn"]
+
+[resource]
+script = ExtResource("1_xw7hn")
+id = null
+character_deck = null
+hand_position = null
+name = "Frozen Bite"
+damage = 2
+damage_modifier = null
+heal = null
+shield = null
+draw_value = null
+actions = null
+description = "Deal {damage} damage everytime an ice orb is channeled"
+cost = 2
+allowed_targets = null
+magic_type = 2
+tier = 2
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://b0fdu5xtftwn7"]
+
+[ext_resource type="Script" uid="uid://dc3127qdc1h8v" path="res://Resources/Cards/0/wind_blade.gd" id="1_tgnvk"]
+
+[resource]
+script = ExtResource("1_tgnvk")
+id = 3
+character_deck = 1
+name = "Wind Blade"
+damage = 4
+description = "Apply 2 vulnerable and {damage} damage"
+cost = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

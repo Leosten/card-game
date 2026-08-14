@@ -30,12 +30,12 @@ var buffs : Array[CardStatus]
 
 func use(battle_state : BattleState, enemy):
 	pass
-func useSelf(battle_state : BattleState):
+func use_self(battle_state : BattleState):
 	pass
-func useAll(battle_state : BattleState):
+func use_all(battle_state : BattleState):
 	pass
-func special_effect(battle_state : BattleState):
-	pass
+func use_special(battle_state : BattleState, enemy : Targetable = null) -> void:
+	return
 func channel_add() -> Array[CardUtils.magic_type]:
 	return []
 func channel_remove(channel_orbs: Array[CardUtils.magic_type]) -> Array[CardUtils.magic_type]:

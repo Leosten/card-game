@@ -13,3 +13,6 @@ func _init():
 func replenish_player_mana():
 	CharacterUtils.replenish_mana(player_stats)
 	player_stats.current_mana_changed.emit()
+
+func cleanup_fight():
+	player_stats.cleanup_fight()
