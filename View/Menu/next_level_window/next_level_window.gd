@@ -32,7 +32,8 @@ func _on_next_button_pressed() -> void:
 	if (selected_choice == null):
 		return
 	GameManager.stage_manager.encounter_progress()
-	Events.new_encounter.emit(selected_choice)
+	GameManager.stage_manager.current_encounter_type = selected_choice
+	Events.next_encounter.emit()
 	Events.request_window_close.emit("next_level")
 
 static func zoom_in(choice : EncounterChoice):

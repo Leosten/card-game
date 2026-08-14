@@ -191,30 +191,35 @@ func _on_card_clicked(card: Card) -> void:
 	card_clicked.emit(card.card_data)
 
 func _on_card_hovered(card: Card) -> void:
+	print("card hovered")
 	if card_used == true :
 		return
 	if enemy_turn == true:
 		return
 
 	if hovered_card == card:
+		print("card already hovered")
+		
 		return
 	# push previous card back down
 	if hovered_card != null:
-		CardUtils.hover_back_animation(hovered_card)
+		CardAnimationManager.hover_back_animation(hovered_card)
 		hovered_card.hovering = false
 	hovered_card = card
-	CardUtils.hover_animation(card)
+	CardAnimationManager.hover_animation(card)
 	card.hovering = true
 
 func _on_card_hovered_out(card: Card) -> void:
+	print("hovered out")
 	if card_used == true :
 		return
 	if hovered_card != card:
+		print("hovering out different card")
 		return
-	CardUtils.hover_back_animation(card)
+	CardAnimationManager.hover_back_animation(card)
 	card.hovering = false
 	hovered_card = null
 
 func cleanup_fight():
 	await discard_all()
-	CardAnimationManager.clean_tweens(displayed_hand)
+	#CardAnimationManager.clean_tweens(displayed_hand)

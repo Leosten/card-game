@@ -45,6 +45,7 @@ func _ready() -> void:
 	start_battle()
 
 func new_encounter():
+	print("new_encounter")
 	current_encounter = GameManager.stage_manager.current_encounter_type
 	match current_encounter:
 		StageManager.level_type.COMMON:
@@ -65,6 +66,7 @@ func new_encounter():
 			pass
 
 func start_battle():
+	print("start battle")
 	Events.battle_start.emit()
 	current_turn = 1
 	battle_state.replenish_player_mana()

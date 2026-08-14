@@ -19,26 +19,6 @@ enum magic_type {FIRE, WIND, ICE, NONE}
 enum tier {COMMON, PURPLE, GOLD, STARTER}
 enum card_type {ATTACK, MAGIC, BUFF, ELEMENTAL}
 
-static func hover_animation(card: Card) -> void:
-	if card.active_tween:
-		card.active_tween.kill()
-	card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
-	card.active_tween.tween_property(
-		card, "position",
-		Vector2(card.base_position.x, card.base_position.y - card.hover_size),
-		0.2
-	).set_ease(Tween.EASE_IN)
-
-static func hover_back_animation(card: Card) -> void:
-	if card.active_tween:
-		card.active_tween.kill()
-	card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)
-	card.active_tween.tween_property(
-		card, "position",
-		card.base_position,
-		0.2
-	).set_ease(Tween.EASE_OUT)
-
 static func reposition_animation(card: Card, new_position : Vector2) -> void:
 	if card.active_tween:
 		card.active_tween.kill()

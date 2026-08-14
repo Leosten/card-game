@@ -18,5 +18,5 @@ func _on_hovered() -> void:
 
 
 func _on_button_pressed() -> void:
+	clicked.emit(encounter_type)
 	print("button pressed")
-	pass # Replace with function body.

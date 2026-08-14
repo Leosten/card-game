@@ -40,5 +40,4 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Encounter"
 
-[connection signal="hovered" from="." to="." method="_on_hovered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -25,7 +25,7 @@ func _on_window_open_requested(window_name: String, extra_data: Dictionary = {})
 		"next_level":
 			next_level_window = next_level_window_scene.instantiate()
 			center_root.add_child(next_level_window)
-			
+	
 func _on_window_close_requested(window_name: String) -> void:
 	match window_name:
 		"reward": reward_window.queue_free()
@@ -36,4 +36,4 @@ func _on_deck_list_button_pressed() -> void:
 	Events.request_window_open.emit("deck")
 	
 func on_level_change():
-	%CurrentLevelLabel.text = "Level " + str(GameManager.current_stage) + " - " + str(GameManager.current_level)
+	%CurrentLevelLabel.text = "Level " + str(GameManager.stage_manager.current_stage) + " - " + str(GameManager.stage_manager.current_level)
