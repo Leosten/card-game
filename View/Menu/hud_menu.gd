@@ -12,7 +12,7 @@ func _ready() -> void:
 	# Listen to global requests
 	Events.request_window_open.connect(_on_window_open_requested)
 	Events.request_window_close.connect(_on_window_close_requested)
-	Events.next_battle.connect(on_level_change)
+	Events.next_encounter.connect(on_level_change)
 	
 func _on_window_open_requested(window_name: String, extra_data: Dictionary = {}) -> void:
 	match window_name:

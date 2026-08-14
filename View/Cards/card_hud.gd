@@ -16,7 +16,7 @@ var player_deck : Array[CardData] = []
 var hovered_card: Card = null
 
 var player_draw_value
-
+var player_stats : PlayerStats
 var draw_pile : Array[CardData] = []
 var discard_pile : Array[CardData] = []
 var exhaust_pile : Array[CardData] = []
@@ -30,6 +30,10 @@ var card_hand_size
 @onready var card_hand_anchor = $CardHudContainer/CardHand/HandAnchor
 
 func _ready() -> void:
+	player_stats = GameManager.battle_state.player_stats
+	Events.turn_start.connect(on_turn_start)
+	Events.turn_end.connect(on_turn_end)
+	Events.battle_start.connect(on_battle_start)
 	GameManager.battle_state.draw_cards.connect(on_draw_card_signal)
 	GameManager.battle_state.player_stats.current_mana_changed.connect(on_mana_changed)
 	card_animation_manager = CardAnimationManager.new()
@@ -37,11 +41,10 @@ func _ready() -> void:
 	card_animation_manager.hud_size = card_hand_size
 	add_child(card_animation_manager)
 	init_card_position()
-	
 
-func start_battle():
+func on_battle_start():
 	player_draw_value = GameManager.battle_state.player_stats.draw_value
-	init_player_deck()
+	init_player_piles()
 	update_piles_count()
 
 func on_draw_card_signal(nb):
@@ -148,7 +151,7 @@ func discard_all():
 		card_scene.queue_free()
 	displayed_hand.clear()
 
-func init_player_deck():
+func init_player_piles():
 	discard_pile.clear()
 	draw_pile.clear()
 	player_deck = GameManager.get_player_deck()
@@ -172,17 +175,20 @@ func on_mana_changed():
 	for card : Card in displayed_hand:
 		card.update_cost_label(GameManager.battle_state.player_stats.current_mana)
 
-func end_turn():
+func on_turn_end():
 	enemy_turn = true
 	discard_all()
 
-func new_turn():
+func on_turn_start():
 	enemy_turn = false
 	draw_cards(player_draw_value)
 	update_piles_count()
 
-func _on_card_clicked(card_data: CardData) -> void:
-	card_clicked.emit(card_data)
+func _on_card_clicked(card: Card) -> void:
+	if player_stats.current_mana < card.card_data.cost:
+		CardAnimationManager.cannot_use_card_animation(card)
+		return
+	card_clicked.emit(card.card_data)
 
 func _on_card_hovered(card: Card) -> void:
 	if card_used == true :
@@ -196,7 +202,6 @@ func _on_card_hovered(card: Card) -> void:
 	if hovered_card != null:
 		CardUtils.hover_back_animation(hovered_card)
 		hovered_card.hovering = false
-
 	hovered_card = card
 	CardUtils.hover_animation(card)
 	card.hovering = true

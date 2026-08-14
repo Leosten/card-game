@@ -3,6 +3,8 @@ extends Node
 
 var stage_monsters : Array[MonsterData] = []
 enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL, SHOP, FORGE}
+var max_current_level = 10
+var max_current_stage = 1
 
 # positioning variables
 var max_nb_of_enemies = 6
@@ -13,8 +15,13 @@ var enemy_first_column = 300
 var enemy_column_margin = 350
 var row_margin = 320
 
+@export var current_level = 1;
+@export var current_stage = 1;
+@export var current_encounter_type: level_type
+
 func _ready() -> void:
 	pass
+	#Events.next_encounter.connect(on_next_battle)
 
 func get_stage_encounter_types(level: int) -> Array[level_type]:
 	match level:
@@ -65,9 +72,8 @@ func get_stage_possible_monsters(stage) :
 		1:
 			return [1, 2]
 
-# get all possible monsters for the stage
-func get_stage_monsters(stage_id):
-	var monsters_id = get_stage_possible_monsters(stage_id)
+func get_stage_monsters():
+	var monsters_id = get_stage_possible_monsters(current_stage)
 	for monster_id in monsters_id:
 		var monster = load("res://Resources/Monsters/"+ str(monster_id)+ "/monster_"+ str(monster_id)+ ".tres")
 		if monster == null:
@@ -84,27 +90,62 @@ func get_monster_scene_from_id(monster_id):
 		return
 	return monster.instantiate()
 
-func get_encounter_monsters(level) :
+func get_stage_one_common_monsters(level) :
 	match level:
 		1:
-			return [[1,2]]
+			return [[1,2],[1]]
 		2:
 			return [[1,2],[1,1]]
 		3:
 			return [[1,1,2],[1,2,2]]
 		4:
-			return [[1,1,2],[1,1,1]]
+			return [[1,2,2],[1,1,2]]
 		5:
 			return [[1,2,2],[1,1]]
+		6:
+			return [[1,2,2],[1,1]]
+		7:
+			return [[1,1,2],[1,1]]
+		8:
+			return [[1,1,2],[1,1,1]]
+		9:
+			return [[1,1,2],[1,1,1]]
 	return []
 
-func get_level_monsters(level) -> Array[MonsterData]:
-	var possible_monsters = get_encounter_monsters(level)
-	possible_monsters.shuffle()
+func get_stage_one_miniboss(level) :
+	return [1,1,1,1]
+
+func get_encounter_monsters_by_stage():
+	match current_stage:
+		1:
+			if current_encounter_type == level_type.COMMON:
+				return get_stage_one_common_monsters(current_level).pick_random()
+			if current_encounter_type == level_type.MINIBOSS:
+				return get_stage_one_miniboss(current_level).pick_random()
+			if current_encounter_type == level_type.BOSS:
+				return
+		_:
+			return null
+
+func encounter_progress():
+	if current_stage == max_current_stage and current_level == max_current_level:
+		Events.game_completed.emit()
+		print("game completed")
+		return
+	if current_level == max_current_level:
+		current_level = 1
+		max_current_stage +=1
+		print("stage completed")
+		return
+	print("level progress")
+	current_level += 1
+
+func get_level_monsters() -> Array[MonsterData]:
+	var monsters = get_encounter_monsters_by_stage()
 	
 	var monster_index = 0
 	var level_monsters : Array[MonsterData] = []
-	for monster_id in possible_monsters[0]:
+	for monster_id in monsters:
 			for monster_data : MonsterData in stage_monsters:
 				if monster_data.id == monster_id:
 					var monster_d = monster_data.duplicate(true)

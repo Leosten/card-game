@@ -1,9 +1,9 @@
 class_name Card
 extends Control
 
-signal clicked(card_data: CardData)
-signal hovered(card_data: CardData)
-signal hovered_out(card_data: CardData)
+signal clicked(card: Card)
+signal hovered(card: Card)
+signal hovered_out(card: Card)
 signal used(card: Card)
 signal exhausted(card: Card)
 
@@ -84,4 +84,4 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		clicked.emit(hand_position)
 
 func _on_card_button_pressed() -> void:
-	clicked.emit(card_data)
+	clicked.emit(self)

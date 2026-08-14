@@ -5,9 +5,9 @@ var possible_encounters_type := []
 var selected_choice = null
 
 func _ready() -> void:
-	possible_encounters_type = GameManager.stage_manager.get_stage_encounter_types(GameManager.current_level + 1)
+	possible_encounters_type = GameManager.stage_manager.get_stage_encounter_types(GameManager.stage_manager.current_level + 1)
 	display_encounter_choices()
-	
+
 func display_encounter_choices():
 	for encounter in possible_encounters_type:
 		print("encounter in for: " , encounter)
@@ -20,14 +20,20 @@ func display_encounter_choices():
 
 func _on_choice_hovered():
 	pass
-func _on_choice_clicked():
-	pass
+	
+func _on_choice_clicked(choice : StageManager.level_type):
+	print("selected choice : ", choice)
+	selected_choice = choice
+	
 func _on_choice_hovered_out():
 	pass
 
 func _on_next_button_pressed() -> void:
-	pass # Replace with function body.
-
+	if (selected_choice == null):
+		return
+	GameManager.stage_manager.encounter_progress()
+	Events.new_encounter.emit(selected_choice)
+	Events.request_window_close.emit("next_level")
 
 static func zoom_in(choice : EncounterChoice):
 	choice.pivot_offset = choice.size / 2.0

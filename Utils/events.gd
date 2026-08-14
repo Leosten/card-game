@@ -10,8 +10,14 @@ signal player_healed()
 signal player_buffed()
 signal player_shielded()
 
-signal next_battle
+signal turn_start
+signal turn_end
+signal next_encounter
+signal battle_start
+signal battle_won
+signal battle_lost
 signal game_completed
+
 
 signal request_window_open
 signal request_window_close

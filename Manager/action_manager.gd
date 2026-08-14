@@ -6,6 +6,13 @@ signal card_used(card_data : CardData)
 signal draw_cards(nb : int)
 signal action_impossible
 
+var battle_state: BattleState
+
+func _ready() -> void:
+	battle_state = GameManager.battle_state
+	Events.turn_start.connect(start_turn_status_cycle)
+	Events.turn_end.connect(end_turn_status_cycle)
+
 func cost_card_mana(battle_state: BattleState, card_cost):
 	battle_state.player_stats.current_mana -= card_cost
 	battle_state.player_stats.current_mana_changed.emit()
@@ -128,12 +135,12 @@ func check_for_everyone_death(battle_state: BattleState):
 	for monster in battle_state.level_monsters:
 		check_for_death(monster, battle_state)
 
-func end_turn_status_cycle(battle_state: BattleState):
+func end_turn_status_cycle():
 	for monster in battle_state.level_monsters:
 		monster.status_manager.trigger_turn_end()
 	battle_state.player_stats.status_manager.trigger_turn_end()
 
-func start_turn_status_cycle(battle_state: BattleState):
+func start_turn_status_cycle():
 	for monster in battle_state.level_monsters:
 		monster.status_manager.trigger_turn_start()
 	battle_state.player_stats.status_manager.trigger_turn_start()

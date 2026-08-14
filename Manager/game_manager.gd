@@ -7,9 +7,6 @@ const CharacterManager = preload("res://Manager/character_manager.gd")
 
 signal game_completed
 
-var max_current_level = 5
-var max_current_stage = 1
-
 var card_manager : CardManager
 var stage_manager : StageManager
 var ui_manager : UiManager
@@ -19,8 +16,6 @@ var char_scene : PackedScene = null
 var companion_scene : PackedScene = null
 
 @export var cards : Array[CardData] = []
-@export var current_level = 1;
-@export var current_stage = 1;
 
 @export var char_id = 0;
 @export var companion_id = 0;
@@ -29,7 +24,6 @@ var viewport_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Events.next_battle.connect(on_next_battle)
 	viewport_size = get_viewport().size
 	# select char id at start menu
 	battle_state = BattleState.new()
@@ -67,19 +61,6 @@ func get_companion_scene():
 
 func get_player_char_id():
 	return battle_state.player_stats.char_id
-
-func on_next_battle():
-	if current_stage == max_current_stage and current_level == max_current_level:
-		Events.game_completed.emit()
-		print("game completed")
-		return
-	if current_level == max_current_level:
-		current_level = 1
-		max_current_stage +=1
-		print("stage completed")
-		return
-	print("level progress")
-	current_level += 1
 
 func get_viewport_size():
 	return viewport_size

@@ -52,6 +52,9 @@ func use_card_animation(card : Card):
 
 	await card.active_tween.finished
 
+static func cannot_use_card_animation(card: Card):
+	pass
+
 func exhaust_card_animation(card: Card):
 	use_card_animation(card)
 

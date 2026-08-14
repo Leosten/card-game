@@ -51,31 +51,23 @@ func _on_next_button_pressed() -> void:
 		GameManager.battle_state.player_deck.append(selected_card)
 	Events.request_window_close.emit("reward")
 	Events.request_window_open.emit("next_level")
-	#GameManager.victory_progress()
-	#Events.next_battle.emit()
-	#await ScreenTransition.wipe_in()
-	#queue_free()
-	#next.emit()
-	
+
 func _on_ignore_button_pressed() -> void:
-	#GameManager.victory_progress()
-	#Events.next_battle.emit()
-	queue_free()
-	
+	Events.request_window_close.emit("reward")
+	Events.request_window_open.emit("next_level")
 
 func _on_card_hovered(card : Card):
-	print("card hovered")
 	if card == selected_card:
 		return
 	CardAnimationManager.zoom_in(card)
 
 func _on_card_hovered_out(card : Card):
+	if (card == selected_card):
+		return
 	CardAnimationManager.zoom_out(card)
 
-func _on_card_clicked(card : CardData):
-	print("card clicked")
+func _on_card_clicked(card : Card):
 	if card == selected_card:
 		selected_card = null
 		return
-	selected_card = card
-	print("card selected %s" % selected_card.name)
+	selected_card = card.card_data
