@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxxw3hmdyxo2a"]
 
 [ext_resource type="Script" uid="uid://crwjnj48ms5pr" path="res://View/Menu/next_level_window/encounter_choice.gd" id="1_r2dx6"]
+[ext_resource type="Texture2D" uid="uid://bad4axownrb0c" path="res://Art/UI/cards/large_cards/card_large treasure.png" id="2_gqs0s"]
 
 [node name="EncounterChoice" type="Control" unique_id=1596377273]
 z_index = 999
@@ -37,7 +38,16 @@ mouse_filter = 2
 
 [node name="ChoiceLabel" type="Label" parent="CenterContainer" unique_id=592430045]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Encounter"
 
+[node name="Background" type="TextureRect" parent="CenterContainer" unique_id=1788891852]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_gqs0s")
+stretch_mode = 5
+
+[connection signal="clicked" from="." to="." method="_on_clicked"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

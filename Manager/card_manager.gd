@@ -11,6 +11,15 @@ var _backgrounds = {
 	CardUtils.card_type.ATTACK: preload("res://Art/UI/cards/card_black_kitsune.png"),
 }
 
+var _large_cards = {
+	StageManager.level_type.COMMON: preload("res://Art/UI/cards/large_cards/card_large_common.png"),
+	StageManager.level_type.MINIBOSS: preload("res://Art/UI/cards/large_cards/card_large_miniboss.png"),
+	StageManager.level_type.BOSS: preload("res://Art/UI/cards/large_cards/card_large_boss.png"),
+	StageManager.level_type.TREASURE: preload("res://Art/UI/cards/large_cards/card_large treasure.png"),
+	StageManager.level_type.SHOP: preload("res://Art/UI/cards/large_cards/card_large_shop.png"),
+	StageManager.level_type.FORGE: preload("res://Art/UI/cards/large_cards/card_large_forge.png"),
+}
+
 var _cards_by_deck: Dictionary = {}
 var _cards_by_name: Dictionary = {}
 
@@ -18,7 +27,7 @@ const BASE_CARDS_DIR = "res://Resources/Cards/"
 
 func _init() -> void:
 	_load_all_cards_recursive(BASE_CARDS_DIR)
-
+	
 func _load_all_cards_recursive(dir_path: String) -> void:
 	var dir = DirAccess.open(dir_path)
 	if not dir:
@@ -79,7 +88,13 @@ func get_card_background(card_type: CardUtils.card_type) -> Texture2D:
 	
 	push_warning("CardDatabase: Background not found for type '%s'. Using neutral fallback." % card_type)
 	return _backgrounds[CardUtils.card_type.ATTACK]
-
+	
+func get_large_card_background(level_type: StageManager.level_type) -> Texture2D:
+	if _large_cards.has(level_type):
+		return _large_cards[level_type]
+	push_warning("large card background not found")
+	return _large_cards[StageManager.level_type.COMMON]
+	
 func get_random_card_for_deck(character_class: String) -> CardData:
 	var key = character_class.to_lower()
 	if _cards_by_deck.has(key) and not _cards_by_deck[key].is_empty():

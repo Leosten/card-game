@@ -4,6 +4,7 @@ var ICONS_DIR = "res://Art/UI/icons/"
 var ICON_SCENE = preload("res://View/UI/icons/icon_template.tscn")
 var ORB_SCENE = preload("res://View/Battle/orb.tscn")
 var _icons: Dictionary = {}
+var _large_cards: Dictionary = {}
 
 func _init() -> void:
 	print("uimanager init")

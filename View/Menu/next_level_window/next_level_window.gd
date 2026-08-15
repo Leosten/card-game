@@ -16,7 +16,8 @@ func display_encounter_choices():
 		choice.hovered_out.connect(_on_choice_hovered_out)
 		choice.clicked.connect(_on_choice_clicked)
 		%ChoicesContainer.add_child(choice)
-		choice.init(encounter)
+		var background = GameManager.card_manager.get_large_card_background(encounter)
+		choice.init(encounter, background)
 
 func _on_choice_hovered():
 	pass

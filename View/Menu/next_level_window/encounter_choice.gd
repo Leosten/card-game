@@ -8,15 +8,18 @@ signal clicked
 signal hovered
 signal hovered_out
 
-func init(encounter_t : StageManager.level_type):
+func init(encounter_t : StageManager.level_type, background: Texture2D):
 	encounter_type = encounter_t
 	choice_label.text = StageManager.get_encounter_name_by_type(encounter_t)
+	%Background.texture = background
 
 func _on_hovered() -> void:
-	print("Hovereeed")
 	pass # Replace with function body.
 
 
 func _on_button_pressed() -> void:
 	clicked.emit(encounter_type)
-	print("button pressed")
+
+
+func _on_clicked() -> void:
+	clicked.emit(encounter_type)
