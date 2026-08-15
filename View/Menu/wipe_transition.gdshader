@@ -1,16 +1,14 @@
 // wipe_transition.gdshader
 shader_type canvas_item;
 
-// Controls progress from 0.0 (completely clear) to 1.0 (completely covered in black)
-uniform float progress : hint_range(0.0, 1.0) = 0.0;
-
-// Width of the jagged trailing slash edge
+// Progress range:
+// 0.0 = completely clear (waiting off-screen right)
+// 1.0 = screen fully covered in black
+// 2.0 = completely clear (exited off-screen left)
+uniform float progress : hint_range(0.0, 2.0) = 0.0;
 uniform float trail_width : hint_range(0.0, 0.5) = 0.15;
-
-// Angle/slant of the wipe sweep
 uniform float slant : hint_range(-0.5, 0.5) = 0.2;
 
-// Pseudo-noise function to generate organic trail/streak shapes
 float hash(vec2 p) {
     p = fract(p * vec2(123.34, 456.21));
     p += dot(p, p + 45.32);
@@ -31,23 +29,22 @@ float noise(vec2 p) {
 }
 
 void fragment() {
-    // Invert UV.x so sweep moves RIGHT -> LEFT (1.0 to 0.0)
     float screen_x = 1.0 - UV.x;
-    
-    // Add slant based on vertical position (UV.y)
     float slanted_x = screen_x + (UV.y - 0.5) * slant;
     
-    // Sample multi-scale noise to create streak/trail patterns along the edge
-    vec2 noise_uv = vec2(UV.x * 20.0, UV.y * 80.0); // Stretched horizontally for speed lines
+    vec2 noise_uv = vec2(UV.x * 20.0, UV.y * 80.0);
     float streaks = noise(noise_uv) * 0.7 + noise(noise_uv * 2.0) * 0.3;
     
-    // Map the sweep threshold
-    float threshold = progress * (1.0 + trail_width + abs(slant)) - (trail_width + abs(slant));
-    float edge = slanted_x - threshold;
+    // Map progress range 0.0 -> 2.0 cleanly across screen bounds
+    float offset = trail_width + abs(slant);
+    float leading_edge = mix(-offset, 1.0 + offset, progress);
+    float trailing_edge = leading_edge - (1.0 + offset);
     
-    // Smooth trailing alpha blend
-    float alpha = 1.0 - smoothstep(0.0, trail_width * (0.5 + streaks * 0.8), edge);
+    // Calculate alpha mask so black box enters from right and exits left
+    float alpha_in = 1.0 - smoothstep(leading_edge - offset, leading_edge, slanted_x);
+    float alpha_out = smoothstep(trailing_edge - offset, trailing_edge, slanted_x);
     
-    // Output solid black color with calculated trailing alpha
-    COLOR = vec4(0.0, 0.0, 0.0, clamp(alpha, 0.0, 1.0));
+    float final_alpha = alpha_in * alpha_out;
+    
+    COLOR = vec4(0.0, 0.0, 0.0, clamp(final_alpha, 0.0, 1.0));
 }

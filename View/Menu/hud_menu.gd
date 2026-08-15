@@ -13,7 +13,7 @@ func _ready() -> void:
 	Events.request_window_open.connect(_on_window_open_requested)
 	Events.request_window_close.connect(_on_window_close_requested)
 	Events.next_encounter.connect(on_level_change)
-	
+
 func _on_window_open_requested(window_name: String, extra_data: Dictionary = {}) -> void:
 	match window_name:
 		"reward":
@@ -23,15 +23,20 @@ func _on_window_open_requested(window_name: String, extra_data: Dictionary = {})
 			deck_list_window = deck_list_window_scene.instantiate()
 			center_root.add_child(deck_list_window)
 		"next_level":
+			await ScreenTransition.wipe_out(0.4)
 			next_level_window = next_level_window_scene.instantiate()
 			center_root.add_child(next_level_window)
-	
+			await ScreenTransition.wipe_in(0.8)
+
 func _on_window_close_requested(window_name: String) -> void:
 	match window_name:
 		"reward": reward_window.queue_free()
 		"deck": deck_list_window.queue_free()
-		"next_level" : next_level_window.queue_free()
-		
+		"next_level" : 
+			await ScreenTransition.wipe_out(0.4)
+			next_level_window.queue_free()
+			await ScreenTransition.wipe_in(0.8)
+
 func _on_deck_list_button_pressed() -> void:
 	Events.request_window_open.emit("deck")
 	

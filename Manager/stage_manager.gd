@@ -113,7 +113,7 @@ func get_stage_one_common_monsters(level) :
 	return []
 
 func get_stage_one_miniboss(level) :
-	return [1,1,1,1]
+	return [[1,1,1,1]]
 
 func get_encounter_monsters_by_stage():
 	match current_stage:

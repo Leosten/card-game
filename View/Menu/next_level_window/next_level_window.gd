@@ -35,6 +35,7 @@ func _on_next_button_pressed() -> void:
 	GameManager.stage_manager.encounter_progress()
 	GameManager.stage_manager.current_encounter_type = selected_choice
 	Events.next_encounter.emit()
+	#await ScreenTransition.wipe_out(0.5)
 	Events.request_window_close.emit("next_level")
 
 static func zoom_in(choice : EncounterChoice):

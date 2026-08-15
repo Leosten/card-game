@@ -11,7 +11,6 @@ var selected_card : CardData = null
 @onready var third_reward_box : CenterContainer = $%ThirdReward
 
 func _ready() -> void:
-	ScreenTransition.wipe_in(0.3)
 	get_rewards()
 	display_card_rewards()
 

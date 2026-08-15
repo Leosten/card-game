@@ -31,7 +31,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -44,9 +43,11 @@ text = "Encounter"
 
 [node name="Background" type="TextureRect" parent="CenterContainer" unique_id=1788891852]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 500)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_gqs0s")
+expand_mode = 3
 stretch_mode = 5
 
 [connection signal="clicked" from="." to="." method="_on_clicked"]
