@@ -4,7 +4,7 @@ extends Control
 @onready var choice_label: Label = %ChoiceLabel
 var encounter_type : StageManager.level_type
 
-signal clicked
+signal clicked(encounter_type)
 signal hovered
 signal hovered_out
 

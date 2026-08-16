@@ -98,7 +98,6 @@ func spawn_companion_character():
 		)
 	companion_character.position = char_position
 	companion_character.init(battle_state.player_stats.companion_stats)
-	
 	add_child(companion_character)
 
 func spawn_level_monsters():
