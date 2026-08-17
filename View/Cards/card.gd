@@ -42,6 +42,7 @@ func init_data(card_d : CardData) -> void:
 	card_data = card_d
 	var bg_texture = GameManager.card_manager.get_card_background(card_d.type)
 	$Background.texture = bg_texture
+	%Portrait.texture = card_d.artwork
 
 func update():
 	hand_position = card_data.hand_position

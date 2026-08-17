@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fc1wjugrinon"
-path="res://.godot/imported/beam.png-d4f01ac556313d9246b65061ab9088a8.ctex"
+path="res://.godot/imported/logo.png-cad484b8155ed535a86b3167f8ab3510.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/cards/portraits/beam.png"
-dest_files=["res://.godot/imported/beam.png-d4f01ac556313d9246b65061ab9088a8.ctex"]
+source_file="res://Art/UI/cards/portraits/logo.png"
+dest_files=["res://.godot/imported/logo.png-cad484b8155ed535a86b3167f8ab3510.ctex"]
 
 [params]
 

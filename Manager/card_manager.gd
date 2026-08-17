@@ -24,6 +24,7 @@ var _cards_by_deck: Dictionary = {}
 var _cards_by_name: Dictionary = {}
 
 const BASE_CARDS_DIR = "res://Resources/Cards/"
+const PORTRAITS_FOLDER_DIR = "res://Art/UI/cards/portraits/"
 
 func _init() -> void:
 	_load_all_cards_recursive(BASE_CARDS_DIR)
@@ -55,8 +56,16 @@ func _load_all_cards_recursive(dir_path: String) -> void:
 					folder_name = "neutral"
 				folder_name = folder_name.to_lower()
 				
-				var card_id = file_name.get_basename().to_lower()
 				
+				
+				var card_id = file_name.get_basename().to_lower()
+				var portrait_path = PORTRAITS_FOLDER_DIR + card_id + ".png"
+				# add portraits texture2D
+				if FileAccess.file_exists(portrait_path):
+					card_res.artwork = load(portrait_path)
+				else:
+					card_res.artwork = load(PORTRAITS_FOLDER_DIR + "logo.png")
+					
 				# Add to class pool
 				if not _cards_by_deck.has(folder_name):
 					_cards_by_deck[folder_name] = [] as Array[CardData]

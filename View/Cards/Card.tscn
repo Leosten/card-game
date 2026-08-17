@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://k4pf0k6diech" path="res://Art/UI/cards/card_black_kitsune.png" id="2_7dhu0"]
 [ext_resource type="Shader" uid="uid://c7xbcb6mlfs2i" path="res://View/Cards/card_mask.gdshader" id="3_gc6ko"]
 [ext_resource type="Texture2D" uid="uid://b7lxfolb7mvtj" path="res://Art/UI/cards/portraits/portrait_shader.png" id="4_0wlfl"]
-[ext_resource type="Texture2D" uid="uid://fc1wjugrinon" path="res://Art/UI/cards/portraits/beam.png" id="5_0wlfl"]
+[ext_resource type="Texture2D" uid="uid://fc1wjugrinon" path="res://Art/UI/cards/portraits/logo.png" id="5_0wlfl"]
 
 [sub_resource type="Gradient" id="Gradient_a45vp"]
 
