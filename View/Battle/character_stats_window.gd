@@ -8,7 +8,7 @@ var local_status: Array[StatusEffect]
 @onready var health = %Health
 @onready var health_bar = %HealthBar
 @onready var max_health = %MaxHealth
-@onready var buffs_grid = %MaxHealth
+@onready var buffs_grid = %BuffsGrid
 
 func init_stats_window(p_stats: Targetable):
 	stats = p_stats
