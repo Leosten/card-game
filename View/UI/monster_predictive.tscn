@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://qhr5u43axak2"]
 
 [ext_resource type="Script" uid="uid://uoi4m570timg" path="res://View/UI/monster_predictive.gd" id="1_epc8l"]
+[ext_resource type="Texture2D" uid="uid://o4oxo63j7hym" path="res://Art/UI/icons/damage.png" id="2_s8dss"]
 
 [sub_resource type="Theme" id="Theme_s8dss"]
 
@@ -11,7 +12,6 @@ font_size = 30
 script = ExtResource("1_epc8l")
 
 [node name="AnchorPredictive" type="Control" parent="." unique_id=1911216465]
-custom_minimum_size = Vector2(70, 70)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,6 +28,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 2.0
+offset_right = -77.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -40,8 +44,9 @@ size_flags_horizontal = 3
 
 [node name="Icon" type="TextureRect" parent="AnchorPredictive/PredictivePanel/HBoxContainer/CenterContainer2" unique_id=1010462217]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+texture = ExtResource("2_s8dss")
 expand_mode = 1
 stretch_mode = 4
 

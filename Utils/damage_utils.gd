@@ -18,6 +18,7 @@ static func apply_damage(damage_value, target : Targetable):
 			target.shield_broken.emit()
 			target.damage_taken.emit(final_damage)
 			target.stats_changed.emit()
+			check_for_death(target)
 			return
 		else:
 			target.shield -= damage_value
