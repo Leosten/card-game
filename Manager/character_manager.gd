@@ -37,6 +37,7 @@ static func _get_character_starting_deck(character_id):
 			#return ["beam",  "defend", "wind_chill", "lightning", "heal", "fire_beam", "early_call", "prediction", "protect_me", "careful_hit"]
 			return ["mega_beam", "early_call", "glacier_shield", "prediction", "panic_trade"]
 			#return ["fire_beam", "early_call", "wind_chill", "protect_me", "careful_hit","lightning"]
+			
 func _get_starting_stats(char_id):
 	match char_id:
 		0:
