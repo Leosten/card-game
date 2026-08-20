@@ -7,7 +7,7 @@ var current_turn: int = 0
 var enemy_turn : bool = false
 var stage_monsters : Array[MonsterData]
 var monsters_displayed : Array[Monster]
-var player_character : AnimatableBody2D
+var player_character : Node2D
 var companion_character : AnimatableBody2D
 var current_encounter : StageManager.level_type = StageManager.level_type.COMMON
 var stage_manager : StageManager
@@ -84,7 +84,7 @@ func spawn_player_character():
 	player_character = GameManager.get_character_scene()
 	var char_position := Vector2(
 			viewport_size.x - 1550,
-			viewport_size.y - 800
+			viewport_size.y - 700
 		)
 	player_character.position = char_position
 	player_character.init(battle_state)

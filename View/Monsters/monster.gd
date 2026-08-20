@@ -12,7 +12,7 @@ var battle_position
 
 func _ready() -> void:
 	super()
-	input_event.connect(_on_input_event)
+	#input_event.connect(_on_input_event)
 	update_monster_predictive()
 
 func _process(_delta):
@@ -35,11 +35,11 @@ func set_battle_position(battle_position):
 	monster_data.battle_position = battle_position
 	$MonsterPosition.text = str(battle_position)
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton \
-		and event.button_index == MOUSE_BUTTON_LEFT \
-		and event.pressed:
-		clicked.emit(monster_data)
+#func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	#if event is InputEventMouseButton \
+		#and event.button_index == MOUSE_BUTTON_LEFT \
+		#and event.pressed:
+		#clicked.emit(monster_data)
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton \

@@ -1,6 +1,6 @@
 class_name TargetCharacter
 
-extends AnimatableBody2D
+extends Node2D
 
 var animating = false
 @onready var _animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
