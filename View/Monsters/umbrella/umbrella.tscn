@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dakqwexf1q6pf"]
+
+[ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://View/Monsters/monster.tscn" id="1_y33pj"]
+[ext_resource type="PackedScene" uid="uid://1r3toofhjwwx" path="res://View/Monsters/umbrella/umbrella_skeleton.tscn" id="2_q0sny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0sny"]
+resource_local_to_scene = true
+size = Vector2(178, 296)
+
+[node name="Monster" unique_id=145971378 instance=ExtResource("1_y33pj")]
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
+position = Vector2(75, 33)
+shape = SubResource("RectangleShape2D_q0sny")
+
+[node name="CharacterStatsWindow" parent="." index="3" unique_id=1699102038]
+position = Vector2(-36, 119)
+
+[node name="AnimatedSprite2D" parent="." index="4" unique_id=535737693]
+visible = false
+
+[node name="MonsterPredictive" parent="." index="5" unique_id=303760412]
+position = Vector2(-51, -219)
+
+[node name="Skeleton" parent="." index="6" unique_id=448091590 instance=ExtResource("2_q0sny")]
+position = Vector2(-4, -147)
+scale = Vector2(0.3, 0.3)

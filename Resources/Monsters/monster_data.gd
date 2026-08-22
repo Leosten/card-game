@@ -7,6 +7,7 @@ enum MonsterType {COMMON, MINIBOSS, BOSS}
 @export var id = 0
 @export var battle_position = 0
 @export var name := ""
+@export var display_name := ""
 @export var type : MonsterType = MonsterType.COMMON 
 @export var action_cycle : Array[MonsterAction] = []
 @export var cycle_step = 0

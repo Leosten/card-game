@@ -1,11 +1,12 @@
 [gd_resource type="Resource" format=3 uid="uid://i56l5utb7m20"]
 
-[ext_resource type="Script" uid="uid://bqbkm43xl1y0a" path="res://Resources/Monsters/1/monster_res_1.gd" id="1_atn4s"]
+[ext_resource type="Script" uid="uid://bqbkm43xl1y0a" path="res://Resources/Monsters/umbrella/umbrella.gd" id="1_atn4s"]
 [ext_resource type="Script" uid="uid://dgvjmm6orbum0" path="res://Resources/Monsters/monster_action.gd" id="1_ol3tj"]
 
 [resource]
 script = ExtResource("1_atn4s")
 id = 1
+name = "umbrella"
 health = 10
 max_health = 10
 metadata/_custom_type_script = "uid://fyu4c4thwqs7"

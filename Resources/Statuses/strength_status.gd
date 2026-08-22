@@ -1,4 +1,5 @@
 class_name StrengthStatus
+
 extends Status
 
 func _init(target_entity : Targetable, stacks : int) -> void:

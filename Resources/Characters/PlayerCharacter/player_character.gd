@@ -10,7 +10,7 @@ func connect_player_signals():
 
 func _process(_delta):
 	if not animating:
-		$FirstChar/AnimationPlayer.play("idle")
+		_skeleton_animation.play("idle")
 
 func on_mana_changed():
 	#not used right now, scene update is in battle

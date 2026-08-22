@@ -1,8 +1,8 @@
 [gd_resource type="Resource" format=3 uid="uid://bq2vwypge6kxm"]
 
-[ext_resource type="Script" uid="uid://pwoe4tnqy83b" path="res://Resources/Monsters/2/monster_res_2.gd" id="1_eu0hw"]
+[ext_resource type="Script" uid="uid://pwoe4tnqy83b" path="res://Resources/Monsters/yokai/yokai.gd" id="1_eu0hw"]
 [ext_resource type="Script" uid="uid://dgvjmm6orbum0" path="res://Resources/Monsters/monster_action.gd" id="1_wri8m"]
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/buff.gd" id="2_xwlox"]
+[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="2_xwlox"]
 [ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="4_15afn"]
 
 [resource]

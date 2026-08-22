@@ -1,4 +1,5 @@
 class_name VulnerableStatus
+
 extends Status
 
 func _init(target : Targetable, initial_stacks) -> void:

@@ -12,12 +12,11 @@ var battle_position
 
 func _ready() -> void:
 	super()
-	#input_event.connect(_on_input_event)
 	update_monster_predictive()
 
 func _process(_delta):
 	if not animating:
-		_animated_sprite.play("idle")
+		_skeleton_animation.play("idle")
 
 func init_data(m_data: MonsterData):
 	monster_data = m_data

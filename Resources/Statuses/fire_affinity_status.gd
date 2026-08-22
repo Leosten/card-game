@@ -1,4 +1,5 @@
 class_name FireAffinityStatus
+
 extends Status
 
 func _init(target : Targetable, initial_stacks : int) -> void:

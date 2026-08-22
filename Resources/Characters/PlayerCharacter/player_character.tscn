@@ -129,7 +129,7 @@ shape = SubResource("RectangleShape2D_q7hkx")
 position = Vector2(-24.25, 69.75)
 scale = Vector2(0.5, 0.5)
 
-[node name="FirstChar" parent="." unique_id=1061046831 instance=ExtResource("6_kmupc")]
+[node name="Skeleton" parent="." unique_id=1061046831 instance=ExtResource("6_kmupc")]
 position = Vector2(-2.2499924, -24.750004)
 scale = Vector2(0.1, 0.1)
 script = null

@@ -1,4 +1,5 @@
 class_name FrozenBiteStatus
+
 extends Status
 
 var damage = 2

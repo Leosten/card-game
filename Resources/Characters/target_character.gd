@@ -4,6 +4,7 @@ extends Node2D
 
 var animating = false
 @onready var _animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var _skeleton_animation : AnimationPlayer = $Skeleton/AnimationPlayer
 @onready var stats_window = $CharacterStatsWindow
 var stats : Targetable
 
@@ -27,10 +28,10 @@ func attack_animation():
 func on_damage_taken(damage):
 	Events.damage_taken.emit(damage, self.position)
 	animating = true
-	_animated_sprite.stop()
-	if (_animated_sprite.sprite_frames.has_animation("damage_taken")):
-		_animated_sprite.play("damage_taken")
-		await _animated_sprite.animation_finished
+	_skeleton_animation.stop()
+	if (_skeleton_animation.has_animation("damage_taken")):
+		_skeleton_animation.play("damage_taken")
+		await _skeleton_animation.animation_finished
 	animating = false
 func on_buffed():
 	pass

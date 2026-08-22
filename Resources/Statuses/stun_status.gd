@@ -1,4 +1,5 @@
 class_name StunStatus
+
 extends Status
 
 func _init(target_entity : Targetable) -> void:

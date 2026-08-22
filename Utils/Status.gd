@@ -1,3 +1,5 @@
+class_name  Status
+
 extends Resource
 
 signal effect_changed

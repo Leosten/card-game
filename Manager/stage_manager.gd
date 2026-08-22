@@ -70,46 +70,46 @@ static func get_encounter_name_by_type(type : level_type):
 func get_stage_possible_monsters(stage) :
 	match stage:
 		1:
-			return [1, 2]
+			return ["umbrella"]
 
 func get_stage_monsters():
-	var monsters_id = get_stage_possible_monsters(current_stage)
-	for monster_id in monsters_id:
-		var monster = load("res://Resources/Monsters/"+ str(monster_id)+ "/monster_"+ str(monster_id)+ ".tres")
+	var monster_names = get_stage_possible_monsters(current_stage)
+	for name in monster_names:
+		var monster = load("res://Resources/Monsters/" + name + "/" + name + ".tres")
 		if monster == null:
-			printerr("Cannot load monster data ressource %s" % str(monster_id))
+			printerr("Cannot load monster data ressource %s" % name)
 			return
 		stage_monsters.append(monster.duplicate(true))
 		print("stage monsters loaded")
 	return stage_monsters
 
-func get_monster_scene_from_id(monster_id):
-	var monster : PackedScene = load("res://View/Monsters/"+ str(monster_id)+ "/monster_"+ str(monster_id)+ ".tscn")
+func get_monster_scene_from_name(monster_name):
+	var monster : PackedScene = load("res://View/Monsters/" + monster_name+ "/" + monster_name + ".tscn")
 	if monster == null:
-		printerr("Cannot load monster scene %s" % str(monster_id))
+		printerr("Cannot load monster scene %s" % monster_name)
 		return
 	return monster.instantiate()
 
 func get_stage_one_common_monsters(level) :
 	match level:
 		1:
-			return [[1,2],[1]]
+			return [["umbrella"],["umbrella"]]
 		2:
-			return [[1,2],[1,1]]
+			return [["umbrella"],["umbrella","umbrella"]]
 		3:
-			return [[1,1,2],[1,2,2]]
+			return [["umbrella","umbrella"],["umbrella"]]
 		4:
-			return [[1,2,2],[1,1,2]]
+			return [["umbrella"],["umbrella","umbrella"]]
 		5:
-			return [[1,2,2],[1,1]]
+			return [["umbrella"],["umbrella","umbrella"]]
 		6:
-			return [[1,2,2],[1,1]]
+			return [["umbrella"],["umbrella","umbrella"]]
 		7:
-			return [[1,1,2],[1,1]]
+			return [["umbrella","umbrella"],["umbrella","umbrella"]]
 		8:
-			return [[1,1,2],[1,1,1]]
+			return [["umbrella","umbrella"],["umbrella","umbrella","umbrella"]]
 		9:
-			return [[1,1,2],[1,1,1]]
+			return [["umbrella","umbrella"],["umbrella","umbrella","umbrella"]]
 	return []
 
 func get_stage_one_miniboss(level) :
@@ -145,9 +145,9 @@ func get_level_monsters() -> Array[MonsterData]:
 	
 	var monster_index = 0
 	var level_monsters : Array[MonsterData] = []
-	for monster_id in monsters:
+	for monster_name in monsters:
 			for monster_data : MonsterData in stage_monsters:
-				if monster_data.id == monster_id:
+				if monster_data.name == monster_name:
 					var monster_d = monster_data.duplicate(true)
 					monster_d.battle_position = monster_index
 					level_monsters.append(monster_d)
@@ -160,7 +160,7 @@ func get_monster_scenes_for_level(level_monsters, enemy_positions) -> Array[Mons
 	var index = 0
 
 	for monster_data in level_monsters:
-		var monster_scene = get_monster_scene_from_id(monster_data.id)
+		var monster_scene = get_monster_scene_from_name(monster_data.name)
 		print("get_monster_scenes_for_level")
 		monster_scene.init_data(monster_data)
 		monster_scene.battle_position = index
