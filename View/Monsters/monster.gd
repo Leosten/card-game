@@ -35,12 +35,6 @@ func set_battle_position(battle_position):
 	monster_data.battle_position = battle_position
 	$MonsterPosition.text = str(battle_position)
 
-#func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	#if event is InputEventMouseButton \
-		#and event.button_index == MOUSE_BUTTON_LEFT \
-		#and event.pressed:
-		#clicked.emit(monster_data)
-
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton \
 		and event.button_index == MOUSE_BUTTON_LEFT \
@@ -52,10 +46,10 @@ func _on_area_2d_mouse_entered() -> void:
 
 func on_monster_dead():
 	animating = true
-	_animated_sprite.stop()
-	if (_animated_sprite.sprite_frames.has_animation("death")):
-		_animated_sprite.play("death")
-	await _animated_sprite.animation_finished
+	_skeleton_animation.stop()
+	if (_skeleton_animation.has_animation("death")):
+		_skeleton_animation.has_animation("death")
+	await _skeleton_animation.animation_finished
 	dead.emit(monster_data)
 	self.queue_free()
 
