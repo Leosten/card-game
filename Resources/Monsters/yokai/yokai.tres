@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" uid="uid://pwoe4tnqy83b" path="res://Resources/Monsters/yokai/yokai.gd" id="1_eu0hw"]
 [ext_resource type="Script" uid="uid://dgvjmm6orbum0" path="res://Resources/Monsters/monster_action.gd" id="1_wri8m"]
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="2_xwlox"]
-[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="4_15afn"]
 
 [resource]
 script = ExtResource("1_eu0hw")
 id = 2
-name = "Shielder"
-health = 5
-max_health = 5
+name = "yokai"
+display_name = "Yokai"
+health = 10
+max_health = 10
 metadata/_custom_type_script = "uid://fyu4c4thwqs7"

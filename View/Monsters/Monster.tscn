@@ -71,6 +71,7 @@ label_settings = SubResource("LabelSettings_oqa6g")
 position = Vector2(-49, 43)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=535737693]
+visible = false
 position = Vector2(17, -10)
 sprite_frames = SubResource("SpriteFrames_lxhm3")
 animation = &"new_animation"

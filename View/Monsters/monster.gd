@@ -16,7 +16,8 @@ func _ready() -> void:
 
 func _process(_delta):
 	if not animating:
-		_skeleton_animation.play("idle")
+		if _skeleton_animation.has_animation('idle'):
+			_skeleton_animation.play("idle")
 
 func init_data(m_data: MonsterData):
 	monster_data = m_data

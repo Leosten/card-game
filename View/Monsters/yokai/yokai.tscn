@@ -1,3 +1,18 @@
 [gd_scene format=3 uid="uid://ho244rgpjl5l"]
 
-[node name="Yokai" type="Node2D" unique_id=1583391381]
+[ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://View/Monsters/monster.tscn" id="1_b5dv5"]
+[ext_resource type="PackedScene" uid="uid://der75rtpo2jl1" path="res://View/Monsters/yokai/yokai_skeleton.tscn" id="2_exymv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exymv"]
+resource_local_to_scene = true
+size = Vector2(119, 176)
+
+[node name="Monster" unique_id=145971378 instance=ExtResource("1_b5dv5")]
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
+position = Vector2(43.5, 23)
+shape = SubResource("RectangleShape2D_exymv")
+
+[node name="Skeleton" parent="." index="6" unique_id=1229031505 instance=ExtResource("2_exymv")]
+position = Vector2(-15, -51)
+scale = Vector2(0.25, 0.25)

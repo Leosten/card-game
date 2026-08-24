@@ -1,0 +1,12 @@
+[gd_resource type="Resource" format=3 uid="uid://c5euq1wqaxepr"]
+
+[ext_resource type="Script" uid="uid://dgvjmm6orbum0" path="res://Resources/Monsters/monster_action.gd" id="1_w01fm"]
+[ext_resource type="Script" uid="uid://dk7y61hrj60r8" path="res://Resources/Monsters/fireball/fireball.gd" id="2_w01fm"]
+
+[resource]
+script = ExtResource("2_w01fm")
+name = "fireball"
+display_name = "Fireball"
+health = 10
+max_health = 10
+metadata/_custom_type_script = "uid://fyu4c4thwqs7"

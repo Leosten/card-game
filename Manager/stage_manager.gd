@@ -70,7 +70,7 @@ static func get_encounter_name_by_type(type : level_type):
 func get_stage_possible_monsters(stage) :
 	match stage:
 		1:
-			return ["umbrella"]
+			return ["umbrella","yokai", "fireball"]
 
 func get_stage_monsters():
 	var monster_names = get_stage_possible_monsters(current_stage)
@@ -93,11 +93,11 @@ func get_monster_scene_from_name(monster_name):
 func get_stage_one_common_monsters(level) :
 	match level:
 		1:
-			return [["umbrella"],["umbrella"]]
+			return [["umbrella","yokai", "fireball"]]
 		2:
-			return [["umbrella"],["umbrella","umbrella"]]
+			return [["umbrella"],["yokai","fireball"]]
 		3:
-			return [["umbrella","umbrella"],["umbrella"]]
+			return [["umbrella","yokai"],["yokai"]]
 		4:
 			return [["umbrella"],["umbrella","umbrella"]]
 		5:
