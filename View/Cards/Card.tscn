@@ -55,7 +55,6 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="testbg" type="TextureRect" parent="." unique_id=839277008]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,6 +103,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"CardName"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "TESTS"
 label_settings = SubResource("LabelSettings_ejfic")
@@ -148,20 +148,30 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_k1dyt")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CardLayout/DescriptionContainer" unique_id=2127984502]
+[node name="MarginContainer" type="HBoxContainer" parent="MarginContainer/CardLayout/DescriptionContainer" unique_id=1897535882]
 custom_maximum_size = Vector2(221, -1)
 propagate_maximum_size = false
+layout_mode = 2
+
+[node name="spacer" type="Control" parent="MarginContainer/CardLayout/DescriptionContainer/MarginContainer" unique_id=1394452835]
+custom_minimum_size = Vector2(12, 0)
 layout_mode = 2
 
 [node name="Description" type="RichTextLabel" parent="MarginContainer/CardLayout/DescriptionContainer/MarginContainer" unique_id=161713825]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 theme = SubResource("Theme_ye44s")
+theme_type_variation = &"CardDescription"
 theme_override_font_sizes/normal_font_size = 20
-text = "Description test"
+text = "Attack for so damage and heal yourself for 18 dmg"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="spacer2" type="Control" parent="MarginContainer/CardLayout/DescriptionContainer/MarginContainer" unique_id=1520331490]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
 
 [node name="CardButton" type="Button" parent="." unique_id=814282037]
 visibility_layer = 0

@@ -1,5 +1,32 @@
 [gd_resource type="Theme" format=3 uid="uid://dnmuk5j7d4rge"]
 
+[ext_resource type="Texture2D" uid="uid://2u1x564kksg1" path="res://Art/UI/panel.png" id="1_mm4gm"]
+[ext_resource type="FontFile" uid="uid://cisf7k4drqb6h" path="res://Art/fonts/Exo/static/Exo-Medium.ttf" id="2_0c46g"]
+[ext_resource type="FontFile" uid="uid://cwkobknnutnet" path="res://Art/fonts/Exo/static/Exo-Bold.ttf" id="3_pplqn"]
+
+[sub_resource type="FontVariation" id="FontVariation_uuvio"]
+base_font = ExtResource("2_0c46g")
+
+[sub_resource type="FontVariation" id="FontVariation_0c46g"]
+base_font = ExtResource("2_0c46g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mm4gm"]
+texture = ExtResource("1_mm4gm")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="FontVariation" id="FontVariation_jm3vi"]
+base_font = ExtResource("2_0c46g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tg5fl"]
+texture = ExtResource("1_mm4gm")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1j3"]
 border_width_left = 1
 border_width_top = 1
@@ -22,12 +49,24 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="FontVariation" id="FontVariation_nvvua"]
+base_font = ExtResource("3_pplqn")
+
 [resource]
-NormalTextLabel/base_type = &"Label"
+CardDescription/base_type = &"RichTextLabel"
+CardDescription/fonts/normal_font = SubResource("FontVariation_uuvio")
+CardName/base_type = &"CardDescription"
+CardName/fonts/font = SubResource("FontVariation_0c46g")
+LargePanel/base_type = &"PanelContainer"
+LargePanel/styles/panel = SubResource("StyleBoxTexture_mm4gm")
+NormalTextLabel/base_type = &"CardDescription"
 NormalTextLabel/font_sizes/font_size = 20
+NormalTextLabel/fonts/font = SubResource("FontVariation_jm3vi")
+Panel/styles/panel = SubResource("StyleBoxTexture_tg5fl")
 ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
 ProgressBar/colors/font_outline_color = Color(0, 0, 0.77254903, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_tk1j3")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_pplqn")
-WindowTitle/base_type = &"NormalTextLabel"
+WindowTitle/base_type = &"CardDescription"
 WindowTitle/font_sizes/font_size = 45
+WindowTitle/fonts/font = SubResource("FontVariation_nvvua")
