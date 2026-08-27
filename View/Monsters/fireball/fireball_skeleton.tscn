@@ -164,6 +164,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("..:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_vkwl7"]
 resource_name = "attacking"
@@ -413,6 +425,143 @@ tracks/9/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_kcwyy"]
+resource_name = "death"
+length = 1.5
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Skeleton2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Skeleton2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Skeleton2D/center:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 321)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Skeleton2D/center:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Skeleton2D/center/body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.54, 1.01),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4.0000005, 24.999996), Vector2(4.0000005, 24.999996), Vector2(4.0000005, 24.999996)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Skeleton2D/center/body:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.54, 1.01),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.3184707, -0.46080935, 0.125974]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Skeleton2D/center/eye:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.55, 1.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(24.000004, -111), Vector2(102, -34.550003), Vector2(144.00002, 25.999985)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Skeleton2D/center/eye:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.55, 1.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.236122, 3.0879323, 3.1166792]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../eye:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("..:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.76, 1.48),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qkhjq"]
 resource_name = "idle"
 length = 2.5000000000000004
@@ -544,6 +693,7 @@ _data = {
 &"RESET": SubResource("Animation_ul00p"),
 &"attacking": SubResource("Animation_vkwl7"),
 &"damage_taken": SubResource("Animation_awoas"),
+&"death": SubResource("Animation_kcwyy"),
 &"idle": SubResource("Animation_qkhjq")
 }
 
@@ -551,9 +701,9 @@ _data = {
 
 [node name="body_particles" type="GPUParticles2D" parent="." unique_id=1968137670]
 oversampling_with_scale = 1
-position = Vector2(-14.000008, -136.99997)
-rotation = -0.64039624
-scale = Vector2(16.25518, -20.285614)
+position = Vector2(36.1179, -155.14429)
+rotation = -0.5655218
+scale = Vector2(16.255178, -20.285614)
 skew = 0.55363524
 texture = ExtResource("1_ojpq2")
 process_material = SubResource("ParticleProcessMaterial_nxgoe")
@@ -579,9 +729,9 @@ bones = ["center", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "center/body",
 
 [node name="eye_particle" type="GPUParticles2D" parent="." unique_id=312287033]
 modulate = Color(1, 1, 1, 0.6784314)
-position = Vector2(-12, -69)
-rotation = 2.236122
-scale = Vector2(5.4232574, -12634.803)
+position = Vector2(23.686817, -88.301834)
+rotation = 2.2913206
+scale = Vector2(5.4232574, -12634.802)
 texture = ExtResource("4_vkwl7")
 process_material = SubResource("ParticleProcessMaterial_k1dyt")
 
@@ -616,7 +766,7 @@ remote_path = NodePath("../../../../body_particles")
 [node name="eye" type="Bone2D" parent="Skeleton2D/center" unique_id=1839328232]
 position = Vector2(14.000004, -147)
 rotation = 2.236122
-scale = Vector2(5.4232574, -12634.803)
+scale = Vector2(5.4232574, -12634.802)
 rest = Transform2D(-3.3478596, 4.2665625, 9940.001, 7799.6543, 14.000004, -147)
 editor_settings/show_bone_gizmo = false
 

@@ -13,6 +13,6 @@ size = Vector2(119, 176)
 position = Vector2(43.5, 23)
 shape = SubResource("RectangleShape2D_exymv")
 
-[node name="Skeleton" parent="." index="6" unique_id=1229031505 instance=ExtResource("2_exymv")]
+[node name="Skeleton" parent="." index="5" unique_id=1229031505 instance=ExtResource("2_exymv")]
 position = Vector2(-15, -51)
 scale = Vector2(0.25, 0.25)

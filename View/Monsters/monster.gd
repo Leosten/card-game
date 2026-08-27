@@ -48,7 +48,7 @@ func on_monster_dead():
 	animating = true
 	_skeleton_animation.stop()
 	if (_skeleton_animation.has_animation("death")):
-		_skeleton_animation.has_animation("death")
+		_skeleton_animation.play("death")
 	await _skeleton_animation.animation_finished
 	dead.emit(monster_data)
 	self.queue_free()

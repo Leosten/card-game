@@ -16,12 +16,7 @@ shape = SubResource("RectangleShape2D_q0sny")
 [node name="CharacterStatsWindow" parent="." index="3" unique_id=1699102038]
 position = Vector2(-36, 119)
 
-[node name="AnimatedSprite2D" parent="." index="4" unique_id=535737693]
-visible = false
-
-[node name="MonsterPredictive" parent="." index="5" unique_id=303760412]
+[node name="MonsterPredictive" parent="." index="4" unique_id=303760412]
 position = Vector2(-51, -219)
 
-[node name="Skeleton" parent="." index="6" unique_id=448091590 instance=ExtResource("2_q0sny")]
-position = Vector2(-4, -147)
-scale = Vector2(0.3, 0.3)
+[node name="Skeleton" parent="." index="5" unique_id=448091590 instance=ExtResource("2_q0sny")]
