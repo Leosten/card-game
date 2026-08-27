@@ -19,10 +19,10 @@ func _ready():
 
 func attack_animation():
 	animating = true
-	_animated_sprite.stop()
-	if (_animated_sprite.sprite_frames.has_animation("attack")):
-		_animated_sprite.play("attack")
-	await _animated_sprite.animation_finished
+	_skeleton_animation.stop()
+	if (_skeleton_animation.has_animation("attacking")):
+		_skeleton_animation.play("attacking")
+	await _skeleton_animation.animation_finished
 	animating = false
 
 func on_damage_taken(damage):

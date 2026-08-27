@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="MonsterData" format=3 uid="uid://cs0ori156ur1p"]
+[gd_resource type="Resource" format=3 uid="uid://cs0ori156ur1p"]
 
 [ext_resource type="Script" uid="uid://dgvjmm6orbum0" path="res://Resources/Monsters/monster_action.gd" id="1_x6q7q"]
-[ext_resource type="Script" uid="uid://fyu4c4thwqs7" path="res://Resources/Monsters/monster_data.gd" id="2_0c1kq"]
+[ext_resource type="Script" uid="uid://bl51egrjbqyti" path="res://Resources/Monsters/byakko/byakko.gd" id="2_x6q7q"]
 
 [resource]
-script = ExtResource("2_0c1kq")
-name = "Byakko"
-display_name = "byakko"
+script = ExtResource("2_x6q7q")
+name = "byakko"
+display_name = "Byakko"
 type = 2
 health = 100
 max_health = 100

@@ -38,8 +38,8 @@ spread = 10.0
 initial_velocity_min = 120.0
 initial_velocity_max = 300.0
 gravity = Vector3(800, -1500, 0)
-scale_min = 0.5
-scale_max = 0.5
+scale_min = 0.099999994
+scale_max = 0.099999994
 scale_curve = SubResource("CurveTexture_ukkkw")
 turbulence_noise_scale = 2.0
 turbulence_influence_min = 0.3
@@ -60,7 +60,7 @@ spread = 10.0
 initial_velocity_min = 120.0
 initial_velocity_max = 250.0
 gravity = Vector3(800, -1500, 0)
-scale_min = 0.5
+scale_min = 0.099999994
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_ukkkw")
 turbulence_noise_scale = 2.0
@@ -82,7 +82,7 @@ spread = 10.0
 initial_velocity_min = 120.0
 initial_velocity_max = 250.0
 gravity = Vector3(800, -1500, 0)
-scale_min = 0.5
+scale_min = 0.099999994
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_ukkkw")
 turbulence_noise_scale = 2.0
@@ -93,7 +93,8 @@ turbulence_influence_max = 0.5
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(0, 200, 0)
 gravity = Vector3(0, 98, 0)
-scale_min = 0.19999999
+scale_min = 0.099999994
+scale_max = 0.099999994
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ye44s"]
 particle_flag_disable_z = true
@@ -514,7 +515,7 @@ tracks/32/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/33/type = "value"
 tracks/33/imported = false
@@ -526,7 +527,7 @@ tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/34/type = "value"
 tracks/34/imported = false
@@ -2199,8 +2200,9 @@ bones = ["center", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 internal_vertex_count = 13
 
 [node name="tail_fire" type="GPUParticles2D" parent="." unique_id=2031096585]
-position = Vector2(444.2795, 10.734848)
-rotation = 0.75117624
+top_level = true
+position = Vector2(411.44287, -68.22601)
+rotation = 0.5486213
 scale = Vector2(0.9999998, 0.9999998)
 amount = 4
 texture = ExtResource("2_ukkkw")
@@ -2259,9 +2261,9 @@ bones = ["center", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "center/
 internal_vertex_count = 1
 
 [node name="left_fire" type="GPUParticles2D" parent="." unique_id=141518795]
-position = Vector2(-214.17487, 462.19376)
-rotation = -0.18196097
-scale = Vector2(0.99999946, 0.99999946)
+top_level = true
+position = Vector2(-231, 460)
+scale = Vector2(0.9999994, 0.9999994)
 amount = 4
 texture = ExtResource("6_ld161")
 lifetime = 0.15000000000000002
@@ -2279,8 +2281,8 @@ bones = ["center", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 internal_vertex_count = 2
 
 [node name="right_fire" type="GPUParticles2D" parent="." unique_id=680332447]
-position = Vector2(821.62994, 498.18472)
-rotation = -0.06388347
+top_level = true
+position = Vector2(823.93256, 471.92914)
 scale = Vector2(0.99999964, 0.99999964)
 amount = 4
 texture = ExtResource("6_ld161")
@@ -2310,8 +2312,8 @@ bones = ["center", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 
 [node name="smoke" type="GPUParticles2D" parent="." unique_id=1261153832]
 modulate = Color(1, 1, 1, 0.34117648)
-position = Vector2(349.98264, 812.4981)
-rotation = 0.045045428
+position = Vector2(349.96533, 853.54694)
+rotation = 0.006888092
 scale = Vector2(0.99999934, 0.99999934)
 amount = 2
 texture = ExtResource("10_3dxak")
@@ -2320,7 +2322,6 @@ randomness = 0.41
 process_material = SubResource("ParticleProcessMaterial_k1dyt")
 
 [node name="head" type="Polygon2D" parent="." unique_id=1162824248]
-visible = false
 position = Vector2(4, 478)
 texture = ExtResource("3_74n1r")
 skeleton = NodePath("../Skeleton2D")
@@ -2331,6 +2332,7 @@ bones = ["center", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 internal_vertex_count = 53
 
 [node name="head_dmg" type="Polygon2D" parent="." unique_id=2105110930]
+visible = false
 position = Vector2(4, 478)
 texture = ExtResource("3_74n1r")
 skeleton = NodePath("../Skeleton2D")
@@ -2341,15 +2343,15 @@ bones = ["center", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 internal_vertex_count = 53
 
 [node name="left_eye" type="GPUParticles2D" parent="." unique_id=189010407]
-position = Vector2(408.2983, 796.3026)
-rotation = 0.045045447
+position = Vector2(407.62073, 835.1386)
+rotation = 0.0068881065
 scale = Vector2(0.9999992, 0.9999992)
 texture = ExtResource("12_3dxak")
 process_material = SubResource("ParticleProcessMaterial_ye44s")
 
 [node name="right_eye" type="GPUParticles2D" parent="." unique_id=1270612971]
-position = Vector2(242.26482, 751.52966)
-rotation = 0.045045447
+position = Vector2(240.00009, 796.7321)
+rotation = 0.0068881065
 scale = Vector2(0.9999992, 0.9999992)
 texture = ExtResource("12_3dxak")
 process_material = SubResource("ParticleProcessMaterial_ld161")
@@ -2428,11 +2430,11 @@ rest = Transform2D(1, 0, 0, 1, -179, 316)
 
 [node name="left_back_fire" type="Bone2D" parent="Skeleton2D/center/left_back_leg" unique_id=2052654805]
 position = Vector2(-261, 173)
-scale = Vector2(0.99999946, 0.99999946)
+scale = Vector2(0.9999994, 0.9999994)
 rest = Transform2D(1, 0, 0, 1, -261, 173)
 
 [node name="left_fire" type="RemoteTransform2D" parent="Skeleton2D/center/left_back_leg/left_back_fire" unique_id=507161055]
-position = Vector2(-34.611687, -33.803524)
+position = Vector2(-58.00004, -24.000021)
 remote_path = NodePath("../../../../../left_fire")
 
 [node name="left_front_paw" type="Bone2D" parent="Skeleton2D/center" unique_id=915180297]
