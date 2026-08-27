@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://qs8ab4s4caiy"]
+
+[ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://View/Monsters/monster.tscn" id="1_wsoqo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b55gn"]
+resource_local_to_scene = true
+size = Vector2(72, 84)
+
+[node name="Monster" unique_id=145971378 instance=ExtResource("1_wsoqo")]
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
+shape = SubResource("RectangleShape2D_b55gn")

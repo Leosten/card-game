@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b3kupijqw5fv" path="res://View/Monsters/monster.gd" id="1_3k3gj"]
 [ext_resource type="PackedScene" uid="uid://bnp4uikc62nj1" path="res://View/Battle/character_stats_window.tscn" id="2_c1y8i"]
-[ext_resource type="Texture2D" uid="uid://j0awajhuy5qi" path="res://Art/Monsters/1/Idle1.png" id="3_e0lo4"]
-[ext_resource type="Texture2D" uid="uid://blclncvbxgluy" path="res://Art/Monsters/1/Idle2.png" id="4_6r1m5"]
-[ext_resource type="Texture2D" uid="uid://co8uidd2y6fl3" path="res://Art/Monsters/1/Idle3.png" id="5_h740f"]
 [ext_resource type="PackedScene" uid="uid://qhr5u43axak2" path="res://View/UI/monster_predictive.tscn" id="6_6r1m5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekkti"]
@@ -20,23 +17,6 @@ size = Vector2(72, 84)
 font_color = Color(0, 0, 0, 1)
 shadow_size = 13
 shadow_color = Color(1, 1, 1, 0)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lxhm3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_e0lo4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_6r1m5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_h740f")
-}],
-"loop": 1,
-"name": &"new_animation",
-"speed": 5.0
-}]
 
 [node name="Monster" type="Node2D" unique_id=145971378]
 script = ExtResource("1_3k3gj")
@@ -69,12 +49,6 @@ label_settings = SubResource("LabelSettings_oqa6g")
 
 [node name="CharacterStatsWindow" parent="." unique_id=1699102038 instance=ExtResource("2_c1y8i")]
 position = Vector2(-49, 43)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=535737693]
-visible = false
-position = Vector2(17, -10)
-sprite_frames = SubResource("SpriteFrames_lxhm3")
-animation = &"new_animation"
 
 [node name="MonsterPredictive" parent="." unique_id=303760412 instance=ExtResource("6_6r1m5")]
 position = Vector2(-66, -174)
