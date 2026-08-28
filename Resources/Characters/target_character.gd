@@ -3,7 +3,6 @@ class_name TargetCharacter
 extends Node2D
 
 var animating = false
-@onready var _animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var _skeleton_animation : AnimationPlayer = $Skeleton/AnimationPlayer
 @onready var stats_window = $CharacterStatsWindow
 var stats : Targetable

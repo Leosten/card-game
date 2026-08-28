@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dt68xstff36x"]
+
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_aa1gn"]
+[ext_resource type="Script" uid="uid://y6bnh3ibt8si" path="res://View/Menu/map_window/map_window.gd" id="2_oijv1"]
+
+[node name="MapWindow" type="Control" unique_id=552378823]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_aa1gn")
+script = ExtResource("2_oijv1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1840961294]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.8156863)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1790128761]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1856.0
+offset_bottom = 1024.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2048987667]
+layout_mode = 2
+
+[node name="Map window" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1920973974]
+layout_mode = 2
+theme = ExtResource("1_aa1gn")
+theme_type_variation = &"WindowTitle"
+text = "Map Window"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer" unique_id=872112169]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MapContainer" type="Control" parent="PanelContainer/VBoxContainer/ScrollContainer" unique_id=2099669387]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2

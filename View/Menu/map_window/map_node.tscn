@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dxxw3hmdyxo2a"]
+
+[ext_resource type="Script" uid="uid://crwjnj48ms5pr" path="res://View/Menu/map_window/map_node.gd" id="1_5yomp"]
+[ext_resource type="Texture2D" uid="uid://bad4axownrb0c" path="res://Art/UI/cards/large_cards/card_large treasure.png" id="2_7ru8i"]
+
+[node name="MapNode" type="Control" unique_id=1596377273]
+z_index = 999
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("1_5yomp")
+
+[node name="Button" type="Button" parent="." unique_id=349689982]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -64.0
+offset_right = 42.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChoiceLabel" type="Label" parent="." unique_id=592430045]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.5
+offset_top = -9.5
+offset_right = 36.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Encounter"
+
+[node name="Background" type="TextureRect" parent="." unique_id=1788891852]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_7ru8i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PathLine1" type="Line2D" parent="." unique_id=1743864158]
+unique_name_in_owner = true
+
+[connection signal="clicked" from="." to="." method="_on_clicked"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
