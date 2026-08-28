@@ -2313,7 +2313,7 @@ bones = ["center", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 [node name="smoke" type="GPUParticles2D" parent="." unique_id=1261153832]
 modulate = Color(1, 1, 1, 0.34117648)
 position = Vector2(349.96533, 853.54694)
-rotation = 0.006888092
+rotation = 0.006888107
 scale = Vector2(0.99999934, 0.99999934)
 amount = 2
 texture = ExtResource("10_3dxak")

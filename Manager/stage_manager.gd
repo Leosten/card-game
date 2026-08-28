@@ -23,27 +23,31 @@ func _ready() -> void:
 	pass
 	#Events.next_encounter.connect(on_next_battle)
 
-func get_stage_encounter_types(level: int) -> Array[level_type]:
+static func get_stage_encounter_types(level: int) -> Array[level_type]:
 	match level:
 		1:
 			return [level_type.COMMON]
 		2:
-			return [level_type.COMMON]
+			return [level_type.COMMON, level_type.SPECIAL]
 		3:
-			return [level_type.COMMON, level_type.MINIBOSS, level_type.TREASURE]
+			return [level_type.COMMON, level_type.SPECIAL]
 		4:
-			return [level_type.COMMON, level_type.TREASURE, level_type.SPECIAL]
+			return [level_type.COMMON,level_type.MINIBOSS]
 		5:
-			return [level_type.MINIBOSS]
+			return [level_type.COMMON, level_type.SPECIAL]
 		6:
 			return [level_type.SHOP, level_type.FORGE]
 		7:
 			return [level_type.COMMON, level_type.TREASURE]
 		8:
-			return [level_type.COMMON, level_type.MINIBOSS, level_type.TREASURE]
+			return [level_type.COMMON, level_type.MINIBOSS, level_type.SPECIAL]
 		9:
 			return [level_type.COMMON, level_type.TREASURE, level_type.SPECIAL]
 		10:
+			return [level_type.COMMON, level_type.COMMON, level_type.MINIBOSS, level_type.SPECIAL]
+		11:
+			return [level_type.COMMON, level_type.SPECIAL]
+		12:
 			return [level_type.BOSS]
 		_:
 			return []
@@ -59,7 +63,7 @@ static func get_encounter_name_by_type(type : level_type):
 		level_type.TREASURE:
 			return "Treasure"
 		level_type.SPECIAL:
-			return "Special"
+			return "?"
 		level_type.SHOP:
 			return "Shop"
 		level_type.FORGE:
@@ -97,25 +101,25 @@ func get_stage_one_common_monsters(level) :
 		2:
 			return [["umbrella"],["yokai","fireball"]]
 		3:
-			return [["umbrella","yokai"],["yokai"]]
+			return [["umbrella","yokai"]]
 		4:
-			return [["umbrella"],["umbrella","umbrella"]]
+			return [["umbrella"],["fireball","umbrella"]]
 		5:
-			return [["umbrella"],["umbrella","umbrella"]]
+			return [["umbrella"],["umbrella","fireball"]]
 		6:
 			return [["umbrella"],["umbrella","umbrella"]]
 		7:
-			return [["umbrella","umbrella"],["umbrella","umbrella"]]
+			return [["umbrella","yokai"],["umbrella","umbrella"]]
 		8:
-			return [["umbrella","umbrella"],["umbrella","umbrella","umbrella"]]
+			return [["umbrella","umbrella"],["umbrella","umbrella","yokai"]]
 		9:
-			return [["umbrella","umbrella"],["umbrella","umbrella","umbrella"]]
+			return [["umbrella","umbrella"],["umbrella","umbrella","fireball"]]
 	return []
 
 func get_stage_one_miniboss(level) :
-	return [[1,1,1,1]]
+	return [["umbrella","umbrella","umbrella"]]
 
-func get_encounter_monsters_by_stage():
+func get_monsters_by_encounter_type():
 	match current_stage:
 		1:
 			if current_encounter_type == level_type.COMMON:
@@ -123,9 +127,17 @@ func get_encounter_monsters_by_stage():
 			if current_encounter_type == level_type.MINIBOSS:
 				return get_stage_one_miniboss(current_level).pick_random()
 			if current_encounter_type == level_type.BOSS:
-				return
+				return get_boss_by_stage(current_stage)
 		_:
 			return null
+
+func get_boss_by_stage(curr_stage: int):
+	match(curr_stage):
+		1:
+			return ["byakko"]
+		_:
+			printerr("stage boss not found")
+			return
 
 func encounter_progress():
 	if current_stage == max_current_stage and current_level == max_current_level:
@@ -141,7 +153,7 @@ func encounter_progress():
 	current_level += 1
 
 func get_level_monsters() -> Array[MonsterData]:
-	var monsters = get_encounter_monsters_by_stage()
+	var monsters = get_monsters_by_encounter_type()
 	
 	var monster_index = 0
 	var level_monsters : Array[MonsterData] = []

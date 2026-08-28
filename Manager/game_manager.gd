@@ -4,11 +4,13 @@ const CardManager = preload("res://Manager/card_manager.gd")
 const UiManager = preload("res://Manager/ui_manager.gd")
 const PlayerStats = preload("res://Resources/Characters/player_stats.gd")
 const CharacterManager = preload("res://Manager/character_manager.gd")
+const MapManager = preload("res://Manager/map_manager.gd")
 
 signal game_completed
 
 var card_manager : CardManager
 var stage_manager : StageManager
+var map_manager : MapManager
 var ui_manager : UiManager
 var character_manager : CharacterManager
 var battle_state : BattleState
@@ -22,7 +24,6 @@ var companion_scene : PackedScene = null
 
 var viewport_size
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	viewport_size = get_viewport().size
 	# select char id at start menu
@@ -32,6 +33,7 @@ func _ready() -> void:
 	companion_id = 0
 	card_manager = CardManager.new()
 	stage_manager = StageManager.new()
+	map_manager = MapManager.new()
 	character_manager = CharacterManager.new()
 	
 	init_player(char_id)

@@ -78,6 +78,7 @@ func start_boss_battle():
 	pass
 
 func new_stage():
+	GameManager.map_manager.generate_map()
 	stage_monsters = stage_manager.get_stage_monsters()
 
 func spawn_player_character():
