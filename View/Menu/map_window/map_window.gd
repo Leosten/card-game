@@ -2,7 +2,7 @@ extends Control
 
 var map : Dictionary
 var map_node_scene = preload("res://View/Menu/map_window/map_node.tscn")
-var map_nodes : Array
+var map_nodes : Array = []
 
 const map_container_margin = 100
 @export var line_color: Color = Color.RED
@@ -40,19 +40,28 @@ func render_map_nodes():
 			node_pos += 1
 
 func render_paths():
+	var nb_of_lines = 0
+	var nb_of_nodes = 0
 	for node : MapNode in map_nodes:
+		#print("node positions: ", node.position.x, " " , node.position.y)
 		if node.node_data.next_nodes.is_empty():
 			continue
-		for next_node in node.node_data.next_nodes:
+		for next_node : MapNodeData in node.node_data.next_nodes:
+			print("next node positions: ", next_node.node_position.x, " " , next_node.node_position.y)
+			
 			var line := Line2D.new()
 			line.width = 3.0
 			line.default_color = Color.WHITE
-			var start_pos: Vector2 = node.position
+			
+			var start_pos: Vector2 = node.node_data.node_position
+			
 			var end_pos: Vector2 = next_node.node_position
-			line.add_point(start_pos)
-			line.add_point(end_pos)
+			line.points = [start_pos,end_pos]
 			%MapContainer.add_child(line)
-
+			nb_of_lines += 1
+			#print("NB of lines : ", nb_of_lines)
+		nb_of_nodes += 1
+		#print("NB of nodes: ", nb_of_nodes)
 func _on_map_node_hovered():
 	pass
 func _on_map_node_hovered_out():

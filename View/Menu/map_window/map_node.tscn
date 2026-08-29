@@ -73,8 +73,5 @@ texture = ExtResource("2_7ru8i")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PathLine1" type="Line2D" parent="." unique_id=1743864158]
-unique_name_in_owner = true
-
 [connection signal="clicked" from="." to="." method="_on_clicked"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -2,7 +2,6 @@ class_name MapNode
 extends Control
 
 @onready var choice_label: Label = %ChoiceLabel
-@onready var path_line: Line2D = %PathLine
 @onready var background : TextureRect = %Background
 @export var line_color: Color = Color.RED
 @export var line_width: float = 2.0
