@@ -101,7 +101,7 @@ func get_card_background(card_type: CardUtils.card_type) -> Texture2D:
 func get_large_card_background(level_type: StageManager.level_type) -> Texture2D:
 	if _large_cards.has(level_type):
 		return _large_cards[level_type]
-	push_warning("large card background not found")
+	push_warning("large card background not found for : " , level_type)
 	return _large_cards[StageManager.level_type.COMMON]
 	
 func get_random_card_for_deck(character_class: String) -> CardData:

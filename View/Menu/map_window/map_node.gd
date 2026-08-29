@@ -19,8 +19,10 @@ func on_ready() -> void:
 func init(node_d : MapNodeData):
 	node_data = node_d
 	encounter_type = node_d.encounter_type
-	background.texture = node_d.background
 
+func set_background():
+	background.texture = node_data.background
+	
 func _on_hovered() -> void:
 	pass # Replace with function body.
 

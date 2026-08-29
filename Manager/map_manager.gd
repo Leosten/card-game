@@ -2,61 +2,94 @@ class_name MapManager
 
 extends Node
 
-const MAX_LEVEL = 13
-const MAX_NODES_PER_LEVEL = 4
-var map : Dictionary = {}
+var map: Array
 var MAX_NB_OF_PATHS = 2
 var MIN_NB_OF_PATHS = 1
 var current_node = MapNodeData
+var grid_width: int = 4
+var grid_height: int = 13
+var num_paths: int = 5 # Number of paths to trace from bottom to top
 
 func generate_map():
-	var encounter_types = StageManager.level_type
-	for level in MAX_LEVEL:
-		if level == 0:
-			continue
-		map.set(level, [])
-		for node in MAX_NODES_PER_LEVEL:
-			var single_node = MapNodeData.new()
-			var encounter_t = StageManager.get_stage_encounter_types(level).pick_random()
-			var background = GameManager.card_manager.get_large_card_background(encounter_t)
-			single_node.background = background
-			single_node.encounter_type = encounter_t
-			map[level].append(single_node)
+	# 1. Initialize empty grid (4 columns x 12 floors)
+	var grid: Array = []
+	for y in range(grid_height):
+		var row: Array = []
+		for x in range(grid_width):
+			row.append(null)
+		grid.append(row)
+		
+	# 2. Trace paths from bottom (y = 0) to top (y = 11)
+	for path_idx in range(num_paths):
+		# Start at floor 0 (pick a column)
+		var current_col: int = randi_range(0, grid_width - 1)
+		
+		# Instantiate or reuse node at floor 0
+		if grid[0][current_col] == null:
+			grid[0][current_col] = create_new_node(0)
 			
-	generate_paths()
+			grid[0][current_col].grid_pos = Vector2i(current_col, 0)
+			
+		var current_node: MapNodeData = grid[0][current_col]
+		
+		# Trace up floor by floor
+		for y in range(0, grid_height - 1):
+			var next_y: int = y + 1
+			
+			# Pick available candidate columns on the next floor (-1, 0, or +1 offset)
+			var valid_next_cols: Array[int] = []
+			for col_offset in [-1, 0, 1]:
+				var target_col: int = current_node.grid_pos.x + col_offset
+				if target_col >= 0 and target_col < grid_width:
+					# Rule: Check crossing paths before allowing step
+					if not creates_cross_connection(grid, current_node.grid_pos, Vector2i(target_col, next_y)):
+						valid_next_cols.append(target_col)
+						
+			# If no valid moves without crossing, lock to same column
+			if valid_next_cols.is_empty():
+				valid_next_cols.append(current_node.grid_pos.x)
+				
+			# Pick one random column from valid candidates
+			var chosen_col: int = valid_next_cols.pick_random()
+			
+			# Instantiate target node if empty
+			if grid[next_y][chosen_col] == null:
+				grid[next_y][chosen_col] = create_new_node(next_y)
+				grid[next_y][chosen_col].grid_pos = Vector2i(chosen_col, next_y)
+				
+			var target_node: MapNodeData = grid[next_y][chosen_col]
+			
+			# Connect current floor node to next floor node (avoid duplicate entries)
+			if not current_node.next_nodes.has(target_node):
+				current_node.next_nodes.append(target_node)
+				
+			# Move up to next node
+			current_node = target_node
+			
+	map = grid
 	print("MAP GENERATED")
-	#print(map)
 
-func generate_paths():
-	for level in range(1, MAX_LEVEL):
-		if level == MAX_LEVEL - 1:
-			break
-		var next_possible_nodes : Array = map[level + 1].duplicate()
-		next_possible_nodes.shuffle()
+func creates_cross_connection(grid: Array, from_pos: Vector2i, to_pos: Vector2i) -> bool:
+	# Only checks diagonal steps (left or right)
+	var col_diff: int = to_pos.x - from_pos.x
+	if col_diff == 0:
+		return false # Straight lines up never cross
 		
-		for starting_node in map[level]:
-			#if next_possible_nodes.is_empty():
-				#continue
-			if level > 1:
-				if starting_node.is_tracked == false:
-					continue
-			var path_nb = randi_range(MIN_NB_OF_PATHS, MAX_NB_OF_PATHS)
-			if path_nb >= next_possible_nodes.size():
-				path_nb = next_possible_nodes.size()
-			for i in path_nb:
-				var node_to_add = next_possible_nodes.pop_back()
-				node_to_add.is_tracked = true
-				starting_node.next_nodes.append(node_to_add)
-	cleanup_paths()
-		
-func cleanup_paths():
-	for level in range(1, MAX_LEVEL):
-		map[level] = map[level].filter(func(node: MapNodeData): 
-			print(node.next_nodes)
-			return node.next_nodes.is_empty() == false)
-	for level in map:
-		for node in map[level]:
-			node.next_nodes = node.next_nodes.filter(func(node): return node.next_nodes.is_empty() == false)
-	print("PATHS GENERATED")
+	# Check adjacent origin node that could cause an X-crossing
+	var neighbor_col: int = from_pos.x + col_diff
+	if neighbor_col >= 0 and neighbor_col < grid_width:
+		var neighbor_node: MapNodeData = grid[from_pos.y][neighbor_col]
+		if neighbor_node != null:
+			# If neighbor connects back to our target column, it creates an X-cross
+			for target in neighbor_node.next_nodes:
+				if target.grid_pos.x == from_pos.x:
+					return true # Crossing detected!
+	return false
 
-	print(map)
+func create_new_node(level) -> MapNodeData:
+	var map_node = MapNodeData.new()
+	var encounter_t = StageManager.get_stage_encounter_types(level).pick_random()
+	print("ENCOUNTER TYPES " , encounter_t)
+	map_node.encounter_type = encounter_t
+	map_node.background = GameManager.card_manager.get_large_card_background(encounter_t)
+	return map_node

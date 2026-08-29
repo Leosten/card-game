@@ -25,6 +25,8 @@ func _ready() -> void:
 
 static func get_stage_encounter_types(level: int) -> Array[level_type]:
 	match level:
+		0:
+			return [level_type.COMMON]
 		1:
 			return [level_type.COMMON]
 		2:
