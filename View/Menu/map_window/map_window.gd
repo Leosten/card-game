@@ -49,7 +49,6 @@ func _on_map_node_clicked(node: MapNode):
 		selected_node.select_toggle()
 		selected_node = node
 		selected_node.select_toggle()
-	
 
 func render_map(grid: Array) -> void:
 	# Dictionary to store MapNodeData -> UI Button instance
@@ -106,7 +105,6 @@ func update_container_size(grid_width: int, grid_height: int) -> void:
 	
 	# Force the custom Control container to expand
 	map_container.custom_minimum_size = Vector2(total_width, total_height)
-
 
 func _on_next_button_pressed() -> void:
 	if selection == false:
