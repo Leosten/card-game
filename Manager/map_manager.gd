@@ -5,7 +5,7 @@ extends Node
 var map: Array
 var MAX_NB_OF_PATHS = 2
 var MIN_NB_OF_PATHS = 1
-var current_node = MapNodeData
+var current_node : MapNodeData = null
 var grid_width: int = 4
 var grid_height: int = 13
 var num_paths: int = 5 # Number of paths to trace from bottom to top
@@ -26,14 +26,14 @@ func generate_map():
 		
 		# Instantiate or reuse node at floor 0
 		if grid[0][current_col] == null:
-			grid[0][current_col] = create_new_node(0)
+			grid[0][current_col] = create_new_node(1)
 			
 			grid[0][current_col].grid_pos = Vector2i(current_col, 0)
 			
 		var current_node: MapNodeData = grid[0][current_col]
 		
 		# Trace up floor by floor
-		for y in range(0, grid_height - 1):
+		for y in range(1, grid_height - 1):
 			var next_y: int = y + 1
 			
 			# Pick available candidate columns on the next floor (-1, 0, or +1 offset)
@@ -89,7 +89,12 @@ func creates_cross_connection(grid: Array, from_pos: Vector2i, to_pos: Vector2i)
 func create_new_node(level) -> MapNodeData:
 	var map_node = MapNodeData.new()
 	var encounter_t = StageManager.get_stage_encounter_types(level).pick_random()
-	print("ENCOUNTER TYPES " , encounter_t)
 	map_node.encounter_type = encounter_t
+	map_node.level = level
 	map_node.background = GameManager.card_manager.get_large_card_background(encounter_t)
 	return map_node
+
+func is_node_selectable(node: MapNodeData) -> bool:
+	if current_node == null:
+		return node.level == 1 # only floor-1 nodes selectable at game start
+	return current_node.next_nodes.has(node)

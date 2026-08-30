@@ -18,7 +18,6 @@ var char_scene : PackedScene = null
 var companion_scene : PackedScene = null
 
 @export var cards : Array[CardData] = []
-
 @export var char_id = 0;
 @export var companion_id = 0;
 

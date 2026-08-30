@@ -4,6 +4,8 @@ var map : Array
 var map_node_scene = preload("res://View/Menu/map_window/map_node.tscn")
 var map_nodes : Array = []
 @onready var map_container : Control = %MapContainer
+@onready var next_btn : Control = %NextButton
+@onready var close_btn : Control = %CloseButton
 const map_container_margin = 150
 
 @export var line_color: Color = Color.RED
@@ -14,19 +16,40 @@ const map_container_margin = 150
 @export var grid_rows: int = 13
 @export var cell_size := Vector2(200, 200)
 @export var random_jitter := Vector2(20, 15) # Gives organic offset
+
 var half_size := Vector2(75, 75)
+
+var selection = false
+var selected_node = null
 
 func _ready() -> void:
 	map = GameManager.map_manager.map
 	render_map(map)
 	update_container_size(grid_columns, grid_rows)
+	next_btn.disabled = !selection
+	close_btn.visible = !selection
+func with_data(extra_data : Dictionary):
+	if extra_data.has("selection"):
+		selection = extra_data.selection
 
 func _on_map_node_hovered():
 	pass
 func _on_map_node_hovered_out():
 	pass
-func _on_map_node_clicked():
-	pass
+func _on_map_node_clicked(node: MapNode):
+	if selection == false:
+		return
+	if selected_node == null:
+		selected_node = node
+		selected_node.select_toggle()
+	elif selected_node == node:
+		selected_node.select_toggle()
+		selected_node = null
+	elif selected_node != null:
+		selected_node.select_toggle()
+		selected_node = node
+		selected_node.select_toggle()
+	
 
 func render_map(grid: Array) -> void:
 	# Dictionary to store MapNodeData -> UI Button instance
@@ -40,6 +63,7 @@ func render_map(grid: Array) -> void:
 				continue
 				
 			var btn = map_node_scene.instantiate()
+			btn.clicked.connect(_on_map_node_clicked)
 			btn.init(data)
 			# Calculate centered position + random organic jitter
 			var base_pos := Vector2(map_container_margin + (x * cell_size.x), map_container_margin + (y * cell_size.y))
@@ -82,3 +106,18 @@ func update_container_size(grid_width: int, grid_height: int) -> void:
 	
 	# Force the custom Control container to expand
 	map_container.custom_minimum_size = Vector2(total_width, total_height)
+
+
+func _on_next_button_pressed() -> void:
+	if selection == false:
+		return
+	if selected_node == null:
+		return
+	selected_node.node_data.is_walked = true
+	GameManager.stage_manager.encounter_progress()
+	GameManager.map_manager.current_node = selected_node.node_data
+	Events.next_encounter.emit()
+	Events.request_window_close.emit("map")
+
+func _on_close_button_pressed() -> void:
+	Events.request_window_close.emit("map")

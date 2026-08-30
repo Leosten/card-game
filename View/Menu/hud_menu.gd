@@ -25,6 +25,7 @@ func _on_window_open_requested(window_name: String, extra_data: Dictionary = {})
 			center_root.add_child(deck_list_window)
 		"map":
 			map_window = map_window_scene.instantiate()
+			map_window.with_data(extra_data)
 			center_root.add_child(map_window)
 		"next_level":
 			await ScreenTransition.wipe_out(0.6)

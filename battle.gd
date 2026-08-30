@@ -42,11 +42,11 @@ func _ready() -> void:
 	spawn_player_character()
 	spawn_companion_character()
 	new_stage()
-	start_battle()
+	Events.request_window_open.emit('map', {"selection": true})
 
 func new_encounter():
 	print("new_encounter")
-	current_encounter = GameManager.stage_manager.current_encounter_type
+	current_encounter = GameManager.map_manager.current_node.encounter_type
 	match current_encounter:
 		StageManager.level_type.COMMON:
 			start_battle()
@@ -164,7 +164,7 @@ func on_turn_start():
 func victory():
 	Events.battle_won.emit()
 	await _cleanup_fight()
-	Events.request_window_open.emit("reward")
+	Events.request_window_open.emit("map", {"selection" : true})
 
 func _cleanup_fight():
 	battle_state.cleanup_fight()

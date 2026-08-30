@@ -15,9 +15,10 @@ var enemy_first_column = 300
 var enemy_column_margin = 350
 var row_margin = 320
 
-@export var current_level = 1;
+@export var current_level = 0;
 @export var current_stage = 1;
 @export var current_encounter_type: level_type
+var current_map_node : MapNodeData
 
 func _ready() -> void:
 	pass
@@ -46,7 +47,7 @@ static func get_stage_encounter_types(level: int) -> Array[level_type]:
 		9:
 			return [level_type.COMMON, level_type.TREASURE, level_type.SPECIAL]
 		10:
-			return [level_type.COMMON, level_type.COMMON, level_type.MINIBOSS, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.MINIBOSS, level_type.SPECIAL]
 		11:
 			return [level_type.COMMON, level_type.SPECIAL]
 		12:
@@ -99,7 +100,7 @@ func get_monster_scene_from_name(monster_name):
 func get_stage_one_common_monsters(level) :
 	match level:
 		1:
-			return [["byakko"]]
+			return [["yokai"]]
 		2:
 			return [["umbrella"],["yokai","fireball"]]
 		3:

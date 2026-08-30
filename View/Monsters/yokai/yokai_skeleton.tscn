@@ -1080,7 +1080,7 @@ rest = Transform2D(0.5637908, -6.83902, 0.7191254, 0.059282806, -1.1478901, -13.
 [node name="robe" type="Bone2D" parent="Skeleton2D/center" unique_id=1763030069]
 position = Vector2(-10.418048, 37.913895)
 rotation = 1.6510894
-scale = Vector2(10.07618, 29.365509)
+scale = Vector2(10.07618, 29.36551)
 rest = Transform2D(-1.0233393, 10.024081, -29.213657, -2.9823663, -10.41805, 37.913906)
 
 [node name="hat" type="Bone2D" parent="Skeleton2D/center" unique_id=451878999]
@@ -1096,8 +1096,8 @@ bone_angle = 0.0
 [node name="knot" type="Bone2D" parent="Skeleton2D/center" unique_id=1553537171]
 position = Vector2(-66.723755, 21.861856)
 rotation = -2.9923937
-scale = Vector2(1.3224969, 1.7960249)
-skew = 1.1362354
+scale = Vector2(1.3224969, 1.796025)
+skew = 1.1362351
 rest = Transform2D(-1.2759929, -0.34761873, 1.770563, -0.30135033, -80.278694, 39.132153)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1217029792]
