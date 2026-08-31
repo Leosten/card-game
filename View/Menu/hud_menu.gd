@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var center_root = $%CenterWindowRoot
+@onready var current_level_display = %CurrentLevelLabel
+
 var deck_list_window_scene = load("res://View/Menu/deck_list_window.tscn")
 var map_window_scene = load("res://View/Menu/map_window/map_window.tscn")
 var reward_window_scene = load("res://View/Menu/victory_window.tscn")	
@@ -32,7 +34,6 @@ func _on_window_open_requested(window_name: String, extra_data: Dictionary = {})
 			next_level_window = next_level_window_scene.instantiate()
 			center_root.add_child(next_level_window)
 			await ScreenTransition.wipe_in(0.6)
-		
 
 func _on_window_close_requested(window_name: String) -> void:
 	match window_name:
@@ -49,6 +50,6 @@ func _on_deck_list_button_pressed() -> void:
 
 func _on_map_button_pressed() -> void:
 	Events.request_window_open.emit("map")
-	
+
 func on_level_change():
-	%CurrentLevelLabel.text = "Level " + str(GameManager.stage_manager.current_stage) + " - " + str(GameManager.stage_manager.current_level)
+	current_level_display.text = "Level " + str(GameManager.stage_manager.current_stage) + " - " + str(GameManager.stage_manager.current_level)

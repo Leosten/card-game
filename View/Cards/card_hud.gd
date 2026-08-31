@@ -26,8 +26,9 @@ var card_used = false
 var enemy_turn = false
 var card_hand_size
 
-@onready var cardhandhud = $CardHudContainer/CardHand.size
-@onready var card_hand_anchor = $CardHudContainer/CardHand/HandAnchor
+@onready var card_hand_anchor = %HandAnchor
+@onready var draw_count = %DrawCount
+@onready var discard_count = %DiscardCount
 
 func _ready() -> void:
 	player_stats = GameManager.battle_state.player_stats
@@ -161,9 +162,8 @@ func init_player_piles():
 	draw_pile.shuffle()
 	
 func update_piles_count():
-	$DrawPile/DrawCount.text = str(draw_pile.size())
-	$DiscardPile/DiscardCount.text = str(discard_pile.size())
-	pass
+	draw_count.text = str(draw_pile.size())
+	discard_count.text = str(discard_pile.size())
 
 func reposition_cards():
 	for card in displayed_hand:

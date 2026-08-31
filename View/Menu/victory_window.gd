@@ -49,11 +49,13 @@ func _on_next_button_pressed() -> void:
 		print("adding card to deck")
 		GameManager.battle_state.player_deck.append(selected_card)
 	Events.request_window_close.emit("reward")
-	Events.request_window_open.emit("next_level")
+	Events.request_window_open.emit("map", {"selection" : true})
+
 
 func _on_ignore_button_pressed() -> void:
 	Events.request_window_close.emit("reward")
-	Events.request_window_open.emit("next_level")
+	Events.request_window_open.emit("map", {"selection" : true})
+
 
 func _on_card_hovered(card : Card):
 	if card == selected_card:

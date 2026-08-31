@@ -25,10 +25,9 @@ var next_level_screen
 var viewport_size
 var enemy_positions : Array[Area2D] = []
 
-@onready var card_hand_hud = $Hud/BottomHudRoot/CardHandHud
+@onready var card_hand_hud = %CardHandHud
+@onready var end_turn_button = %EndTurnButton
 @onready var mana_window = $%ManaWindow
-@onready var level_display = $Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer/CurrentLevelLabel
-@onready var center_window = $Hud/CenterWindowRoot
 var card_clicked: CardData = null
 
 func _ready() -> void:
@@ -37,6 +36,7 @@ func _ready() -> void:
 	player_turn_end.connect(on_player_turn_end)
 	enemy_turn_end.connect(on_enemy_turn_end)
 	card_hand_hud.card_clicked.connect(_on_card_clicked)
+	end_turn_button.button_pressed.connect(_on_end_turn_button_pressed)
 	#todo: globals
 	viewport_size = get_viewport_rect().size
 	stage_manager = GameManager.stage_manager
@@ -178,7 +178,7 @@ func on_player_turn_start():
 func victory():
 	Events.battle_won.emit()
 	await _cleanup_fight()
-	Events.request_window_open.emit("map", {"selection" : true})
+	Events.request_window_open.emit("reward", {"gold" : 0})
 
 func _cleanup_fight():
 	battle_state.cleanup_fight()

@@ -1,29 +1,46 @@
 [gd_scene format=3 uid="uid://cny75kkfdyh1g"]
 
 [ext_resource type="Script" uid="uid://csinnjjvitat8" path="res://View/Cards/mana_window.gd" id="1_jj58p"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ot0k3"]
-font_size = 85
-font_color = Color(0, 0, 0, 1)
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="2_2utd4"]
+[ext_resource type="Texture2D" uid="uid://dwpf4n7mibu7m" path="res://Art/UI/mana_window.png" id="3_clnu8"]
 
 [node name="ManaWindow" type="Node2D" unique_id=1224726459]
 script = ExtResource("1_jj58p")
 
 [node name="ManaLabel" type="Label" parent="." unique_id=986682232]
+unique_name_in_owner = true
 z_index = 1
-offset_left = -81.0
-offset_top = -58.0
-offset_right = 284.0
-offset_bottom = 105.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -56.0
+offset_right = 27.5
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_2utd4")
+theme_type_variation = &"manaText"
+theme_override_font_sizes/font_size = 70
 text = "5"
-label_settings = SubResource("LabelSettings_ot0k3")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1381168501]
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-36.79209, -67.21784, -107.20799, -67.21784, -142.4159, -14.405951, -142.4159, 38.405952, -107.20796, 91.217865, -36.79209, 91.21783, -1.584198, 38.405952, -1.584198, -14.405951)
-uv = PackedVector2Array(-56, -24, -88.000015, -24, -104, 0, -104, 24.000004, -80.000015, 47.999996, -56, 47.999996, -40.000015, 24.000004, -40.000015, 0)
-
-[node name="Polygon2D" type="Polygon2D" parent="Polygon2D" unique_id=1568389647]
-position = Vector2(14, -8)
-polygon = PackedVector2Array(-40.130455, -59.706413, -103.86954, -59.706413, -135.73901, -11.90214, -135.73901, 35.902153, -103.86951, 83.70644, -40.130455, 83.70643, -8.260971, 35.902153, -8.260971, -11.90214)
-uv = PackedVector2Array(-56, -24, -88.000015, -24, -104, 0, -104, 24.000004, -80.000015, 47.999996, -56, 47.999996, -40.000015, 24.000004, -40.000015, 0)
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2025536801]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.5
+offset_top = -64.0
+offset_right = 70.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_clnu8")

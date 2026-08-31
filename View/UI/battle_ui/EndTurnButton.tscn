@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cxdimjqove78l"]
+
+[ext_resource type="Script" uid="uid://dq2mjvlla8skq" path="res://View/UI/battle_ui/end_turn_button.gd" id="1_ck64l"]
+[ext_resource type="Texture2D" uid="uid://bvii0pbw1sm88" path="res://Art/UI/end_turn.png" id="1_cnnf3"]
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="2_ck64l"]
+
+[node name="EndTurnButton" type="Control" unique_id=242994049]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ck64l")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=392686141]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -73.5
+offset_right = 90.0
+offset_bottom = 73.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cnnf3")
+
+[node name="EndTurnLabel" type="Label" parent="." unique_id=792953894]
+layout_mode = 0
+offset_left = -51.0
+offset_top = -49.0
+offset_right = 56.0
+offset_bottom = 33.0
+theme = ExtResource("2_ck64l")
+theme_type_variation = &"manaText"
+theme_override_font_sizes/font_size = 22
+text = "End Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=715389159]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -74.0
+offset_top = -62.0
+offset_right = 81.0
+offset_bottom = 61.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

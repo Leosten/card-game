@@ -5,10 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://ybsmg21ph22t" path="res://View/BattleFieldView.tscn" id="2_7sfm4"]
 [ext_resource type="PackedScene" uid="uid://cny75kkfdyh1g" path="res://View/Cards/mana_window.tscn" id="3_i431l"]
 [ext_resource type="Script" uid="uid://cl3jqlp3cmcx8" path="res://View/Menu/hud_menu.gd" id="4_6t8i5"]
+[ext_resource type="PackedScene" uid="uid://cxdimjqove78l" path="res://View/UI/battle_ui/EndTurnButton.tscn" id="4_mhv3b"]
 [ext_resource type="Script" uid="uid://r3uwpuqn7anb" path="res://Manager/damage_number_manager.gd" id="5_dw4jg"]
-
-[sub_resource type="Theme" id="Theme_ekkti"]
-Button/font_sizes/font_size = 33
+[ext_resource type="Texture2D" uid="uid://bpgtsq2gbmb8o" path="res://Art/UI/top_bar_1080.png" id="7_0npn6"]
 
 [node name="Battle" type="Node2D" unique_id=344223136]
 script = ExtResource("1_7sfm4")
@@ -17,15 +16,14 @@ script = ExtResource("1_7sfm4")
 
 [node name="ManaWindow" parent="." unique_id=1224726459 instance=ExtResource("3_i431l")]
 unique_name_in_owner = true
-position = Vector2(197, 711)
+position = Vector2(129, 764)
 
-[node name="EndTurnButton" type="Button" parent="." unique_id=55106371]
-offset_left = 1667.0
-offset_top = 725.0
-offset_right = 1894.0
-offset_bottom = 811.0
-theme = SubResource("Theme_ekkti")
-text = "End Turn"
+[node name="EndTurnButton" parent="." unique_id=242994049 instance=ExtResource("4_mhv3b")]
+unique_name_in_owner = true
+offset_left = 1792.0
+offset_top = 768.0
+offset_right = 1792.0
+offset_bottom = 768.0
 
 [node name="Hud" type="CanvasLayer" parent="." unique_id=1110246118]
 script = ExtResource("4_6t8i5")
@@ -52,6 +50,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="CardHandHud" parent="Hud/BottomHudRoot" unique_id=1336641316 instance=ExtResource("1_oxp8w")]
+unique_name_in_owner = true
 layout_mode = 1
 offset_top = -1.0
 offset_bottom = -4.0
@@ -62,6 +61,12 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 72.0
 grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="Hud/TopHudRoot" unique_id=709272671]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_0npn6")
 
 [node name="BattleStats" type="Control" parent="Hud/TopHudRoot" unique_id=693394014]
 layout_mode = 1
@@ -79,12 +84,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Hud/TopHudRoot/BattleStats/HBoxContainer" unique_id=777844803]
+[node name="PanelContainer" type="Control" parent="Hud/TopHudRoot/BattleStats/HBoxContainer" unique_id=1763037019]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="CenterContainer" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer" unique_id=1300496090]
-layout_mode = 2
+[node name="MarginContainer" type="CenterContainer" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer" unique_id=639178344]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 72.0
 
 [node name="CurrentLevelLabel" type="Label" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer" unique_id=101475463]
 unique_name_in_owner = true
@@ -113,6 +122,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="Hud/TopHudRoot/BattleStats/HBoxContainer/DeckListButton" to="Hud" method="_on_deck_list_button_pressed"]
 [connection signal="pressed" from="Hud/TopHudRoot/BattleStats/HBoxContainer/MapButton" to="Hud" method="_on_map_button_pressed"]
