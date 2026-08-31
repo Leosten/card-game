@@ -8,7 +8,7 @@ signal action_impossible
 
 var battle_state: BattleState
 
-func _ready() -> void:
+func _init() -> void:
 	battle_state = GameManager.battle_state
 	Events.turn_start.connect(start_turn_status_cycle)
 	Events.turn_end.connect(end_turn_status_cycle)
@@ -139,8 +139,10 @@ func end_turn_status_cycle():
 	for monster in battle_state.level_monsters:
 		monster.status_manager.trigger_turn_end()
 	battle_state.player_stats.status_manager.trigger_turn_end()
-
+	print("TURN END")
+		
 func start_turn_status_cycle():
 	for monster in battle_state.level_monsters:
 		monster.status_manager.trigger_turn_start()
 	battle_state.player_stats.status_manager.trigger_turn_start()
+	print("TURN START")

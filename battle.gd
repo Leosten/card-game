@@ -1,5 +1,10 @@
 extends Node2D
 
+signal player_turn_start
+signal player_turn_end
+signal enemy_turn_start
+signal enemy_turn_end
+
 var battle_state : BattleState
 var current_stage: int
 var current_level: int
@@ -28,8 +33,9 @@ var card_clicked: CardData = null
 
 func _ready() -> void:
 	Events.next_encounter.connect(new_encounter)
-	Events.turn_start.connect(on_turn_start)
-	Events.turn_end.connect(on_turn_end)
+	player_turn_start.connect(on_player_turn_start)
+	player_turn_end.connect(on_player_turn_end)
+	enemy_turn_end.connect(on_enemy_turn_end)
 	card_hand_hud.card_clicked.connect(_on_card_clicked)
 	#todo: globals
 	viewport_size = get_viewport_rect().size
@@ -56,8 +62,9 @@ func new_encounter():
 			start_boss_battle()
 		StageManager.level_type.TREASURE:
 			pass
-		StageManager.level_type.SPECIAL:
-			pass
+		StageManager.level_type.RANDOM:
+			GameManager.stage_manager.get_random_encounter()
+			new_encounter()
 		StageManager.level_type.SHOP:
 			pass
 		StageManager.level_type.FORGE:
@@ -73,7 +80,8 @@ func start_battle():
 	battle_state.level_monsters = stage_manager.get_level_monsters()
 	spawn_level_monsters()
 	Events.turn_start.emit()
-	
+	player_turn_start.emit()
+
 func start_boss_battle():
 	pass
 
@@ -148,16 +156,22 @@ func launch_enemy_turn():
 	for enemy in battle_state.level_monsters:
 		action_manager.enemy_cycle(battle_state, enemy)
 		await get_tree().create_timer(0.5).timeout
-	Events.turn_start.emit()
+	enemy_turn_end.emit()
+
+func on_enemy_turn_end():
+	Events.turn_end.emit()
+	player_turn_start.emit()
 
 func _on_end_turn_button_pressed() -> void:
-	Events.turn_end.emit()
+	player_turn_end.emit()
 
-func on_turn_end():
+func on_player_turn_end():
+	await card_hand_hud.discard_all()
 	await battle_animation_manager.short_pause()
 	await launch_enemy_turn()
 
-func on_turn_start():
+func on_player_turn_start():
+	Events.turn_start.emit()
 	battle_state.replenish_player_mana()
 	enemy_turn = false
 

@@ -142,6 +142,7 @@ func exhaust_card(card: Card):
 	update_piles_count()
 
 func discard_all():
+	print("CLEAR CARDS")
 	for card in player_hand:
 		card.hand_position = 0
 		discard_pile.append(card)
@@ -177,7 +178,7 @@ func on_mana_changed():
 
 func on_turn_end():
 	enemy_turn = true
-	discard_all()
+	#await discard_all()
 
 func on_turn_start():
 	enemy_turn = false
@@ -211,7 +212,9 @@ func _on_card_hovered(card: Card) -> void:
 
 func _on_card_hovered_out(card: Card) -> void:
 	print("hovered out")
-	if card_used == true :
+	if card_used == true:
+		return
+	if enemy_turn == true:
 		return
 	if hovered_card != card:
 		print("hovering out different card")

@@ -14,6 +14,8 @@ func clear_card_animation(displayed_hand: Array[Card]):
 		return
 	var last_tween: Tween
 	for card in displayed_hand:
+		card.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
 		if card.active_tween and card.active_tween.is_valid():
 			card.active_tween.kill()
 		card.active_tween = card.create_tween().set_trans(Tween.TRANS_LINEAR)

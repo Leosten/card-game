@@ -2,7 +2,7 @@ class_name StageManager
 extends Node
 
 var stage_monsters : Array[MonsterData] = []
-enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL, SHOP, FORGE}
+enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL, SHOP, FORGE, RANDOM}
 var max_current_level = 10
 var max_current_stage = 1
 
@@ -18,11 +18,21 @@ var row_margin = 320
 @export var current_level = 0;
 @export var current_stage = 1;
 @export var current_encounter_type: level_type
-var current_map_node : MapNodeData
 
 func _ready() -> void:
 	pass
 	#Events.next_encounter.connect(on_next_battle)
+
+func get_random_encounter():
+	var possible_encounters = [
+		level_type.COMMON, 
+		level_type.MINIBOSS,
+		#level_type.TREASURE,
+		#level_type.SHOP, 
+		#level_type.FORGE,
+	]
+	
+	GameManager.map_manager.current_node.encounter_type = possible_encounters.pick_random()
 
 static func get_stage_encounter_types(level: int) -> Array[level_type]:
 	match level:
@@ -31,25 +41,25 @@ static func get_stage_encounter_types(level: int) -> Array[level_type]:
 		1:
 			return [level_type.COMMON]
 		2:
-			return [level_type.COMMON, level_type.COMMON, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
 		3:
-			return [level_type.COMMON, level_type.COMMON, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
 		4:
 			return [level_type.COMMON,level_type.MINIBOSS]
 		5:
-			return [level_type.COMMON, level_type.COMMON, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
 		6:
 			return [level_type.SHOP, level_type.FORGE]
 		7:
 			return [level_type.COMMON, level_type.COMMON, level_type.TREASURE]
 		8:
-			return [level_type.COMMON, level_type.MINIBOSS, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.MINIBOSS, level_type.RANDOM]
 		9:
-			return [level_type.COMMON, level_type.TREASURE, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.TREASURE, level_type.RANDOM]
 		10:
-			return [level_type.COMMON, level_type.MINIBOSS, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.MINIBOSS, level_type.RANDOM]
 		11:
-			return [level_type.COMMON, level_type.COMMON, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
 		12:
 			return [level_type.BOSS]
 		_:
@@ -65,7 +75,7 @@ static func get_encounter_name_by_type(type : level_type):
 			return "Boss"
 		level_type.TREASURE:
 			return "Treasure"
-		level_type.SPECIAL:
+		level_type.RANDOM:
 			return "?"
 		level_type.SHOP:
 			return "Shop"
@@ -100,7 +110,7 @@ func get_monster_scene_from_name(monster_name):
 func get_stage_one_common_monsters(level) :
 	match level:
 		1:
-			return [["yokai"]]
+			return [["yokai"],["yokai","fireball"]]
 		2:
 			return [["umbrella"],["yokai","fireball"]]
 		3:

@@ -12,6 +12,8 @@ signal player_shielded()
 
 signal turn_start
 signal turn_end
+
+
 signal next_encounter
 signal battle_start
 signal battle_won

@@ -44,7 +44,7 @@ func add_orbs(orbs : Array[CardUtils.magic_type]):
 		_add_count(orb)
 		if check_activation_ceiling():
 			trigger_high()
-			
+	print("Added orb")
 
 func _add_count(orb_type : CardUtils.magic_type):
 	add_count(orb_type)
