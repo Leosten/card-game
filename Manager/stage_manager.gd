@@ -31,17 +31,17 @@ static func get_stage_encounter_types(level: int) -> Array[level_type]:
 		1:
 			return [level_type.COMMON]
 		2:
-			return [level_type.COMMON, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.COMMON, level_type.SPECIAL]
 		3:
-			return [level_type.COMMON, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.COMMON, level_type.SPECIAL]
 		4:
 			return [level_type.COMMON,level_type.MINIBOSS]
 		5:
-			return [level_type.COMMON, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.COMMON, level_type.SPECIAL]
 		6:
 			return [level_type.SHOP, level_type.FORGE]
 		7:
-			return [level_type.COMMON, level_type.TREASURE]
+			return [level_type.COMMON, level_type.COMMON, level_type.TREASURE]
 		8:
 			return [level_type.COMMON, level_type.MINIBOSS, level_type.SPECIAL]
 		9:
@@ -49,7 +49,7 @@ static func get_stage_encounter_types(level: int) -> Array[level_type]:
 		10:
 			return [level_type.COMMON, level_type.MINIBOSS, level_type.SPECIAL]
 		11:
-			return [level_type.COMMON, level_type.SPECIAL]
+			return [level_type.COMMON, level_type.COMMON, level_type.SPECIAL]
 		12:
 			return [level_type.BOSS]
 		_:

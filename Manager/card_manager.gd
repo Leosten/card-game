@@ -18,6 +18,7 @@ var _large_cards = {
 	StageManager.level_type.TREASURE: preload("res://Art/UI/cards/large_cards/card_large treasure.png"),
 	StageManager.level_type.SHOP: preload("res://Art/UI/cards/large_cards/card_large_shop.png"),
 	StageManager.level_type.FORGE: preload("res://Art/UI/cards/large_cards/card_large_forge.png"),
+	StageManager.level_type.SPECIAL: preload("res://Art/UI/cards/large_cards/card_large_special.png"),
 }
 
 var _cards_by_deck: Dictionary = {}

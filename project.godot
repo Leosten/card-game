@@ -27,6 +27,10 @@ ScreenTransition="*uid://bqh2nld4o7iv"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/yard/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
