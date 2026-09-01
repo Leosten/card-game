@@ -1,6 +1,6 @@
 class_name StrengthStatus
 
-extends Status
+extends StatusTemplate
 
 func _init(target_entity : Targetable, stacks : int) -> void:
 	super(target_entity, stacks)

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://dytgj6a2fujly"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_ew8w2"]
+
+[resource]
+script = ExtResource("1_ew8w2")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"\"res://Resources/Monsters/monster_data.gd\""]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://Resources/Monsters"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://b3byw8vsfcjyt": &"goblin",
+&"uid://bq2vwypge6kxm": &"yokai",
+&"uid://bseknthq74s8r": &"lucky_cat",
+&"uid://c5euq1wqaxepr": &"fireball",
+&"uid://cs0ori156ur1p": &"byakko",
+&"uid://i56l5utb7m20": &"umbrella"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"byakko": &"uid://cs0ori156ur1p",
+&"fireball": &"uid://c5euq1wqaxepr",
+&"goblin": &"uid://b3byw8vsfcjyt",
+&"lucky_cat": &"uid://bseknthq74s8r",
+&"umbrella": &"uid://i56l5utb7m20",
+&"yokai": &"uid://bq2vwypge6kxm"
+})

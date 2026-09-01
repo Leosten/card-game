@@ -1,6 +1,6 @@
 class_name VulnerableStatus
 
-extends Status
+extends StatusTemplate
 
 func _init(target : Targetable, initial_stacks) -> void:
 	super(target, initial_stacks)

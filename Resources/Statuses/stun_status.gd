@@ -1,6 +1,6 @@
 class_name StunStatus
 
-extends Status
+extends StatusTemplate
 
 func _init(target_entity : Targetable) -> void:
 	super(target_entity, 1)

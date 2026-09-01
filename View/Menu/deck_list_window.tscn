@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.09803922)
+color = Color(0, 0, 0, 0.627451)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=562138032]
 layout_mode = 1
@@ -36,16 +36,28 @@ offset_right = -64.0
 offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_3j81q")
 theme_type_variation = &"LargePanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1588388458]
+[node name="Control" type="Control" parent="PanelContainer" unique_id=709129245]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=831029937]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control" unique_id=1588388458]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036000002
+anchor_right = 1.0
+anchor_bottom = 0.933
+offset_left = -0.51200104
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -23.680054
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=831029937]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=68604749]
-custom_minimum_size = Vector2(0, 120)
+[node name="TitleLabel" type="Label" parent="PanelContainer/Control/VBoxContainer/HBoxContainer" unique_id=68604749]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_3j81q")
@@ -54,22 +66,22 @@ text = "Current deck"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=796834488]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/HBoxContainer" unique_id=796834488]
 layout_mode = 2
 
-[node name="LeaveButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/CenterContainer" unique_id=604117597]
-custom_minimum_size = Vector2(120, 120)
+[node name="LeaveButton" type="Button" parent="PanelContainer/Control/VBoxContainer/HBoxContainer/CenterContainer" unique_id=604117597]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 text = "X"
 
-[node name="CardNbLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1241497428]
+[node name="CardNbLabel" type="Label" parent="PanelContainer/Control/VBoxContainer" unique_id=1241497428]
 layout_mode = 2
 theme_type_variation = &"NormalTextLabel"
 text = "Number of cards : "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NbLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=144480603]
+[node name="NbLabel" type="Label" parent="PanelContainer/Control/VBoxContainer" unique_id=144480603]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"NormalTextLabel"
@@ -77,40 +89,40 @@ text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer" unique_id=2094964079]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=2094964079]
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/ScrollContainer" unique_id=1563851289]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/ScrollContainer" unique_id=1563851289]
 layout_mode = 2
 
-[node name="CardGrid" type="GridContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/CenterContainer" unique_id=353967121]
+[node name="CardGrid" type="GridContainer" parent="PanelContainer/Control/VBoxContainer/ScrollContainer/CenterContainer" unique_id=353967121]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 6
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1656837049]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1656837049]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=39231292]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/HBoxContainer2" unique_id=39231292]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CloseButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2/CenterContainer" unique_id=951668059]
+[node name="CloseButton" type="Button" parent="PanelContainer/Control/VBoxContainer/HBoxContainer2/CenterContainer" unique_id=951668059]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 text = "CLOSE"
 
-[node name="CenterContainer2" type="CenterContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=690847306]
+[node name="CenterContainer2" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/HBoxContainer2" unique_id=690847306]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1856100908]
+[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/HBoxContainer2" unique_id=1856100908]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer2/CenterContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/HBoxContainer/CenterContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/HBoxContainer2/CenterContainer/CloseButton" to="." method="_on_close_button_pressed"]

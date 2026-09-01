@@ -8,6 +8,7 @@ script = ExtResource("2_x6q7q")
 name = "byakko"
 display_name = "Byakko"
 type = 2
+gold = 150
 health = 100
 max_health = 100
 metadata/_custom_type_script = "uid://fyu4c4thwqs7"

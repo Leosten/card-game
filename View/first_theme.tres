@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://2u1x564kksg1" path="res://Art/UI/panel.png" id="1_mm4gm"]
 [ext_resource type="FontFile" uid="uid://cisf7k4drqb6h" path="res://Art/fonts/Exo/static/Exo-Medium.ttf" id="2_0c46g"]
+[ext_resource type="Texture2D" uid="uid://bftbkswcm35tf" path="res://Art/UI/panel_1080.png" id="2_ul4c8"]
 [ext_resource type="FontFile" uid="uid://cwkobknnutnet" path="res://Art/fonts/Exo/static/Exo-Bold.ttf" id="3_pplqn"]
 [ext_resource type="FontFile" uid="uid://dm1re7qcgaeys" path="res://Art/fonts/Exo/static/Exo-Black.ttf" id="4_pplqn"]
 
@@ -12,11 +13,9 @@ base_font = ExtResource("2_0c46g")
 base_font = ExtResource("2_0c46g")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mm4gm"]
-texture = ExtResource("1_mm4gm")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
+texture = ExtResource("2_ul4c8")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [sub_resource type="FontVariation" id="FontVariation_jm3vi"]
 base_font = ExtResource("2_0c46g")

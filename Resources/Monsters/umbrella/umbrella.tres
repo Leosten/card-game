@@ -7,6 +7,8 @@
 script = ExtResource("1_atn4s")
 id = 1
 name = "umbrella"
+display_name = "Umbrella"
+gold = 15
 health = 10
 max_health = 10
 metadata/_custom_type_script = "uid://fyu4c4thwqs7"

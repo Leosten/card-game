@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://b3byw8vsfcjyt"]
+
+[ext_resource type="Script" uid="uid://dgvjmm6orbum0" path="res://Resources/Monsters/monster_action.gd" id="1_00v02"]
+[ext_resource type="Script" uid="uid://cxk7n8x2xk7he" path="res://Resources/Monsters/goblin/goblin.gd" id="1_frdpk"]
+
+[resource]
+script = ExtResource("1_frdpk")
+gold = 20
+health = 15
+max_health = 15
+metadata/_custom_type_script = "uid://fyu4c4thwqs7"

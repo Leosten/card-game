@@ -1,6 +1,5 @@
-class_name  Status
+class_name StatusTemplate
 
-extends Resource
 
 signal effect_changed
 

@@ -26,6 +26,7 @@ ScreenTransition="*uid://bqh2nld4o7iv"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="viewport"
 
 [editor_plugins]
 

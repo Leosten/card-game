@@ -49,10 +49,10 @@ layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="CardHudContainer/DiscardWindow" unique_id=257288469]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 44.0
-offset_right = 210.0
-offset_bottom = 268.0
+offset_left = 40.0
+offset_top = 68.0
+offset_right = 234.0
+offset_bottom = 292.0
 scale = Vector2(0.6, 0.6)
 
 [node name="DiscardPicture" type="TextureRect" parent="CardHudContainer/DiscardWindow/CenterContainer" unique_id=380173707]

@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://dbxakj0moiik3"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_rr3jv"]
+
+[resource]
+script = ExtResource("1_rr3jv")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"\"res://Resources/Cards/card_data.gd\""]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://Resources/Cards"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://b0fdu5xtftwn7": &"wind_blade",
+&"uid://b5efg1brgov0e": &"frozen_bite",
+&"uid://bi02l63kv7oyw": &"ice_shield",
+&"uid://bkaq06slx1af": &"large_beam",
+&"uid://blow3cvabf054": &"incoming_lightning",
+&"uid://bm0cp6nhd5gx8": &"locked_and_ready",
+&"uid://btj485v1sbpco": &"prediction",
+&"uid://c1817pwbkfa7b": &"defend",
+&"uid://c2bc3f0dwghx": &"early_call",
+&"uid://cc6gsxni3cxuo": &"vicious_wind",
+&"uid://cgs7wtxpc5j8x": &"elemental_shield",
+&"uid://cimnkf6gehkc5": &"mega_beam",
+&"uid://ciu0b2dkp4clu": &"beam",
+&"uid://cpxofy8csmetn": &"frog_jump",
+&"uid://cq67u8hs52lr4": &"panic_trade",
+&"uid://ctuftcmc363l1": &"fire_affinity",
+&"uid://db0j8me1cst7r": &"prepared_strike",
+&"uid://dcswjws04c6hr": &"lightning",
+&"uid://dr1ywe67jnrvl": &"glacier_shield",
+&"uid://drn651bi215nr": &"heal",
+&"uid://ds3t2vfc6i8cq": &"protect_me",
+&"uid://fwbqnlk8861v": &"ice_wall",
+&"uid://ocjn3l728elr": &"careful_hit",
+&"uid://rqdkft5kv4xq": &"invoke_flames",
+&"uid://txblu50y3xh4": &"fire_beam"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"beam": &"uid://ciu0b2dkp4clu",
+&"careful_hit": &"uid://ocjn3l728elr",
+&"defend": &"uid://c1817pwbkfa7b",
+&"early_call": &"uid://c2bc3f0dwghx",
+&"elemental_shield": &"uid://cgs7wtxpc5j8x",
+&"fire_affinity": &"uid://ctuftcmc363l1",
+&"fire_beam": &"uid://txblu50y3xh4",
+&"frog_jump": &"uid://cpxofy8csmetn",
+&"frozen_bite": &"uid://b5efg1brgov0e",
+&"glacier_shield": &"uid://dr1ywe67jnrvl",
+&"heal": &"uid://drn651bi215nr",
+&"ice_shield": &"uid://bi02l63kv7oyw",
+&"ice_wall": &"uid://fwbqnlk8861v",
+&"incoming_lightning": &"uid://blow3cvabf054",
+&"invoke_flames": &"uid://rqdkft5kv4xq",
+&"large_beam": &"uid://bkaq06slx1af",
+&"lightning": &"uid://dcswjws04c6hr",
+&"locked_and_ready": &"uid://bm0cp6nhd5gx8",
+&"mega_beam": &"uid://cimnkf6gehkc5",
+&"panic_trade": &"uid://cq67u8hs52lr4",
+&"prediction": &"uid://btj485v1sbpco",
+&"prepared_strike": &"uid://db0j8me1cst7r",
+&"protect_me": &"uid://ds3t2vfc6i8cq",
+&"vicious_wind": &"uid://cc6gsxni3cxuo",
+&"wind_blade": &"uid://b0fdu5xtftwn7"
+})
