@@ -26,6 +26,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.627451)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=562138032]
+self_modulate = Color(0.4745098, 0.89411765, 1, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

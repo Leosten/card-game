@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://chpromoilfnb8"]
+
+[ext_resource type="Script" uid="uid://bcmejs4k35koh" path="res://View/Menu/shop_window/card_item.gd" id="1_nwd37"]
+
+[node name="CardItem" type="Control" unique_id=2126113606]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nwd37")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1182167526]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 448.0
+
+[node name="Price" type="Label" parent="." unique_id=391953718]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 504.0
+offset_right = 208.0
+offset_bottom = 523.0
+text = "50
+"

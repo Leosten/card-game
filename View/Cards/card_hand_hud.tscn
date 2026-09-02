@@ -56,6 +56,7 @@ offset_bottom = 292.0
 scale = Vector2(0.6, 0.6)
 
 [node name="DiscardPicture" type="TextureRect" parent="CardHudContainer/DiscardWindow/CenterContainer" unique_id=380173707]
+modulate = Color(0.4745098, 0.89411765, 1, 1)
 layout_mode = 2
 texture = ExtResource("3_pux31")
 
@@ -105,6 +106,7 @@ grow_vertical = 2
 scale = Vector2(0.6, 0.6)
 
 [node name="DrawPicture" type="TextureRect" parent="CardHudContainer/DrawWindow/CenterContainer" unique_id=1305357573]
+modulate = Color(0.4745098, 0.89411765, 1, 1)
 layout_mode = 2
 texture = ExtResource("4_mukto")
 

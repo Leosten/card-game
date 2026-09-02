@@ -67,48 +67,6 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="FirstReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1296888817]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/FirstReward" unique_id=1685751643]
-layout_mode = 2
-text = "TEST
-"
-
-[node name="SecondReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=480819817]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/SecondReward" unique_id=1938581779]
-layout_mode = 2
-text = "TEST
-"
-
-[node name="ThirdReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1535122933]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/ThirdReward" unique_id=1845430073]
-layout_mode = 2
-text = "TEST
-"
-
-[node name="FourthReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1130714708]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/FourthReward" unique_id=1096122432]
-layout_mode = 2
-text = "TEST
-"
-
 [node name="MarginContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=1840863302]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2

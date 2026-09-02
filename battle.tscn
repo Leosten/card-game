@@ -63,6 +63,7 @@ offset_bottom = 72.0
 grow_horizontal = 2
 
 [node name="TextureRect" type="TextureRect" parent="Hud/TopHudRoot" unique_id=709272671]
+modulate = Color(0.4745098, 0.89411765, 1, 1)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
