@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://dd0pvlywrshlh"]
+
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_yfsif"]
+[ext_resource type="Script" uid="uid://dsguf07stx8dy" path="res://View/Menu/shop_window/shop_window.gd" id="2_ie2kd"]
+
+[sub_resource type="Theme" id="Theme_fmxxd"]
+default_font_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_myr2m"]
+font_size = 80
+
+[node name="ShopWindow" type="Control" unique_id=1568456502]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_yfsif")
+script = ExtResource("2_ie2kd")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=294893917]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3019608)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=792749283]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = -128.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_yfsif")
+theme_type_variation = &"LargePanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=59584764]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VictoryLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=19364124]
+layout_mode = 2
+theme = SubResource("Theme_fmxxd")
+theme_type_variation = &"WindowTitle"
+text = "Victory"
+label_settings = SubResource("LabelSettings_myr2m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=120481842]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer" unique_id=2127238680]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FirstReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1296888817]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/FirstReward" unique_id=1685751643]
+layout_mode = 2
+text = "TEST
+"
+
+[node name="SecondReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=480819817]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/SecondReward" unique_id=1938581779]
+layout_mode = 2
+text = "TEST
+"
+
+[node name="ThirdReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1535122933]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/ThirdReward" unique_id=1845430073]
+layout_mode = 2
+text = "TEST
+"
+
+[node name="FourthReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1130714708]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/FourthReward" unique_id=1096122432]
+layout_mode = 2
+text = "TEST
+"
+
+[node name="MarginContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=1840863302]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=162531398]
+custom_maximum_size = Vector2(-1, 150)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer2" unique_id=734344810]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=2147276078]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IgnoreButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer" unique_id=741279802]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "IGNORE"
+
+[node name="CenterContainer2" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=270014000]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1356154825]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer3" unique_id=1723989768]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "NEXT"

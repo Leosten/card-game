@@ -108,8 +108,8 @@ func get_large_card_background(level_type: StageManager.level_type) -> Texture2D
 func get_random_card_for_deck(character_class: String) -> CardData:
 	var key = character_class.to_lower()
 	if _cards_by_deck.has(key) and not _cards_by_deck[key].is_empty():
-		return _cards_by_deck[key].pick_random()
-	return null
+		return null
+	return _cards_by_deck[key].pick_random()
 
 func get_card_rewards_by_deck(deck_nb, count: int = 3) -> Array[CardData]:
 	var rewards: Array[CardData] = []

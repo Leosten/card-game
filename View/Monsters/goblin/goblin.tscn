@@ -1,12 +1,21 @@
 [gd_scene format=3 uid="uid://dov2ponm5qivf"]
 
 [ext_resource type="PackedScene" uid="uid://ctehutl7her3g" path="res://View/Monsters/monster.tscn" id="1_mjey8"]
+[ext_resource type="PackedScene" uid="uid://cnrcme375lg1c" path="res://View/Monsters/goblin/goblin_skeleton.tscn" id="2_208lu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejknm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kr2xp"]
 resource_local_to_scene = true
-size = Vector2(72, 84)
+size = Vector2(79, 132)
 
 [node name="Monster" unique_id=145971378 instance=ExtResource("1_mjey8")]
 
 [node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
-shape = SubResource("RectangleShape2D_ejknm")
+position = Vector2(55.5, 41)
+shape = SubResource("RectangleShape2D_kr2xp")
+
+[node name="MonsterPredictive" parent="." index="4" unique_id=303760412]
+position = Vector2(-40, -152)
+
+[node name="Skeleton" parent="." index="5" unique_id=95263369 instance=ExtResource("2_208lu")]
+position = Vector2(-5, -37)
+scale = Vector2(0.6, 0.6)

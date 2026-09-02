@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://caar1qyr48sjl"]
 
-[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_3j81q"]
-[ext_resource type="Script" uid="uid://bn2j6aet8mcq5" path="res://View/Menu/deck_list_window.gd" id="1_q1hwa"]
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_5b57i"]
+[ext_resource type="Script" uid="uid://bn2j6aet8mcq5" path="res://View/Menu/deck_list_window/deck_list_window.gd" id="2_hf7nv"]
 
 [node name="DeckListWindow" type="Control" unique_id=352217177]
 custom_minimum_size = Vector2(500, 500)
@@ -13,8 +13,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("1_3j81q")
-script = ExtResource("1_q1hwa")
+theme = ExtResource("1_5b57i")
+script = ExtResource("2_hf7nv")
 
 [node name="Backdrop" type="ColorRect" parent="." unique_id=787372317]
 layout_mode = 1
@@ -36,7 +36,7 @@ offset_right = -64.0
 offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_3j81q")
+theme = ExtResource("1_5b57i")
 theme_type_variation = &"LargePanel"
 
 [node name="Control" type="Control" parent="PanelContainer" unique_id=709129245]
@@ -60,7 +60,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_3j81q")
+theme = ExtResource("1_5b57i")
 theme_type_variation = &"WindowTitle"
 text = "Current deck"
 horizontal_alignment = 1

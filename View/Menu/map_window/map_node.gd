@@ -10,14 +10,14 @@ extends Control
 var encounter_type : StageManager.level_type
 var node_data : MapNodeData
 
-signal clicked(node)
+signal clicked
 signal hovered
 signal hovered_out
 
 func ready() -> void:
 	choice_label.text = StageManager.get_encounter_name_by_type(encounter_type)
 	play_animation()
-	print("node ready")
+	
 func init(node_d : MapNodeData):
 	node_data = node_d
 	encounter_type = node_d.encounter_type
@@ -30,7 +30,7 @@ func _on_hovered() -> void:
 
 func _on_button_pressed() -> void:
 	print("clicked button")
-	clicked.emit(self)
+	clicked.emit()
 
 func _on_clicked() -> void:
 	clicked.emit(self)

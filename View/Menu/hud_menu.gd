@@ -3,9 +3,9 @@ extends CanvasLayer
 @onready var center_root = $%CenterWindowRoot
 @onready var current_level_display = %CurrentLevelLabel
 
-var deck_list_window_scene = load("res://View/Menu/deck_list_window.tscn")
+var deck_list_window_scene = load("res://View/Menu/deck_list_window/deck_list_window.tscn")
 var map_window_scene = load("res://View/Menu/map_window/map_window.tscn")
-var reward_window_scene = load("res://View/Menu/victory_window.tscn")	
+var reward_window_scene = load("res://View/Menu/victory_window/victory_window.tscn")	
 var next_level_window_scene = load("res://View/Menu/next_level_window/next_level_window.tscn")	
 var deck_list_window : Node
 var map_window : Node

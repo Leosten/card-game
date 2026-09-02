@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_frdpk")
+name = "goblin"
+display_name = "Goblin"
 gold = 20
 health = 15
 max_health = 15

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhmemuamggp6x"]
 
-[ext_resource type="Script" uid="uid://dj4yr1obtwsw7" path="res://View/Menu/victory_window.gd" id="1_j7oqs"]
+[ext_resource type="Script" uid="uid://dj4yr1obtwsw7" path="res://View/Menu/victory_window/victory_window.gd" id="1_30cex"]
 
 [sub_resource type="Theme" id="Theme_k1dyt"]
 default_font_size = 0
@@ -26,7 +26,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-script = ExtResource("1_j7oqs")
+script = ExtResource("1_30cex")
 
 [node name="Backdrop" type="ColorRect" parent="." unique_id=529274186]
 layout_mode = 1
@@ -81,44 +81,10 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer" unique_id=436349916]
+[node name="CardRewardContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer" unique_id=436349916]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-
-[node name="FirstReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1644960363]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/FirstReward" unique_id=1612690193]
-layout_mode = 2
-text = "TEST
-"
-
-[node name="SecondReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1153249178]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/SecondReward" unique_id=887906097]
-layout_mode = 2
-text = "TEST
-"
-
-[node name="ThirdReward" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1538236091]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/ThirdReward" unique_id=694465335]
-layout_mode = 2
-text = "TEST
-"
 
 [node name="MarginContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=902008554]
 custom_minimum_size = Vector2(0, 50)
