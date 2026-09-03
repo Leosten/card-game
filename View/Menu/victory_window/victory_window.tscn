@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://dhmemuamggp6x"]
 
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_3yw38"]
 [ext_resource type="Script" uid="uid://dj4yr1obtwsw7" path="res://View/Menu/victory_window/victory_window.gd" id="1_30cex"]
-
-[sub_resource type="Theme" id="Theme_k1dyt"]
-default_font_size = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ye44s"]
 font_size = 80
@@ -17,15 +15,12 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 173.0
-offset_top = 117.0
-offset_right = -157.0
-offset_bottom = -83.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+theme = ExtResource("1_3yw38")
 script = ExtResource("1_30cex")
 
 [node name="Backdrop" type="ColorRect" parent="." unique_id=529274186]
@@ -33,94 +28,113 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -173.0
-offset_top = -115.0
-offset_right = 157.0
-offset_bottom = 91.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3019608)
+color = Color(0, 0, 0, 0.4627451)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=744029937]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -109.0
-offset_top = -53.0
-offset_right = 29.0
-offset_bottom = 27.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -904.0
+offset_top = -493.0
+offset_right = 888.0
+offset_bottom = 467.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"LargePanel"
+
+[node name="Control" type="Control" parent="PanelContainer" unique_id=1358062992]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control" unique_id=1837362978]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -832.0
+offset_top = -464.0
+offset_right = 880.0
+offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1837362978]
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1166941281]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="VictoryLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1570818759]
+[node name="VictoryLabel" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer3" unique_id=1570818759]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-theme = SubResource("Theme_k1dyt")
-theme_type_variation = &"TitleLabel"
+theme = ExtResource("1_3yw38")
+theme_type_variation = &"WindowTitle"
 text = "Victory"
 label_settings = SubResource("LabelSettings_ye44s")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VictorySubText" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1180561394]
-custom_minimum_size = Vector2(150, 150)
+[node name="VictorySubText" type="Label" parent="PanelContainer/Control/VBoxContainer" unique_id=1180561394]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_3yw38")
+theme_type_variation = &"normalText"
 text = "Choose your reward"
 label_settings = SubResource("LabelSettings_k1dyt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=1052781361]
+[node name="PanelContainer" type="Control" parent="PanelContainer/Control/VBoxContainer" unique_id=1334309030]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="CardRewardContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer" unique_id=436349916]
+[node name="CardRewardContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer" unique_id=436349916]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_right = 1712.0
+offset_bottom = 532.0
 mouse_filter = 2
 
-[node name="MarginContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=902008554]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=1034086743]
-custom_maximum_size = Vector2(-1, 150)
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1034086743]
+custom_maximum_size = Vector2(-1, 130)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer2" unique_id=1783763472]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer2" unique_id=1783763472]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=504774777]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=504774777]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="IgnoreButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer" unique_id=117731986]
+[node name="IgnoreButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer" unique_id=117731986]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-text = "IGNORE"
+theme = ExtResource("1_3yw38")
+theme_type_variation = &"standardBtn"
+text = "Skip Rewards"
 
-[node name="CenterContainer2" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=108148566]
+[node name="CenterContainer2" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=108148566]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=2052389032]
+[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=2052389032]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NextButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer3" unique_id=1543220888]
+[node name="NextButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer3" unique_id=1543220888]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-text = "NEXT"
+theme = ExtResource("1_3yw38")
+theme_type_variation = &"standardBtn"
+text = "Next"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer/IgnoreButton" to="." method="_on_ignore_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer3/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer/IgnoreButton" to="." method="_on_ignore_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer3/NextButton" to="." method="_on_next_button_pressed"]

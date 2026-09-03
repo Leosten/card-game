@@ -28,6 +28,7 @@ func _ready() -> void:
 	update_container_size(grid_columns, grid_rows)
 	next_btn.disabled = !selection
 	close_btn.visible = !selection
+	
 func with_data(extra_data : Dictionary):
 	if extra_data.has("selection"):
 		selection = extra_data.selection

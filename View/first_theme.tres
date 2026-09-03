@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bftbkswcm35tf" path="res://Art/UI/panel_1080.png" id="2_ul4c8"]
 [ext_resource type="FontFile" uid="uid://cwkobknnutnet" path="res://Art/fonts/Exo/static/Exo-Bold.ttf" id="3_pplqn"]
 [ext_resource type="FontFile" uid="uid://dm1re7qcgaeys" path="res://Art/fonts/Exo/static/Exo-Black.ttf" id="4_pplqn"]
+[ext_resource type="FontFile" uid="uid://86idpqkj8p8w" path="res://Art/fonts/Exo/static/Exo-Light.ttf" id="6_uuvio"]
 
 [sub_resource type="FontVariation" id="FontVariation_uuvio"]
 base_font = ExtResource("2_0c46g")
@@ -16,6 +17,7 @@ base_font = ExtResource("2_0c46g")
 texture = ExtResource("2_ul4c8")
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+modulate_color = Color(0.4745098, 0.89411765, 1, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_jm3vi"]
 base_font = ExtResource("2_0c46g")
@@ -55,8 +57,71 @@ base_font = ExtResource("3_pplqn")
 [sub_resource type="FontVariation" id="FontVariation_5pvo4"]
 base_font = ExtResource("2_0c46g")
 
+[sub_resource type="FontVariation" id="FontVariation_qafj5"]
+base_font = ExtResource("3_pplqn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hq3kc"]
+bg_color = Color(0.4745098, 0.89411765, 1, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_left = 10
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tw2mr"]
+bg_color = Color(0.3254902, 0.47058824, 0.654902, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_left = 10
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krvcn"]
+bg_color = Color(0.3254902, 0.47058824, 0.654902, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_left = 10
+shadow_offset = Vector2(-5, 5)
+
 [sub_resource type="FontVariation" id="FontVariation_ye44s"]
 base_font = ExtResource("4_pplqn")
+
+[sub_resource type="FontVariation" id="FontVariation_ul4c8"]
+base_font = ExtResource("6_uuvio")
+
+[sub_resource type="FontVariation" id="FontVariation_hq3kc"]
+base_font = ExtResource("2_0c46g")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuvio"]
+bg_color = Color(0.4745098, 0.89411765, 1, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 10
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 10
+shadow_color = Color(0.14901961, 0.9607843, 0.7921569, 1)
+shadow_size = 3
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yw38"]
+bg_color = Color(0.3254902, 0.47058824, 0.654902, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 10
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 10
+shadow_color = Color(0.14901961, 0.9607843, 0.7921569, 1)
+shadow_size = 3
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_651bu"]
+bg_color = Color(0.3254902, 0.47058824, 0.654902, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 10
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 10
+shadow_color = Color(0.14901961, 0.9607843, 0.7921569, 1)
+shadow_size = 3
+shadow_offset = Vector2(-5, 5)
 
 [resource]
 CardDescription/base_type = &"RichTextLabel"
@@ -74,15 +139,28 @@ ProgressBar/colors/font_outline_color = Color(0, 0, 0.77254903, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_tk1j3")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_pplqn")
 WindowTitle/base_type = &"Label"
-WindowTitle/font_sizes/font_size = 45
+WindowTitle/font_sizes/font_size = 30
 WindowTitle/fonts/font = SubResource("FontVariation_nvvua")
 cardCount/base_type = &"Label"
 cardCount/colors/font_color = Color(0.3254902, 0.47058824, 0.654902, 1)
 cardCount/colors/font_outline_color = Color(0.5058824, 0.7529412, 0.65882355, 1)
 cardCount/colors/font_shadow_color = Color(0.5058824, 0.7529412, 0.65882355, 1)
 cardCount/fonts/font = SubResource("FontVariation_5pvo4")
+closeButton/base_type = &"Button"
+closeButton/fonts/font = SubResource("FontVariation_qafj5")
+closeButton/styles/hover = SubResource("StyleBoxFlat_hq3kc")
+closeButton/styles/normal = SubResource("StyleBoxFlat_tw2mr")
+closeButton/styles/pressed = SubResource("StyleBoxFlat_krvcn")
 manaText/base_type = &"Label"
 manaText/colors/font_color = Color(0.3254902, 0.47058824, 0.654902, 1)
 manaText/colors/font_outline_color = Color(0.31925523, 0.31925526, 0.31925526, 1)
 manaText/colors/font_shadow_color = Color(0.5058824, 0.7529412, 0.7764706, 1)
 manaText/fonts/font = SubResource("FontVariation_ye44s")
+normalText/base_type = &"Label"
+normalText/fonts/font = SubResource("FontVariation_ul4c8")
+standardBtn/base_type = &"Button"
+standardBtn/font_sizes/font_size = 25
+standardBtn/fonts/font = SubResource("FontVariation_hq3kc")
+standardBtn/styles/hover = SubResource("StyleBoxFlat_uuvio")
+standardBtn/styles/normal = SubResource("StyleBoxFlat_3yw38")
+standardBtn/styles/pressed = SubResource("StyleBoxFlat_651bu")

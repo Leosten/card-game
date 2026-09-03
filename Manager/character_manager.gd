@@ -1,3 +1,5 @@
+class_name CharacterManager
+
 extends Node
 
 var player_stats : PlayerStats 

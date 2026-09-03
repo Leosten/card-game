@@ -4,19 +4,50 @@
 
 [node name="CardItem" type="Control" unique_id=2126113606]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_nwd37")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1182167526]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 448.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=452177902]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -197.5
+offset_right = 125.0
+offset_bottom = 197.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Price" type="Label" parent="." unique_id=391953718]
-layout_mode = 0
-offset_left = 168.0
-offset_top = 504.0
-offset_right = 208.0
-offset_bottom = 523.0
+[node name="CardContainer" type="CenterContainer" parent="VBoxContainer" unique_id=1182167526]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer" unique_id=979322267]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Price" type="Label" parent="VBoxContainer/CenterContainer2" unique_id=391953718]
+unique_name_in_owner = true
+layout_mode = 2
 text = "50
 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/CenterContainer2" unique_id=618306515]
+visible = false
+layout_mode = 2
+theme_type_variation = &"standardBtn"
+text = "res"

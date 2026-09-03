@@ -28,13 +28,15 @@ color = Color(0, 0, 0, 0.627451)
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=562138032]
 self_modulate = Color(0.4745098, 0.89411765, 1, 1)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 64.0
-offset_right = -64.0
-offset_bottom = -56.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -896.0
+offset_top = -480.0
+offset_right = 896.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_5b57i")
@@ -52,7 +54,7 @@ anchor_bottom = 0.933
 offset_left = -0.51200104
 offset_top = 16.0
 offset_right = -16.0
-offset_bottom = -23.680054
+offset_bottom = -15.680054
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=831029937]
 layout_mode = 2
@@ -66,14 +68,6 @@ theme_type_variation = &"WindowTitle"
 text = "Current deck"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/HBoxContainer" unique_id=796834488]
-layout_mode = 2
-
-[node name="LeaveButton" type="Button" parent="PanelContainer/Control/VBoxContainer/HBoxContainer/CenterContainer" unique_id=604117597]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-text = "X"
 
 [node name="CardNbLabel" type="Label" parent="PanelContainer/Control/VBoxContainer" unique_id=1241497428]
 layout_mode = 2
@@ -105,25 +99,53 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 6
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1656837049]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1150702070]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/HBoxContainer2" unique_id=39231292]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer" unique_id=1656837049]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2" unique_id=39231292]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CloseButton" type="Button" parent="PanelContainer/Control/VBoxContainer/HBoxContainer2/CenterContainer" unique_id=951668059]
+[node name="CloseButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer" unique_id=951668059]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-text = "CLOSE"
+theme_type_variation = &"standardBtn"
+text = "Close"
 
-[node name="CenterContainer2" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/HBoxContainer2" unique_id=690847306]
+[node name="CenterContainer2" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2" unique_id=690847306]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/HBoxContainer2" unique_id=1856100908]
+[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2" unique_id=1856100908]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/HBoxContainer/CenterContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
-[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/HBoxContainer2/CenterContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[node name="SelectButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer3" unique_id=363560114]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_type_variation = &"standardBtn"
+text = "Select Card"
+
+[node name="LeaveButton" type="Button" parent="PanelContainer/Control" unique_id=604117597]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -118.0
+offset_top = 13.0
+offset_right = -18.0
+offset_bottom = 113.0
+grow_horizontal = 0
+theme_type_variation = &"closeButton"
+text = "X"
+
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer3/SelectButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Control/LeaveButton" to="." method="_on_leave_button_pressed"]

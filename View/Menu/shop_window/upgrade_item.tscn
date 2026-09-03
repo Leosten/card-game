@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bkwk8i40jutok"]
+
+[ext_resource type="Script" uid="uid://djcojqddkw4ex" path="res://View/Menu/shop_window/upgrade_item.gd" id="1_xb52g"]
+
+[node name="UpgradeItem" type="Control" unique_id=1398756855]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_xb52g")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1961946946]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

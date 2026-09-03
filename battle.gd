@@ -66,7 +66,7 @@ func new_encounter():
 			GameManager.stage_manager.get_random_encounter()
 			new_encounter()
 		StageManager.level_type.SHOP:
-			pass
+			start_shop()
 		StageManager.level_type.FORGE:
 			pass
 		_:
@@ -82,6 +82,11 @@ func start_battle():
 	player_turn_start.emit()
 
 func start_boss_battle():
+	pass
+
+func start_shop():
+	#display vendor to click to open window
+	Events.request_window_open.emit("shop")
 	pass
 
 func new_stage():

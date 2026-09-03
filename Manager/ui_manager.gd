@@ -1,3 +1,5 @@
+class_name UiManager
+
 var loaded_icons : Dictionary
 
 var ICONS_DIR = "res://Art/UI/icons/"

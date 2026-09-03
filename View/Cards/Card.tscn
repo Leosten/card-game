@@ -8,13 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cjaxuobhavoiv" path="res://Art/UI/cards/card_cost_window.png" id="6_hutuu"]
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="7_77wfg"]
 
-[sub_resource type="Gradient" id="Gradient_a45vp"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ejdp"]
-gradient = SubResource("Gradient_a45vp")
-fill_from = Vector2(0.034188036, 0.9145299)
-fill_to = Vector2(0.74643874, 0.14529915)
-
 [sub_resource type="LabelSettings" id="LabelSettings_ejfic"]
 font_size = 19
 
@@ -46,18 +39,6 @@ script = ExtResource("1_a45vp")
 
 [node name="Background" type="TextureRect" parent="." unique_id=169693097]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_0ejdp")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="testbg" type="TextureRect" parent="." unique_id=839277008]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,14 +120,12 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_k1dyt")
 
-[node name="MarginContainer" type="HBoxContainer" parent="MarginContainer/CardLayout/DescriptionContainer" unique_id=1897535882]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CardLayout/DescriptionContainer" unique_id=1205296579]
 custom_maximum_size = Vector2(221, -1)
 propagate_maximum_size = false
 layout_mode = 2
-
-[node name="spacer" type="Control" parent="MarginContainer/CardLayout/DescriptionContainer/MarginContainer" unique_id=1394452835]
-custom_minimum_size = Vector2(12, 0)
-layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_right = 5
 
 [node name="Description" type="RichTextLabel" parent="MarginContainer/CardLayout/DescriptionContainer/MarginContainer" unique_id=161713825]
 unique_name_in_owner = true
@@ -159,10 +138,6 @@ theme_override_font_sizes/normal_font_size = 20
 text = "Attack for so damage and heal yourself for 18 dmg"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="spacer2" type="Control" parent="MarginContainer/CardLayout/DescriptionContainer/MarginContainer" unique_id=1520331490]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
 
 [node name="CardButton" type="Button" parent="." unique_id=814282037]
 visibility_layer = 0

@@ -5,10 +5,12 @@ extends CanvasLayer
 
 var deck_list_window_scene = load("res://View/Menu/deck_list_window/deck_list_window.tscn")
 var map_window_scene = load("res://View/Menu/map_window/map_window.tscn")
+var shop_window_scene = load("res://View/Menu/shop_window/shop_window.tscn")
 var reward_window_scene = load("res://View/Menu/victory_window/victory_window.tscn")	
 var next_level_window_scene = load("res://View/Menu/next_level_window/next_level_window.tscn")	
 var deck_list_window : Node
 var map_window : Node
+var shop_window : Node
 var reward_window : Node
 var next_level_window : Node
 
@@ -24,11 +26,16 @@ func _on_window_open_requested(window_name: String, extra_data: Dictionary = {})
 			center_root.add_child(reward_window)
 		"deck":
 			deck_list_window = deck_list_window_scene.instantiate()
+			deck_list_window.with_data(extra_data)
 			center_root.add_child(deck_list_window)
 		"map":
 			map_window = map_window_scene.instantiate()
 			map_window.with_data(extra_data)
 			center_root.add_child(map_window)
+		"shop":
+			shop_window = shop_window_scene.instantiate()
+			#map_window.with_data(extra_data)
+			center_root.add_child(shop_window)
 		"next_level":
 			await ScreenTransition.wipe_out(0.6)
 			next_level_window = next_level_window_scene.instantiate()

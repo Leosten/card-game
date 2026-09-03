@@ -8,22 +8,20 @@ var selected_card : CardData = null
 var nb_of_card_reward : int = 0
 @onready var card_reward_container = %CardRewardContainer
 
-
 func _ready() -> void:
 	nb_of_card_reward = GameManager.battle_state.player_stats.nb_card_reward
 	get_rewards()
 	display_card_rewards()
 
 func get_rewards():
-	cards = GameManager.card_manager.get_card_rewards_by_deck(battle_state.player_stats.char_id, nb_of_card_reward)
+	cards = GameManager.card_manager.get_random_cards_by_deck(battle_state.player_stats.char_id, nb_of_card_reward)
 
 func display_card_rewards():
 	var index = 0
 	for card_data in cards:
 		var pos = Vector2(0,0)
-		var card : Card = GameManager.card_manager.get_card_scene()
+		var card : Card = GameManager.card_manager.instantiate_card_scene(card_data)
 		print("card data name ", card_data.name)
-		card.init_data(card_data)
 		card.init_position(0, pos)
 		card.card_data.hand_position = 0
 		card.hovered.connect(_on_card_hovered)
@@ -37,10 +35,6 @@ func display_card_rewards():
 		card_reward_container.add_child(center)
 		card.update_text()
 		index += 1
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_next_button_pressed() -> void:
 	if selected_card != null:

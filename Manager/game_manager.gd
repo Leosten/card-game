@@ -1,15 +1,10 @@
 extends Node
 
-const CardManager = preload("res://Manager/card_manager.gd")
-const UiManager = preload("res://Manager/ui_manager.gd")
-const PlayerStats = preload("res://Resources/Characters/player_stats.gd")
-const CharacterManager = preload("res://Manager/character_manager.gd")
-const MapManager = preload("res://Manager/map_manager.gd")
-
 signal game_completed
 
 var card_manager : CardManager
 var stage_manager : StageManager
+var shop_manager : ShopManager
 var map_manager : MapManager
 var ui_manager : UiManager
 var character_manager : CharacterManager
@@ -33,6 +28,7 @@ func _ready() -> void:
 	card_manager = CardManager.new()
 	stage_manager = StageManager.new()
 	map_manager = MapManager.new()
+	shop_manager = ShopManager.new()
 	character_manager = CharacterManager.new()
 	
 	init_player(char_id)

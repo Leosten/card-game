@@ -80,8 +80,7 @@ func _reshuffle_discard_into_draw():
 func display_cards(cards_to_display: Array[CardData]) :
 	var index = 0
 	for card_data in cards_to_display:
-		var card : Card = GameManager.card_manager.get_card_scene()
-		card.init_data(card_data)
+		var card : Card = GameManager.card_manager.instantiate_card_scene(card_data)
 		card.init_position(card_data.hand_position, card_animation_manager.right_out_of_bounds)
 		card.hovered.connect(_on_card_hovered)
 		card.hovered_out.connect(_on_card_hovered_out)

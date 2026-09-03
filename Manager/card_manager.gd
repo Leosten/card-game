@@ -88,8 +88,10 @@ func get_starting_deck(character_id) -> Array[CardData]:
 		deck.append(get_card_by_name(card_name).duplicate())
 	return deck
 
-func get_card_scene():
-	return Card.instantiate()
+func instantiate_card_scene(card_data : CardData):
+	var card = Card.instantiate()
+	card.init_data(card_data)
+	return card
 
 ## Fetch background texture by type string/enum
 func get_card_background(card_type: CardUtils.card_type) -> Texture2D:
@@ -104,18 +106,12 @@ func get_large_card_background(level_type: StageManager.level_type) -> Texture2D
 		return _large_cards[level_type]
 	push_warning("large card background not found for : " , level_type)
 	return _large_cards[StageManager.level_type.COMMON]
-	
-func get_random_card_for_deck(character_class: String) -> CardData:
-	var key = character_class.to_lower()
-	if _cards_by_deck.has(key) and not _cards_by_deck[key].is_empty():
-		return null
-	return _cards_by_deck[key].pick_random()
 
-func get_card_rewards_by_deck(deck_nb, count: int = 3) -> Array[CardData]:
+func get_random_cards_by_deck(deck_nb, count: int = 3) -> Array[CardData]:
 	var rewards: Array[CardData] = []
 	var cards = _cards_by_deck.get(str(deck_nb), [])
 	
-	cards.filter(func(card): return card.tier == CardUtils.tier.COMMON)
+	cards.filter(func(card): return card.tier != CardUtils.tier.STARTER)
 	cards.shuffle()
 
 	for i in range(min(count, cards.size())):
