@@ -6,7 +6,7 @@
 script = ExtResource("1_hsiit")
 name = "Elemental Shield"
 shield = 20
-description = "Use an orb to protect yourself for {shield} shield"
+description = "Use an orb to protect yourself for [color={shield_color}]{shield}[/color] shield"
 cost = 2
 magic_type = 2
 tier = 1

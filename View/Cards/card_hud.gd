@@ -181,6 +181,7 @@ func on_turn_end():
 	#await discard_all()
 
 func on_turn_start():
+	print("Player turn start")
 	enemy_turn = false
 	draw_cards(player_draw_value)
 	update_piles_count()

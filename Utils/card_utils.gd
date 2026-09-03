@@ -18,6 +18,7 @@ enum action_type {
 enum magic_type {FIRE, WIND, ICE, NONE}
 enum tier {COMMON, PURPLE, GOLD, STARTER}
 enum card_type {ATTACK, MAGIC, BUFF, ELEMENTAL}
+enum card_upgrades_types {REINFORCE, RALLY, COPY, PURIFY}
 
 static func reposition_animation(card: Card, new_position : Vector2) -> void:
 	if card.active_tween:

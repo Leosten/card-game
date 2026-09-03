@@ -6,15 +6,10 @@
 script = ExtResource("1_fyowi")
 id = 1
 character_deck = 1
-hand_position = null
 name = "Defend"
-damage_modifier = null
-heal = null
 shield = 9
-actions = null
-description = "add {shield} shield"
+description = "add [color={shield_color}]{shield}[/color] shield"
 cost = 2
-allowed_targets = null
 tier = 3
 type = 1
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

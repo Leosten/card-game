@@ -1,13 +1,11 @@
 [gd_resource type="Resource" format=3 uid="uid://cq67u8hs52lr4"]
 
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="1_sq1nc"]
 [ext_resource type="Script" uid="uid://br12vnyaun8i2" path="res://Resources/Cards/0/panic_trade.gd" id="2_sq1nc"]
-[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_tp5p3"]
 
 [resource]
 script = ExtResource("2_sq1nc")
 name = "Panic Trade"
-description = "Remove 2 fire orbs and add 2 ice orbs"
+description = "Remove [color={fire_color}]2 fire orbs[/color] and add [color={ice_color}]2 ice orbs[/color]"
 cost = 1
 magic_type = 2
 tier = 1

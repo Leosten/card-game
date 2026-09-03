@@ -39,7 +39,7 @@ func update_status_icons():
 	if statuses.is_empty():
 		return
 	
-	for status : StatusTemplate in statuses.values():
+	for status : Status in statuses.values():
 		print("status: " ,status)
 		var icon = GameManager.ui_manager.get_icon_scene(status)
 		icon.set_stacks(status.stacks)

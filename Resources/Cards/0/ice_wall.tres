@@ -6,7 +6,7 @@
 script = ExtResource("1_hftb6")
 name = "Ice Wall"
 shield = 15
-description = "Protect yourself for {shield} damage and channel 3 ice orbs"
+description = "Protect yourself for [color={shield_color}]{shield}[/color] damage and channel [color={ice_color}]3 ice orbs[/color]"
 cost = 3
 magic_type = 2
 tier = 2

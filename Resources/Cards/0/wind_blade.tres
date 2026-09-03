@@ -8,6 +8,6 @@ id = 3
 character_deck = 1
 name = "Wind Blade"
 damage = 4
-description = "Apply 2 vulnerable and {damage} damage"
+description = "Apply [color={value_color}]2[/color] [color={wind_color}]vulnerable[/color] and [color={value_color}]{damage}[/color] damage"
 cost = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

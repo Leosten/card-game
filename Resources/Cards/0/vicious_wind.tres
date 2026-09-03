@@ -6,7 +6,7 @@
 script = ExtResource("1_07i6t")
 name = "Vicious Wind"
 damage = 6
-description = "Use an orb to deal {damage} damage and channel 1 wind orb"
+description = "Use an orb to deal [color={value_color}]{damage}[/color] damage and channel [color={wind_color}]1 wind orb[/color]"
 magic_type = 1
 tier = 1
 type = 3

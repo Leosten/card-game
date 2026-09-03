@@ -65,10 +65,10 @@ func get_monster_action_icon(action_type : MonsterUtils.action_types):
 		MonsterUtils.action_types.HEAL_SELF, MonsterUtils.action_types.HEAL_OTHERS:
 			return get_icon_by_name('heal')
 
-func get_icon_scene(status : StatusTemplate):
+func get_icon_scene(status : Status):
 	var icon_scene = ICON_SCENE.instantiate()
 	var icon : Texture2D = null
-	if status is StatusTemplate:
+	if status is Status:
 		icon = get_status_icon(status.type)
 		icon_scene.set_icon(icon)
 	return icon_scene

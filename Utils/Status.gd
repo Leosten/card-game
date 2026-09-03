@@ -1,5 +1,4 @@
-class_name StatusTemplate
-
+class_name Status
 
 signal effect_changed
 

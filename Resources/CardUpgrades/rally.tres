@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CardUpgradeData" format=3 uid="uid://b6doatr6p7m3i"]
+
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="1_q6dtv"]
+
+[resource]
+script = ExtResource("1_q6dtv")
+metadata/_custom_type_script = "uid://bkcoa7p8c44pk"

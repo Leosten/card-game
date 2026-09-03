@@ -1,6 +1,6 @@
 class_name FrozenBiteStatus
 
-extends StatusTemplate
+extends Status
 
 var damage = 2
 

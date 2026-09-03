@@ -79,7 +79,6 @@ func start_battle():
 	battle_state.replenish_player_mana()
 	battle_state.level_monsters = stage_manager.get_level_monsters()
 	spawn_level_monsters()
-	Events.turn_start.emit()
 	player_turn_start.emit()
 
 func start_boss_battle():

@@ -17,9 +17,11 @@ signal exhausted(card)
 @export var draw_value := 0
 @export var actions : Array[CardUtils.action_type] = []
 @export var exhaust : bool = false
-var status_effects : Array[CardStatus]
-var buffs : Array[CardStatus]
+@export var rally : bool = false
+var status_effects : Array[CardStatus] = []
+var buffs : Array[CardStatus] = []
 
+@export var upgrades : Array[CardUpgradeData] = []
 @export var description := ""
 @export var cost := 0
 @export var allowed_targets : Array[CardUtils.targets] = []

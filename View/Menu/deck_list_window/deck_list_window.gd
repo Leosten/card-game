@@ -18,7 +18,7 @@ func display_deck():
 		card.hovered_out.connect(_on_card_hovered_out)
 		card.init_data(card_data)
 		card_grid.add_child(card)
-		card.update_text()
+		card.update()
 
 func _on_card_hovered(card : Card):
 	CardAnimationManager.zoom_in(card)

@@ -1,6 +1,6 @@
 class_name FireAffinityStatus
 
-extends StatusTemplate
+extends Status
 
 func _init(target : Targetable, initial_stacks : int) -> void:
 	super(target, initial_stacks)

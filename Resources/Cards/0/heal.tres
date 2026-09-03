@@ -6,17 +6,9 @@
 script = ExtResource("1_j4nhi")
 id = 2
 character_deck = 1
-hand_position = null
 name = "Heal"
-damage = null
-damage_modifier = null
 heal = 8
-shield = null
-actions = null
-description = "Use one orb to heals for {heal} points"
+description = "Use one orb to heals for [color={value_color}]{heal}[/color] points"
 cost = 3
-allowed_targets = null
-magic_type = null
-tier = null
 type = 2
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

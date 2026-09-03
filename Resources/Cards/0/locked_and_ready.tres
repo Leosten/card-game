@@ -1,13 +1,11 @@
 [gd_resource type="Resource" format=3 uid="uid://bm0cp6nhd5gx8"]
 
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="1_yfy4s"]
 [ext_resource type="Script" uid="uid://c00w28kfywab2" path="res://Resources/Cards/0/locked_and_ready.gd" id="2_yfy4s"]
-[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_hx4j5"]
 
 [resource]
 script = ExtResource("2_yfy4s")
 name = "Locked And Ready"
-description = "Use 3 identical orbs and channel 2 ice orbs"
+description = "Use [color={value_color}]3[/color] identical orbs and channel [color={ice_color}]2 ice orbs[/color]"
 cost = 2
 magic_type = 2
 tier = 1

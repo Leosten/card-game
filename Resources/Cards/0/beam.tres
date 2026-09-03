@@ -1,16 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://ciu0b2dkp4clu"]
 
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="1_wjdb1"]
 [ext_resource type="Script" uid="uid://2f44f0e1l0fi" path="res://Resources/Cards/0/beam.gd" id="2_4ylj2"]
-[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_nx57c"]
 
 [resource]
 script = ExtResource("2_4ylj2")
 character_deck = 1
 name = "Beam"
 damage = 6
-description = "Attack enemy for {damage} damage"
+description = "Attack enemy for [color={value_color}]{damage}[/color] damage"
 cost = 2
-drawable = false
 tier = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

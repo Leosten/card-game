@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_46lrx")
 name = "Fire Affinity"
-description = "Channel 1 fire orb at the start of each turn"
+description = "Channel [color={fire_color}]1 fire orb[/color] at the start of each turn"
 cost = 2
 magic_type = 0
 tier = 2

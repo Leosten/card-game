@@ -4,21 +4,10 @@
 
 [resource]
 script = ExtResource("1_x4q28")
-id = null
-character_deck = null
-hand_position = null
 name = "Frog Jump"
 damage = 2
-damage_modifier = null
-heal = null
-shield = null
-draw_value = null
-actions = null
-exhaust = null
-description = "Deal  {damage} damage for every ice orb channeled"
+description = "Deal [color={value_color}]{damage}[/color] damage for every [color={ice_color}]ice orb[/color] channeled"
 cost = 1
-allowed_targets = null
 magic_type = 2
-tier = null
 type = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

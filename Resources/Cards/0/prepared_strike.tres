@@ -1,14 +1,12 @@
 [gd_resource type="Resource" format=3 uid="uid://db0j8me1cst7r"]
 
-[ext_resource type="Script" uid="uid://na2tmdwnj00n" path="res://Utils/card_status.gd" id="1_c67iv"]
 [ext_resource type="Script" uid="uid://ckkbrmn5h5ciu" path="res://Resources/Cards/0/prepared_strike.gd" id="2_c67iv"]
-[ext_resource type="Script" uid="uid://dhn0xiicuugoi" path="res://Utils/status_effect.gd" id="3_fi5s6"]
 
 [resource]
 script = ExtResource("2_c67iv")
 name = "Prepared Strike"
 damage = 6
 draw_value = 1
-description = "Hit an enemy for {damage} damage and draw {draw_value} card"
+description = "Hit an enemy for [color={value_color}]{damage}[/color] damage and draw [color={value_color}]{draw_value}[/color] card"
 cost = 1
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

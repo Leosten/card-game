@@ -15,7 +15,7 @@ func apply_status(card_statuses: Array[CardStatus]) -> void:
 			_statuses[status.type].add_stacks(status.stacks)
 		else:
 			# Create a new status effect instance
-			var new_status: StatusTemplate = _create_status_instance(status.type, status.stacks)
+			var new_status: Status = _create_status_instance(status.type, status.stacks)
 			if new_status:
 				new_status.effect_changed.connect(_on_status_changed.bind(new_status))
 				_statuses[status.type] = new_status
@@ -23,7 +23,7 @@ func apply_status(card_statuses: Array[CardStatus]) -> void:
 		print( "current statuses : ", _statuses)
 		statuses_updated.emit()
 
-func _create_status_instance(status_name: StatusUtils.names, stacks: int) -> StatusTemplate:
+func _create_status_instance(status_name: StatusUtils.names, stacks: int) -> Status:
 	match status_name:
 		StatusUtils.names.VULNERABLE:
 			return VulnerableStatus.new(owner_entity, stacks)
@@ -52,8 +52,8 @@ func trigger_turn_end() -> void:
 		status.on_turn_end()
 	_cleanup_expired_statuses()
 	statuses_updated.emit()
-	
-func _on_status_changed(status: StatusTemplate) -> void:
+
+func _on_status_changed(status: Status) -> void:
 	if status.stacks <= 0:
 		_cleanup_expired_statuses()
 	statuses_updated.emit()
