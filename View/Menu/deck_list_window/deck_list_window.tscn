@@ -112,7 +112,7 @@ size_flags_horizontal = 3
 
 [node name="CloseButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer" unique_id=951668059]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 theme_type_variation = &"standardBtn"
 text = "Close"
@@ -128,7 +128,7 @@ size_flags_horizontal = 3
 [node name="SelectButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer3" unique_id=363560114]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 theme_type_variation = &"standardBtn"
 text = "Select Card"

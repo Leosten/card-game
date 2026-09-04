@@ -26,50 +26,65 @@ offset_left = 64.0
 offset_top = 64.0
 offset_right = 1856.0
 offset_bottom = 1024.0
+theme_type_variation = &"PanelLight"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2048987667]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1089288775]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1624491738]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2048987667]
 layout_mode = 2
 
-[node name="MapTitle" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1920973974]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1624491738]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1852642798]
+layout_mode = 2
+
+[node name="MapTitle" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1920973974]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme = ExtResource("1_aa1gn")
 theme_type_variation = &"WindowTitle"
-text = "Map Window"
+text = "Map "
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Container" type="CenterContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=125134857]
+[node name="Container" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=125134857]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CloseButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1756815942]
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1756815942]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 text = "X"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer" unique_id=872112169]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=872112169]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MapContainer" type="Control" parent="PanelContainer/VBoxContainer/ScrollContainer" unique_id=2099669387]
+[node name="MapContainer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=2099669387]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 
-[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/VBoxContainer" unique_id=1111481243]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1117195788]
+layout_mode = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=1111481243]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NextButton" type="Button" parent="PanelContainer/VBoxContainer/CenterContainer3" unique_id=1876808744]
+[node name="NextButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/CenterContainer3" unique_id=1876808744]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
-text = "NEXT"
+theme_type_variation = &"standardBtn"
+text = "Next"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/CenterContainer3/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/CenterContainer3/NextButton" to="." method="_on_next_button_pressed"]

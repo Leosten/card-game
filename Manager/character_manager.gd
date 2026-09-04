@@ -20,6 +20,20 @@ static func get_character_scene(char_id):
 				
 			return char_scene.instantiate()
 
+static func set_main_char_battle_position(player_character):
+	var char_position := Vector2(
+			GameManager.viewport_size.x - 1550,
+			GameManager.viewport_size.y - 700
+		)
+	player_character.position = char_position
+
+static func set_companion_char_battle_position(companion_character):
+	var char_position := Vector2(
+			GameManager.viewport_size.x - 1300,
+			GameManager.viewport_size.y - 400
+		)
+	companion_character.position = char_position
+
 static func get_companion_scene(companion_id):
 	match companion_id:
 		0:

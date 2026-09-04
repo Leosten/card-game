@@ -2,10 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_7hiy7"]
 [ext_resource type="Script" uid="uid://djcojqddkw4ex" path="res://View/Menu/shop_window/upgrade_item.gd" id="1_xb52g"]
-[ext_resource type="Texture2D" uid="uid://d30rutf11dsun" path="res://Art/UI/icons/black/1-game/boss.png" id="3_d07k8"]
+[ext_resource type="Texture2D" uid="uid://bn6jw2836hmf3" path="res://Art/UI/icons/white/3-gear/bomb.png" id="3_d07k8"]
 [ext_resource type="FontFile" uid="uid://cwkobknnutnet" path="res://Art/fonts/Exo/static/Exo-Bold.ttf" id="4_skt0a"]
 
 [node name="UpgradeItem" type="Control" unique_id=1398756855]
+custom_minimum_size = Vector2(450, 250)
 custom_maximum_size = Vector2(-1, 120)
 layout_mode = 3
 anchors_preset = 15
@@ -20,46 +21,37 @@ size_flags_vertical = 3
 theme = ExtResource("1_7hiy7")
 script = ExtResource("1_xb52g")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1961946946]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -78.5
-offset_top = -38.5
-offset_right = 78.5
-offset_bottom = 38.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="CenterContainer" unique_id=142614324]
-visible = false
-layout_mode = 2
-text = "TEST UPGRADE"
-
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1463748647]
-layout_mode = 2
+[node name="ButtonContainer" type="PanelContainer" parent="." unique_id=1463748647]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 11.5
+offset_right = 400.0
+offset_bottom = 108.5
 theme = ExtResource("1_7hiy7")
 theme_type_variation = &"upgradePanel"
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=398560629]
+[node name="UpgradeButton" type="Button" parent="ButtonContainer" unique_id=46171077]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ButtonContainer" unique_id=398560629]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1628213161]
+[node name="HBoxContainer" type="HBoxContainer" parent="ButtonContainer/MarginContainer" unique_id=1628213161]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1626990263]
+[node name="CenterContainer" type="CenterContainer" parent="ButtonContainer/MarginContainer/HBoxContainer" unique_id=1626990263]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="UpgradeIcon" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/CenterContainer" unique_id=302063651]
+[node name="UpgradeIcon" type="TextureRect" parent="ButtonContainer/MarginContainer/HBoxContainer/CenterContainer" unique_id=302063651]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -67,27 +59,31 @@ texture = ExtResource("3_d07k8")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1350748329]
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonContainer/MarginContainer/HBoxContainer" unique_id=1350748329]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="UpgradeName" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1514860338]
+[node name="UpgradeName" type="Label" parent="ButtonContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1514860338]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"normalText"
 theme_override_fonts/font = ExtResource("4_skt0a")
-text = "Purify"
+text = "Copy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UpgradeDescription" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1340778294]
+[node name="UpgradeDescription" type="Label" parent="ButtonContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1340778294]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"normalText"
-text = "Description of purify long and muchj longer"
+text = "Copy 1 card"
+horizontal_alignment = 1
 
-[node name="UpgradePrice" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1098934043]
+[node name="UpgradePrice" type="Label" parent="ButtonContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1098934043]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"normalText"
 text = "150"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="ButtonContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

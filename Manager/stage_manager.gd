@@ -199,7 +199,8 @@ func get_monster_scenes_for_level(level_monsters, enemy_positions) -> Array[Mons
 		index += 1
 	return monster_scenes
 	
-func init_monster_positions(viewport_size) -> Array[Area2D]:
+func init_monster_positions() -> Array[Area2D]:
+	var viewport_size = GameManager.viewport_size
 	var column_pos = 0
 	var row_nb = 0
 	var enemy_row_position = enemy_first_row

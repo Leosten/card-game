@@ -13,7 +13,7 @@ signal current_mana_changed
 @export var char_id = 0
 @export var nb_card_reward = 3
 @export var gold_reward_modifier = 0
-@export var gold = 0
+@export var gold = 100
 @export var items = []
 
 var companion_stats : CompanionStats

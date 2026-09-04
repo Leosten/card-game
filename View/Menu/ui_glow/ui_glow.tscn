@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bvr5b12msynh6"]
+
+[ext_resource type="Shader" uid="uid://r6wnyda0otpj" path="res://View/Menu/ui_glow/ui_glow.gdshader" id="1_pevqo"]
+[ext_resource type="Script" uid="uid://bf5ouyihbfun2" path="res://View/Menu/ui_glow/ui_glow.gd" id="2_7h18h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1dyt"]
+resource_local_to_scene = true
+shader = ExtResource("1_pevqo")
+
+[node name="UiGlow" type="ColorRect" unique_id=1105459613]
+material = SubResource("ShaderMaterial_k1dyt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_7h18h")

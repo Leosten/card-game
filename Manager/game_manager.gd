@@ -53,6 +53,7 @@ func get_character_scene() :
 		return char_scene
 	return character_manager.get_character_scene(char_id)
 
+
 func get_companion_scene():
 	return character_manager.get_companion_scene(companion_id)
 

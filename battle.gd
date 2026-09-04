@@ -19,15 +19,12 @@ var stage_manager : StageManager
 var action_manager : ActionManager
 var battle_animation_manager : BattleAnimationManager
 
-var victory_screen
-var next_level_screen
-
-var viewport_size
 var enemy_positions : Array[Area2D] = []
 
 @onready var card_hand_hud = %CardHandHud
 @onready var end_turn_button = %EndTurnButton
 @onready var mana_window = $%ManaWindow
+
 var card_clicked: CardData = null
 
 func _ready() -> void:
@@ -37,8 +34,6 @@ func _ready() -> void:
 	enemy_turn_end.connect(on_enemy_turn_end)
 	card_hand_hud.card_clicked.connect(_on_card_clicked)
 	end_turn_button.button_pressed.connect(_on_end_turn_button_pressed)
-	#todo: globals
-	viewport_size = get_viewport_rect().size
 	stage_manager = GameManager.stage_manager
 	battle_animation_manager = BattleAnimationManager.new()
 	add_child(battle_animation_manager)
@@ -86,8 +81,9 @@ func start_boss_battle():
 
 func start_shop():
 	#display vendor to click to open window
-	Events.request_window_open.emit("shop")
-	pass
+	var shop_character = GameManager.shop_manager.get_shop_scene()
+	GameManager.shop_manager.set_shop_battle_position(shop_character)
+	add_child(shop_character)
 
 func new_stage():
 	GameManager.map_manager.generate_map()
@@ -95,26 +91,18 @@ func new_stage():
 
 func spawn_player_character():
 	player_character = GameManager.get_character_scene()
-	var char_position := Vector2(
-			viewport_size.x - 1550,
-			viewport_size.y - 700
-		)
-	player_character.position = char_position
+	GameManager.character_manager.set_main_char_battle_position(player_character)
 	player_character.init(battle_state)
 	add_child(player_character)
 
 func spawn_companion_character():
 	companion_character = GameManager.get_companion_scene()
-	var char_position := Vector2(
-			viewport_size.x - 1300,
-			viewport_size.y - 400
-		)
-	companion_character.position = char_position
+	GameManager.character_manager.set_companion_char_battle_position(companion_character)
 	companion_character.init(battle_state.player_stats.companion_stats)
 	add_child(companion_character)
 
 func spawn_level_monsters():
-	enemy_positions = stage_manager.init_monster_positions(viewport_size)
+	enemy_positions = stage_manager.init_monster_positions()
 	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state.level_monsters, enemy_positions)
 	for monster_scene : Monster in monster_scenes :
 		monster_scene.clicked.connect(on_monster_clicked)

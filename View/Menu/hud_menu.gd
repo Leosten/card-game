@@ -33,6 +33,9 @@ func _on_window_open_requested(window_name: String, extra_data: Dictionary = {})
 			map_window.with_data(extra_data)
 			center_root.add_child(map_window)
 		"shop":
+			if (is_instance_valid(shop_window)):
+				shop_window.visible = true
+				return
 			shop_window = shop_window_scene.instantiate()
 			#map_window.with_data(extra_data)
 			center_root.add_child(shop_window)
@@ -47,6 +50,7 @@ func _on_window_close_requested(window_name: String) -> void:
 		"reward": reward_window.queue_free()
 		"deck": deck_list_window.queue_free()
 		"map": map_window.queue_free()
+		"shop": shop_window.queue_free()
 		"next_level" : 
 			await ScreenTransition.wipe_out(0.6)
 			next_level_window.queue_free()

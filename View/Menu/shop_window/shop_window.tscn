@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_yfsif"]
 [ext_resource type="Script" uid="uid://dsguf07stx8dy" path="res://View/Menu/shop_window/shop_window.gd" id="2_ie2kd"]
+[ext_resource type="Texture2D" uid="uid://bay2u4a1d47iy" path="res://Art/UI/icons/white/8-ui/cross.png" id="3_ie2kd"]
 
 [sub_resource type="Theme" id="Theme_fmxxd"]
 default_font_size = 0
@@ -57,7 +58,7 @@ anchor_bottom = 0.5
 offset_left = -836.0
 offset_top = -492.0
 offset_right = 884.0
-offset_bottom = 400.0
+offset_bottom = 420.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -66,7 +67,7 @@ mouse_filter = 2
 layout_mode = 2
 
 [node name="ShopLabel" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer3" unique_id=19364124]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme = SubResource("Theme_fmxxd")
 theme_type_variation = &"WindowTitle"
@@ -76,6 +77,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PanelContainer" type="Control" parent="PanelContainer/Control/VBoxContainer" unique_id=1932787734]
+propagate_maximum_size = true
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -87,8 +89,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
 
 [node name="ShopContainer" type="VBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer" unique_id=437492977]
 layout_mode = 2
@@ -101,26 +105,59 @@ mouse_filter = 2
 
 [node name="UpgradesContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer" unique_id=886683538]
 unique_name_in_owner = true
-custom_maximum_size = Vector2(-1, 120)
+propagate_maximum_size = false
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 3
 mouse_filter = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer" unique_id=1640426777]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer" unique_id=1546081385]
+custom_minimum_size = Vector2(230, 230)
+custom_maximum_size = Vector2(230, 230)
+layout_mode = 2
+theme = ExtResource("1_yfsif")
+theme_type_variation = &"removeCard"
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer" unique_id=1375708951]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer/CenterContainer" unique_id=1325118893]
+layout_mode = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=613098718]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/CenterContainer" unique_id=1835784797]
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("3_ie2kd")
+
+[node name="Label" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1467533208]
+layout_mode = 2
+theme_type_variation = &"WindowTitle"
+text = "Remove Card"
+horizontal_alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=162531398]
 custom_maximum_size = Vector2(-1, 150)
 layout_mode = 2
-size_flags_vertical = 3
 mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer2" unique_id=734344810]
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=2147276078]
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="IgnoreButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer" unique_id=741279802]
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 theme_type_variation = &"standardBtn"
 text = "Leave"
@@ -144,3 +181,5 @@ text = "NEXT"
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer/IgnoreButton" to="." method="_on_ignore_button_pressed"]

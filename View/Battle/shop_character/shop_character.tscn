@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cs0lmht5ralei"]
+
+[ext_resource type="Script" uid="uid://bsganirwdrjiu" path="res://View/Battle/shop_character/shop_character.gd" id="1_w6684"]
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="2_1suw4"]
+
+[node name="ShopCharacter" type="Node2D" unique_id=833199797]
+script = ExtResource("1_w6684")
+
+[node name="Control" type="Control" parent="." unique_id=89485073]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_1suw4")
+
+[node name="ShopButton" type="Button" parent="Control" unique_id=1383201895]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 0
+offset_left = 56.0
+offset_top = 112.0
+offset_right = 206.0
+offset_bottom = 212.0
+theme_type_variation = &"standardBtn"
+text = "Shop
+"
+
+[node name="NextButton" type="Button" parent="Control" unique_id=1300290484]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 0
+offset_left = 280.0
+offset_top = 112.0
+offset_right = 333.0
+offset_bottom = 147.0
+theme_type_variation = &"standardBtn"
+text = "Next
+"
+
+[connection signal="pressed" from="Control/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="Control/NextButton" to="." method="_on_next_button_pressed"]
