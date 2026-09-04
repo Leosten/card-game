@@ -1,9 +1,13 @@
 [gd_resource type="Resource" script_class="CardUpgradeData" format=3 uid="uid://4r6qky1ukwtt"]
 
+[ext_resource type="Texture2D" uid="uid://cdv70520w2gia" path="res://Art/UI/icons/black/3-gear/wand-02.png" id="1_0oa6t"]
 [ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="1_y0fdp"]
 
 [resource]
 script = ExtResource("1_y0fdp")
 name = "Purify"
 value = 1
+icon = ExtResource("1_0oa6t")
+type = 3
+description = "Card cost -1 mana"
 metadata/_custom_type_script = "uid://bkcoa7p8c44pk"

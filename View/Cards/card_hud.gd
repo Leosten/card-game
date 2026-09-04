@@ -156,7 +156,6 @@ func init_player_piles():
 	discard_pile.clear()
 	draw_pile.clear()
 	player_deck = GameManager.get_player_deck()
-	$DeckCard/DeckCount.text = str(player_deck.size())
 	draw_pile = player_deck.duplicate()
 	draw_pile.shuffle()
 	

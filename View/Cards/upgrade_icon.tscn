@@ -1,3 +1,43 @@
 [gd_scene format=3 uid="uid://1au4xfwx0ads"]
 
-[node name="UpgradeIcon" type="Node2D" unique_id=1775927899]
+[ext_resource type="Script" uid="uid://bku4v5wba83i1" path="res://View/Cards/upgrade_icon.gd" id="1_gc2mx"]
+[ext_resource type="Texture2D" uid="uid://cjaxuobhavoiv" path="res://Art/UI/cards/card_cost_window.png" id="2_aibmf"]
+
+[node name="UpgradeIcon" type="Control" unique_id=327251727]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gc2mx")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1191732274]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_aibmf")
+expand_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1214630678]
+custom_minimum_size = Vector2(38, 0)
+custom_maximum_size = Vector2(-1, 37)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = 1.5
+offset_right = 39.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="CenterContainer" unique_id=1633569814]
+unique_name_in_owner = true
+layout_mode = 2

@@ -10,7 +10,7 @@ extends Control
 var encounter_type : StageManager.level_type
 var node_data : MapNodeData
 
-signal clicked
+signal clicked(node)
 signal hovered
 signal hovered_out
 
@@ -30,7 +30,7 @@ func _on_hovered() -> void:
 
 func _on_button_pressed() -> void:
 	print("clicked button")
-	clicked.emit()
+	clicked.emit(self)
 
 func _on_clicked() -> void:
 	clicked.emit(self)

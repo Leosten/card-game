@@ -21,6 +21,13 @@ var _large_cards = {
 	StageManager.level_type.RANDOM: preload("res://Art/UI/cards/large_cards/card_large_special.png"),
 }
 
+var _upgrades = {
+	CardUtils.card_upgrades_types.REINFORCE: preload("res://Resources/CardUpgrades/reinforce.tres"),
+	CardUtils.card_upgrades_types.RALLY: preload("res://Resources/CardUpgrades/rally.tres"),
+	CardUtils.card_upgrades_types.COPY: preload("res://Resources/CardUpgrades/copy.tres"),
+	CardUtils.card_upgrades_types.PURIFY: preload("res://Resources/CardUpgrades/purify.tres"),
+}
+
 var _cards_by_deck: Dictionary = {}
 var _cards_by_name: Dictionary = {}
 
@@ -118,3 +125,19 @@ func get_random_cards_by_deck(deck_nb, count: int = 3) -> Array[CardData]:
 		rewards.append(cards[i].duplicate())
 		
 	return rewards
+
+func get_card_upgrade(upgrade_type : CardUtils.card_upgrades_types) -> CardUpgradeData:
+	return _upgrades[upgrade_type]
+
+func get_random_upgrades(nb: int = 2) -> Array[CardUpgradeData]:
+	var random_upgrades : Array[CardUpgradeData] = []
+	var all_upgrades : Array[CardUpgradeData] = []
+	
+	for upgr in _upgrades:
+		all_upgrades.append(get_card_upgrade(upgr))
+	all_upgrades.shuffle()
+	
+	for i in nb:
+		random_upgrades.append(all_upgrades[i])
+	return random_upgrades
+	

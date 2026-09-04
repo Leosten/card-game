@@ -14,4 +14,4 @@ func init(card : Card, calculated_price : int) -> void:
 func _ready() -> void:
 	card_container.add_child(card_display)
 	price_display.text = str(price)
-	#card_display.update()
+	card_display.update()

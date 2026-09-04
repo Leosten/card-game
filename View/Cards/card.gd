@@ -10,10 +10,10 @@ signal exhausted(card: Card)
 @export var hand_position : int
 @export var card_data : CardData
 
-@onready var card_name_label: Label = $%Name
-@onready var cost_label: Label = $%ManaCost
-@onready var portrait: TextureRect = $%Portrait
-@onready var description_label: RichTextLabel = $%Description
+@onready var card_name_label: Label = %Name
+@onready var cost_label: Label = %ManaCost
+@onready var portrait: TextureRect = %Portrait
+@onready var description_label: RichTextLabel = %Description
 @onready var background: TextureRect = %Background
 
 var hover_size : int = 120
@@ -28,6 +28,7 @@ var ice_color = "5378a7ff"
 var wind_color = "a9d18bff"
 var shield_color = "81c0c6ff"
 var disabled_color = "797979ff"
+
 func _ready() -> void:
 	description_label.bbcode_enabled = true
 	card_data.data_changed.connect(update)

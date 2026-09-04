@@ -3,6 +3,7 @@ class_name ShopManager
 extends Node
 
 var nb_of_shop_card = 5
+var nb_of_upgrades = 2
 var nb_shops_visited = 0
 var nb_card_remove_used = 0
 var card_remove_base_price = 25
@@ -16,7 +17,7 @@ const TIER_PRICES: Dictionary = {
 func get_card_price(card : CardData):
 	if not TIER_PRICES.has(card.tier):
 		return 50 # Fallback default price
-		
+
 	var price_range: Vector2i = TIER_PRICES[card.tier]
 	
 	# Generate random price between min (x) and max (y)

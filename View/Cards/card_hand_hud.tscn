@@ -3,12 +3,7 @@
 [ext_resource type="Script" uid="uid://cf6f7ygbk250k" path="res://View/Cards/card_hud.gd" id="1_euu8e"]
 [ext_resource type="Texture2D" uid="uid://b2on01ofq2mf" path="res://Art/UI/discard_pile.png" id="3_pux31"]
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="4_5pvo4"]
-[ext_resource type="PackedScene" uid="uid://bsaltp2nt3lrv" path="res://View/Cards/card_background.tscn" id="4_kmdh1"]
 [ext_resource type="Texture2D" uid="uid://c6u1xnimsqri2" path="res://Art/UI/draw_pile.png" id="4_mukto"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_k1dyt"]
-font_size = 65
-font_color = Color(0, 0, 0, 1)
 
 [node name="CardHandHud" type="Control" unique_id=1630616989]
 layout_mode = 3
@@ -19,19 +14,6 @@ offset_top = 820.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_euu8e")
-
-[node name="DeckCard" parent="." unique_id=1429276712 instance=ExtResource("4_kmdh1")]
-visible = false
-position = Vector2(1867, -33.999992)
-scale = Vector2(0.2, 0.2)
-
-[node name="DeckCount" type="Label" parent="DeckCard" unique_id=540661843]
-offset_left = -179.99998
-offset_top = -285.0
-offset_right = -105.999985
-offset_bottom = -195.0
-text = "18"
-label_settings = SubResource("LabelSettings_k1dyt")
 
 [node name="CardHudContainer" type="HBoxContainer" parent="." unique_id=434377974]
 layout_mode = 1

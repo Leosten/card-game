@@ -2,7 +2,9 @@ extends CardUpgradeData
 
 func _init():
 	type = CardUtils.card_upgrades_types.REINFORCE
-
+	icon_color = Color(0.741, 0.318, 0.427, 1.0)
+	value = randi_range(10, 20)
+	
 func apply_upgrade(card : CardData):
 	if (card.damage > 0):
 		card.damage += value

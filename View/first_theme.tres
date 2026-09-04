@@ -119,9 +119,6 @@ corner_radius_top_left = 2
 corner_radius_top_right = 10
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 10
-shadow_color = Color(0.14901961, 0.9607843, 0.7921569, 1)
-shadow_size = 3
-shadow_offset = Vector2(-5, 5)
 
 [resource]
 CardDescription/base_type = &"RichTextLabel"
@@ -164,3 +161,5 @@ standardBtn/fonts/font = SubResource("FontVariation_hq3kc")
 standardBtn/styles/hover = SubResource("StyleBoxFlat_uuvio")
 standardBtn/styles/normal = SubResource("StyleBoxFlat_3yw38")
 standardBtn/styles/pressed = SubResource("StyleBoxFlat_651bu")
+upgradePanel/base_type = &"PanelContainer"
+upgradePanel/styles/panel = SubResource("StyleBoxFlat_651bu")
