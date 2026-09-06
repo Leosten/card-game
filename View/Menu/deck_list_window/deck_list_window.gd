@@ -10,16 +10,19 @@ var player_deck : Array[CardData]
 
 var selection = false
 var selected_card : CardData = null
+var active_callback : Callable = Callable()
 
 func _ready() -> void:
 	self.z_index = 999
 	player_deck = GameManager.battle_state.player_deck
 	display_deck()
-
+	select_btn.visible = selection
+		
 func with_data(extra_data : Dictionary):
 	if extra_data.has("selection"):
+		active_callback = extra_data.active_callback
 		selection = extra_data.selection
-		select_btn.visible = true
+		#select_btn.visible = true
 
 func display_deck():
 	nb_label.text = str(player_deck.size())
@@ -35,6 +38,8 @@ func _on_card_hovered(card : Card):
 	CardAnimationManager.zoom_in(card)
 
 func _on_card_clicked(card : Card):
+	if selection == false:
+		return
 	if card == selected_card:
 		selected_card = null
 		CardAnimationManager.zoom_out(card)
@@ -47,6 +52,7 @@ func _on_card_hovered_out(card : Card):
 	CardAnimationManager.zoom_out(card)
 
 func select_card():
+	active_callback.call(selected_card)
 	card_selected.emit(selected_card)
 	close()
 

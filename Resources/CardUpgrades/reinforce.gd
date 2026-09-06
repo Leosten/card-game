@@ -6,6 +6,7 @@ func _init():
 	value = randi_range(10, 20)
 	
 func apply_upgrade(card : CardData):
+	super(card)
 	if (card.damage > 0):
 		card.damage += value
 	if (card.shield > 0):

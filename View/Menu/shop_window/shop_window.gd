@@ -47,23 +47,29 @@ func buy_card(card_item : CardItem):
 		#todo : visual and sound fx
 		card_item.sold_card()
 		GameManager.battle_state.player_deck.append(card_item.card_display.card_data.duplicate())
+		GameManager.battle_state.player_stats.gold -= card_item.price
 		print("card bought")
 		return
 	print("not enough money")
-	
+
 func _on_upgrade_clicked(upgrade_item : UpgradeItem):
+	print("upgrade clicked")
 	if upgrade_item.is_sold == true:
 		return
 	var current_gold = GameManager.battle_state.player_stats.gold
 	
 	if current_gold >= upgrade_item.price:
-		Events.request_window_open.emit("deck", {"selection": true})
+		Events.request_window_open.emit("deck", {"selection": true, "active_callback" : apply_upgrade_to_card.bind("upgrade_item", upgrade_item)})
 		print("card bought")
 		return
 	print("not enough money")
-func buy_upgrade(upgrade : CardUpgradeData):
-	pass
 
+func apply_upgrade_to_card(upgrade_item : UpgradeItem, card: Card):
+	# todo : sound
+	GameManager.battle_state.player_stats.gold -= upgrade_item.price
+	upgrade_item.upgrade.apply_upgrade(card.card_data)
+	upgrade_item.is_sold = true
+	
 func _on_card_hovered(card : Card):
 	CardAnimationManager.zoom_in(card)
 

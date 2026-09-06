@@ -10,4 +10,4 @@ extends Resource
 @export var description : String = ""
 
 func apply_upgrade(card : CardData):
-	pass
+	card.upgrades.append(self)

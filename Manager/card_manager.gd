@@ -140,4 +140,3 @@ func get_random_upgrades(nb: int = 2) -> Array[CardUpgradeData]:
 	for i in nb:
 		random_upgrades.append(all_upgrades[i])
 	return random_upgrades
-	
