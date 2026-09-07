@@ -28,7 +28,7 @@ func get_random_encounter():
 		level_type.COMMON, 
 		level_type.MINIBOSS,
 		#level_type.TREASURE,
-		#level_type.SHOP, 
+		level_type.SHOP,
 		#level_type.FORGE,
 	]
 	
@@ -38,10 +38,10 @@ static func get_stage_encounter_types(level: int) -> Array[level_type]:
 	match level:
 		#0:
 			#return [level_type.COMMON]
-		1:
-			return [level_type.SHOP]
 		#1:
-			#return [level_type.COMMON]
+			#return [level_type.SHOP]
+		1:
+			return [level_type.COMMON]
 		2:
 			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
 		3:
@@ -55,11 +55,11 @@ static func get_stage_encounter_types(level: int) -> Array[level_type]:
 		7:
 			return [level_type.COMMON, level_type.COMMON, level_type.TREASURE]
 		8:
-			return [level_type.COMMON, level_type.MINIBOSS, level_type.RANDOM]
+			return [level_type.COMMON, level_type.MINIBOSS, level_type.RANDOM, level_type.SHOP]
 		9:
 			return [level_type.COMMON, level_type.TREASURE, level_type.RANDOM]
 		10:
-			return [level_type.COMMON, level_type.MINIBOSS, level_type.RANDOM]
+			return [level_type.COMMON, level_type.MINIBOSS, level_type.RANDOM,level_type.SHOP]
 		11:
 			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
 		12:
@@ -112,23 +112,29 @@ func get_monster_scene_from_name(monster_name):
 func get_stage_one_common_monsters(level) :
 	match level:
 		1:
-			return [["fireball"],["fireball"]]
+			return [["fireball"],["goblin"]]
 		2:
 			return [["umbrella", "goblin"],["yokai","fireball"]]
 		3:
 			return [["umbrella","yokai"]]
 		4:
-			return [["umbrella"],["fireball","umbrella"]]
+			return [["goblin"],["fireball","umbrella"]]
 		5:
-			return [["umbrella"],["umbrella","fireball"]]
+			return [["umbrella"],["yokai","fireball"]]
 		6:
-			return [["umbrella"],["umbrella","umbrella"]]
+			return [["umbrella"],["goblin","umbrella"]]
 		7:
-			return [["umbrella","yokai"],["umbrella","umbrella"]]
+			return [["umbrella","yokai"],["goblin","umbrella"]]
 		8:
-			return [["umbrella","umbrella"],["umbrella","umbrella","yokai"]]
+			return [["umbrella","yokai"],["umbrella","umbrella","yokai"]]
 		9:
-			return [["umbrella","umbrella"],["umbrella","umbrella","fireball"]]
+			return [["umbrella","fireball"],["umbrella","umbrella","fireball"]]
+		10:
+			return [["fireball","goblin"],["umbrella","umbrella","fireball"]]
+		11:
+			return [["umbrella","goblin"],["umbrella","goblin","fireball"]]
+		12:
+			return [["goblin","goblin"],["umbrella","umbrella","goblin"]]
 	return []
 
 func get_stage_one_miniboss(level) :

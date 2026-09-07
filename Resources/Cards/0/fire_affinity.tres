@@ -9,7 +9,6 @@ name = "Fire Affinity"
 channel_add_value = 1
 channel_add_value_upgrade = 2
 exhaust = true
-rally = true
 description = "Channel [color={fire_color}]{channel_add_value} fire orb[/color] at the start of each turn"
 cost = 2
 magic_type = 0

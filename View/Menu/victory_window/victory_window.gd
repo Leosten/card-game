@@ -33,7 +33,7 @@ func display_card_rewards():
 		center.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		center.add_child(card)
 		card_reward_container.add_child(center)
-		card.update_text()
+		card.update()
 		index += 1
 
 func _on_next_button_pressed() -> void:

@@ -126,7 +126,6 @@ func exhaust_card(card: Card):
 	await card_animation_manager.exhaust_card_animation(card)
 	card_used = false
 	player_hand.erase(card.card_data)
-	card.queue_free()
 	displayed_hand.erase(card)
 	var index = 0
 	for card_d in player_hand:
@@ -136,8 +135,8 @@ func exhaust_card(card: Card):
 	#var index_2 = 0
 	for displayed_card in displayed_hand:
 		displayed_card.update()
-	#
 	exhaust_pile.append(card.card_data)
+	card.queue_free()
 	reposition_cards()
 	update_piles_count()
 
