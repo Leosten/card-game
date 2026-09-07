@@ -1,6 +1,6 @@
 [gd_resource type="Resource" format=3 uid="uid://b6doatr6p7m3i"]
 
-[ext_resource type="Texture2D" uid="uid://1a8tc538rn4t" path="res://Art/UI/icons/white/2-items/diamond.png" id="1_yg8mm"]
+[ext_resource type="Texture2D" uid="uid://cynda0x5ghk1f" path="res://Art/UI/icons/white/6-buildings/flag-02.png" id="1_yg8mm"]
 [ext_resource type="Script" uid="uid://cqoqgafrygcju" path="res://Resources/CardUpgrades/rally.gd" id="2_yg8mm"]
 
 [resource]

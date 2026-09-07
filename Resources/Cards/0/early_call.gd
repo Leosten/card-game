@@ -6,6 +6,3 @@ func _init():
 
 func conditions_check(battle_state : BattleState) -> bool:
 	return CompanionUtils.low_activation_check(battle_state.player_stats.companion_stats, channel_remove_value)
-
-func upgrade():
-	channel_remove_value = 2

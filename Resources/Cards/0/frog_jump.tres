@@ -1,11 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://cpxofy8csmetn"]
 
 [ext_resource type="Script" uid="uid://sh47yukp35o1" path="res://Resources/Cards/0/frog_jump.gd" id="1_x4q28"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_0fcwn"]
 
 [resource]
 script = ExtResource("1_x4q28")
 name = "Frog Jump"
 damage = 2
+damage_upgrade = 3
 description = "Deal [color={value_color}]{damage}[/color] damage for every [color={ice_color}]ice orb[/color] channeled"
 cost = 1
 magic_type = 2

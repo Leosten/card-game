@@ -4,10 +4,12 @@ extends Status
 
 var damage = 2
 
-func _init(target : Targetable, initial_stacks : int) -> void:
+func _init(target : Targetable, initial_stacks : int, modified_damage : int = 0) -> void:
 	super(target, initial_stacks)
 	type = StatusUtils.names.FROZEN_BITE
 	GameManager.battle_state.player_stats.companion_stats.ice_channeled.connect(_on_ice_channeled)
+	if modified_damage > 0 :
+		damage = modified_damage
 
 func _on_ice_channeled():
 	var monsters = GameManager.battle_state.level_monsters

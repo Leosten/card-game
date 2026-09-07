@@ -156,9 +156,19 @@ func init_player_piles():
 	discard_pile.clear()
 	draw_pile.clear()
 	player_deck = GameManager.get_player_deck()
-	draw_pile = player_deck.duplicate()
-	draw_pile.shuffle()
 	
+	#handle rally cards
+	var deck_pool = player_deck.duplicate()
+	var rally_cards: Array[CardData] = deck_pool.filter(
+		func(card: CardData) -> bool: return card.rally == true
+	)
+	var standard_cards: Array[CardData] = deck_pool.filter(
+		func(card: CardData) -> bool: return not card.rally == true
+	)
+	standard_cards.shuffle()
+	rally_cards.shuffle()
+	draw_pile = rally_cards + standard_cards
+
 func update_piles_count():
 	draw_count.text = str(draw_pile.size())
 	discard_count.text = str(discard_pile.size())

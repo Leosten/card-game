@@ -11,15 +11,23 @@ signal exhausted(card)
 @export var hand_position = 0
 @export var name := ""
 @export var damage := 0
-@export var damage_modifier := 0
+@export var damage_upgrade := 0
 @export var heal := 0
+@export var heal_upgrade := 0
 @export var shield := 0
+@export var shield_upgrade := 0
 @export var draw_value := 0
+@export var draw_value_upgrade := 0
 @export var channel_add_value := 0
+@export var channel_add_value_upgrade := 0
 @export var channel_remove_value := 0
+@export var channel_remove_value_upgrade := 0
 @export var actions : Array[CardUtils.action_type] = []
 @export var exhaust : bool = false
 @export var rally : bool = false
+@export var status_stacks = 0
+@export var status_stacks_upgrade = 0
+
 var status_effects : Array[CardStatus] = []
 var buffs : Array[CardStatus] = []
 
@@ -48,5 +56,12 @@ func channel_use():
 	pass
 func conditions_check(battle_state : BattleState):
 	pass
+
 func upgrade():
-	pass
+	damage = damage_upgrade
+	shield = shield_upgrade
+	heal = heal_upgrade
+	channel_add_value = channel_add_value_upgrade
+	channel_remove_value = channel_remove_value_upgrade
+	status_stacks = status_stacks_upgrade
+	draw_value = draw_value_upgrade

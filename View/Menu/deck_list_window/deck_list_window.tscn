@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_5b57i"]
 [ext_resource type="Script" uid="uid://bn2j6aet8mcq5" path="res://View/Menu/deck_list_window/deck_list_window.gd" id="2_hf7nv"]
+[ext_resource type="Texture2D" uid="uid://bay2u4a1d47iy" path="res://Art/UI/icons/white/8-ui/cross.png" id="3_hf7nv"]
 
 [node name="DeckListWindow" type="Control" unique_id=352217177]
 custom_minimum_size = Vector2(500, 500)
@@ -46,20 +47,26 @@ theme_type_variation = &"LargePanel"
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control" unique_id=1588388458]
+clip_contents = true
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.036000002
-anchor_right = 1.0
-anchor_bottom = 0.933
-offset_left = -0.51200104
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = -15.680054
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -834.0
+offset_top = -467.0
+offset_right = 878.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=831029937]
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=956968765]
+custom_maximum_size = Vector2(-1, 70)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="TitleLabel" type="Label" parent="PanelContainer/Control/VBoxContainer/HBoxContainer" unique_id=68604749]
+[node name="TitleLabel" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer2" unique_id=68604749]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -85,25 +92,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=2094964079]
-clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/ScrollContainer" unique_id=1563851289]
+propagate_maximum_size = false
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="CardGrid" type="GridContainer" parent="PanelContainer/Control/VBoxContainer/ScrollContainer/CenterContainer" unique_id=353967121]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
 columns = 6
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1150702070]
 layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer" unique_id=1656837049]
-custom_minimum_size = Vector2(0, 130)
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2" unique_id=39231292]
@@ -112,7 +122,7 @@ size_flags_horizontal = 3
 
 [node name="CloseButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer" unique_id=951668059]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 80)
+custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
 theme_type_variation = &"standardBtn"
 text = "Close"
@@ -128,23 +138,27 @@ size_flags_horizontal = 3
 [node name="SelectButton" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer3" unique_id=363560114]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(200, 80)
+custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
 theme_type_variation = &"standardBtn"
 text = "Select Card"
 
 [node name="LeaveButton" type="Button" parent="PanelContainer/Control" unique_id=604117597]
+custom_maximum_size = Vector2(70, 70)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -118.0
+offset_left = -88.0
 offset_top = 13.0
 offset_right = -18.0
-offset_bottom = 113.0
+offset_bottom = 83.0
 grow_horizontal = 0
 theme_type_variation = &"closeButton"
-text = "X"
+theme_override_constants/icon_max_width = 20
+icon = ExtResource("3_hf7nv")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer3/SelectButton" to="." method="select_card"]

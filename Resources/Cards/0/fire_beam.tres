@@ -7,7 +7,9 @@
 script = ExtResource("2_s80lr")
 name = "Fire Beam"
 damage = 6
-channel_add_value = 1
+damage_upgrade = 11
+channel_add_value = 2
+channel_add_value_upgrade = 3
 description = "Hit for [color={value_color}]{damage}[/color] and channel [color={fire_color}]{channel_add_value} fire orb[/color]"
 cost = 1
 magic_type = 0

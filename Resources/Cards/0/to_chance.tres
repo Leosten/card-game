@@ -1,0 +1,15 @@
+[gd_resource type="Resource" format=3 uid="uid://c46ypghfsts2o"]
+
+[ext_resource type="Script" uid="uid://bim7vgesgmvkq" path="res://Resources/Cards/0/to_chance.gd" id="1_n0sbb"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_ak1xb"]
+
+[resource]
+script = ExtResource("1_n0sbb")
+name = "To Chance"
+channel_add_value = 3
+channel_add_value_upgrade = 6
+description = "Channel [color={value_color}]{channel_add_value}[/color] random orbs"
+cost = 1
+tier = 1
+type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

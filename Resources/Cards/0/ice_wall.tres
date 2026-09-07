@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource("1_hftb6")
 name = "Ice Wall"
-shield = 15
-channel_add_value = 2
+shield = 20
+shield_upgrade = 35
+channel_add_value = 3
+channel_add_value_upgrade = 5
 description = "Protect yourself for [color={shield_color}]{shield}[/color] damage and channel [color={ice_color}]{channel_add_value} ice orbs[/color]"
 cost = 3
 magic_type = 2

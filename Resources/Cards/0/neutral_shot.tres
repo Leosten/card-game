@@ -1,0 +1,19 @@
+[gd_resource type="Resource" format=3 uid="uid://bkel7m7um7kh3"]
+
+[ext_resource type="Script" uid="uid://ctra3lnvypo6p" path="res://Resources/Cards/0/neutral_shot.gd" id="1_kq2wj"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_083v0"]
+
+[resource]
+script = ExtResource("1_kq2wj")
+name = "Neutral Shot"
+damage = 11
+damage_upgrade = 18
+draw_value = 1
+draw_value_upgrade = 2
+channel_remove_value = 2
+channel_remove_value_upgrade = 2
+description = "use [color={value_color}]{channel_remove_value}[/color] to hit for [color={value_color}]{damage}[/color] damage and draw [color={value_color}]{draw_value}[/color] card "
+cost = 1
+tier = 1
+type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

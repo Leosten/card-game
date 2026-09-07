@@ -11,7 +11,8 @@ enum names {
 	FIRE_AFFINITY,
 	ICE_AFFINITY,
 	WIND_AFFINITY,
-	FROZEN_BITE
+	FROZEN_BITE,
+	FORESIGHT
 }
 
 static func apply_strength_modifier(damage, stacks):

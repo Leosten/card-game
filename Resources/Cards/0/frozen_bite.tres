@@ -1,11 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://b5efg1brgov0e"]
 
 [ext_resource type="Script" uid="uid://bwqx7dohtdbta" path="res://Resources/Cards/0/frozen_bite.gd" id="1_xw7hn"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_ecird"]
 
 [resource]
 script = ExtResource("1_xw7hn")
 name = "Frozen Bite"
 damage = 2
+damage_upgrade = 3
 description = "Deal [color={value_color}]{damage}[/color] damage everytime an [color={ice_color}]ice orb[/color] is channeled"
 cost = 2
 magic_type = 2

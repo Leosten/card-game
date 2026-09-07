@@ -7,7 +7,9 @@
 script = ExtResource("2_e0k5h")
 name = "Glacier Shield"
 shield = 10
+shield_upgrade = 20
 channel_add_value = 3
+channel_add_value_upgrade = 5
 description = "Shield yourself for [color={shield_color}]{shield}[/color] shield and channel [color={ice_color}]{channel_add_value} ice orbs[/color]"
 cost = 2
 magic_type = 2

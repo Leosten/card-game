@@ -32,3 +32,9 @@ func _on_upgrade_button_pressed() -> void:
 func sold():
 	is_sold = true
 	btn_container.modulate = Color(0.456, 0.456, 0.456, 1.0)
+
+
+func _on_button_container_mouse_entered() -> void:
+	#todo : click animation or btn ...
+	#btn_container.modulate = Color(0.149, 0.961, 0.792, 1.0)
+	pass

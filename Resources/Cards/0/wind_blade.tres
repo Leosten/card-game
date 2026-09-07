@@ -1,6 +1,7 @@
 [gd_resource type="Resource" format=3 uid="uid://b0fdu5xtftwn7"]
 
 [ext_resource type="Script" uid="uid://dc3127qdc1h8v" path="res://Resources/Cards/0/wind_blade.gd" id="1_tgnvk"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_yjhgs"]
 
 [resource]
 script = ExtResource("1_tgnvk")
@@ -8,6 +9,10 @@ id = 3
 character_deck = 1
 name = "Wind Blade"
 damage = 4
-description = "Apply [color={value_color}]2[/color] [color={wind_color}]vulnerable[/color] and [color={value_color}]{damage}[/color] damage"
-cost = 3
+damage_upgrade = 8
+status_stacks = 2
+status_stacks_upgrade = 3
+description = "Apply [color={value_color}]{status_stacks}[/color] [color={wind_color}] vulnerable[/color] and [color={value_color}]{damage}[/color] damage"
+cost = 2
+magic_type = 1
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

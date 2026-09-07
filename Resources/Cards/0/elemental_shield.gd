@@ -10,6 +10,3 @@ func channel_remove(orbs: Array[CardUtils.magic_type]):
 
 func conditions_check(battle_state : BattleState) -> bool:
 	return CompanionUtils.orbs_not_empty(battle_state.player_stats.companion_stats.channel_orbs)
-
-func upgrade():
-	shield = 35

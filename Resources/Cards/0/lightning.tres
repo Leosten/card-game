@@ -1,14 +1,17 @@
 [gd_resource type="Resource" format=3 uid="uid://dcswjws04c6hr"]
 
 [ext_resource type="Script" uid="uid://yg5hise6txti" path="res://Resources/Cards/0/lightning.gd" id="2_a4c2w"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_halv5"]
 
 [resource]
 script = ExtResource("2_a4c2w")
 id = 4
 name = "Lightning"
 damage = 5
+damage_upgrade = 12
 description = "Hit enemy for [color={value_color}]{damage}[/color] damage and [color={wind_color}]stun[/color] for 1 turn"
 cost = 3
 magic_type = 1
+tier = 2
 type = 1
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -8,7 +8,8 @@ script = ExtResource("1_j4nhi")
 id = 2
 character_deck = 1
 name = "Heal"
-heal = 8
+heal = 10
+heal_upgrade = 30
 channel_remove_value = 1
 description = "Use one orb to heals for [color={value_color}]{heal}[/color] points"
 cost = 3

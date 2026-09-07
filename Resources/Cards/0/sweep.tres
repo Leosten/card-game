@@ -1,0 +1,16 @@
+[gd_resource type="Resource" format=3 uid="uid://boiqvwasb6kf7"]
+
+[ext_resource type="Script" uid="uid://2isn52vakhas" path="res://Resources/Cards/0/sweep.gd" id="1_f6gwc"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_yevda"]
+
+[resource]
+script = ExtResource("1_f6gwc")
+name = "Sweep"
+damage = 12
+damage_upgrade = 20
+channel_remove_value = 2
+channel_remove_value_upgrade = 2
+description = "Remove [color={value_color}]{channel_remove_value} orbs[/color] and hit all enemies for [color={value_color}]{damage}[/color] damage"
+cost = 2
+tier = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

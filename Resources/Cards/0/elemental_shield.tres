@@ -7,6 +7,7 @@
 script = ExtResource("1_hsiit")
 name = "Elemental Shield"
 shield = 20
+shield_upgrade = 30
 channel_remove_value = 1
 description = "Use an orb to protect yourself for [color={shield_color}]{shield}[/color] shield"
 cost = 2

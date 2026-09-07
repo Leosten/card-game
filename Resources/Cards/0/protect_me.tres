@@ -6,10 +6,12 @@
 [resource]
 script = ExtResource("2_owask")
 name = "Protect Me!"
-shield = 7
-channel_add_value = 3
+shield = 15
+shield_upgrade = 20
 channel_remove_value = 1
+channel_remove_value_upgrade = 1
 description = "Use an orb to protect yourself for [color={shield_color}]{shield}[/color] shield"
 cost = 1
+tier = 1
 type = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

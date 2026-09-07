@@ -1,11 +1,15 @@
 [gd_resource type="Resource" format=3 uid="uid://btj485v1sbpco"]
 
 [ext_resource type="Script" uid="uid://sf2tt0vfambt" path="res://Resources/Cards/0/prediction.gd" id="1_thbly"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_j3smp"]
 
 [resource]
 script = ExtResource("1_thbly")
 name = "Prediction"
 draw_value = 2
+draw_value_upgrade = 3
+channel_remove_value = 1
+channel_remove_value_upgrade = 1
 description = "Use an orb to draw [color={value_color}]{draw_value}[/color] cards"
 cost = 1
 type = 3

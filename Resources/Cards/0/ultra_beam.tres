@@ -1,0 +1,18 @@
+[gd_resource type="Resource" format=3 uid="uid://ccohg3l5gij01"]
+
+[ext_resource type="Script" uid="uid://0dyu1uf1txct" path="res://Resources/Cards/0/ultra_beam.gd" id="1_rum8k"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_ol5nq"]
+
+[resource]
+script = ExtResource("1_rum8k")
+name = "Ultra_beam"
+damage = 25
+damage_upgrade = 45
+channel_add_value = 3
+channel_add_value_upgrade = 5
+description = "Fires a beam for [color={value_color}]{damage}[/color] damage and channel [color={fire_color}]{channel_add_value} fire orbs[/color]"
+cost = 3
+magic_type = 0
+tier = 2
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

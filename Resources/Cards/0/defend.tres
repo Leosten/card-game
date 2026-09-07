@@ -1,6 +1,7 @@
 [gd_resource type="Resource" format=3 uid="uid://c1817pwbkfa7b"]
 
 [ext_resource type="Script" uid="uid://bu5a5sq582j1s" path="res://Resources/Cards/0/defend.gd" id="1_fyowi"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_2fl1w"]
 
 [resource]
 script = ExtResource("1_fyowi")
@@ -8,6 +9,7 @@ id = 1
 character_deck = 1
 name = "Defend"
 shield = 9
+shield_upgrade = 15
 description = "add [color={shield_color}]{shield}[/color] shield"
 cost = 2
 tier = 3

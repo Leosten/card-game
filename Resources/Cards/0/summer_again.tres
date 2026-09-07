@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3 uid="uid://cd28kasjlsl5c"]
+
+[ext_resource type="Script" uid="uid://drg8qix4q61g0" path="res://Resources/Cards/0/summer_again.gd" id="1_pbtfi"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_bgol4"]
+
+[resource]
+script = ExtResource("1_pbtfi")
+name = "Summer Again"
+shield_upgrade = 15
+description = "Keep your shield next turn"
+cost = 2
+tier = 2
+type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

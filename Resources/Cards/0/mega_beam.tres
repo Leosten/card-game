@@ -7,7 +7,9 @@
 script = ExtResource("1_ky6b6")
 name = "Mega Beam"
 damage = 10
+damage_upgrade = 25
 channel_add_value = 3
+channel_add_value_upgrade = 4
 description = "Hit an enemy for [color={value_color}]{damage}[/color] damage and channel [color={fire_color}]{channel_add_value} fire orbs[/color]"
 cost = 2
 magic_type = 0

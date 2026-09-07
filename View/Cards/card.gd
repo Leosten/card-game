@@ -70,6 +70,7 @@ func update_text():
 		"fire_color": fire_color,
 		"ice_color": ice_color,
 		"wind_color": wind_color,
+		"status_stacks":str(card_data.status_stacks),
 	})
 	# TODO : buffs and status values in description
 	cost_label.text = str(card_data.cost)

@@ -6,4 +6,4 @@ func _init():
 	allowed_targets = [CardUtils.targets.ENEMY]
 
 func channel_add():
-	return [CardUtils.magic_type.WIND, CardUtils.magic_type.WIND]
+	return CompanionUtils.add_orbs(CardUtils.magic_type.WIND, channel_add_value)

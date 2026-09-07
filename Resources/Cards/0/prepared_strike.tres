@@ -1,12 +1,15 @@
 [gd_resource type="Resource" format=3 uid="uid://db0j8me1cst7r"]
 
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_707nd"]
 [ext_resource type="Script" uid="uid://ckkbrmn5h5ciu" path="res://Resources/Cards/0/prepared_strike.gd" id="2_c67iv"]
 
 [resource]
 script = ExtResource("2_c67iv")
 name = "Prepared Strike"
 damage = 6
+damage_upgrade = 11
 draw_value = 1
+draw_value_upgrade = 3
 description = "Hit an enemy for [color={value_color}]{damage}[/color] damage and draw [color={value_color}]{draw_value}[/color] card"
 cost = 1
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

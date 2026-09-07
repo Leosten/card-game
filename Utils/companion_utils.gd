@@ -25,8 +25,8 @@ static func orbs_not_empty(orbs : Array[CardUtils.magic_type]) -> bool:
 	return true
 
 static func has_at_least_by_type(channel_orbs : Array[CardUtils.magic_type], type: CardUtils.magic_type, nb):
-	var fire_count: int = channel_orbs.count(type)
-	if (fire_count < nb):
+	var orb_count: int = channel_orbs.count(type)
+	if (orb_count < nb):
 		return false
 	return true
 
@@ -35,8 +35,13 @@ static func low_activation_check(companion_stats : ElementalCompanionStats, orb_
 		return true
 	return false
 
-static func add_orbs(type : CardUtils.magic_type, nb : int):
-	var orbs = []
+static func add_orbs(type : CardUtils.magic_type, nb : int) -> Array[CardUtils.magic_type]:
+	var orbs : Array[CardUtils.magic_type] = []
 	for i in nb:
 		orbs.append(type)
 	return orbs
+
+static func has_at_least(channel_orbs : Array[CardUtils.magic_type], nb : int):
+	if channel_orbs.size() < nb:
+		return false
+	return true

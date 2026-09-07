@@ -1,0 +1,18 @@
+[gd_resource type="Resource" format=3 uid="uid://legh2k5elro8"]
+
+[ext_resource type="Script" uid="uid://c115ri4fa1rd4" path="res://Resources/Cards/0/retreating_strike.gd" id="1_lh0fi"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_62jbh"]
+
+[resource]
+script = ExtResource("1_lh0fi")
+name = "Retreating Strike"
+damage = 8
+damage_upgrade = 12
+draw_value = 2
+draw_value_upgrade = 3
+channel_remove_value = 1
+channel_remove_value_upgrade = 1
+description = "Use an orb to deal [color={value_color}]{damage}[/color] damage on all enemies and draw [color={value_color}]{draw_value}[/color] cards"
+cost = 1
+magic_type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -50,7 +50,9 @@ func _on_window_close_requested(window_name: String) -> void:
 		"reward": reward_window.queue_free()
 		"deck": deck_list_window.queue_free()
 		"map": map_window.queue_free()
-		"shop": shop_window.queue_free()
+		"shop":
+			if shop_window != null: 
+				shop_window.queue_free()
 		"next_level" : 
 			await ScreenTransition.wipe_out(0.6)
 			next_level_window.queue_free()

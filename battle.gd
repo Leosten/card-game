@@ -152,6 +152,7 @@ func launch_enemy_turn():
 
 func on_enemy_turn_end():
 	Events.turn_end.emit()
+	current_turn += 1
 	player_turn_start.emit()
 
 func _on_end_turn_button_pressed() -> void:

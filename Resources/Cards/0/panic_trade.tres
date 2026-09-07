@@ -7,7 +7,9 @@
 script = ExtResource("2_sq1nc")
 name = "Panic Trade"
 channel_add_value = 2
+channel_add_value_upgrade = 5
 channel_remove_value = 2
+channel_remove_value_upgrade = 2
 description = "Remove [color={fire_color}]{channel_remove_value} fire orbs[/color] and add [color={ice_color}]{channel_add_value} ice orbs[/color]"
 cost = 1
 magic_type = 2

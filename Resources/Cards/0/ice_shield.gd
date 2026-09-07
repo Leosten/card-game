@@ -5,4 +5,4 @@ func _init():
 	allowed_targets = [CardUtils.targets.SELF]
 
 func channel_add() -> Array[CardUtils.magic_type]:
-	return [CardUtils.magic_type.ICE, CardUtils.magic_type.ICE]
+	return CompanionUtils.add_orbs(CardUtils.magic_type.ICE, channel_add_value)

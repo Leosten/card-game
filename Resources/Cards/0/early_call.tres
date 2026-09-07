@@ -7,6 +7,7 @@
 script = ExtResource("1_fb35m")
 name = "Early Call"
 channel_remove_value = 3
+channel_remove_value_upgrade = 2
 description = "Use [color={value_color}]{channel_remove_value}[/color] orbs of the same type to trigger a companion light action"
 cost = 1
 type = 3

@@ -21,6 +21,8 @@ func _ready() -> void:
 	player_deck = GameManager.battle_state.player_deck
 	display_deck()
 	select_btn.visible = selection
+	if selection_type == CardUtils.card_selection_types.REMOVE:
+		select_btn.text = "Remove Card"
 
 func with_data(extra_data : Dictionary):
 	if extra_data.has("selection"):
@@ -39,20 +41,25 @@ func display_deck():
 		card_grid.add_child(card)
 		card.update()
 
-func _on_card_hovered(card : Card):
-	CardAnimationManager.zoom_in(card)
-
 func _on_card_clicked(card : Card):
+	print("card clicked")
+	if selection == false:
+		return
+	if card.card_data == selected_card:
+		selected_card = null
+		CardAnimationManager.zoom_out(card)
+		print("card unselected")
+		
+		return
+	print("card selected")
+
 	selected_card = card.card_data
+	CardAnimationManager.zoom_in(card)
 	match selection_type:
 		CardUtils.card_selection_types.REMOVE:
 			selected_card = card.card_data
 			print("selected card to remove : ", card.card_data.name)
 			return
-		#CardUtils.card_selection_types.COPY:
-			#selected_card = card.card_data
-			#print("selected card to remove : ", card.card_data.name)
-			#return
 		CardUtils.card_selection_types.UPGRADE:
 			var card_preview = card.card_data.duplicate(true)
 			if card_upgrade_item.upgrade.type != CardUtils.card_upgrades_types.COPY:
@@ -63,24 +70,14 @@ func _on_card_clicked(card : Card):
 			add_child(compare_window)
 			compare_window.set_cards(card.card_data, card_preview)
 			return
-		
-	print("card clicked")
-	if selection == false:
-		return
-	if card == selected_card:
-		selected_card = null
-		CardAnimationManager.zoom_out(card)
-	CardAnimationManager.zoom_in(card)
-	selected_card = card.card_data
-
-func open_compare_window():
-	var compare_window = compare_window_scene.instantiate()
-	compare_window.card_accepted.connect()
 
 func _on_card_hovered_out(card : Card):
-	if card == selected_card:
+	if card.card_data == selected_card:
 		return
 	CardAnimationManager.zoom_out(card)
+
+func _on_card_hovered(card : Card):
+	CardAnimationManager.zoom_in(card)
 
 func select_card():
 	if selection_type == CardUtils.card_selection_types.REMOVE:
@@ -88,7 +85,10 @@ func select_card():
 		Events.card_removed.emit()
 		print("card removed")
 	close()
-
+	
+func open_compare_window():
+	var compare_window = compare_window_scene.instantiate()
+	compare_window.card_accepted.connect()
 func _on_card_upgrade_accepted():
 	card_upgrade_item.upgrade.apply_upgrade(selected_card)
 	Events.card_upgraded.emit(card_upgrade_item)

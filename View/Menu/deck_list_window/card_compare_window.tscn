@@ -80,7 +80,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CloseBtn" type="Button" parent="CardsContainer/VBoxContainer/HBoxContainer2" unique_id=1020578084]
-custom_minimum_size = Vector2(200, 80)
+custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
 theme_type_variation = &"standardBtn"
 text = "Close"
@@ -90,7 +90,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="SelectBtn" type="Button" parent="CardsContainer/VBoxContainer/HBoxContainer2" unique_id=1099152051]
-custom_minimum_size = Vector2(200, 80)
+custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
 theme_type_variation = &"standardBtn"
 text = "Select"

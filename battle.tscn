@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cxdimjqove78l" path="res://View/UI/battle_ui/EndTurnButton.tscn" id="4_mhv3b"]
 [ext_resource type="Script" uid="uid://r3uwpuqn7anb" path="res://Manager/damage_number_manager.gd" id="5_dw4jg"]
 [ext_resource type="Texture2D" uid="uid://bpgtsq2gbmb8o" path="res://Art/UI/top_bar_1080.png" id="7_0npn6"]
+[ext_resource type="Texture2D" uid="uid://dsts0wmpcf3b0" path="res://Art/UI/icons/white/1-game/cards.png" id="9_ol6im"]
+[ext_resource type="Texture2D" uid="uid://cbk3sp2ioqrd7" path="res://Art/UI/icons/white/9-media/branch.png" id="10_b1i6x"]
 
 [node name="Battle" type="Node2D" unique_id=344223136]
 script = ExtResource("1_7sfm4")
@@ -103,13 +105,23 @@ text = "Level 1-1"
 
 [node name="DeckListButton" type="Button" parent="Hud/TopHudRoot/BattleStats/HBoxContainer" unique_id=102322817]
 custom_minimum_size = Vector2(80, 80)
+custom_maximum_size = Vector2(-1, 63)
 layout_mode = 2
-text = "DECK"
+theme_type_variation = &"topMenuButton"
+theme_override_constants/icon_max_width = 40
+text = "Deck"
+icon = ExtResource("9_ol6im")
+icon_alignment = 1
 
 [node name="MapButton" type="Button" parent="Hud/TopHudRoot/BattleStats/HBoxContainer" unique_id=1192447149]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(80, 70)
+custom_maximum_size = Vector2(-1, 63)
 layout_mode = 2
-text = "MAP"
+theme_type_variation = &"topMenuButton"
+theme_override_constants/icon_max_width = 40
+text = "Map"
+icon = ExtResource("10_b1i6x")
+icon_alignment = 1
 
 [node name="CenterWindowRoot" type="Control" parent="Hud" unique_id=2025073681]
 unique_name_in_owner = true

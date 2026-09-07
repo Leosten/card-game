@@ -7,7 +7,9 @@
 script = ExtResource("2_dxk4m")
 name = "Careful Hit"
 damage = 6
+damage_upgrade = 11
 channel_add_value = 2
+channel_add_value_upgrade = 3
 description = "Hit an enemy for [color={value_color}]{damage}[/color] damage and channel [color={ice_color}]{channel_add_value} ice orb[/color]"
 cost = 1
 magic_type = 2

@@ -60,7 +60,7 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 	send_card_used_signal(card)
 
 func send_card_used_signal(card: CardData):
-	if card.actions.has(CardUtils.action_type.BUFFS):
+	if card.exhaust == true:
 		card.exhausted.emit()
 	else:
 		card.used.emit()

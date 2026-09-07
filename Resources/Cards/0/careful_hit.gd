@@ -5,4 +5,4 @@ func _init():
 	allowed_targets = [CardUtils.targets.ENEMY]
 
 func channel_add() -> Array[CardUtils.magic_type]:
-	return CompanionUtils.add_orbs(CardUtils.magic_type.ICE, 1)
+	return CompanionUtils.add_orbs(CardUtils.magic_type.ICE, channel_add_value)

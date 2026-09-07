@@ -7,7 +7,9 @@
 script = ExtResource("2_yfy4s")
 name = "Locked And Ready"
 channel_add_value = 2
-channel_remove_value = 3
+channel_add_value_upgrade = 3
+channel_remove_value = 2
+channel_remove_value_upgrade = 1
 description = "Use [color={value_color}]{channel_remove_value}[/color] identical orbs and channel [color={ice_color}]{channel_add_value} ice orbs[/color]"
 cost = 2
 magic_type = 2

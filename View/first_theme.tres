@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://jbrkyduhbdfc" path="res://Art/UI/panel_1080_lines_text.png" id="2_uuvio"]
 [ext_resource type="FontFile" uid="uid://cwkobknnutnet" path="res://Art/fonts/Exo/static/Exo-Bold.ttf" id="3_pplqn"]
 [ext_resource type="FontFile" uid="uid://dm1re7qcgaeys" path="res://Art/fonts/Exo/static/Exo-Black.ttf" id="4_pplqn"]
+[ext_resource type="Texture2D" uid="uid://bay2u4a1d47iy" path="res://Art/UI/icons/white/8-ui/cross.png" id="5_651bu"]
 [ext_resource type="FontFile" uid="uid://86idpqkj8p8w" path="res://Art/fonts/Exo/static/Exo-Light.ttf" id="6_uuvio"]
 
 [sub_resource type="FontVariation" id="FontVariation_uuvio"]
@@ -123,6 +124,21 @@ shadow_size = 2
 [sub_resource type="FontVariation" id="FontVariation_hq3kc"]
 base_font = ExtResource("2_0c46g")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82ti0"]
+bg_color = Color(0.3431, 0.39809, 0.47, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 10
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 10
+shadow_color = Color(0.5058824, 0.7529412, 0.7764706, 1)
+shadow_size = 3
+shadow_offset = Vector2(-5, 5)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuvio"]
 bg_color = Color(0.4745098, 0.89411765, 1, 1)
 border_color = Color(0.4745098, 0.89411765, 1, 1)
@@ -162,6 +178,27 @@ shadow_size = 2
 [sub_resource type="FontVariation" id="FontVariation_651bu"]
 base_font = ExtResource("3_pplqn")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_daexe"]
+bg_color = Color(0.4745098, 0.89411765, 1, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_left = 10
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5juw"]
+bg_color = Color(0.3254902, 0.47058824, 0.654902, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_left = 10
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nna2c"]
+bg_color = Color(0.3254902, 0.47058824, 0.654902, 1)
+border_color = Color(0.4745098, 0.89411765, 1, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_left = 10
+shadow_offset = Vector2(-5, 5)
+
 [resource]
 CardDescription/base_type = &"RichTextLabel"
 CardDescription/fonts/normal_font = SubResource("FontVariation_uuvio")
@@ -191,6 +228,7 @@ cardCount/colors/font_shadow_color = Color(0.5058824, 0.7529412, 0.65882355, 1)
 cardCount/fonts/font = SubResource("FontVariation_5pvo4")
 closeButton/base_type = &"Button"
 closeButton/fonts/font = SubResource("FontVariation_qafj5")
+closeButton/icons/icon = ExtResource("5_651bu")
 closeButton/styles/hover = SubResource("StyleBoxFlat_hq3kc")
 closeButton/styles/normal = SubResource("StyleBoxFlat_tw2mr")
 closeButton/styles/pressed = SubResource("StyleBoxFlat_krvcn")
@@ -211,11 +249,16 @@ removeCard/styles/panel = SubResource("StyleBoxFlat_qafj5")
 standardBtn/base_type = &"Button"
 standardBtn/font_sizes/font_size = 25
 standardBtn/fonts/font = SubResource("FontVariation_hq3kc")
+standardBtn/styles/disabled = SubResource("StyleBoxFlat_82ti0")
 standardBtn/styles/hover = SubResource("StyleBoxFlat_uuvio")
 standardBtn/styles/normal = SubResource("StyleBoxFlat_3vyh3")
 standardBtn/styles/pressed = SubResource("StyleBoxFlat_651bu")
 titleText/base_type = &"Label"
 titleText/colors/font_shadow_color = Color(0, 0, 0, 1)
 titleText/fonts/font = SubResource("FontVariation_651bu")
+topMenuButton/base_type = &"Button"
+topMenuButton/styles/hover = SubResource("StyleBoxFlat_daexe")
+topMenuButton/styles/normal = SubResource("StyleBoxFlat_d5juw")
+topMenuButton/styles/pressed = SubResource("StyleBoxFlat_nna2c")
 upgradePanel/base_type = &"PanelContainer"
 upgradePanel/styles/panel = SubResource("StyleBoxFlat_651bu")

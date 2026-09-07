@@ -1,0 +1,18 @@
+[gd_resource type="Resource" format=3 uid="uid://0a5l4bqjgm7l"]
+
+[ext_resource type="Script" uid="uid://ot413aiixkqs" path="res://Resources/Cards/0/blinding_strike.gd" id="1_n7qdw"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_ktcdo"]
+
+[resource]
+script = ExtResource("1_n7qdw")
+name = "Blinding Strike"
+damage = 5
+damage_upgrade = 8
+channel_remove_value = 1
+channel_remove_value_upgrade = 1
+status_stacks = 3
+status_stacks_upgrade = 5
+description = "Use and orb to apply [color={wind_color}]{status_stacks} vulnerable[/color] and hit for [color={value_color}]{damage}[/color]"
+cost = 1
+magic_type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

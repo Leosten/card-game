@@ -1,0 +1,18 @@
+[gd_resource type="Resource" format=3 uid="uid://b63wcy5i7wifg"]
+
+[ext_resource type="Script" uid="uid://bhahij1fyrulp" path="res://Resources/Cards/0/fire_trade.gd" id="1_xmmn4"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_fur00"]
+
+[resource]
+script = ExtResource("1_xmmn4")
+name = "Fire Trade"
+channel_add_value = 3
+channel_add_value_upgrade = 5
+channel_remove_value = 2
+channel_remove_value_upgrade = 2
+description = "Remove [color={value_color}]{channel_remove_value} orbs[/color] and add [color={fire_color}]{channel_add_value} fire orbs[/color]"
+cost = 2
+magic_type = 0
+tier = 1
+type = 3
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" format=3 uid="uid://jl42uiuyhy42"]
+
+[ext_resource type="Script" uid="uid://b0lxltbbf338g" path="res://Resources/Cards/0/remember_winter.gd" id="1_0t7k2"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_hulrp"]
+
+[resource]
+script = ExtResource("1_0t7k2")
+name = "Remember Winter"
+shield = 10
+shield_upgrade = 18
+draw_value = 1
+draw_value_upgrade = 2
+description = "Shield yourself for [color={shield_color}]{shield}[/color] shield and draw [color={value_color}]{draw_value}[/color] cards"
+cost = 1
+magic_type = 2
+tier = 1
+type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

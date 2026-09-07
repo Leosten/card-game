@@ -99,4 +99,5 @@ offset_top = 11.5
 offset_right = 400.0
 offset_bottom = 108.5
 
+[connection signal="mouse_entered" from="ButtonContainer" to="." method="_on_button_container_mouse_entered"]
 [connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]
