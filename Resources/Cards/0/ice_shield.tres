@@ -1,12 +1,14 @@
 [gd_resource type="Resource" format=3 uid="uid://bi02l63kv7oyw"]
 
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_3nu2m"]
 [ext_resource type="Script" uid="uid://bi341cw10btsc" path="res://Resources/Cards/0/ice_shield.gd" id="2_nrt87"]
 
 [resource]
 script = ExtResource("2_nrt87")
 name = "Ice Shield"
 shield = 5
-description = "Shield yourself for [color={shield_color}]{shield}[/color] and channel [color={ice_color}]1 ice orb[/color]"
+channel_add_value = 1
+description = "Shield yourself for [color={shield_color}]{shield}[/color] and channel [color={ice_color}]{channel_add_value} ice orb[/color]"
 cost = 1
 magic_type = 2
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

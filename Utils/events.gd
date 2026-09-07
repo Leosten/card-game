@@ -23,3 +23,8 @@ signal game_completed
 
 signal request_window_open
 signal request_window_close
+
+signal card_upgraded
+signal card_removed
+signal card_copied
+signal card_selection_cancel

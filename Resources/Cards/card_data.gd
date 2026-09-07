@@ -15,6 +15,8 @@ signal exhausted(card)
 @export var heal := 0
 @export var shield := 0
 @export var draw_value := 0
+@export var channel_add_value := 0
+@export var channel_remove_value := 0
 @export var actions : Array[CardUtils.action_type] = []
 @export var exhaust : bool = false
 @export var rally : bool = false
@@ -45,4 +47,6 @@ func channel_remove(channel_orbs: Array[CardUtils.magic_type]) -> Array[CardUtil
 func channel_use():
 	pass
 func conditions_check(battle_state : BattleState):
+	pass
+func upgrade():
 	pass

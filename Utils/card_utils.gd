@@ -3,22 +3,23 @@ extends Node
 
 enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF}
 enum action_type {
-	HEAL, 
-	DAMAGE, 
+	HEAL,
+	DAMAGE,
 	SHIELD,
 	BUFFS,
-	STATUS_EFFECTS, 
-	CHANNEL_ADD, 
-	CHANNEL_REMOVE, 
-	CHANNEL_CLEAR, 
-	CHANNEL_USE, 
-	DRAW, 
+	STATUS_EFFECTS,
+	CHANNEL_ADD,
+	CHANNEL_REMOVE,
+	CHANNEL_CLEAR,
+	CHANNEL_USE,
+	DRAW,
 	CHANNEL_SPECIAL
 }
 enum magic_type {FIRE, WIND, ICE, NONE}
 enum tier {COMMON, PURPLE, GOLD, STARTER}
 enum card_type {ATTACK, MAGIC, BUFF, ELEMENTAL}
-enum card_upgrades_types {REINFORCE, RALLY, COPY, PURIFY}
+enum card_upgrades_types {REINFORCE, RALLY,  PURIFY, COPY}
+enum card_selection_types {REMOVE, UPGRADE}
 
 static func reposition_animation(card: Card, new_position : Vector2) -> void:
 	if card.active_tween:

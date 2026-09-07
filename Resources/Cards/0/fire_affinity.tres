@@ -1,11 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://ctuftcmc363l1"]
 
 [ext_resource type="Script" uid="uid://bgr2iii04cai0" path="res://Resources/Cards/0/fire_affinity.gd" id="1_46lrx"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_3ik4u"]
 
 [resource]
 script = ExtResource("1_46lrx")
 name = "Fire Affinity"
-description = "Channel [color={fire_color}]1 fire orb[/color] at the start of each turn"
+channel_add_value = 1
+description = "Channel [color={fire_color}]{channel_add_value} fire orb[/color] at the start of each turn"
 cost = 2
 magic_type = 0
 tier = 2

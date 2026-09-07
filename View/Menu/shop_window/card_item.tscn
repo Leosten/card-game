@@ -50,6 +50,7 @@ layout_mode = 2
 [node name="Price" type="Label" parent="VBoxContainer/CenterContainer2" unique_id=391953718]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"priceText"
 text = "50
 "
 horizontal_alignment = 1

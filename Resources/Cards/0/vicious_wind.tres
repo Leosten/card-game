@@ -1,12 +1,14 @@
 [gd_resource type="Resource" format=3 uid="uid://cc6gsxni3cxuo"]
 
 [ext_resource type="Script" uid="uid://dqhgbatq2t8g5" path="res://Resources/Cards/0/vicious_wind.gd" id="1_07i6t"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_6is4u"]
 
 [resource]
 script = ExtResource("1_07i6t")
 name = "Vicious Wind"
 damage = 6
-description = "Use an orb to deal [color={value_color}]{damage}[/color] damage and channel [color={wind_color}]1 wind orb[/color]"
+channel_add_value = 2
+description = "Use an orb to deal [color={value_color}]{damage}[/color] damage and channel [color={wind_color}]{channel_add_value} wind orb[/color]"
 magic_type = 1
 tier = 1
 type = 3

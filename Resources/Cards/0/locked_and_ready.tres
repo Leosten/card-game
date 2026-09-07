@@ -1,11 +1,14 @@
 [gd_resource type="Resource" format=3 uid="uid://bm0cp6nhd5gx8"]
 
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_xavpj"]
 [ext_resource type="Script" uid="uid://c00w28kfywab2" path="res://Resources/Cards/0/locked_and_ready.gd" id="2_yfy4s"]
 
 [resource]
 script = ExtResource("2_yfy4s")
 name = "Locked And Ready"
-description = "Use [color={value_color}]3[/color] identical orbs and channel [color={ice_color}]2 ice orbs[/color]"
+channel_add_value = 2
+channel_remove_value = 3
+description = "Use [color={value_color}]{channel_remove_value}[/color] identical orbs and channel [color={ice_color}]{channel_add_value} ice orbs[/color]"
 cost = 2
 magic_type = 2
 tier = 1

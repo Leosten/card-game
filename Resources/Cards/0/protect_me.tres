@@ -1,11 +1,14 @@
 [gd_resource type="Resource" format=3 uid="uid://ds3t2vfc6i8cq"]
 
 [ext_resource type="Script" uid="uid://ch6jsdx0ebis5" path="res://Resources/Cards/0/protect_me.gd" id="2_owask"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_v27ys"]
 
 [resource]
 script = ExtResource("2_owask")
 name = "Protect Me!"
 shield = 7
+channel_add_value = 3
+channel_remove_value = 1
 description = "Use an orb to protect yourself for [color={shield_color}]{shield}[/color] shield"
 cost = 1
 type = 3

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" format=3 uid="uid://drn651bi215nr"]
 
 [ext_resource type="Script" uid="uid://bou4lgqsnf0mq" path="res://Resources/Cards/0/heal.gd" id="1_j4nhi"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_83k0j"]
 
 [resource]
 script = ExtResource("1_j4nhi")
@@ -8,6 +9,7 @@ id = 2
 character_deck = 1
 name = "Heal"
 heal = 8
+channel_remove_value = 1
 description = "Use one orb to heals for [color={value_color}]{heal}[/color] points"
 cost = 3
 type = 2

@@ -147,5 +147,5 @@ theme_type_variation = &"closeButton"
 text = "X"
 
 [connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer3/SelectButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer/HBoxContainer2/CenterContainer3/SelectButton" to="." method="select_card"]
 [connection signal="pressed" from="PanelContainer/Control/LeaveButton" to="." method="_on_leave_button_pressed"]

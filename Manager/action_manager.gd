@@ -93,7 +93,7 @@ func card_elemental_companion_action(battle_state: BattleState, card: CardData, 
 	if action == CardUtils.action_type.CHANNEL_ADD:
 		battle_state.player_stats.companion_stats.channel_add(card)
 	if action == CardUtils.action_type.CHANNEL_USE:
-		battle_state.player_stats.companion_stats.use_orb(battle_state)
+		battle_state.player_stats.companion_stats.use_orb(battle_state, card.channel_remove_value)
 	if action == CardUtils.action_type.CHANNEL_REMOVE:
 		battle_state.player_stats.companion_stats.channel_remove(card)
 	if action == CardUtils.action_type.CHANNEL_CLEAR:

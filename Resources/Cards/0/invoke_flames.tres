@@ -1,11 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://rqdkft5kv4xq"]
 
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_an1i7"]
 [ext_resource type="Script" uid="uid://bn6w6vs0gs7qi" path="res://Resources/Cards/0/invoke_flames.gd" id="2_ov85v"]
 
 [resource]
 script = ExtResource("2_ov85v")
 name = "Invoke Flames"
-description = "Channel [color={ice_color}]3 fire orbs[/color]"
+channel_add_value = 3
+description = "Channel [color={ice_color}]{channel_add_value} fire orbs[/color]"
 cost = 2
 magic_type = 0
 tier = 1

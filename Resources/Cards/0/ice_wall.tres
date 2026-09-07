@@ -1,12 +1,14 @@
 [gd_resource type="Resource" format=3 uid="uid://fwbqnlk8861v"]
 
 [ext_resource type="Script" uid="uid://cfhaupnv8e8o" path="res://Resources/Cards/0/ice_wall.gd" id="1_hftb6"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_2fodx"]
 
 [resource]
 script = ExtResource("1_hftb6")
 name = "Ice Wall"
 shield = 15
-description = "Protect yourself for [color={shield_color}]{shield}[/color] damage and channel [color={ice_color}]3 ice orbs[/color]"
+channel_add_value = 2
+description = "Protect yourself for [color={shield_color}]{shield}[/color] damage and channel [color={ice_color}]{channel_add_value} ice orbs[/color]"
 cost = 3
 magic_type = 2
 tier = 2

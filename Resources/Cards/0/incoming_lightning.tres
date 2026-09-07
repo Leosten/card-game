@@ -1,11 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://blow3cvabf054"]
 
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_i857i"]
 [ext_resource type="Script" uid="uid://dcynvrk4juh87" path="res://Resources/Cards/0/incoming_lightning.gd" id="2_ykodc"]
 
 [resource]
 script = ExtResource("2_ykodc")
 name = "Incoming Lightning"
-description = "Stun an enemy and channel [color={wind_color}]2 lightning orbs[/color]"
+channel_add_value = 2
+description = "Stun an enemy and channel [color={wind_color}]{channel_add_value} lightning orbs[/color]"
 cost = 2
 magic_type = 1
 tier = 1

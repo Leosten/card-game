@@ -1,13 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://7mrmoankj83j"]
 
-[ext_resource type="Texture2D" uid="uid://cumiirlhxlil6" path="res://Art/UI/icons/white/6-buildings/wardrobe.png" id="1_35lfl"]
+[ext_resource type="Texture2D" uid="uid://im12tvvlftb" path="res://Art/UI/icons/white/1-game/card.png" id="1_35lfl"]
 [ext_resource type="Script" uid="uid://djqtulc57txgc" path="res://Resources/CardUpgrades/copy.gd" id="2_35lfl"]
 
 [resource]
 script = ExtResource("2_35lfl")
 name = "Copy"
 icon = ExtResource("1_35lfl")
-type = 2
+type = 3
 icon_color = Color(0.4745098, 0.89411765, 1, 1)
 description = "Copy a card"
 metadata/_custom_type_script = "uid://bkcoa7p8c44pk"

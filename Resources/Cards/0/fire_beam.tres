@@ -1,12 +1,14 @@
 [gd_resource type="Resource" format=3 uid="uid://txblu50y3xh4"]
 
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_45s22"]
 [ext_resource type="Script" uid="uid://cgixlilp7iqq5" path="res://Resources/Cards/0/fire_beam.gd" id="2_s80lr"]
 
 [resource]
 script = ExtResource("2_s80lr")
 name = "Fire Beam"
 damage = 6
-description = "Hit for [color={value_color}]{damage}[/color] and channel [color={fire_color}]1 fire orb[/color]"
+channel_add_value = 1
+description = "Hit for [color={value_color}]{damage}[/color] and channel [color={fire_color}]{channel_add_value} fire orb[/color]"
 cost = 1
 magic_type = 0
 type = 1

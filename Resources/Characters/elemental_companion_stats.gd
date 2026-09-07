@@ -88,12 +88,15 @@ func check_activation_ceiling() -> bool:
 		return true
 	return false
 
-func check_low_activation_ceiling():
-	if channel_orbs.count(CardUtils.magic_type.FIRE) >= channel_low_activation_ceiling:
+func has_activation_ceiling(orb_count_activation: int):
+	if channel_orbs.is_empty():
+		use_ceiling_not_reached.emit()
+		return false
+	if channel_orbs.count(CardUtils.magic_type.FIRE) >= orb_count_activation:
 		return true
-	if channel_orbs.count(CardUtils.magic_type.ICE) >= channel_low_activation_ceiling:
+	if channel_orbs.count(CardUtils.magic_type.ICE) >= orb_count_activation:
 		return true
-	if channel_orbs.count(CardUtils.magic_type.WIND) >= channel_low_activation_ceiling:
+	if channel_orbs.count(CardUtils.magic_type.WIND) >= orb_count_activation:
 		return true
 	use_ceiling_not_reached.emit()
 	return false
@@ -113,17 +116,17 @@ func trigger_high():
 	reset_channel_orbs()
 
 # level 3 action
-func use_orb(battle_state : BattleState):
+func use_orb(battle_state : BattleState, orb_count_activation: int):
 	print("use orb lvl 3 check")
-	if channel_orbs.count(CardUtils.magic_type.FIRE) >= channel_low_activation_ceiling:
+	if channel_orbs.count(CardUtils.magic_type.FIRE) >= orb_count_activation:
 		aoe_explosion(battle_state)
-		channel_orbs = CompanionUtils.remove_orb_by_type(channel_orbs, CardUtils.magic_type.FIRE, channel_low_activation_ceiling)
-	if channel_orbs.count(CardUtils.magic_type.ICE) >= channel_low_activation_ceiling:
+		channel_orbs = CompanionUtils.remove_orb_by_type(channel_orbs, CardUtils.magic_type.FIRE, orb_count_activation)
+	if channel_orbs.count(CardUtils.magic_type.ICE) >= orb_count_activation:
 		small_shield(battle_state)
-		channel_orbs = CompanionUtils.remove_orb_by_type(channel_orbs, CardUtils.magic_type.ICE, channel_low_activation_ceiling)
-	if channel_orbs.count(CardUtils.magic_type.WIND) >= channel_low_activation_ceiling:
+		channel_orbs = CompanionUtils.remove_orb_by_type(channel_orbs, CardUtils.magic_type.ICE, orb_count_activation)
+	if channel_orbs.count(CardUtils.magic_type.WIND) >= orb_count_activation:
 		aoe_vulnerable(battle_state)
-		channel_orbs = CompanionUtils.remove_orb_by_type(channel_orbs, CardUtils.magic_type.WIND, channel_low_activation_ceiling)
+		channel_orbs = CompanionUtils.remove_orb_by_type(channel_orbs, CardUtils.magic_type.WIND, orb_count_activation)
 	#reset_count()
 	channel_used.emit()
 	channel_removed.emit()

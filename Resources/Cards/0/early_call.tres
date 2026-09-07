@@ -1,11 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://c2bc3f0dwghx"]
 
 [ext_resource type="Script" uid="uid://dabaflvvvi5kt" path="res://Resources/Cards/0/early_call.gd" id="1_fb35m"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_2mfgr"]
 
 [resource]
 script = ExtResource("1_fb35m")
 name = "Early Call"
-description = "Use [color={value_color}]3[/color] orbs of the same type to trigger a companion action"
+channel_remove_value = 3
+description = "Use [color={value_color}]{channel_remove_value}[/color] orbs of the same type to trigger a companion light action"
 cost = 1
 type = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

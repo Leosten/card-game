@@ -1,12 +1,14 @@
 [gd_resource type="Resource" format=3 uid="uid://cimnkf6gehkc5"]
 
 [ext_resource type="Script" uid="uid://cl0ebn6ewp31n" path="res://Resources/Cards/0/mega_beam.gd" id="1_ky6b6"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_17eud"]
 
 [resource]
 script = ExtResource("1_ky6b6")
 name = "Mega Beam"
 damage = 10
-description = "Hit an enemy for [color={value_color}]{damage}[/color] damage and channel [color={fire_color}]3 fire orbs[/color]"
+channel_add_value = 3
+description = "Hit an enemy for [color={value_color}]{damage}[/color] damage and channel [color={fire_color}]{channel_add_value} fire orbs[/color]"
 cost = 2
 magic_type = 0
 tier = 1

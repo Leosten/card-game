@@ -1,12 +1,14 @@
 [gd_resource type="Resource" format=3 uid="uid://ocjn3l728elr"]
 
 [ext_resource type="Script" uid="uid://cu3fg2hjdd8a5" path="res://Resources/Cards/0/careful_hit.gd" id="2_dxk4m"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_ygsxu"]
 
 [resource]
 script = ExtResource("2_dxk4m")
 name = "Careful Hit"
 damage = 6
-description = "Hit an enemy for [color={value_color}]{damage}[/color] damage and channel [color={ice_color}]1 ice orb[/color]"
+channel_add_value = 2
+description = "Hit an enemy for [color={value_color}]{damage}[/color] damage and channel [color={ice_color}]{channel_add_value} ice orb[/color]"
 cost = 1
 magic_type = 2
 type = 3

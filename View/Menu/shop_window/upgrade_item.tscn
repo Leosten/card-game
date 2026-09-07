@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_7hiy7"]
 [ext_resource type="Script" uid="uid://djcojqddkw4ex" path="res://View/Menu/shop_window/upgrade_item.gd" id="1_xb52g"]
 [ext_resource type="Texture2D" uid="uid://bn6jw2836hmf3" path="res://Art/UI/icons/white/3-gear/bomb.png" id="3_d07k8"]
-[ext_resource type="FontFile" uid="uid://cwkobknnutnet" path="res://Art/fonts/Exo/static/Exo-Bold.ttf" id="4_skt0a"]
 
 [node name="UpgradeItem" type="Control" unique_id=1398756855]
 z_index = 103
@@ -49,9 +48,17 @@ theme_override_constants/separation = 14
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="UpgradeIcon" type="TextureRect" parent="ButtonContainer/MarginContainer/HBoxContainer/CenterContainer" unique_id=302063651]
+[node name="PanelContainer" type="PanelContainer" parent="ButtonContainer/MarginContainer/HBoxContainer/CenterContainer" unique_id=429521793]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ButtonContainer/MarginContainer/HBoxContainer/CenterContainer/PanelContainer" unique_id=1322684190]
+layout_mode = 2
+
+[node name="UpgradeIcon" type="TextureRect" parent="ButtonContainer/MarginContainer/HBoxContainer/CenterContainer/PanelContainer/CenterContainer" unique_id=302063651]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("3_d07k8")
 expand_mode = 2
@@ -64,8 +71,8 @@ size_flags_horizontal = 3
 [node name="UpgradeName" type="Label" parent="ButtonContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1514860338]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"normalText"
-theme_override_fonts/font = ExtResource("4_skt0a")
+theme_type_variation = &"titleText"
+theme_override_font_sizes/font_size = 20
 text = "Copy"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -80,7 +87,7 @@ horizontal_alignment = 1
 [node name="UpgradePrice" type="Label" parent="ButtonContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1098934043]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"normalText"
+theme_type_variation = &"priceText"
 text = "150"
 horizontal_alignment = 1
 

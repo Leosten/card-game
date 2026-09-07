@@ -1,6 +1,6 @@
 [gd_resource type="Resource" format=3 uid="uid://pv6dgxnv7npm"]
 
-[ext_resource type="Texture2D" uid="uid://doce0a1mcvxth" path="res://Art/UI/icons/white/3-gear/broadsword-02.png" id="1_ya3r8"]
+[ext_resource type="Texture2D" uid="uid://b6y5plwmbkp2o" path="res://Art/UI/icons/white/1-game/diamond-card.png" id="1_ya3r8"]
 [ext_resource type="Script" uid="uid://cmh4vppspttuf" path="res://Resources/CardUpgrades/reinforce.gd" id="2_ya3r8"]
 
 [resource]
@@ -8,5 +8,5 @@ script = ExtResource("2_ya3r8")
 name = "Reinforce"
 icon = ExtResource("1_ya3r8")
 icon_color = Color(0.741, 0.318, 0.427, 1)
-description = "upgrade card value by damage"
+description = "upgrade one card"
 metadata/_custom_type_script = "uid://bkcoa7p8c44pk"

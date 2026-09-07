@@ -111,36 +111,50 @@ size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer" unique_id=1640426777]
+[node name="RemoveCardContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer" unique_id=1640426777]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer" unique_id=1546081385]
+[node name="RemoveCardBtn" type="Button" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer" unique_id=1017996888]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 260)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer" unique_id=1546081385]
 custom_minimum_size = Vector2(230, 230)
 custom_maximum_size = Vector2(230, 230)
 layout_mode = 2
+mouse_filter = 2
 theme = ExtResource("1_yfsif")
 theme_type_variation = &"removeCard"
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer" unique_id=1375708951]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer" unique_id=1375708951]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer/CenterContainer" unique_id=1325118893]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer" unique_id=1325118893]
 layout_mode = 2
 alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=613098718]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=613098718]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/CenterContainer" unique_id=1835784797]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/VBoxContainer/CenterContainer" unique_id=1835784797]
 custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("3_ie2kd")
 
-[node name="Label" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1467533208]
+[node name="Label" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1467533208]
 layout_mode = 2
 theme_type_variation = &"WindowTitle"
 text = "Remove Card"
+horizontal_alignment = 1
+
+[node name="RemovePrice" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1260695130]
+layout_mode = 2
+theme_type_variation = &"priceText"
+theme_override_font_sizes/font_size = 35
+text = "75"
 horizontal_alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=162531398]
@@ -182,4 +196,5 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/RemoveCardBtn" to="." method="_on_remove_card_btn_pressed"]
 [connection signal="pressed" from="PanelContainer/Control/VBoxContainer/PanelContainer2/HBoxContainer/CenterContainer/IgnoreButton" to="." method="_on_ignore_button_pressed"]

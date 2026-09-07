@@ -1,11 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://cgs7wtxpc5j8x"]
 
 [ext_resource type="Script" uid="uid://oqtj3jsyq2v7" path="res://Resources/Cards/0/elemental_shield.gd" id="1_hsiit"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_fsdgr"]
 
 [resource]
 script = ExtResource("1_hsiit")
 name = "Elemental Shield"
 shield = 20
+channel_remove_value = 1
 description = "Use an orb to protect yourself for [color={shield_color}]{shield}[/color] shield"
 cost = 2
 magic_type = 2

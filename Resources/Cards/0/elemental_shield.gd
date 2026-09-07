@@ -5,8 +5,11 @@ func _init():
 	allowed_targets = [CardUtils.targets.SELF, CardUtils.targets.ALLY]
 
 func channel_remove(orbs: Array[CardUtils.magic_type]):
-	orbs = CompanionUtils.remove_last_orb_channeled(orbs)
+	orbs = CompanionUtils.remove_last_orb_channeled(orbs, channel_remove_value)
 	return orbs
 
 func conditions_check(battle_state : BattleState) -> bool:
 	return CompanionUtils.orbs_not_empty(battle_state.player_stats.companion_stats.channel_orbs)
+
+func upgrade():
+	shield = 35

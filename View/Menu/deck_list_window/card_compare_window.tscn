@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://db786jljljgxi"]
+
+[ext_resource type="Script" uid="uid://u7orpbgbo6lg" path="res://View/Menu/deck_list_window/card_compare_window.gd" id="1_yeh2w"]
+[ext_resource type="Texture2D" uid="uid://bqxr2f0koqxhn" path="res://Art/UI/icons/white/8-ui/arrow-right.png" id="2_yeh2w"]
+
+[node name="CardCompareWindow" type="Control" unique_id=1549592944]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yeh2w")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1768655220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.36078432)
+
+[node name="CardsContainer" type="Control" parent="." unique_id=1798015656]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardsContainer" unique_id=1153326479]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -354.0
+offset_top = -175.0
+offset_right = 354.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardsContainer/VBoxContainer" unique_id=36406736]
+layout_mode = 2
+
+[node name="FirstCardContainer" type="CenterContainer" parent="CardsContainer/VBoxContainer/HBoxContainer" unique_id=248598401]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="CardsContainer/VBoxContainer/HBoxContainer" unique_id=1405622372]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="CardsContainer/VBoxContainer/HBoxContainer/CenterContainer" unique_id=473448821]
+modulate = Color(0.4745098, 0.89411765, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_yeh2w")
+
+[node name="SecondCardContainer" type="CenterContainer" parent="CardsContainer/VBoxContainer/HBoxContainer" unique_id=670542993]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer2" type="CenterContainer" parent="CardsContainer/VBoxContainer" unique_id=1024991218]
+custom_minimum_size = Vector2(0, 111)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CardsContainer/VBoxContainer" unique_id=843268286]
+layout_mode = 2
+
+[node name="CloseBtn" type="Button" parent="CardsContainer/VBoxContainer/HBoxContainer2" unique_id=1020578084]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_type_variation = &"standardBtn"
+text = "Close"
+
+[node name="CenterContainer" type="CenterContainer" parent="CardsContainer/VBoxContainer/HBoxContainer2" unique_id=706975158]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SelectBtn" type="Button" parent="CardsContainer/VBoxContainer/HBoxContainer2" unique_id=1099152051]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_type_variation = &"standardBtn"
+text = "Select"
+
+[connection signal="pressed" from="CardsContainer/VBoxContainer/HBoxContainer2/CloseBtn" to="." method="_on_close_btn_pressed"]
+[connection signal="pressed" from="CardsContainer/VBoxContainer/HBoxContainer2/SelectBtn" to="." method="_on_select_btn_pressed"]

@@ -7,6 +7,7 @@ signal clicked(upgrade_item)
 @onready var upgrade_description = %UpgradeDescription
 @onready var upgrade_price = %UpgradePrice
 @onready var upgrade_icon = %UpgradeIcon
+@onready var btn_container = %ButtonContainer
 #@onready var glow: UIGlow = %UIGlow
 
 var price := 0
@@ -27,3 +28,7 @@ func set_data():
 func _on_upgrade_button_pressed() -> void:
 	print("upgrd btn pressed")
 	clicked.emit(self)
+
+func sold():
+	is_sold = true
+	btn_container.modulate = Color(0.456, 0.456, 0.456, 1.0)

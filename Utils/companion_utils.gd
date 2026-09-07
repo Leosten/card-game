@@ -14,8 +14,9 @@ static func remove_orb_by_type(channel_orbs : Array[CardUtils.magic_type], type 
 				break
 	return channel_orbs
 
-static func remove_last_orb_channeled(channel_orbs : Array[CardUtils.magic_type]) -> Array[CardUtils.magic_type]:
-	channel_orbs.pop_back()
+static func remove_last_orb_channeled(channel_orbs : Array[CardUtils.magic_type], count : int = 1) -> Array[CardUtils.magic_type]:
+	for i in count:
+		channel_orbs.pop_back()
 	return channel_orbs
 
 static func orbs_not_empty(orbs : Array[CardUtils.magic_type]) -> bool:
@@ -29,16 +30,13 @@ static func has_at_least_by_type(channel_orbs : Array[CardUtils.magic_type], typ
 		return false
 	return true
 
-static func low_activation_check(companion_stats : ElementalCompanionStats) -> bool:
-	var low_ceiling = companion_stats.channel_low_activation_ceiling
-	if orbs_not_empty(companion_stats.channel_orbs) == false:
-		return false
-	if companion_stats.check_low_activation_ceiling():
+static func low_activation_check(companion_stats : ElementalCompanionStats, orb_count_activation: int) -> bool:
+	if companion_stats.has_activation_ceiling(orb_count_activation):
 		return true
 	return false
 
-static func replace_orbs_by_type(orbs : Array[CardUtils.magic_type], type: CardUtils.magic_type, new_type: CardUtils.magic_type):
-	var upgraded_deck = orbs.map(func(orb):
-		if orb == type:
-			return new_type
-		return orb)
+static func add_orbs(type : CardUtils.magic_type, nb : int):
+	var orbs = []
+	for i in nb:
+		orbs.append(type)
+	return orbs

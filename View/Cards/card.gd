@@ -63,6 +63,8 @@ func update_text():
 		"heal":str(card_data.heal),
 		"shield":str(card_data.shield),
 		"draw_value":str(card_data.draw_value),
+		"channel_remove_value":str(card_data.channel_remove_value),
+		"channel_add_value":str(card_data.channel_add_value),
 		"value_color": green_color,
 		"shield_color": shield_color,
 		"fire_color": fire_color,
