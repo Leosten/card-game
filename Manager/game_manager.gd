@@ -5,6 +5,7 @@ signal game_completed
 var card_manager : CardManager
 var stage_manager : StageManager
 var shop_manager : ShopManager
+var forge_manager : ForgeManager
 var map_manager : MapManager
 var ui_manager : UiManager
 var character_manager : CharacterManager
@@ -29,6 +30,7 @@ func _ready() -> void:
 	stage_manager = StageManager.new()
 	map_manager = MapManager.new()
 	shop_manager = ShopManager.new()
+	forge_manager = ForgeManager.new()
 	character_manager = CharacterManager.new()
 	
 	init_player(char_id)
@@ -52,7 +54,6 @@ func get_character_scene() :
 	if (char_scene != null) :
 		return char_scene
 	return character_manager.get_character_scene(char_id)
-
 
 func get_companion_scene():
 	return character_manager.get_companion_scene(companion_id)

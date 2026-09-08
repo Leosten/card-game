@@ -63,7 +63,7 @@ func new_encounter():
 		StageManager.level_type.SHOP:
 			start_shop()
 		StageManager.level_type.FORGE:
-			pass
+			start_forge()
 		_:
 			pass
 
@@ -80,10 +80,14 @@ func start_boss_battle():
 	pass
 
 func start_shop():
-	#display vendor to click to open window
 	var shop_character = GameManager.shop_manager.get_shop_scene()
 	GameManager.shop_manager.set_shop_battle_position(shop_character)
 	add_child(shop_character)
+
+func start_forge():
+	var forge = GameManager.forge_manager.get_forge_scene()
+	GameManager.forge_manager.set_forge_battle_position(forge)
+	add_child(forge)
 
 func new_stage():
 	GameManager.map_manager.generate_map()

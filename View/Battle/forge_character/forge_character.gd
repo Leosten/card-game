@@ -1,6 +1,6 @@
 extends Node2D
 
-func _on_shop_button_pressed() -> void:
+func _on_forge_button_pressed() -> void:
 	Events.request_window_open.emit("forge")
 
 func _on_next_button_pressed() -> void:
