@@ -35,9 +35,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -896.0
-offset_top = -480.0
+offset_top = -506.0
 offset_right = 896.0
-offset_bottom = 480.0
+offset_bottom = 549.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_5b57i")
@@ -55,9 +55,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -834.0
-offset_top = -467.0
+offset_top = -514.5
 offset_right = 878.0
-offset_bottom = 400.0
+offset_bottom = 438.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -65,6 +65,7 @@ grow_vertical = 2
 custom_maximum_size = Vector2(-1, 70)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"topWindowBar"
 
 [node name="TitleLabel" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer2" unique_id=68604749]
 custom_minimum_size = Vector2(0, 100)
@@ -110,7 +111,9 @@ theme_override_constants/v_separation = 25
 columns = 6
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1150702070]
+custom_maximum_size = Vector2(-1, 90)
 layout_mode = 2
+theme_type_variation = &"bottomWindowBar"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer" unique_id=1656837049]
 custom_minimum_size = Vector2(0, 110)

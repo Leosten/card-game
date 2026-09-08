@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://chpromoilfnb8"]
 
 [ext_resource type="Script" uid="uid://bcmejs4k35koh" path="res://View/Menu/shop_window/card_item.gd" id="1_nwd37"]
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="2_1h173"]
 [ext_resource type="Texture2D" uid="uid://dvhyrkidjc4jx" path="res://Art/UI/cards/card_back.png" id="2_yrdqm"]
 
 [node name="CardItem" type="Control" unique_id=2126113606]
@@ -31,11 +32,17 @@ offset_bottom = 197.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CardContainer" type="CenterContainer" parent="VBoxContainer" unique_id=1182167526]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1968250678]
+custom_minimum_size = Vector2(275, 375)
+layout_mode = 2
+theme = ExtResource("2_1h173")
+theme_type_variation = &"PanelLight"
+
+[node name="CardContainer" type="CenterContainer" parent="VBoxContainer/PanelContainer" unique_id=1182167526]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CardSold" type="TextureRect" parent="VBoxContainer/CardContainer" unique_id=557213889]
+[node name="CardSold" type="TextureRect" parent="VBoxContainer/PanelContainer/CardContainer" unique_id=557213889]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(250, 350)

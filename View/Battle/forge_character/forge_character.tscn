@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://vhj51xj5xrs2"]
+
+[ext_resource type="Script" uid="uid://crxnox4xfg1ou" path="res://View/Battle/forge_character/forge_character.gd" id="1_m8xbt"]
+[ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_w30r0"]
+
+[node name="ForgeCharacter" type="Node2D" unique_id=31954772]
+script = ExtResource("1_m8xbt")
+
+[node name="Control" type="Control" parent="." unique_id=2094612660]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_w30r0")
+metadata/_edit_use_anchors_ = true
+
+[node name="ForgeButton" type="Button" parent="Control" unique_id=1274934130]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 0
+offset_left = 56.0
+offset_top = 112.0
+offset_right = 206.0
+offset_bottom = 212.0
+theme_type_variation = &"standardBtn"
+text = "Shop
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="NextButton" type="Button" parent="Control" unique_id=1486666518]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 0
+offset_left = 280.0
+offset_top = 112.0
+offset_right = 333.0
+offset_bottom = 147.0
+theme_type_variation = &"standardBtn"
+text = "Next
+"
+metadata/_edit_use_anchors_ = true

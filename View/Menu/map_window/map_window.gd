@@ -35,10 +35,17 @@ func with_data(extra_data : Dictionary):
 
 func _on_map_node_hovered():
 	pass
+	
 func _on_map_node_hovered_out():
 	pass
+	
 func _on_map_node_clicked(node: MapNode):
 	if selection == false:
+		return
+	if GameManager.map_manager.current_node == null:
+		if node.node_data.level != 1:
+			return
+	elif GameManager.map_manager.is_node_selectable(node.node_data) == false:
 		return
 	if selected_node == null:
 		selected_node = node

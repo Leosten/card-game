@@ -36,12 +36,13 @@ func _ready() -> void:
 	card_data.used.connect(on_card_used)
 	card_data.exhausted.connect(on_card_exhausted)
 	update_upgrades()
+
 func on_card_used():
 	used.emit(self)
-	
+
 func on_card_exhausted():
 	exhausted.emit(self)
-	
+
 func init_position(hand_position, hud_position : Vector2):
 	position = hud_position
 	base_position = position

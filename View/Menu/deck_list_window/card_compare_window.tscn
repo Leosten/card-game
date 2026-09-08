@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bqxr2f0koqxhn" path="res://Art/UI/icons/white/8-ui/arrow-right.png" id="2_yeh2w"]
 
 [node name="CardCompareWindow" type="Control" unique_id=1549592944]
+z_index = 106
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

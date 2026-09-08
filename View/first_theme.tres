@@ -73,7 +73,15 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="FontVariation" id="FontVariation_nvvua"]
-base_font = ExtResource("3_pplqn")
+base_font = ExtResource("2_0c46g")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0vbi"]
+bg_color = Color(0.3254902, 0.47058824, 0.654902, 0.44313726)
+border_width_bottom = 4
+border_color = Color(0.14901961, 0.9607843, 0.7921569, 1)
+border_blend = true
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="FontVariation" id="FontVariation_5pvo4"]
 base_font = ExtResource("2_0c46g")
@@ -90,6 +98,10 @@ shadow_offset = Vector2(-5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tw2mr"]
 bg_color = Color(0.3254902, 0.47058824, 0.654902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color(0.4745098, 0.89411765, 1, 1)
 corner_radius_top_right = 5
 corner_radius_bottom_left = 10
@@ -199,6 +211,12 @@ corner_radius_top_right = 5
 corner_radius_bottom_left = 10
 shadow_offset = Vector2(-5, 5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts7xj"]
+bg_color = Color(0.3254902, 0.47058824, 0.654902, 0.44313726)
+border_width_bottom = 4
+border_color = Color(0.14901961, 0.9607843, 0.7921569, 1)
+border_blend = true
+
 [resource]
 CardDescription/base_type = &"RichTextLabel"
 CardDescription/fonts/normal_font = SubResource("FontVariation_uuvio")
@@ -221,6 +239,8 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_pplqn")
 WindowTitle/base_type = &"Label"
 WindowTitle/font_sizes/font_size = 30
 WindowTitle/fonts/font = SubResource("FontVariation_nvvua")
+bottomWindowBar/base_type = &"PanelContainer"
+bottomWindowBar/styles/panel = SubResource("StyleBoxFlat_g0vbi")
 cardCount/base_type = &"Label"
 cardCount/colors/font_color = Color(0.3254902, 0.47058824, 0.654902, 1)
 cardCount/colors/font_outline_color = Color(0.5058824, 0.7529412, 0.65882355, 1)
@@ -260,5 +280,7 @@ topMenuButton/base_type = &"Button"
 topMenuButton/styles/hover = SubResource("StyleBoxFlat_daexe")
 topMenuButton/styles/normal = SubResource("StyleBoxFlat_d5juw")
 topMenuButton/styles/pressed = SubResource("StyleBoxFlat_nna2c")
+topWindowBar/base_type = &"PanelContainer"
+topWindowBar/styles/panel = SubResource("StyleBoxFlat_ts7xj")
 upgradePanel/base_type = &"PanelContainer"
 upgradePanel/styles/panel = SubResource("StyleBoxFlat_651bu")

@@ -7,3 +7,4 @@ func _init():
 func apply_upgrade(card : CardData):
 	super(card)
 	card.rally = true
+	card.description += ". [color={shield_color}]Rally[/color]."

@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_yfsif"]
 [ext_resource type="Script" uid="uid://dsguf07stx8dy" path="res://View/Menu/shop_window/shop_window.gd" id="2_ie2kd"]
+[ext_resource type="Texture2D" uid="uid://im12tvvlftb" path="res://Art/UI/icons/white/1-game/card.png" id="3_fmxxd"]
 [ext_resource type="Texture2D" uid="uid://bay2u4a1d47iy" path="res://Art/UI/icons/white/8-ui/cross.png" id="3_ie2kd"]
 
 [sub_resource type="Theme" id="Theme_fmxxd"]
@@ -36,9 +37,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -904.0
-offset_top = -476.0
+offset_top = -500.0
 offset_right = 896.0
-offset_bottom = 540.0
+offset_bottom = 564.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -56,15 +57,17 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -836.0
-offset_top = -492.0
+offset_top = -524.0
 offset_right = 884.0
-offset_bottom = 420.0
+offset_bottom = 444.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1184882006]
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 2
+theme_type_variation = &"topWindowBar"
 
 [node name="ShopLabel" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer3" unique_id=19364124]
 custom_minimum_size = Vector2(0, 65)
@@ -117,7 +120,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer" unique_id=1546081385]
-custom_minimum_size = Vector2(230, 230)
+custom_minimum_size = Vector2(200, 200)
 custom_maximum_size = Vector2(230, 230)
 layout_mode = 2
 mouse_filter = 2
@@ -127,25 +130,40 @@ theme_type_variation = &"removeCard"
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer" unique_id=1375708951]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer" unique_id=1325118893]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer" unique_id=1771675226]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/MarginContainer" unique_id=1325118893]
 layout_mode = 2
 alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=613098718]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer" unique_id=613098718]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/VBoxContainer/CenterContainer" unique_id=1835784797]
-custom_maximum_size = Vector2(100, 100)
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer/CenterContainer" unique_id=499404917]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1835784797]
+custom_maximum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("3_fmxxd")
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=481663713]
+custom_maximum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("3_ie2kd")
 
-[node name="Label" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1467533208]
+[node name="Label" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer" unique_id=1467533208]
 layout_mode = 2
 theme_type_variation = &"WindowTitle"
 text = "Remove Card"
 horizontal_alignment = 1
 
-[node name="RemovePrice" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1260695130]
+[node name="RemovePrice" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer/MarginContainer/ShopContainer/UpgradesContainer/RemoveCardContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer" unique_id=1260695130]
 layout_mode = 2
 theme_type_variation = &"priceText"
 theme_override_font_sizes/font_size = 35
@@ -159,9 +177,10 @@ custom_minimum_size = Vector2(260, 260)
 layout_mode = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=162531398]
-custom_maximum_size = Vector2(-1, 150)
+custom_maximum_size = Vector2(-1, 90)
 layout_mode = 2
 mouse_filter = 1
+theme_type_variation = &"bottomWindowBar"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Control/VBoxContainer/PanelContainer2" unique_id=734344810]
 layout_mode = 2

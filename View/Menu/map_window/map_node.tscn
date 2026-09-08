@@ -2,6 +2,19 @@
 
 [ext_resource type="Script" uid="uid://crwjnj48ms5pr" path="res://View/Menu/map_window/map_node.gd" id="1_5yomp"]
 [ext_resource type="Texture2D" uid="uid://bad4axownrb0c" path="res://Art/UI/cards/large_cards/card_large treasure.png" id="2_7ru8i"]
+[ext_resource type="Shader" uid="uid://8q1uqa65sbl1" path="res://View/Shaders/outline.gdshader" id="3_pdnsp"]
+[ext_resource type="Texture2D" uid="uid://bqs8tash38vwd" path="res://Art/UI/icons/white/4-nature/sun-02.png" id="3_uh2bi"]
+[ext_resource type="Texture2D" uid="uid://bay2u4a1d47iy" path="res://Art/UI/icons/white/8-ui/cross.png" id="4_pdnsp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkl8e"]
+shader = ExtResource("3_pdnsp")
+shader_parameter/outline_width = 0.014000000665
+shader_parameter/outline_tint = Color(1, 1, 1, 1)
+shader_parameter/atlas_region_pos = Vector2(0, 0)
+shader_parameter/atlas_region_size = Vector2(1, 1)
+shader_parameter/draw_size = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uh2bi"]
 
 [sub_resource type="Animation" id="Animation_5yomp"]
 length = 0.001
@@ -52,6 +65,47 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DoneIcon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BackLight:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4p16f"]
+resource_name = "current"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackLight:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_pdnsp"]
@@ -124,16 +178,54 @@ tracks/0/keys = {
 "values": [Vector2(1.4, 1.4)]
 }
 
+[sub_resource type="Animation" id="Animation_qkl8e"]
+resource_name = "disabled_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.5220732, 0.5220732, 0.5220732, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoneIcon:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pdnsp"]
 _data = {
 &"RESET": SubResource("Animation_5yomp"),
+&"current": SubResource("Animation_4p16f"),
 &"disabled": SubResource("Animation_pdnsp"),
 &"selectable": SubResource("Animation_7ru8i"),
-&"selected": SubResource("Animation_uh2bi")
+&"selected": SubResource("Animation_uh2bi"),
+&"walked": SubResource("Animation_qkl8e")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1dyt"]
+shader = ExtResource("3_pdnsp")
+shader_parameter/outline_width = 0.03200000152
+shader_parameter/outline_tint = Color(0, 0, 0, 1)
+shader_parameter/atlas_region_pos = Vector2(0, 0)
+shader_parameter/atlas_region_size = Vector2(1, 1)
+shader_parameter/draw_size = Vector2(1, 1)
 
 [node name="MapNode" type="Control" unique_id=1596377273]
 z_index = 999
+material = SubResource("ShaderMaterial_qkl8e")
 custom_maximum_size = Vector2(0, 0)
 layout_mode = 3
 anchors_preset = 0
@@ -142,6 +234,45 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_5yomp")
 metadata/_edit_group_ = true
+
+[node name="BackLight" type="TextureRect" parent="." unique_id=1921132356]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.14901961, 0.9607843, 0.7921569, 0.6392157)
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.45115
+offset_top = -69.92299
+offset_right = 66.45115
+offset_bottom = 69.92299
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(66.370964, 69.84697)
+texture = ExtResource("3_uh2bi")
+
+[node name="TextureRect2" type="TextureRect" parent="BackLight" unique_id=835294870]
+modulate = Color(0.4745098, 0.89411765, 1, 1)
+custom_maximum_size = Vector2(95, 95)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.69802
+offset_top = -62.12548
+offset_right = 65.30198
+offset_bottom = 65.87453
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0226951, 1.0226951)
+pivot_offset = Vector2(81, 87)
+texture = ExtResource("3_uh2bi")
 
 [node name="Button" type="Button" parent="." unique_id=349689982]
 layout_mode = 1
@@ -176,6 +307,7 @@ text = "Encounter"
 
 [node name="Background" type="TextureRect" parent="." unique_id=1788891852]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_uh2bi")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -195,6 +327,26 @@ stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1518343443]
 libraries/ = SubResource("AnimationLibrary_pdnsp")
+
+[node name="DoneIcon" type="TextureRect" parent="." unique_id=1105493504]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.741, 0.318, 0.427, 1)
+material = SubResource("ShaderMaterial_k1dyt")
+custom_minimum_size = Vector2(75, 75)
+custom_maximum_size = Vector2(100, 100)
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_pdnsp")
 
 [connection signal="clicked" from="." to="." method="_on_clicked"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -2,6 +2,13 @@
 
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_aa1gn"]
 [ext_resource type="Script" uid="uid://y6bnh3ibt8si" path="res://View/Menu/map_window/map_window.gd" id="2_oijv1"]
+[ext_resource type="Texture2D" uid="uid://c4gy7jbgkjvj6" path="res://Art/UI/cards/large_cards/card_large_common.png" id="3_cu4m4"]
+[ext_resource type="Texture2D" uid="uid://lqjqbr4fbunj" path="res://Art/UI/cards/large_cards/card_large_miniboss.png" id="4_c103x"]
+[ext_resource type="Texture2D" uid="uid://cwo685ge6p5x4" path="res://Art/UI/cards/large_cards/card_large_shop.png" id="5_wwtvr"]
+[ext_resource type="Texture2D" uid="uid://bpbnh18k0rf3s" path="res://Art/UI/cards/large_cards/card_large_forge.png" id="6_yxcjs"]
+[ext_resource type="Texture2D" uid="uid://iunsqcefa47e" path="res://Art/UI/cards/large_cards/card_large_special.png" id="7_l0k48"]
+[ext_resource type="Texture2D" uid="uid://bad4axownrb0c" path="res://Art/UI/cards/large_cards/card_large treasure.png" id="8_fuuob"]
+[ext_resource type="Texture2D" uid="uid://tvsf1ee1kxq1" path="res://Art/UI/cards/large_cards/card_large_boss.png" id="9_r10mm"]
 
 [node name="MapWindow" type="Control" unique_id=552378823]
 z_index = 100
@@ -39,6 +46,7 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1852642798]
 layout_mode = 2
+theme_type_variation = &"PanelLight"
 
 [node name="MapTitle" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1920973974]
 custom_minimum_size = Vector2(500, 0)
@@ -74,6 +82,7 @@ size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1117195788]
 layout_mode = 2
+theme_type_variation = &"bottomWindowBar"
 
 [node name="CenterContainer3" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=1111481243]
 custom_minimum_size = Vector2(0, 100)
@@ -86,6 +95,148 @@ custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
 theme_type_variation = &"standardBtn"
 text = "Next"
+
+[node name="LegendContainer" type="Control" parent="." unique_id=975133833]
+custom_maximum_size = Vector2(249.295, -1)
+anchors_preset = 0
+offset_left = 1480.0
+offset_top = 208.0
+offset_right = 1729.295
+offset_bottom = 768.0
+theme = ExtResource("1_aa1gn")
+
+[node name="PanelContainer" type="PanelContainer" parent="LegendContainer" unique_id=94015483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelLight"
+
+[node name="CenterContainer" type="CenterContainer" parent="LegendContainer/PanelContainer" unique_id=1740664235]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LegendContainer/PanelContainer/CenterContainer" unique_id=157052396]
+layout_mode = 2
+
+[node name="LegendLabel" type="Label" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=200827320]
+visible = false
+layout_mode = 2
+text = "Map"
+
+[node name="CommonContainer" type="HBoxContainer" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=344081473]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="card" type="TextureRect" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/CommonContainer" unique_id=1302673407]
+custom_maximum_size = Vector2(70, 100)
+layout_mode = 2
+texture = ExtResource("3_cu4m4")
+
+[node name="Label" type="Label" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/CommonContainer" unique_id=304719960]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"normalText"
+text = "Common Encounter"
+horizontal_alignment = 1
+
+[node name="MinibossContainer" type="HBoxContainer" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1917264332]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="card2" type="TextureRect" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/MinibossContainer" unique_id=731707461]
+custom_maximum_size = Vector2(70, 100)
+layout_mode = 2
+texture = ExtResource("4_c103x")
+
+[node name="Label" type="Label" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/MinibossContainer" unique_id=241037020]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"normalText"
+text = "Miniboss Encounter"
+horizontal_alignment = 1
+
+[node name="ShopContainer" type="HBoxContainer" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=134489770]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="card3" type="TextureRect" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/ShopContainer" unique_id=1373927791]
+custom_maximum_size = Vector2(70, 100)
+layout_mode = 2
+texture = ExtResource("5_wwtvr")
+
+[node name="Label" type="Label" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/ShopContainer" unique_id=1528462458]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"normalText"
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForgeContainer" type="HBoxContainer" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1190824572]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="card4" type="TextureRect" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/ForgeContainer" unique_id=1952618785]
+custom_maximum_size = Vector2(70, 100)
+layout_mode = 2
+texture = ExtResource("6_yxcjs")
+
+[node name="Label" type="Label" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/ForgeContainer" unique_id=1542488662]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"normalText"
+text = "Forge"
+horizontal_alignment = 1
+
+[node name="RandomContainer" type="HBoxContainer" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1445478586]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="card5" type="TextureRect" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/RandomContainer" unique_id=1615344681]
+custom_maximum_size = Vector2(70, 100)
+layout_mode = 2
+texture = ExtResource("7_l0k48")
+
+[node name="Label" type="Label" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/RandomContainer" unique_id=384540229]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"normalText"
+text = "Random Encounter"
+horizontal_alignment = 1
+
+[node name="TreasureContainer" type="HBoxContainer" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1131408757]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="card6" type="TextureRect" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/TreasureContainer" unique_id=1287991677]
+custom_maximum_size = Vector2(70, 100)
+layout_mode = 2
+texture = ExtResource("8_fuuob")
+
+[node name="Label" type="Label" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/TreasureContainer" unique_id=1856378596]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"normalText"
+text = "Treasure"
+horizontal_alignment = 1
+
+[node name="BossContainer" type="HBoxContainer" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=844618588]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="card7" type="TextureRect" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/BossContainer" unique_id=79914116]
+custom_maximum_size = Vector2(70, 100)
+layout_mode = 2
+texture = ExtResource("9_r10mm")
+
+[node name="Label" type="Label" parent="LegendContainer/PanelContainer/CenterContainer/VBoxContainer/BossContainer" unique_id=1248201325]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"normalText"
+text = "Boss"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/CenterContainer3/NextButton" to="." method="_on_next_button_pressed"]
