@@ -15,6 +15,7 @@ signal exhausted(card: Card)
 @onready var portrait: TextureRect = %Portrait
 @onready var description_label: RichTextLabel = %Description
 @onready var background: TextureRect = %Background
+@onready var upgrades_container = %UpgradesIcons
 
 var hover_size : int = 120
 var hovering : bool = false
@@ -34,7 +35,7 @@ func _ready() -> void:
 	card_data.data_changed.connect(update)
 	card_data.used.connect(on_card_used)
 	card_data.exhausted.connect(on_card_exhausted)
-
+	update_upgrades()
 func on_card_used():
 	used.emit(self)
 	
@@ -74,6 +75,14 @@ func update_text():
 	})
 	# TODO : buffs and status values in description
 	cost_label.text = str(card_data.cost)
+
+func update_upgrades():
+	if card_data.upgrades.is_empty() == true:
+		return
+	for upgrade : CardUpgradeData in card_data.upgrades:
+		var card_upgrade = GameManager.card_manager.get_card_upgrade_scene(upgrade)
+		upgrades_container.add_child(card_upgrade)
+		card_upgrade.update()
 
 func update_cost_label(current_mana):
 	var color = Color(disabled_color)

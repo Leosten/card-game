@@ -52,7 +52,7 @@ func buy_card(card_item : CardItem):
 	if current_gold >= card_item.price:
 		#todo : visual and sound fx
 		card_item.sold_card()
-		GameManager.battle_state.player_deck.append(card_item.card_display.card_data.duplicate())
+		GameManager.battle_state.player_deck.append(card_item.card_display.card_data.duplicate(true))
 		GameManager.battle_state.player_stats.gold -= card_item.price
 		print("card bought")
 		return
@@ -75,7 +75,7 @@ func _on_card_upgraded(upgrade_item):
 	#todo : audio sfx
 	GameManager.battle_state.player_stats.gold -= upgrade_item.price
 	upgrade_item.sold()
-	
+
 func _on_card_removed():
 	GameManager.battle_state.player_stats.gold -= shop_manager.card_remove_base_price
 	shop_manager.nb_card_remove_used += 1

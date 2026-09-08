@@ -50,11 +50,11 @@ static func _get_character_starting_deck(character_id):
 	match character_id:
 		0:
 			print("Character number 0 starting deck")
-			#return ["beam","beam","beam","beam","beam", "defend","defend","defend", "defend","fire_affinity","defend","early_call","fire_beam"]
+			return ["beam","beam","beam","beam","beam", "defend","defend","defend", "defend","fire_affinity","defend","early_call","fire_beam"]
 			#return ["beam",  "defend", "wind_chill", "lightning", "heal", "fire_beam", "early_call", "prediction", "protect_me", "careful_hit"]
-			return ["beam", "glacier_shield", "prediction", "fire_affinity", "panic_trade"]
+			#return ["beam", "glacier_shield", "prediction", "fire_affinity", "panic_trade"]
 			#return ["fire_beam", "early_call", "wind_chill", "protect_me", "careful_hit","lightning"]
-			
+
 func _get_starting_stats(char_id):
 	match char_id:
 		0:

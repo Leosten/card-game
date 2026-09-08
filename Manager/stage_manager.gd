@@ -38,14 +38,14 @@ static func get_stage_encounter_types(level: int) -> Array[level_type]:
 	match level:
 		#0:
 			#return [level_type.COMMON]
-		#1:
-			#return [level_type.SHOP]
 		1:
-			return [level_type.COMMON]
+			return [level_type.SHOP]
+		#1:
+			#return [level_type.COMMON]
 		2:
 			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
 		3:
-			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
+			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM, level_type.SHOP]
 		4:
 			return [level_type.COMMON,level_type.MINIBOSS]
 		5:

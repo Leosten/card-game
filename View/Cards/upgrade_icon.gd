@@ -1,11 +1,16 @@
 extends Control
 
+var card_upgrade : CardUpgradeData = null
+@onready var icon : TextureRect = %Icon
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
+
+
+func init(upgrade : CardUpgradeData):
+	card_upgrade = upgrade
+
+func update():
+	var upgr_icon = card_upgrade.icon
+	icon.texture = card_upgrade.icon
+	icon.modulate = card_upgrade.icon_color

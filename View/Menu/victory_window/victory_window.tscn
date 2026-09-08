@@ -3,9 +3,6 @@
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="1_3yw38"]
 [ext_resource type="Script" uid="uid://dj4yr1obtwsw7" path="res://View/Menu/victory_window/victory_window.gd" id="1_30cex"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ye44s"]
-font_size = 80
-
 [sub_resource type="LabelSettings" id="LabelSettings_k1dyt"]
 font_size = 30
 
@@ -67,6 +64,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/Control/VBoxContainer" unique_id=1166941281]
+custom_maximum_size = Vector2(-1, 70)
 layout_mode = 2
 
 [node name="VictoryLabel" type="Label" parent="PanelContainer/Control/VBoxContainer/PanelContainer3" unique_id=1570818759]
@@ -74,8 +72,8 @@ custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme = ExtResource("1_3yw38")
 theme_type_variation = &"WindowTitle"
+theme_override_font_sizes/font_size = 35
 text = "Victory"
-label_settings = SubResource("LabelSettings_ye44s")
 horizontal_alignment = 1
 vertical_alignment = 1
 

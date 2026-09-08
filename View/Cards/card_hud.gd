@@ -73,7 +73,7 @@ func draw_cards(draw_value) -> void:
 func _reshuffle_discard_into_draw():
 	print("resetting draw pile ...")
 	# trigger animation
-	draw_pile = discard_pile.duplicate()
+	draw_pile = discard_pile.duplicate(true)
 	draw_pile.shuffle()
 	discard_pile.clear()
 
@@ -157,7 +157,7 @@ func init_player_piles():
 	player_deck = GameManager.get_player_deck()
 	
 	#handle rally cards
-	var deck_pool = player_deck.duplicate()
+	var deck_pool = player_deck.duplicate(true)
 	var rally_cards: Array[CardData] = deck_pool.filter(
 		func(card: CardData) -> bool: return card.rally == true
 	)

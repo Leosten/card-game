@@ -49,17 +49,17 @@ func _on_ignore_button_pressed() -> void:
 	Events.request_window_open.emit("map", {"selection" : true})
 
 func _on_card_hovered(card : Card):
-	if card == selected_card:
+	if card.card_data == selected_card:
 		return
 	CardAnimationManager.zoom_in(card)
 
 func _on_card_hovered_out(card : Card):
-	if (card == selected_card):
+	if (card.card_data == selected_card):
 		return
 	CardAnimationManager.zoom_out(card)
 
 func _on_card_clicked(card : Card):
-	if card == selected_card:
+	if card.card_data == selected_card:
 		selected_card = null
 		return
 	selected_card = card.card_data

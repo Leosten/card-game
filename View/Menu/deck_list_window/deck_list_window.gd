@@ -89,6 +89,7 @@ func select_card():
 func open_compare_window():
 	var compare_window = compare_window_scene.instantiate()
 	compare_window.card_accepted.connect()
+
 func _on_card_upgrade_accepted():
 	card_upgrade_item.upgrade.apply_upgrade(selected_card)
 	Events.card_upgraded.emit(card_upgrade_item)

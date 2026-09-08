@@ -3,6 +3,7 @@ extends Node
 
 const PlayerManager = preload("res://Manager/character_manager.gd")
 const Card = preload("res://View/Cards/card.tscn")
+const card_upgrade_scene = preload("res://View/Cards/upgrade_icon.tscn")
 
 var _backgrounds = {
 	CardUtils.card_type.ELEMENTAL: preload("res://Art/UI/cards/card_black_lily.png"),
@@ -92,7 +93,7 @@ func get_starting_deck(character_id) -> Array[CardData]:
 	var character_deck = PlayerManager._get_character_starting_deck(character_id)
 	var deck : Array[CardData] = []
 	for card_name in character_deck:
-		deck.append(get_card_by_name(card_name).duplicate())
+		deck.append(get_card_by_name(card_name).duplicate(true))
 	return deck
 
 func instantiate_card_scene(card_data : CardData):
@@ -122,12 +123,17 @@ func get_random_cards_by_deck(deck_nb, count: int = 3) -> Array[CardData]:
 	cards.shuffle()
 
 	for i in range(min(count, cards.size())):
-		rewards.append(cards[i].duplicate())
+		rewards.append(cards[i].duplicate(true))
 		
 	return rewards
 
 func get_card_upgrade(upgrade_type : CardUtils.card_upgrades_types) -> CardUpgradeData:
 	return _upgrades[upgrade_type]
+
+func get_card_upgrade_scene(upgrade : CardUpgradeData):
+	var card_upgrade = card_upgrade_scene.instantiate()
+	card_upgrade.init(upgrade)
+	return card_upgrade
 
 func get_random_upgrades(nb: int = 2) -> Array[CardUpgradeData]:
 	var random_upgrades : Array[CardUpgradeData] = []

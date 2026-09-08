@@ -10,7 +10,7 @@ name = "Beam"
 damage = 6
 damage_upgrade = 11
 description = "Attack enemy for [color={value_color}]{damage}[/color] damage"
-cost = 2
+cost = 1
 magic_type = 0
 tier = 3
 metadata/_custom_type_script = "uid://cqcdxav3ke5ma"
