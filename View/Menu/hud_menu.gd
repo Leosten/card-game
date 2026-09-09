@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var center_root = $%CenterWindowRoot
 @onready var current_level_display = %CurrentLevelLabel
+@onready var current_gold_display = %CurrentGoldLabel
 
 var deck_list_window_scene = load("res://View/Menu/deck_list_window/deck_list_window.tscn")
 var map_window_scene = load("res://View/Menu/map_window/map_window.tscn")
@@ -80,4 +81,5 @@ func _on_map_button_pressed() -> void:
 	Events.request_window_open.emit("map")
 
 func on_level_change():
+	current_gold_display.text = str(GameManager.battle_state.player_stats.gold)
 	current_level_display.text = "Level " + str(GameManager.stage_manager.current_stage) + " - " + str(GameManager.stage_manager.current_level)

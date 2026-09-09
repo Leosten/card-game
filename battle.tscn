@@ -61,6 +61,7 @@ offset_top = 2.0
 offset_bottom = -1.0
 
 [node name="TopHudRoot" type="Control" parent="Hud" unique_id=1162876413]
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -69,12 +70,14 @@ grow_horizontal = 2
 
 [node name="TextureRect" type="TextureRect" parent="Hud/TopHudRoot" unique_id=709272671]
 modulate = Color(0.4745098, 0.89411765, 1, 1)
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("7_0npn6")
 
 [node name="BattleStats" type="Control" parent="Hud/TopHudRoot" unique_id=693394014]
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,10 +86,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hud/TopHudRoot/BattleStats" unique_id=1387927241]
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -6.5
+offset_bottom = 6.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -94,21 +100,40 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="CenterContainer" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer" unique_id=639178344]
+[node name="PanelContainer" type="PanelContainer" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer" unique_id=271586476]
+custom_minimum_size = Vector2(85, 46)
 layout_mode = 0
-offset_left = 32.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 72.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_type_variation = &"PanelLight"
 
-[node name="CurrentLevelLabel" type="Label" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer/MarginContainer" unique_id=101475463]
+[node name="MarginContainer" type="CenterContainer" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer/PanelContainer" unique_id=639178344]
+custom_maximum_size = Vector2(-1, 45)
+layout_mode = 2
+
+[node name="CurrentLevelLabel" type="Label" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer/PanelContainer/MarginContainer" unique_id=101475463]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"titleText"
 text = "Level 1-1"
 
+[node name="PanelContainer2" type="PanelContainer" parent="Hud/TopHudRoot/BattleStats/HBoxContainer" unique_id=1033884097]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_type_variation = &"PanelLight"
+
+[node name="HBoxContainer" type="CenterContainer" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer2" unique_id=197042652]
+layout_mode = 2
+
+[node name="CurrentGoldLabel" type="Label" parent="Hud/TopHudRoot/BattleStats/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=402327154]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"priceText"
+text = "50Y"
+
 [node name="DeckListButton" type="Button" parent="Hud/TopHudRoot/BattleStats/HBoxContainer" unique_id=102322817]
-custom_minimum_size = Vector2(80, 80)
-custom_maximum_size = Vector2(-1, 63)
+custom_minimum_size = Vector2(70, 50)
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 2
 theme_type_variation = &"topMenuButton"
 theme_override_constants/icon_max_width = 40
@@ -116,11 +141,11 @@ icon = ExtResource("9_ol6im")
 icon_alignment = 1
 
 [node name="MapButton" type="Button" parent="Hud/TopHudRoot/BattleStats/HBoxContainer" unique_id=1192447149]
-custom_minimum_size = Vector2(80, 70)
-custom_maximum_size = Vector2(-1, 63)
+custom_minimum_size = Vector2(70, 50)
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 2
 theme_type_variation = &"topMenuButton"
-theme_override_constants/icon_max_width = 40
+theme_override_constants/icon_max_width = 35
 icon = ExtResource("10_b1i6x")
 icon_alignment = 1
 

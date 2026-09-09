@@ -5,19 +5,20 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0sny"]
 resource_local_to_scene = true
-size = Vector2(178, 296)
+size = Vector2(129, 233)
 
 [node name="Monster" unique_id=145971378 instance=ExtResource("1_y33pj")]
 
 [node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(886200655) index="0" unique_id=1799351193]
-position = Vector2(75, 33)
+position = Vector2(50, -25)
 shape = SubResource("RectangleShape2D_q0sny")
 
 [node name="CharacterStatsWindow" parent="." index="3" unique_id=1699102038]
-position = Vector2(-36, 119)
+position = Vector2(-50, 21)
 
 [node name="MonsterPredictive" parent="." index="4" unique_id=303760412]
-position = Vector2(-51, -219)
+position = Vector2(-40, -243)
 
 [node name="Skeleton" parent="." index="5" unique_id=448091590 instance=ExtResource("2_q0sny")]
-scale = Vector2(0.5, 0.5)
+position = Vector2(16.999998, -55.999996)
+scale = Vector2(0.4, 0.4)

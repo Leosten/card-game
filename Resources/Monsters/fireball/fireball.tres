@@ -7,7 +7,7 @@
 script = ExtResource("2_w01fm")
 name = "fireball"
 display_name = "Fireball"
-starting_column = 1
+starting_column = 2
 gold = 10
 health = 10
 max_health = 10

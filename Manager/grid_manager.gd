@@ -1,8 +1,8 @@
 class_name GridManager
 extends Node
 
-const MAX_ROW := 4
-const MAX_COL := 4
+const MAX_ROW := 3
+const MAX_COL := 3
 
 var player_grid : TileMapLayer
 var enemy_grid : TileMapLayer
@@ -17,7 +17,7 @@ func get_grid_scene():
 	pass
 
 func set_monster_grid_position(unit: TargetCharacter, col, row):
-	var cell_coor = Vector2(row, col)
+	var cell_coor = Vector2(col, row)
 	place_unit_on_tile(unit, enemy_grid, cell_coor)
 	enemy_occupied_cells.append(cell_coor)
 	

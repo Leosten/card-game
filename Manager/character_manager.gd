@@ -57,5 +57,5 @@ func _get_starting_stats(char_id):
 			player_stats.current_mana = 10
 			player_stats.max_mana = 10
 			player_stats.draw_value = 5
-			player_stats.grid_starting_pos = Vector2(0,0)
+			player_stats.grid_starting_pos = Vector2(0,1)
 			return player_stats

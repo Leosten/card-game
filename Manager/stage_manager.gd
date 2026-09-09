@@ -114,7 +114,7 @@ func get_stage_one_common_monsters(level) :
 		1:
 			return [["fireball"],["goblin"]]
 		2:
-			return [["umbrella", "goblin"],["yokai","fireball"]]
+			return [["umbrella", "goblin","goblin","yokai"]]
 		3:
 			return [["umbrella","yokai"]]
 		4:
@@ -199,6 +199,7 @@ func get_monster_scenes_for_level(level_monsters) -> Array[Monster]:
 		for monster_data in monsters_by_col[col]:
 			var monster_scene = get_monster_scene_from_name(monster_data.name)
 			print("get_monster_scenes_for_level")
+			monster_scene.z_index = 200
 			monster_scene.init_data(monster_data)
 			occupied_numbers.shuffle()
 			var row = occupied_numbers.pop_back()
