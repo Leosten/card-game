@@ -8,6 +8,7 @@ script = ExtResource("1_eu0hw")
 id = 2
 name = "yokai"
 display_name = "Yokai"
+starting_column = 3
 gold = 10
 health = 10
 max_health = 10

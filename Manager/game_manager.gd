@@ -8,6 +8,7 @@ var shop_manager : ShopManager
 var forge_manager : ForgeManager
 var map_manager : MapManager
 var ui_manager : UiManager
+var grid_manager : GridManager
 var character_manager : CharacterManager
 var battle_state : BattleState
 var char_scene : PackedScene = null
@@ -31,6 +32,7 @@ func _ready() -> void:
 	map_manager = MapManager.new()
 	shop_manager = ShopManager.new()
 	forge_manager = ForgeManager.new()
+	grid_manager = GridManager.new()
 	character_manager = CharacterManager.new()
 	
 	init_player(char_id)
@@ -44,7 +46,10 @@ func init_player(char_id) -> void:
 	battle_state.player_stats = p_stats
 
 func init_companion(companion_id) -> void:
-	battle_state.player_stats.companion_stats = ElementalCompanionStats.new()
+	var companion_stats = ElementalCompanionStats.new()
+	companion_stats.grid_starting_pos = Vector2(0,2)
+	battle_state.player_stats.companion_stats = companion_stats
+				
 	print("companion stats init")
 
 func get_player_deck() -> Array[CardData]:

@@ -110,7 +110,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7hkx"]
-size = Vector2(41, 76)
+size = Vector2(41, 72)
 
 [node name="Character1" type="AnimatableBody2D" unique_id=807185565]
 scale = Vector2(4, 4)
@@ -122,14 +122,14 @@ sprite_frames = SubResource("SpriteFrames_ekkti")
 animation = &"damage_taken"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=407755184]
-position = Vector2(-2.5, 28)
+position = Vector2(0.5, -29.5)
 shape = SubResource("RectangleShape2D_q7hkx")
 
 [node name="CharacterStatsWindow" parent="." unique_id=1699102038 instance=ExtResource("5_52vke")]
-position = Vector2(-24.25, 69.75)
+position = Vector2(-24.75, 6.5)
 scale = Vector2(0.5, 0.5)
 
 [node name="Skeleton" parent="." unique_id=1061046831 instance=ExtResource("6_kmupc")]
-position = Vector2(-2.3841858e-07, -3.25)
-scale = Vector2(0.08035728, 0.077814385)
+position = Vector2(0.74999994, -48)
+scale = Vector2(0.06, 0.06)
 script = null

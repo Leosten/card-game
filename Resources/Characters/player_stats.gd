@@ -16,6 +16,7 @@ signal current_mana_changed
 @export var gold = 1000
 @export var items = []
 
+
 var companion_stats : CompanionStats
 
 func cleanup_fight():

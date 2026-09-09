@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b3yu5t273brm4"]
+
+[ext_resource type="Script" uid="uid://dbpr4l0ebt683" path="res://View/Battle/grid/square.gd" id="2_ok5ec"]
+
+[node name="Square" type="PanelContainer" unique_id=1758980523]
+custom_minimum_size = Vector2(150, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ok5ec")

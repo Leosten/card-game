@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bpgtsq2gbmb8o" path="res://Art/UI/top_bar_1080.png" id="7_0npn6"]
 [ext_resource type="Texture2D" uid="uid://dsts0wmpcf3b0" path="res://Art/UI/icons/white/1-game/cards.png" id="9_ol6im"]
 [ext_resource type="Texture2D" uid="uid://cbk3sp2ioqrd7" path="res://Art/UI/icons/white/9-media/branch.png" id="10_b1i6x"]
+[ext_resource type="PackedScene" uid="uid://b6k41e6aogvfd" path="res://View/Battle/grid/grid.tscn" id="12_sl0w2"]
 
 [node name="Battle" type="Node2D" unique_id=344223136]
 script = ExtResource("1_7sfm4")
@@ -19,7 +20,7 @@ script = ExtResource("1_7sfm4")
 
 [node name="ManaWindow" parent="." unique_id=1224726459 instance=ExtResource("3_i431l")]
 unique_name_in_owner = true
-position = Vector2(129, 764)
+position = Vector2(112, 808)
 
 [node name="EndTurnButton" parent="." unique_id=242994049 instance=ExtResource("4_mhv3b")]
 unique_name_in_owner = true
@@ -56,8 +57,8 @@ grow_vertical = 0
 [node name="CardHandHud" parent="Hud/BottomHudRoot" unique_id=1336641316 instance=ExtResource("1_oxp8w")]
 unique_name_in_owner = true
 layout_mode = 1
-offset_top = -1.0
-offset_bottom = -4.0
+offset_top = 2.0
+offset_bottom = -1.0
 
 [node name="TopHudRoot" type="Control" parent="Hud" unique_id=1162876413]
 layout_mode = 3
@@ -134,6 +135,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+
+[node name="Grid" parent="." unique_id=550576643 instance=ExtResource("12_sl0w2")]
+unique_name_in_owner = true
+position = Vector2(328, 272)
 
 [connection signal="pressed" from="Hud/TopHudRoot/BattleStats/HBoxContainer/DeckListButton" to="Hud" method="_on_deck_list_button_pressed"]
 [connection signal="pressed" from="Hud/TopHudRoot/BattleStats/HBoxContainer/MapButton" to="Hud" method="_on_map_button_pressed"]

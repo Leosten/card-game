@@ -20,19 +20,11 @@ static func get_character_scene(char_id):
 				
 			return char_scene.instantiate()
 
-static func set_main_char_battle_position(player_character):
-	var char_position := Vector2(
-			GameManager.viewport_size.x - 1550,
-			GameManager.viewport_size.y - 700
-		)
-	player_character.position = char_position
+static func set_main_char_battle_position(player_character, grid : TileMapLayer):
+	GameManager.grid_manager.place_unit_on_tile(player_character, grid, GameManager.battle_state.player_stats.grid_starting_pos)
 
-static func set_companion_char_battle_position(companion_character):
-	var char_position := Vector2(
-			GameManager.viewport_size.x - 1300,
-			GameManager.viewport_size.y - 400
-		)
-	companion_character.position = char_position
+static func set_companion_char_battle_position(companion_character, grid : TileMapLayer):
+	GameManager.grid_manager.place_unit_on_tile(companion_character, grid, GameManager.battle_state.player_stats.companion_stats.grid_starting_pos)
 
 static func get_companion_scene(companion_id):
 	match companion_id:
@@ -65,4 +57,5 @@ func _get_starting_stats(char_id):
 			player_stats.current_mana = 10
 			player_stats.max_mana = 10
 			player_stats.draw_value = 5
+			player_stats.grid_starting_pos = Vector2(0,0)
 			return player_stats

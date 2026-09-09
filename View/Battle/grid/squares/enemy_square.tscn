@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cehmnmjf8ml1s"]
+
+[ext_resource type="PackedScene" uid="uid://b3yu5t273brm4" path="res://View/Battle/grid/square.tscn" id="1_7f1rw"]
+
+[node name="EnemySquare" unique_id=1758980523 instance=ExtResource("1_7f1rw")]
+theme_type_variation = &"enemySquare"

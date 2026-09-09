@@ -114,11 +114,45 @@ corner_radius_top_right = 5
 corner_radius_bottom_left = 10
 shadow_offset = Vector2(-5, 5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vacyi"]
+bg_color = Color(0.7411765, 0.31764707, 0.42745098, 0.5137255)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.741, 0.318, 0.427, 1)
+border_blend = true
+shadow_color = Color(0, 0, 0, 0.32941177)
+shadow_size = 5
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqxqf"]
+bg_color = Color(1, 1, 1, 0.6627451)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+shadow_color = Color(0, 0, 0, 0.32941177)
+shadow_size = 5
+shadow_offset = Vector2(0, 10)
+
 [sub_resource type="FontVariation" id="FontVariation_ye44s"]
 base_font = ExtResource("4_pplqn")
 
 [sub_resource type="FontVariation" id="FontVariation_ul4c8"]
 base_font = ExtResource("6_uuvio")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgowx"]
+bg_color = Color(0.4745098, 0.89411765, 1, 0.5176471)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.3254902, 0.47058824, 0.654902, 1)
+border_blend = true
+shadow_color = Color(0, 0, 0, 0.32941177)
+shadow_size = 5
+shadow_offset = Vector2(0, 10)
 
 [sub_resource type="FontVariation" id="FontVariation_ie2kd"]
 base_font = ExtResource("3_pplqn")
@@ -252,6 +286,10 @@ closeButton/icons/icon = ExtResource("5_651bu")
 closeButton/styles/hover = SubResource("StyleBoxFlat_hq3kc")
 closeButton/styles/normal = SubResource("StyleBoxFlat_tw2mr")
 closeButton/styles/pressed = SubResource("StyleBoxFlat_krvcn")
+enemySquare/base_type = &"PanelContainer"
+enemySquare/styles/panel = SubResource("StyleBoxFlat_vacyi")
+highlightSquare/base_type = &"PanelContainer"
+highlightSquare/styles/panel = SubResource("StyleBoxFlat_jqxqf")
 manaText/base_type = &"Label"
 manaText/colors/font_color = Color(0.3254902, 0.47058824, 0.654902, 1)
 manaText/colors/font_outline_color = Color(0.31925523, 0.31925526, 0.31925526, 1)
@@ -259,6 +297,8 @@ manaText/colors/font_shadow_color = Color(0.5058824, 0.7529412, 0.7764706, 1)
 manaText/fonts/font = SubResource("FontVariation_ye44s")
 normalText/base_type = &"Label"
 normalText/fonts/font = SubResource("FontVariation_ul4c8")
+playerSquare/base_type = &"PanelContainer"
+playerSquare/styles/panel = SubResource("StyleBoxFlat_vgowx")
 priceText/base_type = &"Label"
 priceText/colors/font_color = Color(0.9647059, 0.654902, 0.08235294, 1)
 priceText/colors/font_outline_color = Color(0, 0, 0, 1)

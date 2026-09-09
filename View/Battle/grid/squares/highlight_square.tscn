@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bvedey5u1snin"]
+
+[ext_resource type="PackedScene" uid="uid://b3yu5t273brm4" path="res://View/Battle/grid/square.tscn" id="1_xa57l"]
+
+[node name="HighlightSquare" unique_id=1758980523 instance=ExtResource("1_xa57l")]
+theme_type_variation = &"highlightSquare"

@@ -24,6 +24,7 @@ var enemy_positions : Array[Area2D] = []
 @onready var card_hand_hud = %CardHandHud
 @onready var end_turn_button = %EndTurnButton
 @onready var mana_window = $%ManaWindow
+@onready var grid_display = %Grid
 
 var card_clicked: CardData = null
 
@@ -95,25 +96,25 @@ func new_stage():
 
 func spawn_player_character():
 	player_character = GameManager.get_character_scene()
-	GameManager.character_manager.set_main_char_battle_position(player_character)
 	player_character.init(battle_state)
 	add_child(player_character)
+	GameManager.character_manager.set_main_char_battle_position(player_character, grid_display.player_grid)
 
 func spawn_companion_character():
 	companion_character = GameManager.get_companion_scene()
-	GameManager.character_manager.set_companion_char_battle_position(companion_character)
 	companion_character.init(battle_state.player_stats.companion_stats)
+	GameManager.character_manager.set_companion_char_battle_position(companion_character, grid_display.player_grid)
 	add_child(companion_character)
 
 func spawn_level_monsters():
-	enemy_positions = stage_manager.init_monster_positions()
-	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state.level_monsters, enemy_positions)
+	#enemy_positions = stage_manager.init_monster_positions()
+	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state.level_monsters)
 	for monster_scene : Monster in monster_scenes :
 		monster_scene.clicked.connect(on_monster_clicked)
 		monster_scene.dead.connect(on_monster_dead)
 		add_child(monster_scene)
 		monsters_displayed.append(monster_scene)
-		monster_scene.spawn(enemy_positions)
+		monster_scene.spawn()
 		await get_tree().create_timer(0.3).timeout
 	print("Monsters spawned")
 

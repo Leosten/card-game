@@ -53,11 +53,11 @@ func on_monster_dead():
 	dead.emit(monster_data)
 	self.queue_free()
 
-func spawn(battle_positions):
-	var target_position = battle_positions[battle_position]
-	var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(self, "position", target_position.position, 0.5)
-
+func spawn():
+	##var target_position = battle_positions[battle_position]
+	#var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_SINE)
+	#tween.tween_property(self, "position", position, 0.5)
+	pass
 func play_action_animation(action_type : MonsterUtils.action_types):
 	match action_type:
 		MonsterUtils.action_types.DAMAGE:

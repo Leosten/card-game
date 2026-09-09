@@ -1,0 +1,22 @@
+[gd_scene format=4 uid="uid://b6k41e6aogvfd"]
+
+[ext_resource type="TileSet" uid="uid://bg74xnrcq8qj8" path="res://View/Battle/grid/squares/battle_grid_tile_set.tres" id="2_7nn2f"]
+[ext_resource type="Script" uid="uid://bvyme63wlxs7r" path="res://View/Battle/grid/grid.gd" id="2_dbuww"]
+
+[node name="Grid" type="Node2D" unique_id=1233555417]
+script = ExtResource("2_dbuww")
+
+[node name="PlayerGrid" type="TileMapLayer" parent="." unique_id=837750003]
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAQABAAAAAQAAAAAAAQACAAAAAQAAAAAAAQADAAAAAQAAAAAAAQAAAAEAAQAAAAAAAQABAAEAAQAAAAAAAQACAAEAAQAAAAAAAQADAAEAAQAAAAAAAQAAAAIAAQAAAAAAAQABAAIAAQAAAAAAAQACAAIAAQAAAAAAAQADAAIAAQAAAAAAAQAAAAMAAQAAAAAAAQABAAMAAQAAAAAAAQACAAMAAQAAAAAAAQADAAMAAQAAAAAAAQA=")
+tile_set = ExtResource("2_7nn2f")
+
+[node name="EnemyGrid" type="TileMapLayer" parent="." unique_id=785467883]
+position = Vector2(664, 0)
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAgABAAAAAQAAAAAAAgACAAAAAQAAAAAAAgADAAAAAQAAAAAAAgAAAAEAAQAAAAAAAgABAAEAAQAAAAAAAgACAAEAAQAAAAAAAgADAAEAAQAAAAAAAgAAAAIAAQAAAAAAAgABAAIAAQAAAAAAAgACAAIAAQAAAAAAAgADAAIAAQAAAAAAAgAAAAMAAQAAAAAAAgABAAMAAQAAAAAAAgACAAMAAQAAAAAAAgADAAMAAQAAAAAAAgA=")
+tile_set = ExtResource("2_7nn2f")
+
+[node name="PlayerHighlightGrid" type="TileMapLayer" parent="." unique_id=1629457286]
+tile_set = ExtResource("2_7nn2f")
+
+[node name="EnemyHighlightGrid" type="TileMapLayer" parent="." unique_id=1762013343]
+tile_set = ExtResource("2_7nn2f")

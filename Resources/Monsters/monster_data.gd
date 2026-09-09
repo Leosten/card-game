@@ -12,7 +12,7 @@ enum MonsterType {COMMON, MINIBOSS, BOSS}
 @export var action_cycle : Array[MonsterAction] = []
 @export var cycle_step = 0
 @export var description := ""
-
+@export var starting_column = 0
 var buffs: Array[CardStatus] = []
 var status : Array[CardStatus] = []
 

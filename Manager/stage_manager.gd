@@ -188,23 +188,24 @@ func get_level_monsters() -> Array[MonsterData]:
 	print("get level monsters")
 	return level_monsters
 
-func get_monster_scenes_for_level(level_monsters, enemy_positions) -> Array[Monster]:
+func get_monster_scenes_for_level(level_monsters) -> Array[Monster]:
 	var monster_scenes : Array[Monster] = []
-	var index = 0
-
-	for monster_data in level_monsters:
-		var monster_scene = get_monster_scene_from_name(monster_data.name)
-		print("get_monster_scenes_for_level")
-		monster_scene.init_data(monster_data)
-		monster_scene.battle_position = index
-		monster_scene.position = enemy_positions[index].position
-		# position monster outside of screen for animation
-		monster_scene.position.x = 6000
-		monster_scene.z_index = 100
-		monster_scenes.append(monster_scene)
-		index += 1
-	return monster_scenes
+	var monsters_by_col : Dictionary = {}
 	
+	for monster_data : MonsterData in level_monsters:
+		monsters_by_col.get_or_add(monster_data.starting_column, []).append(monster_data)
+	for col in monsters_by_col:
+		var occupied_numbers = range(GameManager.grid_manager.MAX_ROW)
+		for monster_data in monsters_by_col[col]:
+			var monster_scene = get_monster_scene_from_name(monster_data.name)
+			print("get_monster_scenes_for_level")
+			monster_scene.init_data(monster_data)
+			occupied_numbers.shuffle()
+			var row = occupied_numbers.pop_back()
+			GameManager.grid_manager.set_monster_grid_position(monster_scene, col, row)
+			monster_scenes.append(monster_scene)
+	return monster_scenes
+
 func init_monster_positions() -> Array[Area2D]:
 	var viewport_size = GameManager.viewport_size
 	var column_pos = 0
