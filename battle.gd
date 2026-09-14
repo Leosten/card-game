@@ -69,11 +69,14 @@ func new_encounter():
 			pass
 
 func start_battle():
+	grid_display.visible = true
 	print("start battle")
 	Events.battle_start.emit()
 	current_turn = 1
 	battle_state.replenish_player_mana()
 	battle_state.level_monsters = stage_manager.get_level_monsters()
+	GameManager.character_manager.set_main_char_battle_position(player_character, grid_display.player_grid)
+	GameManager.character_manager.set_companion_char_battle_position(companion_character, grid_display.player_grid)
 	spawn_level_monsters()
 	player_turn_start.emit()
 
@@ -81,11 +84,15 @@ func start_boss_battle():
 	pass
 
 func start_shop():
+	grid_display.visible = false
 	var shop_character = GameManager.shop_manager.get_shop_scene()
 	GameManager.shop_manager.set_shop_battle_position(shop_character)
+	GameManager.character_manager.set_main_char_shop_position(player_character)
+	GameManager.character_manager.set_companion_char_shop_position(companion_character)
 	add_child(shop_character)
 
 func start_forge():
+	grid_display.visible = false
 	var forge = GameManager.forge_manager.get_forge_scene()
 	GameManager.forge_manager.set_forge_battle_position(forge)
 	add_child(forge)
@@ -98,12 +105,12 @@ func spawn_player_character():
 	player_character = GameManager.get_character_scene()
 	player_character.init(battle_state)
 	add_child(player_character)
-	GameManager.character_manager.set_main_char_battle_position(player_character, grid_display.player_grid)
+	#GameManager.character_manager.set_main_char_battle_position(player_character, grid_display.player_grid)
 
 func spawn_companion_character():
 	companion_character = GameManager.get_companion_scene()
 	companion_character.init(battle_state.player_stats.companion_stats)
-	GameManager.character_manager.set_companion_char_battle_position(companion_character, grid_display.player_grid)
+	#GameManager.character_manager.set_companion_char_battle_position(companion_character, grid_display.player_grid)
 	add_child(companion_character)
 
 func spawn_level_monsters():

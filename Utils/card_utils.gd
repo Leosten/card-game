@@ -2,6 +2,8 @@
 extends Node
 
 enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF}
+enum grid_target {PLAYER, ENEMY, ALL}
+enum area_origin {PLAYER, FREE, COMPANION}
 enum action_type {
 	HEAL,
 	DAMAGE,

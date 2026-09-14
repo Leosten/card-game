@@ -35,13 +35,15 @@ var buffs : Array[CardStatus] = []
 @export var description := ""
 @export var cost := 0
 @export var allowed_targets : Array[CardUtils.targets] = []
-@export var artwork: Texture2D
+@export var artwork: Texture2D = null
 @export var magic_type : CardUtils.magic_type = CardUtils.magic_type.NONE
 @export var tier : CardUtils.tier
 @export var type : CardUtils.card_type
 # Relative coordinates from target origin Vector2i(0, 0)
 # Example: [Vector2i(0,0), Vector2i(1,0), Vector2i(-1,0)] -> 3-tile horizontal line
 @export var area_pattern: Array[Vector2i] = [Vector2i.ZERO]
+@export var area_origin: Array[Vector2i] = [Vector2i.ZERO]
+@export var grid_target: CardUtils.grid_target = CardUtils.grid_target.PLAYER
 
 func use(battle_state : BattleState, enemy):
 	pass

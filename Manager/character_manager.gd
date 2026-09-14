@@ -2,7 +2,16 @@ class_name CharacterManager
 
 extends Node
 
-var player_stats : PlayerStats 
+var player_stats : PlayerStats
+
+var player_shop_position : Vector2 = Vector2(
+	GameManager.viewport_size.x - 1550,
+	GameManager.viewport_size.y - 450
+)
+var companion_shop_position : Vector2 = Vector2(
+	GameManager.viewport_size.x - 1300,
+	GameManager.viewport_size.y - 400
+)
 
 func _init():
 	player_stats = PlayerStats.new()
@@ -25,6 +34,12 @@ static func set_main_char_battle_position(player_character, grid : TileMapLayer)
 
 static func set_companion_char_battle_position(companion_character, grid : TileMapLayer):
 	GameManager.grid_manager.place_unit_on_tile(companion_character, grid, GameManager.battle_state.player_stats.companion_stats.grid_starting_pos)
+
+func set_main_char_shop_position(player_character):
+	player_character.position = player_shop_position
+
+func set_companion_char_shop_position(companion_character):
+	companion_character.position = companion_shop_position
 
 static func get_companion_scene(companion_id):
 	match companion_id:

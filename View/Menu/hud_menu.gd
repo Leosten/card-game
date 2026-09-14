@@ -64,7 +64,7 @@ func _on_window_close_requested(window_name: String) -> void:
 			if map_window.selection == true:
 				await ScreenTransition.wipe_in(0.6)
 		"shop":
-			if shop_window != null: 
+			if shop_window != null:
 				shop_window.queue_free()
 		"forge":
 			if forge_window != null: 
