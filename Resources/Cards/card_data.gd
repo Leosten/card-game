@@ -41,7 +41,7 @@ var buffs : Array[CardStatus] = []
 @export var type : CardUtils.card_type
 # Relative coordinates from target origin Vector2i(0, 0)
 # Example: [Vector2i(0,0), Vector2i(1,0), Vector2i(-1,0)] -> 3-tile horizontal line
-@export var area_pattern: Array[Vector2i] = [Vector2i.ZERO]
+@export var area_pattern: Array[Vector2i] = []
 @export var area_origin: Array[Vector2i] = [Vector2i.ZERO]
 @export var grid_target: CardUtils.grid_target = CardUtils.grid_target.PLAYER
 

@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" format=3 uid="uid://c1kds08b2egnk"]
+
+[ext_resource type="PackedScene" uid="uid://vm2so5jbn313" path="res://View/Battle/grid/squares/player_square.tscn" id="1_vcdb7"]
+[ext_resource type="PackedScene" uid="uid://cehmnmjf8ml1s" path="res://View/Battle/grid/squares/enemy_square.tscn" id="2_3nlsy"]
+[ext_resource type="PackedScene" uid="uid://bvedey5u1snin" path="res://View/Battle/grid/squares/highlight_square.tscn" id="3_ag5bu"]
+[ext_resource type="PackedScene" uid="uid://beydu2rylfd0" path="res://View/Cards/area_effect_preview/square_preview_enemy.tscn" id="4_qca6u"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ve70d"]
+scenes/1/scene = ExtResource("1_vcdb7")
+scenes/2/scene = ExtResource("2_3nlsy")
+scenes/3/scene = ExtResource("3_ag5bu")
+scenes/4/scene = ExtResource("4_qca6u")
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetScenesCollectionSource_ve70d")

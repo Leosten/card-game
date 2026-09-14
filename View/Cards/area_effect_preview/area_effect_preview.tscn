@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://crkah5iul1xb1"]
+
+[ext_resource type="Script" uid="uid://b20lv6fem0e20" path="res://View/Cards/area_effect_preview/area_effect_preview.gd" id="1_rp0g5"]
+[ext_resource type="Texture2D" uid="uid://cjaxuobhavoiv" path="res://Art/UI/cards/card_cost_window.png" id="2_76gl6"]
+[ext_resource type="TileSet" uid="uid://c1kds08b2egnk" path="res://View/Cards/preview_tile_set.tres" id="3_rp0g5"]
+
+[node name="AreaEffectPreview" type="Control" unique_id=279174807]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rp0g5")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1000868503]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 320.0
+texture = ExtResource("2_76gl6")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
+
+[node name="PreviewMapLayer" type="TileMapLayer" parent="." unique_id=728778797]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+tile_set = ExtResource("3_rp0g5")

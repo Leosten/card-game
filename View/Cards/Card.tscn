@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://fc1wjugrinon" path="res://Art/UI/cards/portraits/logo.png" id="5_0wlfl"]
 [ext_resource type="Texture2D" uid="uid://cjaxuobhavoiv" path="res://Art/UI/cards/card_cost_window.png" id="6_hutuu"]
 [ext_resource type="Theme" uid="uid://dnmuk5j7d4rge" path="res://View/first_theme.tres" id="7_77wfg"]
+[ext_resource type="PackedScene" uid="uid://crkah5iul1xb1" path="res://View/Cards/area_effect_preview/area_effect_preview.tscn" id="8_btmnm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ejfic"]
 font_size = 19
@@ -217,6 +218,22 @@ offset_right = 46.0
 offset_bottom = 54.0
 theme_override_constants/separation = 7
 alignment = 2
+
+[node name="AreaContainer" type="Control" parent="." unique_id=677450750]
+anchors_preset = 0
+offset_left = 162.0
+offset_top = 49.0
+offset_right = 202.0
+offset_bottom = 89.0
+
+[node name="AreaEffectPreview" parent="AreaContainer" unique_id=279174807 instance=ExtResource("8_btmnm")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -17.0
+offset_top = 91.99997
+offset_right = -17.0
+offset_bottom = 91.99997
+scale = Vector2(0.25, 0.25)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

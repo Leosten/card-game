@@ -124,7 +124,7 @@ border_color = Color(0.741, 0.318, 0.427, 1)
 border_blend = true
 shadow_color = Color(0, 0, 0, 0.32941177)
 shadow_size = 5
-shadow_offset = Vector2(0, 10)
+shadow_offset = Vector2(0, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqxqf"]
 bg_color = Color(1, 1, 1, 0.6627451)
@@ -152,7 +152,7 @@ border_color = Color(0.3254902, 0.47058824, 0.654902, 1)
 border_blend = true
 shadow_color = Color(0, 0, 0, 0.32941177)
 shadow_size = 5
-shadow_offset = Vector2(0, 10)
+shadow_offset = Vector2(0, 4)
 
 [sub_resource type="FontVariation" id="FontVariation_ie2kd"]
 base_font = ExtResource("3_pplqn")
