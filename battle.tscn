@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dsts0wmpcf3b0" path="res://Art/UI/icons/white/1-game/cards.png" id="9_ol6im"]
 [ext_resource type="Texture2D" uid="uid://cbk3sp2ioqrd7" path="res://Art/UI/icons/white/9-media/branch.png" id="10_b1i6x"]
 [ext_resource type="PackedScene" uid="uid://b6k41e6aogvfd" path="res://View/Battle/grid/grid.tscn" id="12_sl0w2"]
+[ext_resource type="Script" uid="uid://cienub7nytmbq" path="res://View/Battle/targeting_line_2d.gd" id="13_elvfr"]
 
 [node name="Battle" type="Node2D" unique_id=344223136]
 script = ExtResource("1_7sfm4")
@@ -164,6 +165,10 @@ mouse_filter = 2
 [node name="Grid" parent="." unique_id=550576643 instance=ExtResource("12_sl0w2")]
 unique_name_in_owner = true
 position = Vector2(328, 272)
+
+[node name="TargetingLine2D" type="Line2D" parent="." unique_id=501566025]
+width = 5.0
+script = ExtResource("13_elvfr")
 
 [connection signal="pressed" from="Hud/TopHudRoot/BattleStats/HBoxContainer/DeckListButton" to="Hud" method="_on_deck_list_button_pressed"]
 [connection signal="pressed" from="Hud/TopHudRoot/BattleStats/HBoxContainer/MapButton" to="Hud" method="_on_map_button_pressed"]

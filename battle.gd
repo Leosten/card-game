@@ -25,8 +25,11 @@ var enemy_positions : Array[Area2D] = []
 @onready var end_turn_button = %EndTurnButton
 @onready var mana_window = $%ManaWindow
 @onready var grid_display = %Grid
-
+@onready var targeting_line: TargetingLine2D = $TargetingLine2D
 var card_clicked: CardData = null
+
+func _process(delta: float) -> void:
+	draw_targeting_line()
 
 func _ready() -> void:
 	Events.next_encounter.connect(new_encounter)
@@ -132,9 +135,11 @@ func _on_card_clicked(card_data: CardData) -> void:
 		action_manager.use_card_on_ally(card_clicked, battle_state)
 		print("click on self card")
 		card_clicked = null
+		stop_targeting()
 
 	if card_data.cost > CharacterUtils.get_current_mana(battle_state):
 		print("not enough mana")
+		stop_targeting()
 		return
 	card_clicked = card_data
 
@@ -142,6 +147,7 @@ func on_monster_clicked(monster_data : MonsterData):
 	if (card_clicked != null):
 		action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
 		card_clicked = null
+		stop_targeting()
 
 func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
@@ -193,3 +199,30 @@ func _cleanup_fight():
 	# clear hands/draw
 	# block mouse control filter
 	pass
+
+func draw_targeting_line():
+	if card_clicked == null:
+		return
+	var selected_card = card_hand_hud.displayed_hand.filter(func(card: Card) -> bool: return card.hand_position == card_clicked.hand_position)
+	# 1. Start point = Center of card UI element
+	var start_pos: Vector2 = selected_card[0].global_position + (selected_card[0].size * 0.5)
+	var overlay_tilemap = grid_display.enemy_grid
+	# 2. Get target cell from current mouse cursor position
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	var local_mouse: Vector2 = overlay_tilemap.to_local(mouse_pos)
+	var target_cell: Vector2i = overlay_tilemap.local_to_map(local_mouse)
+
+	# 3. Snap end point to center of grid cell if hovering valid cell, else follow mouse
+	var end_pos: Vector2
+	if overlay_tilemap.get_cell_tile_data(target_cell) != null:
+		var cell_local_center: Vector2 = overlay_tilemap.map_to_local(target_cell)
+		end_pos = overlay_tilemap.to_global(cell_local_center)
+	else:
+			end_pos = mouse_pos
+
+	# 4. Draw curve
+	targeting_line.update_targeting_curve(start_pos, end_pos)
+
+func stop_targeting() -> void:
+	card_clicked = null
+	targeting_line.hide_line()
