@@ -38,7 +38,7 @@ func _ready() -> void:
 	card_data.exhausted.connect(on_card_exhausted)
 	update_upgrades()
 	update_area_display()
-	
+
 func on_card_used():
 	used.emit(self)
 
@@ -79,7 +79,7 @@ func update_text():
 	# TODO : buffs and status values in description
 	cost_label.text = str(card_data.cost)
 
-func update_upgrades():
+func update_upgrades() -> void:
 	if card_data.upgrades.is_empty() == true:
 		return
 	for upgrade : CardUpgradeData in card_data.upgrades:
@@ -87,13 +87,13 @@ func update_upgrades():
 		upgrades_container.add_child(card_upgrade)
 		card_upgrade.update()
 
-func update_area_display():
+func update_area_display() -> void:
 	if card_data.area_pattern.is_empty() :
 		area_preview.visible = false
 		return
 	area_preview.init(card_data)
 
-func update_cost_label(current_mana):
+func update_cost_label(current_mana) -> void:
 	var color = Color(disabled_color)
 	if current_mana >= card_data.cost :
 		color = Color(green_color)

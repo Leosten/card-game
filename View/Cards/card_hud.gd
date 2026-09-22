@@ -106,18 +106,10 @@ func discard_card(card: Card):
 	await card_animation_manager.use_card_animation(card)
 	card_used = false
 	player_hand.erase(card.card_data)
-	card.queue_free()
 	displayed_hand.erase(card)
-	var index = 0
-	for card_d in player_hand:
-		card_d.hand_position = index
-		index +=1
-		
-	#var index_2 = 0
-	for displayed_card in displayed_hand:
-		displayed_card.update()
-	#
+	refresh_hand()
 	discard_pile.append(card.card_data)
+	card.queue_free()
 	reposition_cards()
 	update_piles_count()
 
@@ -127,18 +119,20 @@ func exhaust_card(card: Card):
 	card_used = false
 	player_hand.erase(card.card_data)
 	displayed_hand.erase(card)
+	refresh_hand()
+	exhaust_pile.append(card.card_data)
+	card.queue_free()
+	reposition_cards()
+	update_piles_count()
+
+func refresh_hand() -> void:
 	var index = 0
 	for card_d in player_hand:
 		card_d.hand_position = index
 		index +=1
 		
-	#var index_2 = 0
 	for displayed_card in displayed_hand:
 		displayed_card.update()
-	exhaust_pile.append(card.card_data)
-	card.queue_free()
-	reposition_cards()
-	update_piles_count()
 
 func discard_all():
 	print("CLEAR CARDS")
@@ -156,7 +150,7 @@ func init_player_piles():
 	draw_pile.clear()
 	player_deck = GameManager.get_player_deck()
 	
-	#handle rally cards
+	# handle rally cards
 	var deck_pool = player_deck.duplicate(true)
 	var rally_cards: Array[CardData] = deck_pool.filter(
 		func(card: CardData) -> bool: return card.rally == true
@@ -185,7 +179,6 @@ func on_mana_changed():
 
 func on_turn_end():
 	enemy_turn = true
-	#await discard_all()
 
 func on_turn_start():
 	print("Player turn start")
