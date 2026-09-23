@@ -1,6 +1,12 @@
 class_name  AreaEffectUtils
 extends Node
 
+static func pattern_origin_left_middle():
+	return Vector2i(0,1)
+
+static func pattern_origin_middle_three_by_three():
+	return Vector2i(0,2)
+
 # 1. Single Target / Melee Strike
 # Hits only the targeted square.
 static func pattern_single() -> Array[Vector2i]:
@@ -15,7 +21,6 @@ static func pattern_cleave_h() -> Array[Vector2i]:
 # Hits target and penetrates 2 tiles behind it (or forward along Y).
 static func pattern_pierce_v() -> Array[Vector2i]:
 	return [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1),Vector2i(3, 1)]
-
 
 # 4. Cross Pattern (Classic Plus Shape)
 # Target + adjacent cardinal cells (5 tiles total).

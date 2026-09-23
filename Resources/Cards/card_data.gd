@@ -42,7 +42,8 @@ var buffs : Array[CardStatus] = []
 # Relative coordinates from target origin Vector2i(0, 0)
 # Example: [Vector2i(0,0), Vector2i(1,0), Vector2i(-1,0)] -> 3-tile horizontal line
 @export var area_pattern: Array[Vector2i] = []
-@export var area_origin: Array[Vector2i] = [Vector2i.ZERO]
+@export var area_origin: Vector2i = Vector2i.ZERO
+
 @export var grid_target: CardUtils.grid_target = CardUtils.grid_target.PLAYER
 
 func use(battle_state : BattleState, enemy):

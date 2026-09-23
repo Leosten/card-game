@@ -3,6 +3,7 @@ extends Node
 
 const MAX_ROW := 3
 const MAX_COL := 3
+const ARENA_BOUNDS: Rect2i = Rect2i(0, 0, 4, 4)
 
 var player_grid : TileMapLayer
 var enemy_grid : TileMapLayer
@@ -36,15 +37,10 @@ func inspect_tile_at(tile_map_layer : TileMapLayer,cell_coords: Vector2i) -> voi
 	if tile_data == null:
 		print("Cell is empty (no tile placed)!")
 		return
-
 	# Access custom data layers defined in your TileSet resource
 	var is_walkable: bool = tile_data.get_custom_data("is_walkable")
 	var move_cost: int = tile_data.get_custom_data("move_cost")
-	
 	print("Tile at ", cell_coords, " | Walkable: ", is_walkable, " | Cost: ", move_cost)
-
-# Key: Vector2i (grid_coords) -> Value: CharacterUnit
-
 
 static func is_cell_empty(map_layer: TileMapLayer, cell_coords: Vector2i):
 	# 1. Ensure tile exists on base map
@@ -55,46 +51,63 @@ static func is_cell_empty(map_layer: TileMapLayer, cell_coords: Vector2i):
 	# 2. Check if cell is recorded in dictionary
 	#return not occupied_cells.has(cell_coords) or occupied_cells[cell_coords] == null
 
-##################################
+func get_card_target_highlight_grid(card : CardData) -> TileMapLayer:
+	match card.grid_target:
+		CardUtils.grid_target.PLAYER:
+			return player_highlight_grid
+		CardUtils.grid_target.ENEMY:
+			return enemy_highlight_grid
+		_:
+			return enemy_highlight_grid
 
-#@export var grid_board: GridBoard
-@export var overlay_layer: TileMapLayer
+func get_card_target_active_grid(card : CardData) -> TileMapLayer:
+	match card.grid_target:
+		CardUtils.grid_target.PLAYER:
+			return player_grid
+		CardUtils.grid_target.ENEMY:
+			return enemy_grid
+		_:
+			return enemy_grid
 
-const OVERLAY_SOURCE_ID: int = 0
-const AOE_HIGHLIGHT_ATLAS: Vector2i = Vector2i(1, 0) # Red / Blue highlight tile
+const OVERLAY_SOURCE_ID: int = 1
+const AOE_HIGHLIGHT_ATLAS: Vector2i = Vector2i(0, 0) # Red / Blue highlight tile
 
 # Returns all absolute grid cells affected when aiming at hover_origin
-func get_affected_cells(hover_origin: Vector2i, card: CardData) -> Array[Vector2i]:
+func get_affected_cells(hover_origin: Vector2i, card: CardData, target_grid : TileMapLayer) -> Array[Vector2i]:
 	var absolute_cells: Array[Vector2i] = []
-	
+	var origin_offset: Vector2i = card.area_origin
+
 	for offset in card.area_pattern:
-		var target_cell: Vector2i = hover_origin + offset
-		
-		# Only include cells that are within valid board boundaries
-		if enemy_grid.is_valid_cell(target_cell):
-			absolute_cells.append(target_cell)
+		var target_cell: Vector2i = hover_origin + (offset - origin_offset)
+		absolute_cells.append(target_cell)
 			
 	return absolute_cells
 
-func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData) -> void:
-	overlay_layer.clear() # Clear previous frame highlights
-	
-	if active_card == null or not enemy_grid.is_valid_cell(hover_origin):
+func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, target_grid : TileMapLayer) -> void:
+	target_grid.clear() # Clear previous frame highlights
+	if active_card.area_pattern == null:
 		return
-
+	if not ARENA_BOUNDS.has_point(hover_origin):
+		return
 	# 1. Compute cells
-	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, active_card)
+	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, active_card, target_grid)
 	
 	# 2. Draw pattern on overlay layer
-	for cell in target_cells:
-		overlay_layer.set_cell(cell, OVERLAY_SOURCE_ID, AOE_HIGHLIGHT_ATLAS)
+	for cell : Vector2i in target_cells:
+		if not ARENA_BOUNDS.has_point(cell):
+			continue
+		target_grid.set_cell(cell, OVERLAY_SOURCE_ID, AOE_HIGHLIGHT_ATLAS, 3)
 
-func play_card_at(hover_origin: Vector2i, card: CardData, grid_manager: GridManager) -> void:
-	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, card)
+func stop_aoe_preview():
+	enemy_highlight_grid.clear()
+	player_highlight_grid.clear()
+
+func play_card_at(hover_origin: Vector2i, card: CardData, grid_manager: GridManager,  target_grid : TileMapLayer) -> void:
+	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, card, target_grid)
 	
 	for cell in target_cells:
 		if grid_manager.occupied_cells.has(cell):
 			var target_unit: TargetCharacter = enemy_grid.occupied_cells[cell].occupier
 			target_unit.take_damage(card.damage_amount)
 			
-	overlay_layer.clear()
+	target_grid.clear()
