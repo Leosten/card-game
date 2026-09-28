@@ -58,6 +58,7 @@ func spawn():
 	#var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_SINE)
 	#tween.tween_property(self, "position", position, 0.5)
 	pass
+
 func play_action_animation(action_type : MonsterUtils.action_types):
 	match action_type:
 		MonsterUtils.action_types.DAMAGE:

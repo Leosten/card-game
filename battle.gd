@@ -109,19 +109,17 @@ func spawn_player_character():
 	player_character = GameManager.get_character_scene()
 	player_character.init(battle_state)
 	add_child(player_character)
-	#GameManager.character_manager.set_main_char_battle_position(player_character, grid_display.player_grid)
 
 func spawn_companion_character():
 	companion_character = GameManager.get_companion_scene()
 	companion_character.init(battle_state.player_stats.companion_stats)
-	#GameManager.character_manager.set_companion_char_battle_position(companion_character, grid_display.player_grid)
 	add_child(companion_character)
 
 func spawn_level_monsters():
 	#enemy_positions = stage_manager.init_monster_positions()
 	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state.level_monsters)
 	for monster_scene : Monster in monster_scenes :
-		monster_scene.clicked.connect(on_monster_clicked)
+		monster_scene.hovered.connect(on_monster_hovered)
 		monster_scene.dead.connect(on_monster_dead)
 		add_child(monster_scene)
 		monsters_displayed.append(monster_scene)
@@ -133,20 +131,18 @@ func _on_card_clicked(card_data: CardData) -> void:
 	if enemy_turn == true:
 		return
 	if card_clicked != null and card_data == card_clicked:
-		action_manager.use_card_on_ally(card_clicked, battle_state)
+		action_manager.use_card_on_ally(card_clicked)
 		print("click on self card")
 		stop_targeting()
-
+		return
 	if card_data.cost > CharacterUtils.get_current_mana(battle_state):
 		print("not enough mana")
 		stop_targeting()
 		return
 	card_clicked = card_data
 
-func on_monster_clicked(monster_data : MonsterData):
-	if (card_clicked != null):
-		action_manager.use_card_on_enemy(card_clicked, battle_state, monster_data)
-		stop_targeting()
+func on_monster_hovered():
+	pass
 
 func on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.battle_position)
@@ -163,7 +159,7 @@ func check_monsters_dead():
 
 func launch_enemy_turn():
 	for enemy in battle_state.level_monsters:
-		action_manager.enemy_cycle(battle_state, enemy)
+		action_manager.enemy_cycle(enemy)
 		await get_tree().create_timer(0.5).timeout
 	enemy_turn_end.emit()
 
@@ -203,7 +199,7 @@ func draw_targeting_line():
 	if card_clicked == null:
 		return
 	var selected_card = card_hand_hud.displayed_hand.filter(func(card: Card) -> bool: return card.hand_position == card_clicked.hand_position)
-	if selected_card == null:
+	if selected_card.is_empty() == true:
 		return
 	# 1. Start point = Center of card UI element
 	var start_pos: Vector2 = selected_card[0].global_position + (selected_card[0].size * 0.5)
@@ -232,19 +228,49 @@ func stop_targeting() -> void:
 	targeting_line.hide_line()
 	GameManager.grid_manager.stop_aoe_preview()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			var target_grid = null
-			if card_clicked == null:
-				return
-			target_grid = GameManager.grid_manager.target_highlight_grid
-			# 1. Convert click position to local space, then to grid cell
-			var mouse_pos: Vector2 = get_global_mouse_position()
-			var local_pos: Vector2 = target_grid.to_local(mouse_pos)
-			var clicked_cell: Vector2i = target_grid.local_to_map(local_pos)
-			tile_clicked.emit(clicked_cell)
-			print("Clicked cell: ", clicked_cell)
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			if card_clicked != null:
-				stop_targeting()
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventMouseButton and event.pressed:
+		#if event.button_index == MOUSE_BUTTON_LEFT:
+			#if card_clicked == null:
+				#return
+			#var target_grid = GameManager.grid_manager.target_highlight_grid
+			## 1. Convert click position to local space, then to grid cell
+			#var mouse_pos: Vector2 = get_global_mouse_position()
+			#var local_pos: Vector2 = target_grid.to_local(mouse_pos)
+			#var clicked_cell: Vector2i = target_grid.local_to_map(local_pos)
+			#tile_clicked.emit(clicked_cell)
+			#if GameManager.grid_manager.is_valid_target_cell() == true:
+				#action_manager.use_card_on_grid(clicked_cell, card_clicked)
+				#stop_targeting()
+			#print("Clicked cell: ", clicked_cell)
+		#if event.button_index == MOUSE_BUTTON_RIGHT:
+			#if card_clicked != null:
+				#stop_targeting()
+func _input(event: InputEvent) -> void:
+	if card_clicked == null:
+		return
+	if not (event is InputEventMouseButton and event.pressed):
+		return
+
+	if event.button_index == MOUSE_BUTTON_RIGHT:
+		stop_targeting()
+		get_viewport().set_input_as_handled()
+		return
+
+	if event.button_index != MOUSE_BUTTON_LEFT:
+		return
+
+	var target_grid = GameManager.grid_manager.target_highlight_grid
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	var local_pos: Vector2 = target_grid.to_local(mouse_pos)
+	var clicked_cell: Vector2i = target_grid.local_to_map(local_pos)
+
+	var bounds: Rect2i = GameManager.grid_manager.get_card_target_bounds(card_clicked)
+	if not bounds.has_point(clicked_cell):
+		return # click missed the grid (e.g. hit a card/UI) -> propagate normally
+
+	tile_clicked.emit(clicked_cell)
+	if GameManager.grid_manager.is_valid_target_cell():
+		action_manager.use_card_on_grid(clicked_cell, card_clicked)
+		stop_targeting()
+	get_viewport().set_input_as_handled()

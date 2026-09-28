@@ -13,33 +13,40 @@ func _init() -> void:
 	Events.turn_start.connect(start_turn_status_cycle)
 	Events.turn_end.connect(end_turn_status_cycle)
 
-func cost_card_mana(battle_state: BattleState, card_cost):
+func cost_card_mana(card_cost):
 	battle_state.player_stats.current_mana -= card_cost
 	battle_state.player_stats.current_mana_changed.emit()
+	
+func use_card_on_grid(clicked_cell : Vector2i, card : CardData):
+	var targets = GameManager.grid_manager.get_affected_targets(clicked_cell, card)
+	for target : TargetCharacter in targets:
+		if card.grid_target == CardUtils.grid_target.ENEMY:
+			if target.stats is MonsterData:
+				use_card_on_enemy(card, target.stats)
 
-func use_card_on_enemy(card : CardData, battle_state: BattleState, monster_data: MonsterData):
+func use_card_on_enemy(card : CardData, monster_data: MonsterData):
 	if !card.allowed_targets.has(CardUtils.targets.ENEMY):
 		print("ERROR : target not allowed")
 	print("card used on monster %s" % str(monster_data.battle_position))
-	apply_card_action(battle_state, card, monster_data)
+	apply_card_action(card, monster_data)
 
-func use_card_on_ally(card : CardData, battle_state: BattleState):
+func use_card_on_ally(card : CardData):
 	if card.allowed_targets.has(CardUtils.targets.ALLY) == false:
 		if card.allowed_targets.has(CardUtils.targets.SELF) == false:
 			print("ERROR : target not allowed")
 			return
-	apply_card_action(battle_state, card)
+	apply_card_action(card)
 	print("card used on ally")
 	update_battle_state.emit(battle_state)
 
-func apply_card_action(battle_state : BattleState, card : CardData, enemy : MonsterData = null):
+func apply_card_action(card : CardData, enemy : MonsterData = null):
 	if card.conditions_check(battle_state) == false:
 		print("Card conditions not met")
 		action_impossible.emit()
 		return
 	for action in card.actions:
-		card_apply_buff_action(battle_state, card, action)
-		card_elemental_companion_action(battle_state, card, action)
+		card_apply_buff_action(card, action)
+		card_elemental_companion_action(card, action)
 		
 		var enemies = []
 		if (card.allowed_targets.has(CardUtils.targets.ALL_ENEMIES)):
@@ -49,14 +56,14 @@ func apply_card_action(battle_state : BattleState, card : CardData, enemy : Mons
 				enemies = [enemy]
 		
 		for target in enemies:
-			card_apply_damage_action(battle_state, card, action, target)
+			card_apply_damage_action(card, action, target)
 			card.use_special(battle_state, enemy)
 			target.stats_changed.emit()
 			# TODO: enemy dies and action continues ...
-	check_for_everyone_death(battle_state)
+	check_for_everyone_death()
 	card.use_special(battle_state)
 	battle_state.player_stats.stats_changed.emit()
-	cost_card_mana(battle_state, card.cost)
+	cost_card_mana(card.cost)
 	send_card_used_signal(card)
 
 func send_card_used_signal(card: CardData):
@@ -65,14 +72,14 @@ func send_card_used_signal(card: CardData):
 	else:
 		card.used.emit()
 
-func card_apply_damage_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type, enemy: Targetable):
+func card_apply_damage_action(card: CardData, action: CardUtils.action_type, enemy: Targetable):
 	if action == CardUtils.action_type.DAMAGE:
 		var final_damage = DamageUtils.calculate_final_damage(card.damage, battle_state.player_stats, enemy)
 		DamageUtils.apply_damage(final_damage, enemy)
 	if action == CardUtils.action_type.STATUS_EFFECTS:
 		enemy.status_manager.apply_status(card.status_effects)
 
-func card_apply_buff_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type):
+func card_apply_buff_action(card: CardData, action: CardUtils.action_type):
 	if action == CardUtils.action_type.HEAL:
 			var heal_value = HealUtils.calculate_final_heal(card.heal, battle_state.player_stats)
 			HealUtils.apply_heal(heal_value, battle_state.player_stats)
@@ -87,7 +94,7 @@ func card_apply_buff_action(battle_state: BattleState, card: CardData, action: C
 	if action == CardUtils.action_type.DRAW:
 		battle_state.draw_cards.emit(card.draw_value)
 
-func card_elemental_companion_action(battle_state: BattleState, card: CardData, action: CardUtils.action_type):
+func card_elemental_companion_action(card: CardData, action: CardUtils.action_type):
 	if battle_state.player_stats.companion_stats is not ElementalCompanionStats:
 		return
 	if action == CardUtils.action_type.CHANNEL_ADD:
@@ -101,7 +108,8 @@ func card_elemental_companion_action(battle_state: BattleState, card: CardData, 
 	if action == CardUtils.action_type.CHANNEL_SPECIAL:
 		battle_state.player_stats.companion_stats.channel_special(card, battle_state)
 		#card.use_special(battle_state, null)
-func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy : Targetable):
+
+func apply_enemy_action(action : MonsterAction, enemy : Targetable):
 	enemy.acting.emit(action.type)
 	if action.type == MonsterUtils.action_types.DAMAGE:
 		var final_damage = DamageUtils.calculate_final_damage(action.damage, battle_state.player_stats, enemy)
@@ -117,23 +125,23 @@ func apply_enemy_action(battle_state: BattleState, action : MonsterAction, enemy
 		enemy.status_manager.apply_status(action.buffs)
 	enemy.stats_changed.emit()
 
-func enemy_cycle(battle_state : BattleState, enemy: MonsterData):
+func enemy_cycle(enemy: MonsterData):
 	var action = enemy.getAction()
 	if StatusUtils.action_possible(enemy) == true:
-		apply_enemy_action(battle_state, action, enemy)
+		apply_enemy_action(action, enemy)
 	#cycle_statuses(enemy)
 	enemy.cycle_step +=1
 	enemy.reset_cycle_step()
 
-func check_for_death(monster: MonsterData, battle_state : BattleState):
+func check_for_death(monster: MonsterData):
 	if (monster.health <= 0):
 		monster.health = 0
 		print("enemy %s dead" % monster.battle_position)
 	return true
 
-func check_for_everyone_death(battle_state: BattleState):
+func check_for_everyone_death():
 	for monster in battle_state.level_monsters:
-		check_for_death(monster, battle_state)
+		check_for_death(monster)
 
 func end_turn_status_cycle():
 	for monster in battle_state.level_monsters:

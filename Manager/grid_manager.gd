@@ -115,10 +115,15 @@ func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, targ
 func stop_aoe_preview():
 	target_highlight_grid.clear()
 
-func play_card_at(hover_origin: Vector2i, card: CardData, grid_manager: GridManager,  target_grid : TileMapLayer) -> void:
-	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, card, target_grid)
-	
+func get_affected_targets(hover_origin: Vector2i, card: CardData) -> Array:
+	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, card, main_grid)
+	var targets = []
 	for cell in target_cells:
 		if cell_data_map.has(cell):
 			var target_unit: TargetCharacter = get_cell_data(cell, "target_character")
 			print ("TARGET unit found : ", target_unit.name)
+			targets.append(target_unit)
+	return targets
+
+func is_valid_target_cell() -> bool:
+	return true
