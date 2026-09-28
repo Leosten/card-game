@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://b6k41e6aogvfd"]
+[gd_scene format=3 uid="uid://b6k41e6aogvfd"]
 
 [ext_resource type="TileSet" uid="uid://bg74xnrcq8qj8" path="res://View/Battle/grid/squares/battle_grid_tile_set.tres" id="2_7nn2f"]
 [ext_resource type="Script" uid="uid://bvyme63wlxs7r" path="res://View/Battle/grid/grid.gd" id="2_dbuww"]
@@ -6,51 +6,11 @@
 [node name="Grid" type="Node2D" unique_id=1233555417]
 script = ExtResource("2_dbuww")
 
-[node name="PlayerGrid" type="TileMapLayer" parent="." unique_id=837750003]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAQABAAAAAQAAAAAAAQACAAAAAQAAAAAAAQADAAAAAQAAAAAAAQAAAAEAAQAAAAAAAQABAAEAAQAAAAAAAQACAAEAAQAAAAAAAQADAAEAAQAAAAAAAQAAAAIAAQAAAAAAAQABAAIAAQAAAAAAAQACAAIAAQAAAAAAAQADAAIAAQAAAAAAAQAAAAMAAQAAAAAAAQABAAMAAQAAAAAAAQACAAMAAQAAAAAAAQADAAMAAQAAAAAAAQA=")
+[node name="MainGrid" type="TileMapLayer" parent="." unique_id=837750003]
 tile_set = ExtResource("2_7nn2f")
 
-[node name="EnemyGrid" type="TileMapLayer" parent="." unique_id=785467883]
-position = Vector2(664, 0)
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAgABAAAAAQAAAAAAAgACAAAAAQAAAAAAAgADAAAAAQAAAAAAAgAAAAEAAQAAAAAAAgABAAEAAQAAAAAAAgACAAEAAQAAAAAAAgADAAEAAQAAAAAAAgAAAAIAAQAAAAAAAgABAAIAAQAAAAAAAgACAAIAAQAAAAAAAgADAAIAAQAAAAAAAgAAAAMAAQAAAAAAAgABAAMAAQAAAAAAAgACAAMAAQAAAAAAAgADAAMAAQAAAAAAAgA=")
+[node name="TargetHighlightGrid" type="TileMapLayer" parent="." unique_id=1629457286]
 tile_set = ExtResource("2_7nn2f")
 
-[node name="PlayerHighlightGrid" type="TileMapLayer" parent="." unique_id=1629457286]
+[node name="EnemyActionHighlightGrid" type="TileMapLayer" parent="." unique_id=425026076]
 tile_set = ExtResource("2_7nn2f")
-
-[node name="EnemyHighlightGrid" type="TileMapLayer" parent="." unique_id=1762013343]
-position = Vector2(664, 0)
-tile_set = ExtResource("2_7nn2f")
-
-[connection signal="mouse_entered" from="PlayerGrid/PlayerSquare" to="PlayerGrid/PlayerSquare" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61049" to="PlayerGrid/@PanelContainer@61049" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61050" to="PlayerGrid/@PanelContainer@61050" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61051" to="PlayerGrid/@PanelContainer@61051" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61052" to="PlayerGrid/@PanelContainer@61052" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61053" to="PlayerGrid/@PanelContainer@61053" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61054" to="PlayerGrid/@PanelContainer@61054" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61055" to="PlayerGrid/@PanelContainer@61055" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61056" to="PlayerGrid/@PanelContainer@61056" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61057" to="PlayerGrid/@PanelContainer@61057" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61058" to="PlayerGrid/@PanelContainer@61058" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61059" to="PlayerGrid/@PanelContainer@61059" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61060" to="PlayerGrid/@PanelContainer@61060" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61061" to="PlayerGrid/@PanelContainer@61061" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61062" to="PlayerGrid/@PanelContainer@61062" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="PlayerGrid/@PanelContainer@61063" to="PlayerGrid/@PanelContainer@61063" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61064" to="EnemyGrid/@PanelContainer@61064" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61065" to="EnemyGrid/@PanelContainer@61065" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61066" to="EnemyGrid/@PanelContainer@61066" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61067" to="EnemyGrid/@PanelContainer@61067" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61068" to="EnemyGrid/@PanelContainer@61068" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61069" to="EnemyGrid/@PanelContainer@61069" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61070" to="EnemyGrid/@PanelContainer@61070" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61071" to="EnemyGrid/@PanelContainer@61071" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61072" to="EnemyGrid/@PanelContainer@61072" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61073" to="EnemyGrid/@PanelContainer@61073" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61074" to="EnemyGrid/@PanelContainer@61074" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61075" to="EnemyGrid/@PanelContainer@61075" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61076" to="EnemyGrid/@PanelContainer@61076" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61077" to="EnemyGrid/@PanelContainer@61077" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61078" to="EnemyGrid/@PanelContainer@61078" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="EnemyGrid/@PanelContainer@61079" to="EnemyGrid/@PanelContainer@61079" method="_on_mouse_entered"]

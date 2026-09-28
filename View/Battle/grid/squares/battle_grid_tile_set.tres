@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://cehmnmjf8ml1s" path="res://View/Battle/grid/squares/enemy_square.tscn" id="2_imcp6"]
 [ext_resource type="PackedScene" uid="uid://bvedey5u1snin" path="res://View/Battle/grid/squares/highlight_square.tscn" id="3_imcp6"]
 [ext_resource type="PackedScene" uid="uid://beydu2rylfd0" path="res://View/Cards/area_effect_preview/square_preview_enemy.tscn" id="4_4er8l"]
+[ext_resource type="PackedScene" uid="uid://b1nix2j08pdhu" path="res://View/Battle/grid/squares/enemy_highlight_square.tscn" id="5_2eigs"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_l2k5p"]
 scenes/1/scene = ExtResource("1_uf1rk")
 scenes/2/scene = ExtResource("2_imcp6")
 scenes/3/scene = ExtResource("3_imcp6")
 scenes/4/scene = ExtResource("4_4er8l")
+scenes/5/scene = ExtResource("5_2eigs")
 
 [resource]
 tile_size = Vector2i(160, 111)

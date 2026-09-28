@@ -1,12 +1,20 @@
 extends Node2D
 
-@onready var player_grid = $PlayerGrid
-@onready var enemy_grid = $EnemyGrid
-@onready var player_highlight_grid = $PlayerHighlightGrid
-@onready var enemy_highlight_grid = $EnemyHighlightGrid
+@onready var main_grid = $MainGrid
+@onready var target_highlight_grid = $TargetHighlightGrid
+@onready var enemy_action_highlight_grid = $EnemyHighlightGrid
+
+var grid_manager : GridManager
 
 func _ready() -> void:
-	GameManager.grid_manager.enemy_grid = enemy_grid
-	GameManager.grid_manager.player_grid = player_grid
-	GameManager.grid_manager.player_highlight_grid = player_highlight_grid
-	GameManager.grid_manager.enemy_highlight_grid = enemy_highlight_grid
+	grid_manager = GameManager.grid_manager
+	grid_manager.main_grid = main_grid
+	grid_manager.target_highlight_grid = target_highlight_grid
+	grid_manager.enemy_action_highlight_grid = enemy_action_highlight_grid
+	Events.turn_start.connect(_on_turn_start)
+
+func _on_turn_start():
+	grid_manager.draw_battlefield_squares()
+
+func preview_enemy_actions():
+	pass

@@ -79,8 +79,8 @@ func start_battle():
 	current_turn = 1
 	battle_state.replenish_player_mana()
 	battle_state.level_monsters = stage_manager.get_level_monsters()
-	GameManager.character_manager.set_main_char_battle_position(player_character, grid_display.player_grid)
-	GameManager.character_manager.set_companion_char_battle_position(companion_character, grid_display.player_grid)
+	GameManager.character_manager.set_main_char_battle_position(player_character, grid_display.main_grid)
+	GameManager.character_manager.set_companion_char_battle_position(companion_character, grid_display.main_grid)
 	spawn_level_monsters()
 	player_turn_start.emit()
 
@@ -208,8 +208,8 @@ func draw_targeting_line():
 	# 1. Start point = Center of card UI element
 	var start_pos: Vector2 = selected_card[0].global_position + (selected_card[0].size * 0.5)
 
-	var overlay_tilemap : TileMapLayer = GameManager.grid_manager.get_card_target_highlight_grid(card_clicked)
-	
+	var overlay_tilemap : TileMapLayer = GameManager.grid_manager.target_highlight_grid
+	var target_bounds : Rect2i = GameManager.grid_manager.get_card_target_bounds(card_clicked)
 	# 2. Get target cell from current mouse cursor position
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var local_mouse: Vector2 = overlay_tilemap.to_local(mouse_pos)
@@ -217,7 +217,7 @@ func draw_targeting_line():
 
 	var end_pos: Vector2
 
-	if GameManager.grid_manager.ARENA_BOUNDS.has_point(target_cell):
+	if target_bounds.has_point(target_cell):
 	# Valid arena tile -> Snap to grid center
 		var cell_local_center: Vector2 = overlay_tilemap.map_to_local(target_cell)
 		end_pos = overlay_tilemap.to_global(cell_local_center)
@@ -225,8 +225,8 @@ func draw_targeting_line():
 	# Outside arena -> Fallback to raw mouse position
 		end_pos = mouse_pos
 	targeting_line.update_targeting_curve(start_pos, end_pos)
-	GameManager.grid_manager.update_card_aoe_preview(target_cell, card_clicked, overlay_tilemap)
-	
+	GameManager.grid_manager.update_card_aoe_preview(target_cell, card_clicked, overlay_tilemap, target_bounds)
+
 func stop_targeting() -> void:
 	card_clicked = null
 	targeting_line.hide_line()
@@ -238,10 +238,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			var target_grid = null
 			if card_clicked == null:
 				return
-			target_grid = GameManager.grid_manager.get_card_target_highlight_grid(card_clicked)
+			target_grid = GameManager.grid_manager.target_highlight_grid
 			# 1. Convert click position to local space, then to grid cell
 			var mouse_pos: Vector2 = get_global_mouse_position()
 			var local_pos: Vector2 = target_grid.to_local(mouse_pos)
 			var clicked_cell: Vector2i = target_grid.local_to_map(local_pos)
 			tile_clicked.emit(clicked_cell)
 			print("Clicked cell: ", clicked_cell)
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if card_clicked != null:
+				stop_targeting()

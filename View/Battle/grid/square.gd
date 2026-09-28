@@ -11,7 +11,6 @@ var enemy_color = Color(0.741, 0.318, 0.427, 1.0)
 func _ready() -> void:
 	pass
 
-
 func _on_mouse_entered() -> void:
 	print("entered ", self.position)
 	pass # Replace with function body.

@@ -7,6 +7,8 @@ extends Resource
 @export var damage : int = 0
 @export var shield : int = 0
 @export var heal : int = 0
+@export var area_pattern: Array[Vector2i] = []
+@export var area_origin: Vector2i = Vector2i.ZERO
 
 func _init(p_name : String = "", p_type : MonsterUtils.action_types = MonsterUtils.action_types.DAMAGE, p_damage: int = 0, p_shield = 0, p_heal = 0):
 	name = p_name

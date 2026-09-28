@@ -1,36 +1,62 @@
 class_name GridManager
 extends Node
+const MAX_ROW = 3
+const ARENA_BOUNDS: Rect2i = Rect2i(0, 0, 8, 4)
+const PLAYER_TERRITORY: Rect2i = Rect2i(0, 0, 4, 4)
+const ENEMY_TERRITORY: Rect2i = Rect2i(4, 0, 4, 4)
 
-const MAX_ROW := 3
-const MAX_COL := 3
-const ARENA_BOUNDS: Rect2i = Rect2i(0, 0, 4, 4)
+const SQUARE_SOURCE_ID := 1
+const PLAYER_SQUARE_ALT_ID := 1
+const ENEMY_SQUARE_ALT_ID := 2
+const HIGHLIGHT_SQUARE_ALT_ID := 3
 
-var player_grid : TileMapLayer
-var enemy_grid : TileMapLayer
-var player_highlight_grid : TileMapLayer
-var enemy_highlight_grid : TileMapLayer
-var enemy_occupied_cells: = []
+var main_grid : TileMapLayer
+var target_highlight_grid : TileMapLayer
+var enemy_action_highlight_grid : TileMapLayer
 
-func get_square_scene():
-	pass
+var cell_data_map: Dictionary = {}
 
-func get_grid_scene():
-	pass
+func draw_battlefield_squares() -> void:
+	main_grid.clear()
+	for y in range(ARENA_BOUNDS.position.y, ARENA_BOUNDS.end.y):
+		for x in range(ARENA_BOUNDS.position.x, ARENA_BOUNDS.end.x):
+			var cell := Vector2i(x, y)
+			var alt_id := PLAYER_SQUARE_ALT_ID
+			if ENEMY_TERRITORY.has_point(cell):
+				alt_id = ENEMY_SQUARE_ALT_ID
+			main_grid.set_cell(cell, SQUARE_SOURCE_ID, Vector2i.ZERO, alt_id)
 
 func set_monster_grid_position(unit: TargetCharacter, col, row):
-	var cell_coor = Vector2(col, row)
-	place_unit_on_tile(unit, enemy_grid, cell_coor)
-	enemy_occupied_cells.append(cell_coor)
-	
+	var cell_coor := Vector2i(
+		ENEMY_TERRITORY.position.x + col,
+		ENEMY_TERRITORY.position.y + row
+	)
+	if not ENEMY_TERRITORY.has_point(cell_coor):
+		push_warning("set_monster_grid_position: cell %s is outside ENEMY_TERRITORY" % str(cell_coor))
+		return
+	place_unit_on_tile(unit, main_grid, cell_coor)
+
 func place_unit_on_tile(unit: TargetCharacter, tile_map : TileMapLayer, tile_coords: Vector2i) -> void:
 	# 1. Get local position of tile center
 	var local_pos: Vector2 = tile_map.map_to_local(tile_coords)
 	# 2. Convert to global screen space and apply
 	unit.global_position = tile_map.to_global(local_pos)
 	unit.stats.grid_position = tile_coords
-	#tile_map.get_cell_tile_data(tile_coords).occupier = unit
+	set_cell_data(tile_coords, "target_character", unit)
 
-func inspect_tile_at(tile_map_layer : TileMapLayer,cell_coords: Vector2i) -> void:
+func set_cell_data(cell: Vector2i, key: String, value: Variant) -> void:
+	if not cell_data_map.has(cell):
+		cell_data_map[cell] = {}
+		
+	cell_data_map[cell][key] = value
+
+# Get custom data at a coordinate
+func get_cell_data(cell: Vector2i, key: String, default_value: Variant = null) -> Variant:
+	if cell_data_map.has(cell) and cell_data_map[cell].has(key):
+		return cell_data_map[cell][key]
+	return default_value
+
+func inspect_tile_at(tile_map_layer : TileMapLayer, cell_coords: Vector2i) -> void:
 	# Get the TileData resource for the specific cell
 	var tile_data: TileData = tile_map_layer.get_cell_tile_data(cell_coords)
 	
@@ -51,26 +77,14 @@ static func is_cell_empty(map_layer: TileMapLayer, cell_coords: Vector2i):
 	# 2. Check if cell is recorded in dictionary
 	#return not occupied_cells.has(cell_coords) or occupied_cells[cell_coords] == null
 
-func get_card_target_highlight_grid(card : CardData) -> TileMapLayer:
+func get_card_target_bounds(card : CardData) -> Rect2i:
 	match card.grid_target:
-		CardUtils.grid_target.PLAYER:
-			return player_highlight_grid
 		CardUtils.grid_target.ENEMY:
-			return enemy_highlight_grid
-		_:
-			return enemy_highlight_grid
-
-func get_card_target_active_grid(card : CardData) -> TileMapLayer:
-	match card.grid_target:
+			return ENEMY_TERRITORY
 		CardUtils.grid_target.PLAYER:
-			return player_grid
-		CardUtils.grid_target.ENEMY:
-			return enemy_grid
+			return PLAYER_TERRITORY
 		_:
-			return enemy_grid
-
-const OVERLAY_SOURCE_ID: int = 1
-const AOE_HIGHLIGHT_ATLAS: Vector2i = Vector2i(0, 0) # Red / Blue highlight tile
+			return ARENA_BOUNDS
 
 # Returns all absolute grid cells affected when aiming at hover_origin
 func get_affected_cells(hover_origin: Vector2i, card: CardData, target_grid : TileMapLayer) -> Array[Vector2i]:
@@ -83,31 +97,28 @@ func get_affected_cells(hover_origin: Vector2i, card: CardData, target_grid : Ti
 			
 	return absolute_cells
 
-func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, target_grid : TileMapLayer) -> void:
+func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, target_grid : TileMapLayer, target_bounds : Rect2i) -> void:
 	target_grid.clear() # Clear previous frame highlights
 	if active_card.area_pattern == null:
 		return
-	if not ARENA_BOUNDS.has_point(hover_origin):
+	if not target_bounds.has_point(hover_origin):
 		return
 	# 1. Compute cells
 	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, active_card, target_grid)
 	
 	# 2. Draw pattern on overlay layer
 	for cell : Vector2i in target_cells:
-		if not ARENA_BOUNDS.has_point(cell):
+		if not target_bounds.has_point(cell):
 			continue
-		target_grid.set_cell(cell, OVERLAY_SOURCE_ID, AOE_HIGHLIGHT_ATLAS, 3)
+		target_grid.set_cell(cell, SQUARE_SOURCE_ID, Vector2i.ZERO, 3)
 
 func stop_aoe_preview():
-	enemy_highlight_grid.clear()
-	player_highlight_grid.clear()
+	target_highlight_grid.clear()
 
 func play_card_at(hover_origin: Vector2i, card: CardData, grid_manager: GridManager,  target_grid : TileMapLayer) -> void:
 	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, card, target_grid)
 	
 	for cell in target_cells:
-		if grid_manager.occupied_cells.has(cell):
-			var target_unit: TargetCharacter = enemy_grid.occupied_cells[cell].occupier
-			target_unit.take_damage(card.damage_amount)
-			
-	target_grid.clear()
+		if cell_data_map.has(cell):
+			var target_unit: TargetCharacter = get_cell_data(cell, "target_character")
+			print ("TARGET unit found : ", target_unit.name)
