@@ -228,24 +228,6 @@ func stop_targeting() -> void:
 	targeting_line.hide_line()
 	GameManager.grid_manager.stop_aoe_preview()
 
-#func _input(event: InputEvent) -> void:
-	#if event is InputEventMouseButton and event.pressed:
-		#if event.button_index == MOUSE_BUTTON_LEFT:
-			#if card_clicked == null:
-				#return
-			#var target_grid = GameManager.grid_manager.target_highlight_grid
-			## 1. Convert click position to local space, then to grid cell
-			#var mouse_pos: Vector2 = get_global_mouse_position()
-			#var local_pos: Vector2 = target_grid.to_local(mouse_pos)
-			#var clicked_cell: Vector2i = target_grid.local_to_map(local_pos)
-			#tile_clicked.emit(clicked_cell)
-			#if GameManager.grid_manager.is_valid_target_cell() == true:
-				#action_manager.use_card_on_grid(clicked_cell, card_clicked)
-				#stop_targeting()
-			#print("Clicked cell: ", clicked_cell)
-		#if event.button_index == MOUSE_BUTTON_RIGHT:
-			#if card_clicked != null:
-				#stop_targeting()
 func _input(event: InputEvent) -> void:
 	if card_clicked == null:
 		return
