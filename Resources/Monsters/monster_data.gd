@@ -19,14 +19,8 @@ var status : Array[CardStatus] = []
 @export var gold = 0
 
 func reset_cycle_step():
-	if cycle_step == action_cycle.size():
+	if cycle_step >= action_cycle.size():
 		cycle_step = 0
 
-func get_next_step():
-	var next_cycle = 0
-	if cycle_step == action_cycle.size():
-		next_cycle = 0
-	return next_cycle
-
-func getAction():
+func get_action():
 	return action_cycle[cycle_step]

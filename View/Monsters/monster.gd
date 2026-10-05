@@ -12,7 +12,7 @@ var battle_position
 
 func _ready() -> void:
 	super()
-	update_monster_predictive()
+	Events.turn_start.connect(update_monster_predictive)
 
 func _process(_delta):
 	if not animating:
@@ -66,10 +66,9 @@ func play_action_animation(action_type : MonsterUtils.action_types):
 
 func on_action(action_type):
 	play_action_animation(action_type)
-	update_monster_predictive()
 
 func update_monster_predictive():
-	monster_predictive.update(monster_data.action_cycle[monster_data.get_next_step()])
+	monster_predictive.update(monster_data.get_action())
 
 func on_damage_taken(damage):
 	super(damage)

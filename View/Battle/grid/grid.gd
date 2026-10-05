@@ -17,4 +17,6 @@ func _on_turn_start():
 	grid_manager.draw_battlefield_squares()
 
 func preview_enemy_actions():
-	pass
+	var enemies = GameManager.battle_state.level_monsters
+	for enemy : MonsterData in enemies:
+		enemy.get_next_step()

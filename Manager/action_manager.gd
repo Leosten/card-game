@@ -16,7 +16,7 @@ func _init() -> void:
 func cost_card_mana(card_cost):
 	battle_state.player_stats.current_mana -= card_cost
 	battle_state.player_stats.current_mana_changed.emit()
-	
+
 func use_card_on_grid(clicked_cell : Vector2i, card : CardData):
 	var targets = GameManager.grid_manager.get_affected_targets(clicked_cell, card)
 	for target : TargetCharacter in targets:
@@ -126,10 +126,10 @@ func apply_enemy_action(action : MonsterAction, enemy : Targetable):
 	enemy.stats_changed.emit()
 
 func enemy_cycle(enemy: MonsterData):
-	var action = enemy.getAction()
+	var action = enemy.get_action()
 	if StatusUtils.action_possible(enemy) == true:
 		apply_enemy_action(action, enemy)
-	#cycle_statuses(enemy)
+	print("enemy cycle :", str(enemy.cycle_step))
 	enemy.cycle_step +=1
 	enemy.reset_cycle_step()
 
@@ -148,7 +148,7 @@ func end_turn_status_cycle():
 		monster.status_manager.trigger_turn_end()
 	battle_state.player_stats.status_manager.trigger_turn_end()
 	print("TURN END")
-		
+
 func start_turn_status_cycle():
 	for monster in battle_state.level_monsters:
 		monster.status_manager.trigger_turn_start()

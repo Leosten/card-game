@@ -19,8 +19,11 @@ static func pattern_cleave_h() -> Array[Vector2i]:
 
 # 3. Piercing Thrust (3-Tile Vertical Line)
 # Hits target and penetrates 2 tiles behind it (or forward along Y).
-static func pattern_pierce_v() -> Array[Vector2i]:
-	return [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1),Vector2i(3, 1)]
+static func pattern_pierce_three_v() -> Array[Vector2i]:
+	return [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+
+static func pattern_pierce_four_v() -> Array[Vector2i]:
+	return [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(5, 1)]
 
 # 4. Cross Pattern (Classic Plus Shape)
 # Target + adjacent cardinal cells (5 tiles total).

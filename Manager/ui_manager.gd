@@ -66,6 +66,8 @@ func get_monster_action_icon(action_type : MonsterUtils.action_types):
 			return get_icon_by_name('heavy_damage')
 		MonsterUtils.action_types.HEAL_SELF, MonsterUtils.action_types.HEAL_OTHERS:
 			return get_icon_by_name('heal')
+		_:
+			return get_icon_by_name('down_stat')
 
 func get_icon_scene(status : Status):
 	var icon_scene = ICON_SCENE.instantiate()

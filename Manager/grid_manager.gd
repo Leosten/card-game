@@ -9,6 +9,7 @@ const SQUARE_SOURCE_ID := 1
 const PLAYER_SQUARE_ALT_ID := 1
 const ENEMY_SQUARE_ALT_ID := 2
 const HIGHLIGHT_SQUARE_ALT_ID := 3
+const ENEMY_HIGHLIGHT_SQUARE_ALT_ID := 5
 
 var main_grid : TileMapLayer
 var target_highlight_grid : TileMapLayer
@@ -94,7 +95,6 @@ func get_affected_cells(hover_origin: Vector2i, card: CardData, target_grid : Ti
 	for offset in card.area_pattern:
 		var target_cell: Vector2i = hover_origin + (offset - origin_offset)
 		absolute_cells.append(target_cell)
-			
 	return absolute_cells
 
 func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, target_grid : TileMapLayer, target_bounds : Rect2i) -> void:

@@ -1,14 +1,16 @@
 extends Node2D
 
-#var monster_action : MonsterAction = null
-
 @onready var icon = %Icon
 @onready var label = %PredictiveLabel
 
+func _ready():
+	pass
+
 func update(monster_act : MonsterAction):
+	print("monster action name :" , monster_act.name)
 	icon.texture = GameManager.ui_manager.get_monster_action_icon(monster_act.type)	
 	get_label_by_action(monster_act)
-	
+
 func get_label_by_action(monster_act: MonsterAction):
 	label.show()
 	match monster_act.type:
@@ -24,3 +26,5 @@ func get_label_by_action(monster_act: MonsterAction):
 			label.hide()
 		MonsterUtils.action_types.HEAVY_DAMAGE:
 			label.text = monster_act.damage
+		_:
+			label.hide()

@@ -17,3 +17,7 @@ func _init(p_name : String = "", p_type : MonsterUtils.action_types = MonsterUti
 	shield = p_shield
 	heal = p_heal
 	pass
+
+func set_area_of_effect(area: Array[Vector2i], origin: Vector2i):
+	area_pattern = area
+	area_origin = origin

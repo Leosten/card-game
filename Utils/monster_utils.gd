@@ -10,8 +10,10 @@ enum action_types {
 	BUFF, 
 	BUFF_OTHERS, 
 	HEAVY_DAMAGE,
-	MOVE,
-	JUMP
+	MOVE_RANDOMLY,
+	MOVE_TARGET,
+	PUSH,
+	PULL
 }
 
 static func remove_monster_dead_display(monsters_displayed, dead_monster : MonsterData):

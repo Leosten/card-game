@@ -15,7 +15,10 @@ enum action_type {
 	CHANNEL_CLEAR,
 	CHANNEL_USE,
 	DRAW,
-	CHANNEL_SPECIAL
+	CHANNEL_SPECIAL,
+	PUSH,
+	MOVE,
+	PULL
 }
 enum magic_type {FIRE, WIND, ICE, NONE}
 enum tier {COMMON, PURPLE, GOLD, STARTER}
