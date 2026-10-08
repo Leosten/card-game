@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	Events.next_encounter.connect(new_encounter)
-	Events.level_monsters_dead.connect(_on_monsters_dead)
+	Events.battle_won.connect(_victory)
 	
 	player_turn_start.connect(_on_player_turn_start)
 	player_turn_end.connect(_on_player_turn_end)
@@ -156,12 +156,8 @@ func _on_player_turn_start():
 	Events.turn_start.emit()
 	battle_state.replenish_player_mana()
 	enemy_turn = false
-
-func _on_monsters_dead():
-	victory()
-
-func victory():
-	Events.battle_won.emit()
+	
+func _victory():
 	await _cleanup_fight()
 	Events.request_window_open.emit("reward", {"gold" : 0})
 

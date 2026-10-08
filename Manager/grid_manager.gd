@@ -45,6 +45,10 @@ func place_unit_on_tile(unit: TargetCharacter, tile_coords: Vector2i) -> void:
 	unit.stats.grid_position = tile_coords
 	set_cell_data(tile_coords, "target_character", unit)
 
+func clear_cell_data(cell : Vector2i):
+	if cell_data_map.has(cell):
+		cell_data_map.erase(cell)
+
 func set_cell_data(cell: Vector2i, key: String, value: Variant) -> void:
 	if not cell_data_map.has(cell):
 		cell_data_map[cell] = {}
@@ -121,8 +125,9 @@ func get_affected_targets(hover_origin: Vector2i, card: CardData) -> Array:
 	for cell in target_cells:
 		if cell_data_map.has(cell):
 			var target_unit: TargetCharacter = get_cell_data(cell, "target_character")
-			print ("TARGET unit found : ", target_unit.name)
-			targets.append(target_unit)
+			if target_unit != null:
+				print ("TARGET unit found : ", target_unit.name)
+				targets.append(target_unit)
 	return targets
 
 func is_valid_target_cell() -> bool:

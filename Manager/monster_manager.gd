@@ -62,10 +62,11 @@ func get_monster_scene_from_name(monster_name):
 func _on_monster_hovered():
 	pass
 
-func _on_monster_dead(monster):
+func _on_monster_dead(monster : MonsterData):
 	print("monster %s dead!" % monster.name)
 	Events.monster_dead.emit(monster)
 	level_monsters.erase(monster)
+	GameManager.grid_manager.clear_cell_data(monster.grid_position)
 	check_monsters_dead()
 	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
 

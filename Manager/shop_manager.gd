@@ -17,6 +17,9 @@ const TIER_PRICES: Dictionary = {
 }
 
 func _init():
+	Events.shop_start.connect(_on_shop_start)
+
+func _on_shop_start():
 	load_shop_scene()
 	set_shop_battle_position()
 
