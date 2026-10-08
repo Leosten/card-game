@@ -32,9 +32,10 @@ var card_hand_size
 
 func _ready() -> void:
 	player_stats = GameManager.battle_state.player_stats
-	Events.turn_start.connect(on_turn_start)
-	Events.turn_end.connect(on_turn_end)
-	Events.battle_start.connect(on_battle_start)
+	Events.turn_start.connect(_on_turn_start)
+	Events.turn_end.connect(_on_turn_end)
+	Events.battle_start.connect(_on_battle_start)
+	Events.battle_won.connect(_on_battle_won)
 	GameManager.battle_state.draw_cards.connect(on_draw_card_signal)
 	GameManager.battle_state.player_stats.current_mana_changed.connect(on_mana_changed)
 	card_animation_manager = CardAnimationManager.new()
@@ -43,10 +44,13 @@ func _ready() -> void:
 	add_child(card_animation_manager)
 	init_card_position()
 
-func on_battle_start():
+func _on_battle_start():
 	player_draw_value = GameManager.battle_state.player_stats.draw_value
 	init_player_piles()
 	update_piles_count()
+
+func _on_battle_won():
+	_cleanup_fight()
 
 func on_draw_card_signal(nb):
 	print("hud drawing cards")
@@ -177,10 +181,10 @@ func on_mana_changed():
 	for card : Card in displayed_hand:
 		card.update_cost_label(GameManager.battle_state.player_stats.current_mana)
 
-func on_turn_end():
+func _on_turn_end():
 	enemy_turn = true
 
-func on_turn_start():
+func _on_turn_start():
 	print("Player turn start")
 	enemy_turn = false
 	draw_cards(player_draw_value)
@@ -224,6 +228,6 @@ func _on_card_hovered_out(card: Card) -> void:
 	card.hovering = false
 	hovered_card = null
 
-func cleanup_fight():
+func _cleanup_fight():
 	await discard_all()
 	#CardAnimationManager.clean_tweens(displayed_hand)

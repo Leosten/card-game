@@ -1,19 +1,9 @@
 class_name StageManager
 extends Node
 
-var stage_monsters : Array[MonsterData] = []
 enum level_type {COMMON, MINIBOSS, BOSS, TREASURE, SPECIAL, SHOP, FORGE, RANDOM}
 var max_current_level = 10
 var max_current_stage = 1
-
-# positioning variables
-var max_nb_of_enemies = 6
-var max_nb_of_enemies_per_row = 3
-var battle_line_margin = 900
-var enemy_first_row = 420
-var enemy_first_column = 300
-var enemy_column_margin = 350
-var row_margin = 320
 
 @export var current_level = 0;
 @export var current_stage = 1;
@@ -86,30 +76,12 @@ static func get_encounter_name_by_type(type : level_type):
 		_:
 			return ""
 
-func get_stage_possible_monsters(stage) :
+static func get_stage_possible_monsters(stage) :
 	match stage:
 		1:
 			return ["umbrella","yokai", "fireball", "goblin", "byakko"]
 
-func get_stage_monsters():
-	var monster_names = get_stage_possible_monsters(current_stage)
-	for name in monster_names:
-		var monster = load("res://Resources/Monsters/" + name + "/" + name + ".tres")
-		if monster == null:
-			printerr("Cannot load monster data ressource %s" % name)
-			return
-		stage_monsters.append(monster.duplicate(true))
-		print("stage monsters loaded")
-	return stage_monsters
-
-func get_monster_scene_from_name(monster_name):
-	var monster : PackedScene = load("res://View/Monsters/" + monster_name+ "/" + monster_name + ".tscn")
-	if monster == null:
-		printerr("Cannot load monster scene %s" % monster_name)
-		return
-	return monster.instantiate()
-
-func get_stage_one_common_monsters(level) :
+func _get_stage_one_common_monsters(level) :
 	match level:
 		1:
 			return [["fireball"],["goblin"]]
@@ -137,22 +109,22 @@ func get_stage_one_common_monsters(level) :
 			return [["goblin","goblin"],["umbrella","umbrella","goblin"]]
 	return []
 
-func get_stage_one_miniboss(level) :
+func _get_stage_one_miniboss(level) :
 	return [["umbrella","umbrella","umbrella"]]
 
 func get_monsters_by_encounter_type():
 	match current_stage:
 		1:
 			if current_encounter_type == level_type.COMMON:
-				return get_stage_one_common_monsters(current_level).pick_random()
+				return _get_stage_one_common_monsters(current_level).pick_random()
 			if current_encounter_type == level_type.MINIBOSS:
-				return get_stage_one_miniboss(current_level).pick_random()
+				return _get_stage_one_miniboss(current_level).pick_random()
 			if current_encounter_type == level_type.BOSS:
-				return get_boss_by_stage(current_stage)
+				return _get_boss_by_stage(current_stage)
 		_:
 			return null
 
-func get_boss_by_stage(curr_stage: int):
+func _get_boss_by_stage(curr_stage: int):
 	match(curr_stage):
 		1:
 			return ["byakko"]
@@ -172,60 +144,3 @@ func encounter_progress():
 		return
 	print("level progress")
 	current_level += 1
-
-func get_level_monsters() -> Array[MonsterData]:
-	var monsters = get_monsters_by_encounter_type()
-	
-	var monster_index = 0
-	var level_monsters : Array[MonsterData] = []
-	for monster_name in monsters:
-			for monster_data : MonsterData in stage_monsters:
-				if monster_data.name == monster_name:
-					var monster_d = monster_data.duplicate(true)
-					monster_d.battle_position = monster_index
-					level_monsters.append(monster_d)
-			monster_index += 1
-	print("get level monsters")
-	return level_monsters
-
-func get_monster_scenes_for_level(level_monsters) -> Array[Monster]:
-	var monster_scenes : Array[Monster] = []
-	var monsters_by_col : Dictionary = {}
-	
-	for monster_data : MonsterData in level_monsters:
-		monsters_by_col.get_or_add(monster_data.starting_column, []).append(monster_data)
-	for col in monsters_by_col:
-		var occupied_numbers = range(GameManager.grid_manager.MAX_ROW)
-		for monster_data in monsters_by_col[col]:
-			var monster_scene = get_monster_scene_from_name(monster_data.name)
-			print("get_monster_scenes_for_level")
-			monster_scene.z_index = 200
-			monster_scene.init_data(monster_data)
-			occupied_numbers.shuffle()
-			var row = occupied_numbers.pop_back()
-			GameManager.grid_manager.set_monster_grid_position(monster_scene, col, row)
-			monster_scenes.append(monster_scene)
-	return monster_scenes
-
-func init_monster_positions() -> Array[Area2D]:
-	var viewport_size = GameManager.viewport_size
-	var column_pos = 0
-	var row_nb = 0
-	var enemy_row_position = enemy_first_row
-	var enemy_column_position = enemy_first_column
-	var enemy_positions : Array[Area2D] = []
-	
-	for monster_pos_index in max_nb_of_enemies:
-		var monster_area = Area2D.new()
-		if (column_pos == max_nb_of_enemies_per_row) :
-			column_pos = 0
-			row_nb += 1
-			enemy_column_position += enemy_column_margin / 2
-		var monster_position := Vector2(
-			viewport_size.x - (enemy_column_position + (column_pos * enemy_column_margin)),
-			viewport_size.y - (enemy_row_position + (row_margin * row_nb))
-		)
-		column_pos += 1
-		monster_area.position = monster_position
-		enemy_positions.append(monster_area)
-	return enemy_positions

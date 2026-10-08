@@ -1,6 +1,8 @@
 class_name TargetCharacter
-
 extends Node2D
+## Abstract visual node of targetable characters
+##
+## Contains shared animation stuff for characters that are targetable on the field
 
 var animating = false
 @onready var _skeleton_animation : AnimationPlayer = $Skeleton/AnimationPlayer
@@ -32,6 +34,7 @@ func on_damage_taken(damage):
 		_skeleton_animation.play("damage_taken")
 		await _skeleton_animation.animation_finished
 	animating = false
+
 func on_buffed():
 	pass
 

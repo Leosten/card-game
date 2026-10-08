@@ -1,6 +1,7 @@
 class_name Monster
-
 extends TargetCharacter
+
+## Visual node of monster characters 
 
 signal clicked(monster_data: MonsterData)
 signal hovered(monster_data: MonsterData)

@@ -7,9 +7,11 @@ signal draw_cards(nb : int)
 signal action_impossible
 
 var battle_state: BattleState
+var monster_manager : MonsterManager
 
 func _init() -> void:
 	battle_state = GameManager.battle_state
+	monster_manager = GameManager.monster_manager
 	Events.turn_start.connect(start_turn_status_cycle)
 	Events.turn_end.connect(end_turn_status_cycle)
 
@@ -50,7 +52,7 @@ func apply_card_action(card : CardData, enemy : MonsterData = null):
 		
 		var enemies = []
 		if (card.allowed_targets.has(CardUtils.targets.ALL_ENEMIES)):
-			enemies = battle_state.level_monsters
+			enemies = monster_manager.level_monsters
 		else:
 			if enemy != null :
 				enemies = [enemy]
@@ -95,18 +97,18 @@ func card_apply_buff_action(card: CardData, action: CardUtils.action_type):
 		battle_state.draw_cards.emit(card.draw_value)
 
 func card_elemental_companion_action(card: CardData, action: CardUtils.action_type):
-	if battle_state.player_stats.companion_stats is not ElementalCompanionStats:
+	if battle_state.companion_stats is not ElementalCompanionStats:
 		return
 	if action == CardUtils.action_type.CHANNEL_ADD:
-		battle_state.player_stats.companion_stats.channel_add(card)
+		battle_state.companion_stats.channel_add(card)
 	if action == CardUtils.action_type.CHANNEL_USE:
-		battle_state.player_stats.companion_stats.use_orb(battle_state, card.channel_remove_value)
+		battle_state.companion_stats.use_orb(battle_state, card.channel_remove_value)
 	if action == CardUtils.action_type.CHANNEL_REMOVE:
-		battle_state.player_stats.companion_stats.channel_remove(card)
+		battle_state.companion_stats.channel_remove(card)
 	if action == CardUtils.action_type.CHANNEL_CLEAR:
-		battle_state.player_stats.companion_stats.reset_channel_orbs(card)
+		battle_state.companion_stats.reset_channel_orbs(card)
 	if action == CardUtils.action_type.CHANNEL_SPECIAL:
-		battle_state.player_stats.companion_stats.channel_special(card, battle_state)
+		battle_state.companion_stats.channel_special(card, battle_state)
 		#card.use_special(battle_state, null)
 
 func apply_enemy_action(action : MonsterAction, enemy : Targetable):
@@ -140,17 +142,17 @@ func check_for_death(monster: MonsterData):
 	return true
 
 func check_for_everyone_death():
-	for monster in battle_state.level_monsters:
+	for monster in  monster_manager.level_monsters:
 		check_for_death(monster)
 
 func end_turn_status_cycle():
-	for monster in battle_state.level_monsters:
+	for monster in  monster_manager.level_monsters:
 		monster.status_manager.trigger_turn_end()
 	battle_state.player_stats.status_manager.trigger_turn_end()
 	print("TURN END")
 
 func start_turn_status_cycle():
-	for monster in battle_state.level_monsters:
+	for monster in  monster_manager.level_monsters:
 		monster.status_manager.trigger_turn_start()
 	battle_state.player_stats.status_manager.trigger_turn_start()
 	print("TURN START")

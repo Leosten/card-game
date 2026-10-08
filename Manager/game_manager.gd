@@ -4,6 +4,7 @@ signal game_completed
 
 var card_manager : CardManager
 var stage_manager : StageManager
+var monster_manager : MonsterManager
 var shop_manager : ShopManager
 var forge_manager : ForgeManager
 var map_manager : MapManager
@@ -32,6 +33,7 @@ func _ready() -> void:
 	map_manager = MapManager.new()
 	shop_manager = ShopManager.new()
 	forge_manager = ForgeManager.new()
+	monster_manager = MonsterManager.new()
 	grid_manager = GridManager.new()
 	character_manager = CharacterManager.new()
 	
@@ -39,29 +41,27 @@ func _ready() -> void:
 	init_companion(companion_id)
 	print("gamemanager init done")
 
+func new_stage():
+	map_manager.generate_map()
+	monster_manager.load_stage_monsters(stage_manager.current_stage)
+
 func init_player(char_id) -> void:
 	var p_stats = PlayerStats.new()
 	p_stats =  character_manager._get_starting_stats(char_id)
 	battle_state.player_deck = card_manager.get_starting_deck(char_id)
 	battle_state.player_stats = p_stats
-
+	character_manager.load_character_scene(char_id, p_stats)
+	print("player character init")
+	
 func init_companion(companion_id) -> void:
 	var companion_stats = ElementalCompanionStats.new()
 	companion_stats.grid_starting_pos = Vector2(0,2)
-	battle_state.player_stats.companion_stats = companion_stats
-				
-	print("companion stats init")
+	battle_state.companion_stats = companion_stats
+	character_manager.load_companion_scene(companion_id, companion_stats)
+	print("companion character init")
 
 func get_player_deck() -> Array[CardData]:
 	return battle_state.player_deck
-
-func get_character_scene() :
-	if (char_scene != null) :
-		return char_scene
-	return character_manager.get_character_scene(char_id)
-
-func get_companion_scene():
-	return character_manager.get_companion_scene(companion_id)
 
 func get_player_char_id():
 	return battle_state.player_stats.char_id

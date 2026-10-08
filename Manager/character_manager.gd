@@ -1,8 +1,11 @@
 class_name CharacterManager
-
 extends Node
 
+## Manager for character visual and stats related stuff
+
 var player_stats : PlayerStats
+var player_character : TargetCharacter
+var companion_character : TargetCharacter
 
 var player_shop_position : Vector2 = Vector2(
 	GameManager.viewport_size.x - 1550,
@@ -15,43 +18,64 @@ var companion_shop_position : Vector2 = Vector2(
 
 func _init():
 	player_stats = PlayerStats.new()
+	Events.battle_start.connect(_on_battle_start)
+	Events.shop_start.connect(_on_shop_start)
+	Events.forge_start.connect(_on_forge_start)
 
-static func get_character_scene(char_id):
+func _on_battle_start():
+	set_main_char_battle_position()
+	set_companion_char_battle_position()
+
+func _on_shop_start():
+	set_main_char_shop_position()
+	set_companion_char_shop_position()
+
+func _on_forge_start():
+	set_main_char_shop_position()
+	set_companion_char_shop_position()
+
+func load_character_scene(char_id, p_stats : PlayerStats):
 	match char_id:
 		0:
 			print("Character number 0 scene loading")
 			#var char_scene : PackedScene = preload("res://Resources/Characters/0/character_0.tscn")
-			var char_scene : PackedScene = preload("res://Resources/Characters/PlayerCharacter/player_character.tscn")
+			var char_scene = preload("res://Resources/Characters/PlayerCharacter/player_character.tscn")
 			
 			if char_scene == null:
 				printerr("Cannot load character scene %s" % str(char_id))
 				return null
-				
-			return char_scene.instantiate()
+			player_character = char_scene.instantiate()
+			player_character.init(p_stats)
 
-static func set_main_char_battle_position(player_character, grid : TileMapLayer):
-	GameManager.grid_manager.place_unit_on_tile(player_character, grid, GameManager.battle_state.player_stats.grid_starting_pos)
+func get_character_scene():
+	return player_character
 
-static func set_companion_char_battle_position(companion_character, grid : TileMapLayer):
-	GameManager.grid_manager.place_unit_on_tile(companion_character, grid, GameManager.battle_state.player_stats.companion_stats.grid_starting_pos)
-
-func set_main_char_shop_position(player_character):
-	player_character.position = player_shop_position
-
-func set_companion_char_shop_position(companion_character):
-	companion_character.position = companion_shop_position
-
-static func get_companion_scene(companion_id):
+func load_companion_scene(companion_id, c_stats: CompanionStats):
 	match companion_id:
 		0:
 			print("Companion number 0 scene loading")
-			var companion : PackedScene = preload("res://Resources/Characters/Companions/companion_0.tscn")
+			var companion = preload("res://Resources/Characters/Companions/companion_0.tscn")
 			
 			if companion == null:
 				printerr("Cannot load companion scene %s" % str(companion_id))
 				return null
-				
-			return companion.instantiate()
+			companion_character = companion.instantiate()
+			companion_character.init(c_stats)
+
+func get_companion_scene():
+	return companion_character
+
+func set_main_char_battle_position():
+	GameManager.grid_manager.place_unit_on_tile(player_character, GameManager.battle_state.player_stats.grid_starting_pos)
+
+func set_companion_char_battle_position():
+	GameManager.grid_manager.place_unit_on_tile(companion_character, GameManager.battle_state.companion_stats.grid_starting_pos)
+
+func set_main_char_shop_position():
+	player_character.position = player_shop_position
+
+func set_companion_char_shop_position():
+	companion_character.position = companion_shop_position
 
 static func _get_character_starting_deck(character_id):
 	match character_id:

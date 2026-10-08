@@ -16,6 +16,10 @@ signal turn_end
 
 signal next_encounter
 signal battle_start
+signal shop_start
+signal forge_start
+signal treasure_start
+signal level_monsters_dead
 signal battle_won
 signal battle_lost
 signal game_completed

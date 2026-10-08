@@ -1,6 +1,9 @@
 class_name Targetable
-
 extends Resource
+
+## Abstract data container of targetable characters
+##
+## Contains data, stats and status manager for the targetable characters, different from targetCharacter which is mainly visual
 
 signal damage_taken(value)
 signal damage_shielded(value)

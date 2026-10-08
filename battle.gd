@@ -11,12 +11,10 @@ var current_stage: int
 var current_level: int
 var current_turn: int = 0
 var enemy_turn : bool = false
-var stage_monsters : Array[MonsterData]
-var monsters_displayed : Array[Monster]
-var player_character : Node2D
-var companion_character : AnimatableBody2D
 var current_encounter : StageManager.level_type = StageManager.level_type.COMMON
 var stage_manager : StageManager
+var character_manager : CharacterManager
+var monster_manager : MonsterManager
 var action_manager : ActionManager
 var battle_animation_manager : BattleAnimationManager
 
@@ -34,12 +32,16 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	Events.next_encounter.connect(new_encounter)
-	player_turn_start.connect(on_player_turn_start)
-	player_turn_end.connect(on_player_turn_end)
-	enemy_turn_end.connect(on_enemy_turn_end)
+	Events.level_monsters_dead.connect(_on_monsters_dead)
+	
+	player_turn_start.connect(_on_player_turn_start)
+	player_turn_end.connect(_on_player_turn_end)
+	enemy_turn_end.connect(_on_enemy_turn_end)
 	card_hand_hud.card_clicked.connect(_on_card_clicked)
 	end_turn_button.button_pressed.connect(_on_end_turn_button_pressed)
 	stage_manager = GameManager.stage_manager
+	monster_manager = GameManager.monster_manager
+	character_manager = GameManager.character_manager
 	battle_animation_manager = BattleAnimationManager.new()
 	add_child(battle_animation_manager)
 	action_manager = ActionManager.new()
@@ -73,14 +75,11 @@ func new_encounter():
 			pass
 
 func start_battle():
+	Events.battle_start.emit()
 	grid_display.visible = true
 	print("start battle")
-	Events.battle_start.emit()
-	current_turn = 1
+	battle_state.current_turn = 1
 	battle_state.replenish_player_mana()
-	battle_state.level_monsters = stage_manager.get_level_monsters()
-	GameManager.character_manager.set_main_char_battle_position(player_character, grid_display.main_grid)
-	GameManager.character_manager.set_companion_char_battle_position(companion_character, grid_display.main_grid)
 	spawn_level_monsters()
 	player_turn_start.emit()
 
@@ -88,42 +87,32 @@ func start_boss_battle():
 	pass
 
 func start_shop():
+	Events.shop_start.emit()
 	grid_display.visible = false
 	var shop_character = GameManager.shop_manager.get_shop_scene()
-	GameManager.shop_manager.set_shop_battle_position(shop_character)
-	GameManager.character_manager.set_main_char_shop_position(player_character)
-	GameManager.character_manager.set_companion_char_shop_position(companion_character)
 	add_child(shop_character)
 
 func start_forge():
+	Events.shop_start.emit()
 	grid_display.visible = false
 	var forge = GameManager.forge_manager.get_forge_scene()
-	GameManager.forge_manager.set_forge_battle_position(forge)
 	add_child(forge)
 
 func new_stage():
-	GameManager.map_manager.generate_map()
-	stage_monsters = stage_manager.get_stage_monsters()
+	GameManager.new_stage()
 
 func spawn_player_character():
-	player_character = GameManager.get_character_scene()
-	player_character.init(battle_state)
+	var player_character = character_manager.get_character_scene()
 	add_child(player_character)
 
 func spawn_companion_character():
-	companion_character = GameManager.get_companion_scene()
-	companion_character.init(battle_state.player_stats.companion_stats)
+	var companion_character = character_manager.get_companion_scene()
 	add_child(companion_character)
 
 func spawn_level_monsters():
-	#enemy_positions = stage_manager.init_monster_positions()
-	var monster_scenes = stage_manager.get_monster_scenes_for_level(battle_state.level_monsters)
+	var monster_scenes = monster_manager.get_level_monster_scenes()
 	for monster_scene : Monster in monster_scenes :
-		monster_scene.hovered.connect(on_monster_hovered)
-		monster_scene.dead.connect(on_monster_dead)
 		add_child(monster_scene)
-		monsters_displayed.append(monster_scene)
-		monster_scene.spawn()
 		await get_tree().create_timer(0.3).timeout
 	print("Monsters spawned")
 
@@ -141,29 +130,16 @@ func _on_card_clicked(card_data: CardData) -> void:
 		return
 	card_clicked = card_data
 
-func on_monster_hovered():
+func _on_monster_hovered():
 	pass
 
-func on_monster_dead(monster : MonsterData):
-	print("monster %s dead!" % monster.battle_position)
-	Events.monster_dead.emit(monster)
-	battle_state.level_monsters.erase(monster)
-	check_monsters_dead()
-	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
-
-func check_monsters_dead():
-	if battle_state.level_monsters.is_empty() == true:
-		print("WIN all enemies dead")
-		card_hand_hud.discard_all()
-		victory()
-
 func launch_enemy_turn():
-	for enemy in battle_state.level_monsters:
+	for enemy in monster_manager.level_monsters:
 		action_manager.enemy_cycle(enemy)
 		await get_tree().create_timer(0.5).timeout
 	enemy_turn_end.emit()
 
-func on_enemy_turn_end():
+func _on_enemy_turn_end():
 	Events.turn_end.emit()
 	current_turn += 1
 	player_turn_start.emit()
@@ -171,15 +147,18 @@ func on_enemy_turn_end():
 func _on_end_turn_button_pressed() -> void:
 	player_turn_end.emit()
 
-func on_player_turn_end():
+func _on_player_turn_end():
 	await card_hand_hud.discard_all()
 	await battle_animation_manager.short_pause()
 	await launch_enemy_turn()
 
-func on_player_turn_start():
+func _on_player_turn_start():
 	Events.turn_start.emit()
 	battle_state.replenish_player_mana()
 	enemy_turn = false
+
+func _on_monsters_dead():
+	victory()
 
 func victory():
 	Events.battle_won.emit()
@@ -188,7 +167,6 @@ func victory():
 
 func _cleanup_fight():
 	battle_state.cleanup_fight()
-	await card_hand_hud.cleanup_fight()
 	# status effects
 	# exhausted cards
 	# clear hands/draw

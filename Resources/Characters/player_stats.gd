@@ -16,11 +16,7 @@ signal current_mana_changed
 @export var gold = 1000
 @export var items = []
 
-
-var companion_stats : CompanionStats
-
 func cleanup_fight():
 	status_manager.cleanup_fight()
 	current_mana = max_mana
 	draw_value = initial_draw_value
-	companion_stats.cleanup_fight()

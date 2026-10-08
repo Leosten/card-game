@@ -1,14 +1,14 @@
 extends CardData
 
 func _init():
-	#GameManager.battle_state.player_stats.companion_stats.channeled.connect(on_channeled)
+	#GameManager.battle_state.companion_stats.channeled.connect(on_channeled)
 	actions = [CardUtils.action_type.CHANNEL_SPECIAL]
 	allowed_targets = [CardUtils.targets.ENEMY]
 
 func use_special(battle_state: BattleState, enemy : Targetable = null):
 	if enemy == null:
 		return
-	var companion_stats : ElementalCompanionStats = battle_state.player_stats.companion_stats
+	var companion_stats : ElementalCompanionStats = battle_state.companion_stats
 	if companion_stats.ice_count <= 0:
 		return
 	var damage = companion_stats.ice_count * self.damage

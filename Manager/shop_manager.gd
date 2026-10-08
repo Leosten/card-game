@@ -16,6 +16,10 @@ const TIER_PRICES: Dictionary = {
 	CardUtils.tier.GOLD: Vector2i(100, 160),
 }
 
+func _init():
+	load_shop_scene()
+	set_shop_battle_position()
+
 func get_card_price(card : CardData):
 	if not TIER_PRICES.has(card.tier):
 		return 50
@@ -29,19 +33,21 @@ func get_card_price(card : CardData):
 func get_remove_card_price():
 	return min(card_remove_base_price * nb_card_remove_used, 150)
 
-func get_shop_scene():
+func load_shop_scene():
 	print("Character number 0 scene loading")
-	var shop : PackedScene = preload("res://View/Battle/shop_character/shop_character.tscn")
+	var shop = preload("res://View/Battle/shop_character/shop_character.tscn")
 	
 	if shop == null:
 		printerr("Cannot load shop scene")
 		return null
-		
-	return shop.instantiate()
+	shop_scene = shop.instantiate()
 
-func set_shop_battle_position(shop):
+func set_shop_battle_position():
 	var char_position := Vector2(
 		GameManager.viewport_size.x - 700,
 		GameManager.viewport_size.y - 800
 	)
-	return shop
+	shop_scene.position = char_position
+
+func get_shop_scene():
+	return shop_scene

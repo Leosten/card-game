@@ -9,7 +9,7 @@ func channel_remove(orbs: Array[CardUtils.magic_type]):
 	return orbs
 
 func conditions_check(battle_state : BattleState) -> bool:
-	var orbs = battle_state.player_stats.companion_stats.channel_orbs
+	var orbs = battle_state.companion_stats.channel_orbs
 	if CompanionUtils.orbs_not_empty(orbs) != true:
 		return false
 	if CompanionUtils.has_at_least_by_type(

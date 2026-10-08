@@ -1,8 +1,9 @@
 class_name BattleState
 
 var player_stats : PlayerStats
+var companion_stats : CompanionStats
 var player_deck : Array[CardData] = []
-var level_monsters : Array[MonsterData] = []
+var current_turn : int = 0
 
 signal draw_cards(nb)
 
@@ -15,3 +16,4 @@ func replenish_player_mana():
 
 func cleanup_fight():
 	player_stats.cleanup_fight()
+	companion_stats.cleanup_fight()

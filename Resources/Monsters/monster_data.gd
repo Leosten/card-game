@@ -1,6 +1,7 @@
 class_name MonsterData
-
 extends Targetable
+
+## Data container for monster stats
 
 enum MonsterType {COMMON, MINIBOSS, BOSS}
 

@@ -1,7 +1,7 @@
 extends TargetCharacter
 
-func init(battle_state: BattleState):
-	stats = battle_state.player_stats
+func init(p_stats : PlayerStats):
+	stats = p_stats
 	connect_player_signals()
 
 func connect_player_signals():

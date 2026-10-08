@@ -35,13 +35,13 @@ func set_monster_grid_position(unit: TargetCharacter, col, row):
 	if not ENEMY_TERRITORY.has_point(cell_coor):
 		push_warning("set_monster_grid_position: cell %s is outside ENEMY_TERRITORY" % str(cell_coor))
 		return
-	place_unit_on_tile(unit, main_grid, cell_coor)
+	place_unit_on_tile(unit, cell_coor)
 
-func place_unit_on_tile(unit: TargetCharacter, tile_map : TileMapLayer, tile_coords: Vector2i) -> void:
+func place_unit_on_tile(unit: TargetCharacter, tile_coords: Vector2i) -> void:
 	# 1. Get local position of tile center
-	var local_pos: Vector2 = tile_map.map_to_local(tile_coords)
+	var local_pos: Vector2 = main_grid.map_to_local(tile_coords)
 	# 2. Convert to global screen space and apply
-	unit.global_position = tile_map.to_global(local_pos)
+	unit.global_position = main_grid.to_global(local_pos)
 	unit.stats.grid_position = tile_coords
 	set_cell_data(tile_coords, "target_character", unit)
 
