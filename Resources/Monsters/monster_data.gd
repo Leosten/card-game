@@ -23,5 +23,5 @@ func reset_cycle_step():
 	if cycle_step >= action_cycle.size():
 		cycle_step = 0
 
-func get_action():
+func get_action() -> MonsterAction:
 	return action_cycle[cycle_step]

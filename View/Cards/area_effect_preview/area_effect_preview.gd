@@ -11,6 +11,7 @@ func init(card_data: CardData):
 	card_area_effect = card_data.area_pattern
 	card_grid_target = card_data.grid_target
 	_draw_area_preview()
+
 func _draw_area_preview():
 	if card_area_effect.is_empty():
 		return

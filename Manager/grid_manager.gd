@@ -91,16 +91,6 @@ func get_card_target_bounds(card : CardData) -> Rect2i:
 		_:
 			return ARENA_BOUNDS
 
-# Returns all absolute grid cells affected when aiming at hover_origin
-func get_affected_cells(hover_origin: Vector2i, card: CardData, target_grid : TileMapLayer) -> Array[Vector2i]:
-	var absolute_cells: Array[Vector2i] = []
-	var origin_offset: Vector2i = card.area_origin
-
-	for offset in card.area_pattern:
-		var target_cell: Vector2i = hover_origin + (offset - origin_offset)
-		absolute_cells.append(target_cell)
-	return absolute_cells
-
 func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, target_grid : TileMapLayer, target_bounds : Rect2i) -> void:
 	target_grid.clear() # Clear previous frame highlights
 	if active_card.area_pattern == null:
@@ -108,20 +98,32 @@ func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, targ
 	if not target_bounds.has_point(hover_origin):
 		return
 	# 1. Compute cells
-	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, active_card, target_grid)
+	var target_cells: Array[Vector2i] = TargetingUtils.get_card_affected_cells(hover_origin, active_card, target_grid)
 	
 	# 2. Draw pattern on overlay layer
 	for cell : Vector2i in target_cells:
 		if not target_bounds.has_point(cell):
 			continue
-		target_grid.set_cell(cell, SQUARE_SOURCE_ID, Vector2i.ZERO, 3)
+		target_grid.set_cell(cell, SQUARE_SOURCE_ID, Vector2i.ZERO, HIGHLIGHT_SQUARE_ALT_ID)
+
+func update_monster_aoe_preview(origin_cell: Vector2i, action: MonsterAction) -> void:
+	if action.area_pattern.is_empty():
+		print("action has no pattern")
+		return
+	var target_cells := TargetingUtils.get_affected_cells_for_monster(origin_cell, action)
+	print("target_cells: ", target_cells)
+	for cell in target_cells:
+		if not ARENA_BOUNDS.has_point(cell):
+			print("action out of arena bounds")
+			continue
+		enemy_action_highlight_grid.set_cell(cell, SQUARE_SOURCE_ID, Vector2i.ZERO, ENEMY_HIGHLIGHT_SQUARE_ALT_ID)
 
 func stop_aoe_preview():
 	target_highlight_grid.clear()
 
-func get_affected_targets(hover_origin: Vector2i, card: CardData) -> Array:
-	var target_cells: Array[Vector2i] = get_affected_cells(hover_origin, card, main_grid)
-	var targets = []
+func get_affected_targets(hover_origin : Vector2i, card : CardData) -> Array[TargetCharacter]:
+	var target_cells: Array[Vector2i] = TargetingUtils.get_card_affected_cells(hover_origin, card, main_grid)
+	var targets : Array[TargetCharacter] = []
 	for cell in target_cells:
 		if cell_data_map.has(cell):
 			var target_unit: TargetCharacter = get_cell_data(cell, "target_character")
@@ -129,6 +131,9 @@ func get_affected_targets(hover_origin: Vector2i, card: CardData) -> Array:
 				print ("TARGET unit found : ", target_unit.name)
 				targets.append(target_unit)
 	return targets
+
+func clear_enemy_action_highlight():
+	enemy_action_highlight_grid.clear()
 
 func is_valid_target_cell() -> bool:
 	return true

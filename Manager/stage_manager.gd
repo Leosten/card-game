@@ -28,10 +28,10 @@ static func get_stage_encounter_types(level: int) -> Array[level_type]:
 	match level:
 		#0:
 			#return [level_type.COMMON]
-		1:
-			return [level_type.SHOP]
 		#1:
-			#return [level_type.COMMON]
+			#return [level_type.SHOP]
+		1:
+			return [level_type.COMMON]
 		2:
 			return [level_type.COMMON, level_type.COMMON, level_type.RANDOM]
 		3:
@@ -84,7 +84,7 @@ static func get_stage_possible_monsters(stage) :
 func _get_stage_one_common_monsters(level) :
 	match level:
 		1:
-			return [["fireball"],["goblin"]]
+			return [["goblin"]]
 		2:
 			return [["umbrella", "goblin","goblin","yokai"]]
 		3:

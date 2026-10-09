@@ -23,7 +23,16 @@ static func pattern_pierce_three_v() -> Array[Vector2i]:
 	return [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 
 static func pattern_pierce_four_v() -> Array[Vector2i]:
-	return [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(5, 1)]
+	return [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1),Vector2i(5, 1)]
+
+static func pattern_pierce_v(cell_nb) -> Array[Vector2i]:
+	var pattern : Array[Vector2i] = []
+	for nb in cell_nb:
+		var vector : Vector2i
+		vector.x = nb
+		vector.y = 1
+		pattern.append(vector)
+	return pattern
 
 # 4. Cross Pattern (Classic Plus Shape)
 # Target + adjacent cardinal cells (5 tiles total).

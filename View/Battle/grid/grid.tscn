@@ -9,8 +9,8 @@ script = ExtResource("2_dbuww")
 [node name="MainGrid" type="TileMapLayer" parent="." unique_id=837750003]
 tile_set = ExtResource("2_7nn2f")
 
-[node name="TargetHighlightGrid" type="TileMapLayer" parent="." unique_id=1629457286]
+[node name="EnemyActionHighlightGrid" type="TileMapLayer" parent="." unique_id=425026076]
 tile_set = ExtResource("2_7nn2f")
 
-[node name="EnemyActionHighlightGrid" type="TileMapLayer" parent="." unique_id=425026076]
+[node name="TargetHighlightGrid" type="TileMapLayer" parent="." unique_id=1629457286]
 tile_set = ExtResource("2_7nn2f")

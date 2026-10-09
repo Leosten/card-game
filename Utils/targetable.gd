@@ -20,8 +20,8 @@ signal death
 
 signal stats_changed
 
-@export var grid_starting_pos : Vector2
-@export var grid_position : Vector2
+@export var grid_starting_pos : Vector2i
+@export var grid_position : Vector2i
 
 @export var health : int = 0
 @export var max_health : int = 0

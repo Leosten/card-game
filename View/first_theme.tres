@@ -126,7 +126,7 @@ shadow_size = 5
 shadow_offset = Vector2(0, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vacyi"]
-bg_color = Color(0.7411765, 0.31764707, 0.42745098, 0.5137255)
+bg_color = Color(0.9025943, 0.55110556, 0.6257152, 0.5137255)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -154,7 +154,7 @@ base_font = ExtResource("4_pplqn")
 base_font = ExtResource("6_uuvio")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgowx"]
-bg_color = Color(0.4745098, 0.89411765, 1, 0.3764706)
+bg_color = Color(0.76862746, 0.94509804, 1, 0.3764706)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
