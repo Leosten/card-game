@@ -52,7 +52,6 @@ func clear_cell_data(cell : Vector2i):
 func set_cell_data(cell: Vector2i, key: String, value: Variant) -> void:
 	if not cell_data_map.has(cell):
 		cell_data_map[cell] = {}
-		
 	cell_data_map[cell][key] = value
 
 # Get custom data at a coordinate
@@ -98,7 +97,7 @@ func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, targ
 	if not target_bounds.has_point(hover_origin):
 		return
 	# 1. Compute cells
-	var target_cells: Array[Vector2i] = TargetingUtils.get_card_affected_cells(hover_origin, active_card, target_grid)
+	var target_cells: Array[Vector2i] = TargetingUtils.get_card_affected_cells(hover_origin, active_card)
 	
 	# 2. Draw pattern on overlay layer
 	for cell : Vector2i in target_cells:
@@ -110,7 +109,7 @@ func update_monster_aoe_preview(origin_cell: Vector2i, action: MonsterAction) ->
 	if action.area_pattern.is_empty():
 		print("action has no pattern")
 		return
-	var target_cells := TargetingUtils.get_affected_cells_for_monster(origin_cell, action)
+	var target_cells := TargetingUtils.get_monster_action_affected_cells(origin_cell, action)
 	print("target_cells: ", target_cells)
 	for cell in target_cells:
 		if not ARENA_BOUNDS.has_point(cell):
@@ -121,8 +120,15 @@ func update_monster_aoe_preview(origin_cell: Vector2i, action: MonsterAction) ->
 func stop_aoe_preview():
 	target_highlight_grid.clear()
 
-func get_affected_targets(hover_origin : Vector2i, card : CardData) -> Array[TargetCharacter]:
-	var target_cells: Array[Vector2i] = TargetingUtils.get_card_affected_cells(hover_origin, card, main_grid)
+func get_card_affected_targets(hover_origin : Vector2i, card : CardData) -> Array[TargetCharacter]:
+	var target_cells = TargetingUtils.get_card_affected_cells(hover_origin, card)
+	return _get_affected_targets(hover_origin, target_cells)
+
+func get_monster_action_affected_targets(cell_origin : Vector2i, action : MonsterAction) -> Array[TargetCharacter]:
+	var target_cells = TargetingUtils.get_monster_action_affected_cells(cell_origin, action)
+	return _get_affected_targets(cell_origin, target_cells)
+
+func _get_affected_targets(hover_origin : Vector2i, target_cells : Array[Vector2i]) -> Array[TargetCharacter]:
 	var targets : Array[TargetCharacter] = []
 	for cell in target_cells:
 		if cell_data_map.has(cell):

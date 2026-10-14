@@ -20,7 +20,7 @@ func cost_card_mana(card_cost):
 	battle_state.player_stats.current_mana_changed.emit()
 
 func use_card_on_grid(clicked_cell : Vector2i, card : CardData):
-	var targets = GameManager.grid_manager.get_affected_targets(clicked_cell, card)
+	var targets = GameManager.grid_manager.get_card_affected_targets(clicked_cell, card)
 	for target : TargetCharacter in targets:
 		if card.grid_target == CardUtils.grid_target.ENEMY:
 			if target.stats is MonsterData:
@@ -111,15 +111,16 @@ func card_elemental_companion_action(card: CardData, action: CardUtils.action_ty
 		battle_state.companion_stats.channel_special(card, battle_state)
 		#card.use_special(battle_state, null)
 
-func apply_enemy_action(action : MonsterAction, enemy : Targetable):
+func apply_enemy_action(action : MonsterAction, enemy : Targetable, targets : Array[Targetable]):
 	enemy.acting.emit(action.type)
-	if action.type == MonsterUtils.action_types.DAMAGE:
-		var final_damage = DamageUtils.calculate_final_damage(action.damage, battle_state.player_stats, enemy)
-		DamageUtils.apply_damage(final_damage, battle_state.player_stats)
-	if action.type == MonsterUtils.action_types.DAMAGE_STATUS:
-		var final_damage = DamageUtils.calculate_final_damage(action.damage, enemy, battle_state.player_stats)
-		DamageUtils.apply_damage(final_damage, battle_state.player_stats)
-		battle_state.player_stats.status_manager.apply_status(action.status_effects)
+	if not targets.is_empty():
+		if action.type == MonsterUtils.action_types.DAMAGE:
+			var final_damage = DamageUtils.calculate_final_damage(action.damage, battle_state.player_stats, enemy)
+			DamageUtils.apply_damage(final_damage, battle_state.player_stats)
+		if action.type == MonsterUtils.action_types.DAMAGE_STATUS:
+			var final_damage = DamageUtils.calculate_final_damage(action.damage, enemy, battle_state.player_stats)
+			DamageUtils.apply_damage(final_damage, battle_state.player_stats)
+			battle_state.player_stats.status_manager.apply_status(action.status_effects)
 	if action.type == MonsterUtils.action_types.SHIELD:
 		var final_heal = HealUtils.calculate_final_shield(action.shield, enemy)
 		HealUtils.apply_shield(final_heal, enemy)
@@ -130,7 +131,8 @@ func apply_enemy_action(action : MonsterAction, enemy : Targetable):
 func enemy_cycle(enemy: MonsterData):
 	var action = enemy.get_action()
 	if StatusUtils.action_possible(enemy) == true:
-		apply_enemy_action(action, enemy)
+		var targets = GameManager.grid_manager.get_monster_action_affected_targets(enemy.grid_position, action)
+		apply_enemy_action(action, enemy, targets)
 	print("enemy cycle :", str(enemy.cycle_step))
 	enemy.cycle_step +=1
 	enemy.reset_cycle_step()

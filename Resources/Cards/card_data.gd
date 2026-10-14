@@ -18,6 +18,8 @@ signal exhausted(card)
 @export var shield_upgrade := 0
 @export var draw_value := 0
 @export var draw_value_upgrade := 0
+@export var move_distance := 0
+@export var move_distance_upgrade := 0
 @export var channel_add_value := 0
 @export var channel_add_value_upgrade := 0
 @export var channel_remove_value := 0
