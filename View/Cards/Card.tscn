@@ -229,11 +229,11 @@ offset_bottom = 89.0
 [node name="AreaEffectPreview" parent="AreaContainer" unique_id=279174807 instance=ExtResource("8_btmnm")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -17.0
-offset_top = 91.99997
-offset_right = -17.0
-offset_bottom = 91.99997
-scale = Vector2(0.25, 0.25)
+offset_left = 1.9999981
+offset_top = 88.99997
+offset_right = 1.9999981
+offset_bottom = 88.99997
+scale = Vector2(0.175, 0.175)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

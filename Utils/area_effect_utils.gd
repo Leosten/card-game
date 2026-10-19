@@ -1,6 +1,9 @@
 class_name  AreaEffectUtils
 extends Node
 
+static func pattern_origin_middle():
+	return Vector2i(0,1)
+
 static func pattern_origin_left_middle():
 	return Vector2i(0,1)
 
@@ -10,7 +13,7 @@ static func pattern_origin_middle_three_by_three():
 # 1. Single Target / Melee Strike
 # Hits only the targeted square.
 static func pattern_single() -> Array[Vector2i]:
-	return [Vector2i(0, 0)]
+	return [Vector2i(0, 1)]
 
 # 2. Horizontal Cleave (3-Tile Line)
 # Great for sweeping front-line enemies horizontally.

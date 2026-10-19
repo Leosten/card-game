@@ -31,19 +31,19 @@ func channel_add(card : CardData):
 	
 func add_orbs(orbs : Array[CardUtils.magic_type]):
 	for orb : CardUtils.magic_type in orbs:
-		if channel_orbs.size() == max_channel_orbs and check_activation_ceiling() == false :
+		if channel_orbs.size() == max_channel_orbs:
 			channel_orbs.pop_back()
 			channel_orbs.push_front(orb)
 			_add_count(orb)
 			cycled.emit()
-			if check_activation_ceiling():
-				trigger_high()
+			#if check_activation_ceiling():
+				#trigger_high()
 			continue
 		channel_orbs.append(orb)
 		channeled.emit()
 		_add_count(orb)
-		if check_activation_ceiling():
-			trigger_high()
+		#if check_activation_ceiling():
+			#trigger_high()
 	print("Added orb")
 
 func _add_count(orb_type : CardUtils.magic_type):

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://bd2rbxmagpd5y"]
+
+[ext_resource type="Script" uid="uid://dcq1xf2ib54kb" path="res://Resources/Cards/0/evade.gd" id="1_iwutf"]
+[ext_resource type="Script" uid="uid://bkcoa7p8c44pk" path="res://Resources/CardUpgrades/card_upgrade_data.gd" id="2_c5v44"]
+
+[resource]
+script = ExtResource("1_iwutf")
+name = "Evade"
+move_distance = 1
+move_distance_upgrade = 1
+description = "Move [color={value_color}]{move_distance_value}[/color] square"
+magic_type = 1
+metadata/_custom_type_script = "uid://cqcdxav3ke5ma"

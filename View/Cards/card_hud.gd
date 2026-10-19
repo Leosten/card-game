@@ -194,7 +194,7 @@ func _on_card_clicked(card: Card) -> void:
 	if player_stats.current_mana < card.card_data.cost:
 		CardAnimationManager.cannot_use_card_animation(card)
 		return
-	card_clicked.emit(card.card_data)
+	card_clicked.emit(card)
 
 func _on_card_hovered(card: Card) -> void:
 	print("card hovered")

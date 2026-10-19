@@ -1,0 +1,7 @@
+class_name GridUtils
+
+const SQUARE_SOURCE_ID := 1
+const PLAYER_SQUARE_ALT_ID := 1
+const ENEMY_SQUARE_ALT_ID := 2
+const HIGHLIGHT_SQUARE_ALT_ID := 3
+const ENEMY_HIGHLIGHT_SQUARE_ALT_ID := 5

@@ -1,7 +1,7 @@
 @abstract class_name CardUtils
 extends Node
 
-enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF}
+enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF, SQUARE}
 enum grid_target {PLAYER, ENEMY, ALL}
 enum area_origin {PLAYER, FREE, COMPANION}
 enum action_type {

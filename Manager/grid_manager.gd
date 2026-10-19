@@ -5,12 +5,6 @@ const ARENA_BOUNDS: Rect2i = Rect2i(0, 0, 8, 4)
 const PLAYER_TERRITORY: Rect2i = Rect2i(0, 0, 4, 4)
 const ENEMY_TERRITORY: Rect2i = Rect2i(4, 0, 4, 4)
 
-const SQUARE_SOURCE_ID := 1
-const PLAYER_SQUARE_ALT_ID := 1
-const ENEMY_SQUARE_ALT_ID := 2
-const HIGHLIGHT_SQUARE_ALT_ID := 3
-const ENEMY_HIGHLIGHT_SQUARE_ALT_ID := 5
-
 var main_grid : TileMapLayer
 var target_highlight_grid : TileMapLayer
 var enemy_action_highlight_grid : TileMapLayer
@@ -22,10 +16,10 @@ func draw_battlefield_squares() -> void:
 	for y in range(ARENA_BOUNDS.position.y, ARENA_BOUNDS.end.y):
 		for x in range(ARENA_BOUNDS.position.x, ARENA_BOUNDS.end.x):
 			var cell := Vector2i(x, y)
-			var alt_id := PLAYER_SQUARE_ALT_ID
+			var alt_id := GridUtils.PLAYER_SQUARE_ALT_ID
 			if ENEMY_TERRITORY.has_point(cell):
-				alt_id = ENEMY_SQUARE_ALT_ID
-			main_grid.set_cell(cell, SQUARE_SOURCE_ID, Vector2i.ZERO, alt_id)
+				alt_id = GridUtils.ENEMY_SQUARE_ALT_ID
+			main_grid.set_cell(cell, GridUtils.SQUARE_SOURCE_ID, Vector2i.ZERO, alt_id)
 
 func set_monster_grid_position(unit: TargetCharacter, col, row):
 	var cell_coor := Vector2i(
@@ -103,7 +97,7 @@ func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, targ
 	for cell : Vector2i in target_cells:
 		if not target_bounds.has_point(cell):
 			continue
-		target_grid.set_cell(cell, SQUARE_SOURCE_ID, Vector2i.ZERO, HIGHLIGHT_SQUARE_ALT_ID)
+		target_grid.set_cell(cell, GridUtils.SQUARE_SOURCE_ID, Vector2i.ZERO, GridUtils.HIGHLIGHT_SQUARE_ALT_ID)
 
 func update_monster_aoe_preview(origin_cell: Vector2i, action: MonsterAction) -> void:
 	if action.area_pattern.is_empty():
@@ -115,7 +109,7 @@ func update_monster_aoe_preview(origin_cell: Vector2i, action: MonsterAction) ->
 		if not ARENA_BOUNDS.has_point(cell):
 			print("action out of arena bounds")
 			continue
-		enemy_action_highlight_grid.set_cell(cell, SQUARE_SOURCE_ID, Vector2i.ZERO, ENEMY_HIGHLIGHT_SQUARE_ALT_ID)
+		enemy_action_highlight_grid.set_cell(cell, GridUtils.SQUARE_SOURCE_ID, Vector2i.ZERO, GridUtils.ENEMY_HIGHLIGHT_SQUARE_ALT_ID)
 
 func stop_aoe_preview():
 	target_highlight_grid.clear()

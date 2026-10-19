@@ -25,7 +25,7 @@ var enemy_positions : Array[Area2D] = []
 @onready var mana_window = $%ManaWindow
 @onready var grid_display = %Grid
 @onready var targeting_line: TargetingLine2D = $TargetingLine2D
-var card_clicked: CardData = null
+var card_clicked: Card = null
 
 func _process(delta: float) -> void:
 	draw_targeting_line()
@@ -116,19 +116,19 @@ func spawn_level_monsters():
 		await get_tree().create_timer(0.3).timeout
 	print("Monsters spawned")
 
-func _on_card_clicked(card_data: CardData) -> void:
+func _on_card_clicked(card: Card) -> void:
 	if enemy_turn == true:
 		return
-	if card_clicked != null and card_data == card_clicked:
-		action_manager.use_card_on_ally(card_clicked)
+	if card_clicked != null and card == card_clicked:
+		action_manager.use_card_on_ally(card_clicked.card_data)
 		print("click on self card")
 		stop_targeting()
 		return
-	if card_data.cost > CharacterUtils.get_current_mana(battle_state):
+	if card.card_data.cost > CharacterUtils.get_current_mana(battle_state):
 		print("not enough mana")
 		stop_targeting()
 		return
-	card_clicked = card_data
+	card_clicked = card
 
 func _on_monster_hovered():
 	pass
@@ -172,30 +172,7 @@ func _cleanup_fight():
 func draw_targeting_line():
 	if card_clicked == null:
 		return
-	var selected_card = card_hand_hud.displayed_hand.filter(func(card: Card) -> bool: return card.hand_position == card_clicked.hand_position)
-	if selected_card.is_empty() == true:
-		return
-	# 1. Start point = Center of card UI element
-	var start_pos: Vector2 = selected_card[0].global_position + (selected_card[0].size * 0.5)
-
-	var overlay_tilemap : TileMapLayer = GameManager.grid_manager.target_highlight_grid
-	var target_bounds : Rect2i = GameManager.grid_manager.get_card_target_bounds(card_clicked)
-	# 2. Get target cell from current mouse cursor position
-	var mouse_pos: Vector2 = get_global_mouse_position()
-	var local_mouse: Vector2 = overlay_tilemap.to_local(mouse_pos)
-	var target_cell: Vector2i = overlay_tilemap.local_to_map(local_mouse)
-
-	var end_pos: Vector2
-
-	if target_bounds.has_point(target_cell):
-	# Valid arena tile -> Snap to grid center
-		var cell_local_center: Vector2 = overlay_tilemap.map_to_local(target_cell)
-		end_pos = overlay_tilemap.to_global(cell_local_center)
-	else:
-	# Outside arena -> Fallback to raw mouse position
-		end_pos = mouse_pos
-	targeting_line.update_targeting_curve(start_pos, end_pos)
-	GameManager.grid_manager.update_card_aoe_preview(target_cell, card_clicked, overlay_tilemap, target_bounds)
+	TargetingUtils.draw_mouse_card_targeting_line(targeting_line, card_clicked, get_local_mouse_position())
 
 func stop_targeting() -> void:
 	card_clicked = null
@@ -216,17 +193,14 @@ func _input(event: InputEvent) -> void:
 	if event.button_index != MOUSE_BUTTON_LEFT:
 		return
 
-	var target_grid = GameManager.grid_manager.target_highlight_grid
-	var mouse_pos: Vector2 = get_global_mouse_position()
-	var local_pos: Vector2 = target_grid.to_local(mouse_pos)
-	var clicked_cell: Vector2i = target_grid.local_to_map(local_pos)
-
-	var bounds: Rect2i = GameManager.grid_manager.get_card_target_bounds(card_clicked)
+	var clicked_cell: Vector2i = TargetingUtils.get_clicked_cell(GameManager.grid_manager.target_highlight_grid, get_global_mouse_position())
+	
+	var bounds: Rect2i = GameManager.grid_manager.get_card_target_bounds(card_clicked.card_data)
 	if not bounds.has_point(clicked_cell):
 		return # click missed the grid (e.g. hit a card/UI) -> propagate normally
 
 	tile_clicked.emit(clicked_cell)
 	if GameManager.grid_manager.is_valid_target_cell():
-		action_manager.use_card_on_grid(clicked_cell, card_clicked)
+		action_manager.use_card_on_grid(clicked_cell, card_clicked.card_data)
 		stop_targeting()
 	get_viewport().set_input_as_handled()

@@ -74,6 +74,9 @@ func send_card_used_signal(card: CardData):
 	else:
 		card.used.emit()
 
+func card_apply_move_action(card: CardData, action: CardUtils.action_type, enemy: Targetable):
+	pass
+
 func card_apply_damage_action(card: CardData, action: CardUtils.action_type, enemy: Targetable):
 	if action == CardUtils.action_type.DAMAGE:
 		var final_damage = DamageUtils.calculate_final_damage(card.damage, battle_state.player_stats, enemy)
@@ -118,12 +121,12 @@ func apply_enemy_action(action : MonsterAction, enemy : Targetable, targets : Ar
 			if target.stats is MonsterData:
 				continue
 			if action.type == MonsterUtils.action_types.DAMAGE:
-				var final_damage = DamageUtils.calculate_final_damage(action.damage, battle_state.player_stats, enemy)
+				var final_damage = DamageUtils.calculate_final_damage(action.damage, target.stats, enemy)
 				DamageUtils.apply_damage(final_damage, target.stats)
 			if action.type == MonsterUtils.action_types.DAMAGE_STATUS:
 				var final_damage = DamageUtils.calculate_final_damage(action.damage, enemy, target.stats)
 				DamageUtils.apply_damage(final_damage, target.stats)
-				battle_state.player_stats.status_manager.apply_status(action.status_effects)
+				target.stats.status_manager.apply_status(action.status_effects)
 	if action.type == MonsterUtils.action_types.SHIELD:
 		var final_heal = HealUtils.calculate_final_shield(action.shield, enemy)
 		HealUtils.apply_shield(final_heal, enemy)
