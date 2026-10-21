@@ -67,6 +67,7 @@ func _on_monster_dead(monster : MonsterData):
 	Events.monster_dead.emit(monster)
 	level_monsters.erase(monster)
 	GameManager.grid_manager.clear_cell_data(monster.grid_position)
+	GameManager.grid_manager.clear_monster_aoe_preview(monster.grid_position, monster.get_action())
 	check_monsters_dead()
 	monsters_displayed = MonsterUtils.remove_monster_dead_display(monsters_displayed, monster)
 

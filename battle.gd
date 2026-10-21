@@ -156,7 +156,7 @@ func _on_player_turn_start():
 	Events.turn_start.emit()
 	battle_state.replenish_player_mana()
 	enemy_turn = false
-	
+
 func _victory():
 	await _cleanup_fight()
 	Events.request_window_open.emit("reward", {"gold" : 0})
@@ -172,7 +172,7 @@ func _cleanup_fight():
 func draw_targeting_line():
 	if card_clicked == null:
 		return
-	TargetingUtils.draw_mouse_card_targeting_line(targeting_line, card_clicked, get_local_mouse_position())
+	TargetingUtils.start_targeting(targeting_line, card_clicked, get_local_mouse_position())
 
 func stop_targeting() -> void:
 	card_clicked = null

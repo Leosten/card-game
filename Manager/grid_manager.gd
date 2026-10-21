@@ -99,17 +99,25 @@ func update_card_aoe_preview(hover_origin: Vector2i, active_card: CardData, targ
 			continue
 		target_grid.set_cell(cell, GridUtils.SQUARE_SOURCE_ID, Vector2i.ZERO, GridUtils.HIGHLIGHT_SQUARE_ALT_ID)
 
-func update_monster_aoe_preview(origin_cell: Vector2i, action: MonsterAction) -> void:
+func update_monster_aoe_preview(monster_pos: Vector2i, action: MonsterAction) -> void:
 	if action.area_pattern.is_empty():
 		print("action has no pattern")
 		return
-	var target_cells := TargetingUtils.get_monster_action_affected_cells(origin_cell, action)
+	var target_cells := TargetingUtils.get_monster_action_affected_cells(monster_pos, action)
 	print("target_cells: ", target_cells)
 	for cell in target_cells:
 		if not ARENA_BOUNDS.has_point(cell):
 			print("action out of arena bounds")
 			continue
 		enemy_action_highlight_grid.set_cell(cell, GridUtils.SQUARE_SOURCE_ID, Vector2i.ZERO, GridUtils.ENEMY_HIGHLIGHT_SQUARE_ALT_ID)
+
+func clear_monster_aoe_preview(monster_pos: Vector2i, action: MonsterAction) -> void:
+	if action.area_pattern.is_empty():
+		print("action has no pattern")
+		return
+	var target_cells := TargetingUtils.get_monster_action_affected_cells(monster_pos, action)
+	for cell in target_cells:
+		enemy_action_highlight_grid.erase_cell(cell)
 
 func stop_aoe_preview():
 	target_highlight_grid.clear()

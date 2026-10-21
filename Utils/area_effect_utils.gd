@@ -2,7 +2,7 @@ class_name  AreaEffectUtils
 extends Node
 
 static func pattern_origin_middle():
-	return Vector2i(0,1)
+	return Vector2i(0,0)
 
 static func pattern_origin_left_middle():
 	return Vector2i(0,1)

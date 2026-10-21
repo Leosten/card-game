@@ -1,9 +1,15 @@
 @abstract class_name CardUtils
 extends Node
 
+# what the card can affect
 enum targets {ALLY, ENEMY, ALL_ENEMIES, SELF, SQUARE}
+# on which grid
 enum grid_target {PLAYER, ENEMY, ALL}
-enum area_origin {PLAYER, FREE, COMPANION}
+# which type of targeting : with a line, directly targeting a square, or card self (buffs etc)
+enum targeting_type {LINE, SQUARE, NONE}
+# used for movement or skills that stem from a target: from where the aoe must be displayed
+enum target_origin {PLAYER, NONE, COMPANION, ENEMY}
+
 enum action_type {
 	HEAL,
 	DAMAGE,
@@ -17,7 +23,8 @@ enum action_type {
 	DRAW,
 	CHANNEL_SPECIAL,
 	PUSH,
-	MOVE,
+	MOVE_FREELY,
+	MOVE_FROM_TARGET,
 	PULL
 }
 enum magic_type {FIRE, WIND, ICE, NONE}

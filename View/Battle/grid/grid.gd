@@ -13,12 +13,16 @@ func _ready() -> void:
 	grid_manager.enemy_action_highlight_grid = enemy_action_highlight_grid
 	Events.turn_start.connect(_on_turn_start)
 	Events.battle_start.connect(_on_battle_start)
-
+	Events.monster_dead.connect(_on_monster_dead)
+	
 func _on_battle_start():
 	grid_manager.draw_battlefield_squares()
 
 func _on_turn_start():
 	grid_manager.clear_enemy_action_highlight()
+	preview_enemy_actions()
+
+func _on_monster_dead(monster : MonsterData):
 	preview_enemy_actions()
 
 func preview_enemy_actions():

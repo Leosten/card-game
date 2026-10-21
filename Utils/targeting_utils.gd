@@ -1,5 +1,15 @@
 class_name TargetingUtils
 
+
+static func start_targeting(targeting_line : Line2D, card : Card, mouse_pos: Vector2i):
+	match card.card_data.targeting_type:
+		CardUtils.targeting_type.SQUARE:
+			pass
+		CardUtils.targeting_type.LINE:
+			draw_mouse_card_targeting_line(targeting_line,card, mouse_pos)
+		_:
+			pass
+
 static func get_monster_action_affected_cells(origin_cell : Vector2i, action : MonsterAction) -> Array[Vector2i]:
 	var absolute_cells: Array[Vector2i] = []
 	var origin_offset: Vector2i = action.area_origin
