@@ -2,8 +2,5 @@
 .godot/
 /android/
 
-# Art assets (third-party licensed packs, kept local-only)
-/Art/
-
 # Editor leftover temp files from scene/resource saving
 *.tmp
